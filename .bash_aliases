@@ -16,3 +16,6 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 
 # kubernetes
 alias k='kubectl'
+
+# micro editor
+alias m='micro'
