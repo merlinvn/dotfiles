@@ -1,5 +1,10 @@
 {
     "Alt-/": "lua:comment.comment",
     "CtrlUnderscore": "lua:comment.comment",
-    "F6": "command-edit:gorename "
+    "F6": "command-edit:gorename ",
+    "Ctrl-p": "command:fzf",
+    "Alt-k": "SpawnMultiCursorUp",
+    "Alt-j": "SpawnMultiCursorDown",
+    "Alt-J": "MoveLinesDown",
+    "Alt-K": "MoveLinesUp"
 }
