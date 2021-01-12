@@ -23,9 +23,9 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 
 
 # npm aliases
-alias ni = "npm install"
-alias nr = "npm run"
-alias ns = "npm start"
+alias ni="npm install"
+alias nr="npm run"
+alias ns="npm start"
 
 
 # kubernetes
