@@ -1,52 +1,67 @@
-syntax on               " enable syntax highlighting
-set cursorline          " highlight the current line
-" set background=dark   " darker color scheme
-" set ruler             " show line number in bar
-set nobackup            " don't create pointless backup files; Use VCS instead
-set autoread            " watch for file changes
-set number              " show line numbers
-set showcmd             " show selection metadata
-set showmode            " show INSERT, VISUAL, etc. mode
-set showmatch           " show matching brackets
-set autoindent smartindent  " auto/smart indent
-set smarttab            " better backspace and tab functionality
-set scrolloff=5         " show at least 5 lines above/below
-filetype on             " enable filetype detection
-filetype indent on      " enable filetype-specific indenting
-filetype plugin on      " enable filetype-specific plugins
-" colorscheme cobalt      " requires cobalt.vim to be in ~/.vim/colors
+" ========= Plugin Section ===============
 
-" column-width visual indication
-let &colorcolumn=join(range(81,999),",")
-highlight ColorColumn ctermbg=235 guibg=#001D2F
+" install vimplug if not exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" tabs and indenting
-set autoindent          " auto indenting
-set smartindent         " smart indenting
-set expandtab           " spaces instead of tabs
-set tabstop=2           " 2 spaces for tabs
-set shiftwidth=2        " 2 spaces for indentation
 
-" bells
-set noerrorbells        " turn off audio bell
-set novisualbell          " but leave on a visual bell
+call plug#begin('~/.vim/plugged')
+Plug 'gruvbox-community/gruvbox'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
-" search
-set hlsearch            " highlighted search results
-set showmatch           " show matching bracket
 
-" other
-set guioptions=aAace    " don't show scrollbar in MacVim
-" call pathogen#infect()  " use pathogen
 
-" clipboard
-set clipboard=unnamed   " allow yy, etc. to interact with OS X clipboard
 
-" shortcuts
-map <F2> :NERDTreeToggle<CR>
 
-" remapped keys
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
+" Initialize plugin system
+call plug#end()
+
+" Gruvbox settings
+colorscheme gruvbox
+highlight Normal guibg=NONE
+set background=dark
+
+" ======== End Plugin Section =============
+
+" ======== Remap Section =================
+
+" n: normal mode
+" nore: no-recursive
+" map
+" ==> nnormap
+
+" change Leader from '\' to '\s'
+let mapleader=" "
+
+
+" ps Project wide Search
+
+
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+
+" Edit vimr configuration file
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+" Reload vims configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>
+
+" ======= End Remap Section ===============
+"
+" ======= Hook Section ====================
+fun! TrimWhitespaces()
+  let l:save = winsaveview()
+  keeppattern %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
+
+augroup MERLINVN
+  autocmd!
+  autocmd BufWritePre * :call TrimWhitespaces()
+augroup END
+
+" ======= End Hook Section ================
+
