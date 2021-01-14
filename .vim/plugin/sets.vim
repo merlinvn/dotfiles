@@ -2,7 +2,11 @@
 set guicursor=
 
 if &term =~ '^xterm'
+  " SI = INSERT mode
+  " SR = REPLACE mode
+  " EI = NORMAL mode (ELSE)
   let &t_SI .= "\<Esc>[6 q"
+  let &t_SR .= "\<Esc>[4 q"
   let &t_EI .= "\<Esc>[2 q"
  " 1 or 0 -> blinking block
  " 2 -> solid block
@@ -12,6 +16,10 @@ if &term =~ '^xterm'
  " 5 -> blinking vertical bar
  " 6 -> solid vertical bar
 endif
+set ttimeout
+set ttimeoutlen=1
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+set ttyfast
 
 set relativenumber
 set nohlsearch
