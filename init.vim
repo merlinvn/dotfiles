@@ -28,6 +28,8 @@ colorscheme gruvbox
 highlight Normal guibg=NONE
 set background=dark
 
+let g:CheatSheetDoNotMap=1
+
 " ======== End Plugin Section =============
 
 " ======== Remap Section =================
@@ -59,6 +61,15 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+
+
+" move lines up down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 
 " ======= End Remap Section ===============
