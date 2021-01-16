@@ -33,3 +33,7 @@ alias k='kubectl'
 
 # micro editor
 alias m='micro'
+
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="\vim"

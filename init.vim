@@ -1,13 +1,24 @@
 " ========= Plugin Section ===============
 
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
+
+" telescope requirements...
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'rust-lang/rust.vim'
+"Plug 'tweekmonster/gofmt.vim'
 
-
+" Cheat Sheet
+Plug 'dbeniamine/cheat.sh-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -22,6 +33,8 @@ set background=dark
 " ======== Remap Section =================
 
 " n: normal mode
+" i: insert mode
+" v: visual mode
 " nore: no-recursive
 " map
 " ==> nnormap
