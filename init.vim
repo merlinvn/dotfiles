@@ -7,7 +7,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
-" telescope requirements...
+" telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -53,6 +53,13 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 " Reload vims configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
+
+" Split windows navigations
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
 
 " ======= End Remap Section ===============
 "
