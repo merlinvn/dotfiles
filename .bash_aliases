@@ -34,10 +34,10 @@ alias k='kubectl'
 # micro editor
 alias m='micro'
 
-if [ -f "/bin/nvim" ]; then
-  alias vim="nvim"
-  alias vi="nvim"
-  alias oldvim="\vim"
-fi
+# if [ -f "/bin/nvim" ]; then
+  # alias vim="nvim"
+  # alias vi="nvim"
+  # alias oldvim="\vim"
+# fi
 
 
