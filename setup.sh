@@ -5,6 +5,7 @@ rm -f ~/.zshrc
 rm -f ~/.bashrc
 rm -f ~/.vimrc
 rm -f ~/.bash_aliases
+rm -f ~/.p10k.zsh
 
 #install vimplug
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -16,6 +17,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
