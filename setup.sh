@@ -5,19 +5,18 @@ rm -f ~/.zshrc
 rm -f ~/.bashrc
 rm -f ~/.vimrc
 rm -f ~/.bash_aliases
-rm -f ~/.p10k.zsh
 
-#install vimplug
+#install vimplug for neovim
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+#install vimplug for vim legaxy
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
@@ -39,3 +38,7 @@ for f in `find . -regex ".*\.vim$\|.*\.lua$"`; do
 	ln -s ~/dotfiles/$f ~/.config/nvim/$f
 done
 
+
+# link Starship settings
+rm -f ~/.config/starship.toml
+ln -s ~/dotfiles/starship.toml ~/.config/starship.toml

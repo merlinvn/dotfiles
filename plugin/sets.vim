@@ -40,6 +40,7 @@ set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
+autocmd FileType go setlocal expandtab!
 
 set nu
 set nowrap

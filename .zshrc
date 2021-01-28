@@ -13,6 +13,7 @@ export SHELL=/usr/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 # Add exports from your profile
 source ~/.profile
 
@@ -23,7 +24,7 @@ export ZSH="/home/ubuntu/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -91,6 +92,7 @@ autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
+
 if [ -f ~/.bash_aliases ]
 then
   source ~/.bash_aliases
@@ -108,5 +110,15 @@ function dipa(){
 
 . /usr/share/autojump/autojump.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+function _fix_cursor() {
+  echo -ne '\e[6 q'
+}
+
+precmd_functions+=(_fix_cursor)
+
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+eval "$(starship init zsh)"
+
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
