@@ -6,7 +6,7 @@ scan_timeout = 10
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
 [username]
-style_user = "yellow bold"
+style_user = "green bold"
 style_root = "red bold"
 format = "[$user]($style)"
 disabled = false
@@ -14,7 +14,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format =  "[@](red)[$hostname](bold yellow): "
+format =  "[@](red)[$hostname](bold green): "
 trim_at = ".companyname.com"
 disabled = false
 

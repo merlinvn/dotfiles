@@ -1,7 +1,14 @@
-alias ls='ls --color'
-alias ll='ls -alhF'
-alias la='ls -A'
-alias l='ls -F'
+if [[ -f ~/.cargo/bin/exa ]]; then
+  alias ls='exa --color=auto'
+  alias ll='exa -alhF'
+  alias la='exa -a'
+  alias l='exa -F'
+else
+  alias ls='ls --color'
+  alias ll='ls -alhF'
+  alias la='ls -A'
+  alias l='ls -F'
+fi
 
 alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
@@ -41,4 +48,4 @@ alias m='micro'
   # alias oldvim="\vim"
 # fi
 
-
+alias fd=fdfind
