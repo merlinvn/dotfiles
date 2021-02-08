@@ -138,5 +138,9 @@ augroup MERLINVN
   autocmd BufWritePre * :call TrimWhitespaces()
 augroup END
 
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" " deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
+
 " ======= End Hook Section ================
 
