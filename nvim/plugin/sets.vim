@@ -35,6 +35,7 @@ set nohlsearch
 set hidden
 
 set noerrorbells
+set vb t_vb=
 
 set tabstop=2 softtabstop=2
 set shiftwidth=2
