@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export TERM="xterm-256color" # This sets up colors properly
 
 # set shell
@@ -13,9 +6,10 @@ export SHELL=/usr/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
 # Add exports from your profile
-source ~/.profile
+if [ -e ~/.profile ]; then
+  source ~/.profile
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ubuntu/.oh-my-zsh"
@@ -24,7 +18,7 @@ export ZSH="/home/ubuntu/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -118,7 +112,8 @@ precmd_functions+=(_fix_cursor)
 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
-eval "$(starship init zsh)"
+
+[[ /usr/local/bin/starship ]] && eval "$(starship init zsh)"
 
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word

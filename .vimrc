@@ -69,7 +69,8 @@ endif
 " Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'rust-lang/rust.vim'
 " Plug 'tweekmonster/gofmt.vim'
-" Plug 'cespare/vim-toml'
+
+Plug 'cespare/vim-toml'
 
 " Cheat Sheet
 " Plug 'dbeniamine/cheat.sh-vim'
