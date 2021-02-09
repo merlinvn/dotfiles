@@ -1,18 +1,38 @@
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 " ========= Plugin Section ===============
-" Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
+if has('nvim')
+  " Bootstrap Plug
+  let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
+  if !filereadable(autoload_plug_path)
+    silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs
+        \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+  unlet autoload_plug_path
+
+  call plug#begin(stdpath('data') . '/plugged')
+else
+  " Install vim-plug if not found
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+  call plug#begin('~/.vim/plugged')
 endif
 
-
-call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
+" easy moving around
 Plug 'easymotion/vim-easymotion'
 
 " highlight yanked text for 1 second
@@ -28,10 +48,27 @@ Plug 'tpope/vim-surround'
 " <Leader>ci toggle
 Plug 'preservim/nerdcommenter'
 
+if has('nvim')
+  " telescope
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+
+  " autocompletion with language server by nvim built-in
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'tjdevries/nlua.nvim'
+  Plug 'tjdevries/lsp_extensions.nvim'
+
+  " need to call :TSInstall {language} later
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
+
+
+" other language enhancements
 " Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'rust-lang/rust.vim'
 " Plug 'tweekmonster/gofmt.vim'
-
 " Plug 'cespare/vim-toml'
 
 " Cheat Sheet
@@ -62,6 +99,8 @@ let g:gofmt_exe='/usr/local/go/bin/gofmt'
 " ======== Remap Section =================
 
 " n: normal mode
+" i: insert mode
+" v: visual mode
 " nore: no-recursive
 " map
 " ==> nnormap
@@ -89,11 +128,13 @@ nnoremap <leader>l :wincmd l<CR>
 
 
 " move lines up down
-execute "set <M-k>=\ek"
-execute "set <M-j>=\ej"
+if !has('nvim')
+  execute "set <A-k>=\ek"
+  execute "set <A-j>=\ej"
+endif
 
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
@@ -130,6 +171,10 @@ augroup MERLINVN
   autocmd!
   autocmd BufWritePre * :call TrimWhitespaces()
 augroup END
+
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" " deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
 
 " ======= End Hook Section ================
 
