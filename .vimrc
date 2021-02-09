@@ -47,6 +47,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'voldikss/vim-floaterm'
+
 if has('nvim')
   " telescope
   Plug 'nvim-lua/popup.nvim'
