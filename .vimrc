@@ -44,6 +44,9 @@ Plug 'tpope/vim-surround'
 " <Leader>ci toggle
 Plug 'preservim/nerdcommenter'
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 if has('nvim')
   " telescope
   Plug 'nvim-lua/popup.nvim'
@@ -96,7 +99,7 @@ let g:NERDSpaceDelims = 1
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
 
 " ======== End Plugin Section =============
-
+set laststatus=2
 " ======== Remap Section =================
 
 " n: normal mode
