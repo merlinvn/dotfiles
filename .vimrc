@@ -85,7 +85,12 @@ Plug 'cespare/vim-toml'
 call plug#end()
 
 " Gruvbox settings
-colorscheme gruvbox
+if has('nvim')
+  colorscheme gruvbox
+else
+  autocmd vimenter * ++nested colorscheme gruvbox
+endif
+
 highlight Normal guibg=NONE
 set background=dark
 
