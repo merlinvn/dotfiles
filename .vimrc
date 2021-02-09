@@ -28,10 +28,6 @@ endif
 
 Plug 'gruvbox-community/gruvbox'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-
 " easy moving around
 Plug 'easymotion/vim-easymotion'
 
@@ -62,11 +58,16 @@ if has('nvim')
 
   " need to call :TSInstall {language} later
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+else
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'stsewd/fzf-checkout.vim'
 endif
 
 
 " other language enhancements
-" Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'rust-lang/rust.vim'
 " Plug 'tweekmonster/gofmt.vim'
 
