@@ -52,6 +52,8 @@ Plug 'vim-airline/vim-airline-themes'
 " windows in side neovim
 Plug 'voldikss/vim-floaterm'
 
+Plug 'mhinz/vim-startify'
+
 if has('nvim')
   " telescope
   Plug 'nvim-lua/popup.nvim'
@@ -106,6 +108,9 @@ let g:NERDSpaceDelims = 1
 
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
+
+let g:startify_custom_header =
+          \ 'startify#center(startify#fortune#cowsay())'
 
 " ======== End Plugin Section =============
 "
