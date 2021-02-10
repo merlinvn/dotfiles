@@ -109,8 +109,6 @@ let g:NERDSpaceDelims = 1
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
 
-let g:startify_custom_header =
-          \ 'startify#center(startify#fortune#cowsay())'
 
 " ======== End Plugin Section =============
 "
