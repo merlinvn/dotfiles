@@ -4,6 +4,7 @@ function! Cond(cond, ...)
 endfunction
 
 " ========= Plugin Section ===============
+" Initialize plugin system
 
 if has('nvim')
   " Bootstrap Plug
@@ -47,6 +48,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" for neovim install `pip3 install neovim-remote` to allow floaterm to open
+" windows in side neovim
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
@@ -81,10 +84,9 @@ Plug 'cespare/vim-toml'
 " Cheat Sheet
 " Plug 'dbeniamine/cheat.sh-vim'
 
-
-
-" Initialize plugin system
 call plug#end()
+
+""" Plugin settings
 
 " Gruvbox settings
 if has('nvim')
@@ -106,7 +108,7 @@ let g:NERDSpaceDelims = 1
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
 
 " ======== End Plugin Section =============
-set laststatus=2
+"
 " ======== Remap Section =================
 
 " n: normal mode
