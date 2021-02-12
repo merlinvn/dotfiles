@@ -10,6 +10,18 @@ else
   alias l='ls -F'
 fi
 
+if [[ -f ~/.cargo/bin/rg ]]; then
+  alias grep='rg'
+fi
+
+if [[ -f ~/.cargo/bin/bat ]]; then
+  alias cat='bat'
+fi
+
+if [[ -f ~/.cargo/bin/fd ]]; then
+  alias find='fd'
+fi
+
 alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
 

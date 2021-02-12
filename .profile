@@ -33,5 +33,5 @@ if [ -f "$HOME/.cargo/env" ]; then
 fi
 
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin
 
