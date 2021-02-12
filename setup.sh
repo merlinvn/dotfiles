@@ -5,7 +5,10 @@ rm -f ~/.zshrc
 rm -f ~/.bashrc
 rm -f ~/.vimrc
 rm -f ~/.bash_aliases
+rm -f ~/.profile
 rm -f ~/.config/nvim/init.vim
+rm -f ~/.xmonad/xmonad.hs
+rm -f ~/.config/xmobar/xmobarrc
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -13,6 +16,14 @@ ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
+ln -s ~/dotfiles/.profile ~/.profile
+
+mkdir -p ~/.xmonad
+ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.sh
+
+mkdir -p ~/.config/xmobar
+ln -s ~/dotfiles/.config/xmobar/xmobarrc ~/.config/xmobar/xmobarrc
+
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin

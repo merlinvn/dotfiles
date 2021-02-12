@@ -12,7 +12,7 @@ if [ -e ~/.profile ]; then
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ubuntu/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,13 +110,12 @@ function _fix_cursor() {
 
 precmd_functions+=(_fix_cursor)
 
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[ -x /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
 
+[ -x /usr/local/bin/starship ] && eval "$(starship init zsh)"
 
-[[ /usr/local/bin/starship ]] && eval "$(starship init zsh)"
-
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
+# bindkey '^[[1;5C' forward-word
+# bindkey '^[[1;5D' backward-word
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
