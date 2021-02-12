@@ -110,7 +110,6 @@ let g:NERDSpaceDelims = 1
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
 
-
 " ======== End Plugin Section =============
 "
 " ======== Remap Section =================

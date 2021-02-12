@@ -19,6 +19,10 @@ if has('nvim')
   nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
   nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
   nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+
+  imap <tab> <Plug>(completion_smart_tab)
+  imap <s-tab> <Plug>(completion_smart_s_tab)
+
 endif
 
 

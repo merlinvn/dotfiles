@@ -26,7 +26,13 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-setxkbmap -option caps:swapescape
+if xhost >& /dev/null ; then
+  # echo "Display exists"
+  setxkbmap -option caps:swapescape
+else
+  # echo "Display invalid" ;
+fi
+
 
 if [ -f "$HOME/.cargo/env" ]; then
   source "$HOME/.cargo/env"

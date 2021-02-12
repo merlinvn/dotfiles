@@ -1,4 +1,4 @@
-if [[ -f ~/.cargo/bin/exa ]]; then
+if [[ -f ~/.cargo/bin/exa ]] || [[ -f /usr/bin/exa ]]; then
   alias ls='exa --color=auto'
   alias ll='exa -alhF'
   alias la='exa -a'
@@ -10,15 +10,15 @@ else
   alias l='ls -F'
 fi
 
-if [[ -f ~/.cargo/bin/rg ]]; then
+if [[ -f ~/.cargo/bin/rg ]] || [[ -f /usr/bin/rg ]]; then
   alias grep='rg'
 fi
 
-if [[ -f ~/.cargo/bin/bat ]]; then
+if [[ -f ~/.cargo/bin/bat ]] || [[ -f /usr/bin/bat ]]; then
   alias cat='bat'
 fi
 
-if [[ -f ~/.cargo/bin/fd ]]; then
+if [[ -f ~/.cargo/bin/fd ]] || [[ -f /usr/bin/fd ]]; then
   alias find='fd'
 fi
 
