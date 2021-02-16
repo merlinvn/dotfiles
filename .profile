@@ -27,10 +27,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if xhost >& /dev/null ; then
-  # echo "Display exists"
+  echo "using X11 display"
   setxkbmap -option caps:swapescape
 else
-  # echo "Display invalid" ;
+  echo "non-X11 display" ;
 fi
 
 
