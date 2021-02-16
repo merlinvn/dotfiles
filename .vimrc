@@ -78,6 +78,8 @@ endif
 
 " other language enhancements
 Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'bfrg/vim-cpp-modern'
+
 " Plug 'rust-lang/rust.vim'
 " Plug 'tweekmonster/gofmt.vim'
 
@@ -94,7 +96,7 @@ call plug#end()
 if has('nvim')
   colorscheme gruvbox
 else
-  if version < 810
+  if (v:version < 801)
     autocmd vimenter * colorscheme gruvbox
   else
     autocmd vimenter * ++nested colorscheme gruvbox
