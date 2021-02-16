@@ -19,7 +19,7 @@ ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/.profile ~/.profile
 
 mkdir -p ~/.xmonad
-ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.sh
+ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 
 mkdir -p ~/.config/xmobar
 ln -s ~/dotfiles/.config/xmobar/xmobarrc ~/.config/xmobar/xmobarrc
