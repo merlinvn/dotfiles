@@ -41,3 +41,10 @@ fi
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin
 
+# GCC 10.2.0
+if [ -d "/usr/local/gcc-10.2.0" ]; then
+  export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+  export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+  alias gcc=gcc-10.2
+  alias g++=g++-10.2
+fi

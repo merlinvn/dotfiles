@@ -1,5 +1,10 @@
-let g:airline_theme='deus'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+" for lightline.vim
+if !has('gui_running')
+  set t_co=256
+endif
 
-let g:airline#extensions#tabline#formatter = 'default'
+set noshowmode
+
+let g:lightline = {
+  \ 'colorscheme':'one'
+  \ }

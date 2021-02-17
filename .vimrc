@@ -45,8 +45,9 @@ Plug 'tpope/vim-surround'
 " <Leader>ci toggle
 Plug 'preservim/nerdcommenter'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 " for neovim install `pip3 install neovim-remote` to allow floaterm to open
 " windows in side neovim
@@ -86,7 +87,10 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'cespare/vim-toml'
 
 " Cheat Sheet
-" Plug 'dbeniamine/cheat.sh-vim'
+Plug 'dbeniamine/cheat.sh-vim'
+
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -106,12 +110,6 @@ endif
 
 highlight Normal guibg=NONE
 set background=dark
-
-" cheat.sh settings
-let g:CheatSheetDoNotMap=1
-
-" NERDCommenter settings
-let g:NERDSpaceDelims = 1
 
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'

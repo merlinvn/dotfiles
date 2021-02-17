@@ -68,3 +68,8 @@ set shortmess+=c
 set colorcolumn=80
 
 set laststatus=2
+
+" for vim wiki
+set nocompatible
+filetype plugin on
+syntax on
