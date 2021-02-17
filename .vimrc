@@ -37,6 +37,7 @@ Plug 'machakann/vim-highlightedyank'
 
 " quick add, delete, change surround
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " NerdCommenter
 " https://github.com/preservim/nerdcommenter
@@ -54,6 +55,22 @@ Plug 'itchyny/lightline.vim'
 Plug 'voldikss/vim-floaterm'
 
 Plug 'mhinz/vim-startify'
+
+" other language enhancements
+Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'bfrg/vim-cpp-modern'
+
+" Plug 'rust-lang/rust.vim'
+" Plug 'tweekmonster/gofmt.vim'
+
+Plug 'cespare/vim-toml'
+
+" Cheat Sheet
+Plug 'dbeniamine/cheat.sh-vim'
+
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
+
 
 if has('nvim')
   " telescope
@@ -75,22 +92,6 @@ else
   Plug 'junegunn/fzf.vim'
   Plug 'stsewd/fzf-checkout.vim'
 endif
-
-
-" other language enhancements
-Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'bfrg/vim-cpp-modern'
-
-" Plug 'rust-lang/rust.vim'
-" Plug 'tweekmonster/gofmt.vim'
-
-Plug 'cespare/vim-toml'
-
-" Cheat Sheet
-Plug 'dbeniamine/cheat.sh-vim'
-
-" Vim Wiki
-Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
