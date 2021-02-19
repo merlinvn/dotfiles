@@ -116,6 +116,12 @@ set background=dark
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
 
+let g:vimwiki_list = [
+       \ {
+        \         'path': '~/vimwiki/wiki',
+        \         'path_html': '~/vimwiki/docs',
+        \         'auto_toc': 1},
+        \ ]
 " ======== End Plugin Section =============
 "
 " ======== Remap Section =================
