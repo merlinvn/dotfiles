@@ -101,12 +101,13 @@ call plug#end()
 if has('nvim')
   colorscheme gruvbox
 else
-  if (v:version < 801)
-    autocmd vimenter * colorscheme gruvbox
-  else
-    autocmd vimenter * ++nested colorscheme gruvbox
-  endif
+  " if (v:version < 801)
+  "   autocmd vimenter * colorscheme gruvbox
+  " else
+  "   autocmd vimenter * nested colorscheme gruvbox
+  " endif
   "colorscheme gruvbox
+  autocmd vimenter * nested colorscheme gruvbox
 endif
 
 highlight Normal guibg=NONE
