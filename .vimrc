@@ -71,6 +71,8 @@ Plug 'dbeniamine/cheat.sh-vim'
 " Vim Wiki
 Plug 'vimwiki/vimwiki'
 
+" Vim css color
+Plug 'ap/vim-css-color'
 
 if has('nvim')
   " telescope

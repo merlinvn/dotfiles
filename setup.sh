@@ -9,6 +9,7 @@ rm -f ~/.profile
 rm -f ~/.config/nvim/init.vim
 rm -f ~/.xmonad/xmonad.hs
 rm -f ~/.config/xmobar/xmobarrc
+rm -f ~/.config/alacritty/alacritty.yml
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -24,6 +25,8 @@ ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 mkdir -p ~/.config/xmobar
 ln -s ~/dotfiles/.config/xmobar/xmobarrc ~/.config/xmobar/xmobarrc
 
+mkdir -p ~/.config/alacritty
+ln -s ~/dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin

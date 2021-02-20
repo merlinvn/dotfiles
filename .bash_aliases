@@ -18,6 +18,11 @@ if [[ -f ~/.cargo/bin/bat ]] || [[ -f /usr/bin/bat ]]; then
   alias cat='bat'
 fi
 
+if [[ -f /usr/bin/batcat ]]; then
+  alias cat='batcat'
+fi
+
+
 if [[ -f ~/.cargo/bin/fd ]] || [[ -f /usr/bin/fd ]]; then
   alias find='fd'
 fi
