@@ -124,6 +124,7 @@ let g:vimwiki_list = [
         \         'path_html': '~/vimwiki/docs',
         \         'auto_toc': 1},
         \ ]
+
 " ======== End Plugin Section =============
 "
 " ======== Remap Section =================
@@ -141,8 +142,7 @@ let mapleader=" "
 
 " ps Project wide Search
 
-
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>s :w<CR>
 nnoremap <Leader>q :q<CR>
 
 " Edit vimr configuration file

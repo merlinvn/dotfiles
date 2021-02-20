@@ -48,3 +48,7 @@ if [ -d "/usr/local/gcc-10.2.0" ]; then
   alias gcc=gcc-10.2
   alias g++=g++-10.2
 fi
+
+if [ -f "/usr/bin/rbenv" ]; then
+  eval "$(rbenv init -)"
+fi
