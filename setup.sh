@@ -44,3 +44,7 @@ done
 # link Starship settings
 rm -f ~/.config/starship.toml
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
+
+rm -f ~/viminfo
+touch ~/viminfo
+chmod 700 ~/viminfo
