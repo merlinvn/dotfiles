@@ -52,3 +52,5 @@ fi
 if [ -f "/usr/bin/rbenv" ]; then
   eval "$(rbenv init -)"
 fi
+
+# [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
