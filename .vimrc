@@ -74,6 +74,9 @@ Plug 'vimwiki/vimwiki'
 " Vim css color
 Plug 'ap/vim-css-color'
 
+Plug 'chrisbra/Colorizer'
+
+
 if has('nvim')
   " telescope
   Plug 'nvim-lua/popup.nvim'

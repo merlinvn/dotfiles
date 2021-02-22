@@ -12,6 +12,7 @@ rm -f ~/.config/xmobar/xmobar.hs
 rm -f ~/.config/alacritty/alacritty.yml
 rm -f ~/.config/rofi/config.rasi
 rm -f ~/.config/picom/picom.conf
+rm -f ~/.config/dunst/dunstrc
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -35,6 +36,9 @@ ln -s ~/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
 
 mkdir -p ~/.config/picom
 ln -s ~/dotfiles/.config/picom/picom.conf ~/.config/picom/picom.conf
+
+mkdir -p ~/.config/dunst
+ln -s ~/dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin

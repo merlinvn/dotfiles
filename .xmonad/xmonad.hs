@@ -54,10 +54,10 @@ myFocusedBorderColor = "#fb4934"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
-xmobarTitleColor = "#22CCDD"
+xmobarTitleColor = "#458588"
 
 -- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#CEFFAC"
+xmobarCurrentWorkspaceColor = "#d65d0e"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -75,6 +75,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
+
+    -- lock screen
+    , ((modm .|. shiftMask, xK_l     ), spawn "betterlockscreen -l dim")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -265,8 +268,10 @@ main = do
       logHook = dynamicLogWithPP $ xmobarPP {
             ppOutput = hPutStrLn xmproc
           , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          , ppSep = "   "
+          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
+          -- , ppHiddenNoWindows = xmobarColor "abc"
+          , ppSep = "  |  "
+          , ppOrder = \(ws:_:t:_) -> [ws,t]
       }
       , manageHook = manageDocks <+> myManageHook
     }
