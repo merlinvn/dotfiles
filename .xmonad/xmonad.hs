@@ -59,8 +59,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    -- launch dmenu dmenu_run
+    , ((modm,               xK_p     ), spawn "rofi -show run")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -252,8 +252,16 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/neo/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "xmobar -x 0 /home/neo/.config/xmobar/xmobar.hs"
   xmonad $ docks defaults
+  --{
+--       logHook = dynamicLogWithPP $ xmobarPP {
+          --   ppOutput = hPutStrLn xmproc
+          -- , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
+          -- , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+          -- , ppSep = "   "
+--       }
+    --}
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

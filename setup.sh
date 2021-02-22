@@ -8,8 +8,10 @@ rm -f ~/.bash_aliases
 rm -f ~/.profile
 rm -f ~/.config/nvim/init.vim
 rm -f ~/.xmonad/xmonad.hs
-rm -f ~/.config/xmobar/xmobarrc
+rm -f ~/.config/xmobar/xmobar.hs
 rm -f ~/.config/alacritty/alacritty.yml
+rm -f ~/.config/rofi/config.rasi
+rm -f ~/.config/picom/picom.conf
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -23,10 +25,16 @@ mkdir -p ~/.xmonad
 ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 
 mkdir -p ~/.config/xmobar
-ln -s ~/dotfiles/.config/xmobar/xmobarrc ~/.config/xmobar/xmobarrc
+ln -s ~/dotfiles/.config/xmobar/xmobar.hs ~/.config/xmobar/xmobar.hs
 
 mkdir -p ~/.config/alacritty
 ln -s ~/dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
+mkdir -p ~/.config/rofi
+ln -s ~/dotfiles/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+
+mkdir -p ~/.config/picom
+ln -s ~/dotfiles/.config/picom/picom.conf ~/.config/picom/picom.conf
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin
