@@ -1,11 +1,11 @@
-Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hiting=true"
+Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=16:antialias=true:hiting=true"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
        , alpha = 255
-       , position = Top
+       , position = TopSize L 100 30
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -19,7 +19,7 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hiting=true"
                                           "-L","18","-H","25",
                                           "--normal","green",
                                           "--high","red",
-                                          "--low","lightblue"] 36000
+                                          "--low","blue"] 36000
                   --   , Run Network "eth0" ["-L","0","-H","32",
                     --                       "--normal","green","--high","red"] 10
                     -- , Run Network "wlo1" ["-L","0","-H","32",
@@ -34,6 +34,6 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hiting=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% } { %cpu% | %memory% * %swap% | \
-                    \ <fc=#ee9a00>%date%</fc>| %KUNV% "
+       , template = "%StdinReader% } { %cpu% | %memory% * %swap% |\
+                    \ %KUNV% | <fc=#d65d0e>%date%</fc> "
        }

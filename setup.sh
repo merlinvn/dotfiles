@@ -13,6 +13,8 @@ rm -f ~/.config/alacritty/alacritty.yml
 rm -f ~/.config/rofi/config.rasi
 rm -f ~/.config/picom/picom.conf
 rm -f ~/.config/dunst/dunstrc
+rm -rf ~/.config/betterlockscreenrc
+
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -39,6 +41,8 @@ ln -s ~/dotfiles/.config/picom/picom.conf ~/.config/picom/picom.conf
 
 mkdir -p ~/.config/dunst
 ln -s ~/dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
+
+ln -s ~/dotfiles/.config/betterlockscreen/betterlockscreenrc ~/.config/betterlockscreenrc
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin
