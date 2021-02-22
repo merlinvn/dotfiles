@@ -1,9 +1,10 @@
 -- IMPORTS
 
 
-import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
@@ -50,6 +51,13 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 --
 myNormalBorderColor  = "#928374"
 myFocusedBorderColor = "#fb4934"
+
+-- Color of current window title in xmobar.
+  -- Used to be #00CC00
+xmobarTitleColor = "#22CCDD"
+
+-- Color of current workspace in xmobar.
+xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -253,15 +261,15 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe "xmobar -x 0 /home/neo/.config/xmobar/xmobar.hs"
-  xmonad $ docks defaults
-  --{
---       logHook = dynamicLogWithPP $ xmobarPP {
-          --   ppOutput = hPutStrLn xmproc
-          -- , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          -- , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          -- , ppSep = "   "
---       }
-    --}
+  xmonad $ docks defaults {
+      logHook = dynamicLogWithPP $ xmobarPP {
+            ppOutput = hPutStrLn xmproc
+          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
+          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+          , ppSep = "   "
+      }
+      , manageHook = manageDocks <+> myManageHook
+    }
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

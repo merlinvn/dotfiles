@@ -30,9 +30,10 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hiting=true"
                     , Run Swap ["-p","2"] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %wlo1% }\
+       , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %wlo1% }\
                     \{ <fc=#ee9a00>%date%</fc>| %KUNV% | %uname%"
        }
