@@ -12,6 +12,13 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+import Data.List (sortBy)
+import Data.Function (on)
+import Control.Monad (forM_, join)
+import XMonad.Util.Run (safeSpawn)
+import XMonad.Util.NamedWindows (getName)
+import qualified XMonad.StackSet as W
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -261,20 +268,47 @@ myStartupHook = do
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
---
+
+-- statusBar can have values of "xmobar" or "polybar"
+myStatusBar = "xmobar"
+
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/neo/.config/xmobar/xmobar.hs"
-  xmonad $ docks defaults {
-      logHook = dynamicLogWithPP $ xmobarPP {
-            ppOutput = hPutStrLn xmproc
+  if myStatusBar == "xmobar"
+    then do
+      xmproc <- spawnPipe "xmobar -x 0 /home/neo/.config/xmobar/xmobar.hs"
+      xmonad $ docks defaults {
+        logHook = dynamicLogWithPP $ xmobarPP {
+          ppOutput = hPutStrLn xmproc
           , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
           , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
           -- , ppHiddenNoWindows = xmobarColor "abc"
           , ppSep = "  |  "
           , ppOrder = \(ws:_:t:_) -> [ws,t]
+        }
+        , manageHook = manageDocks <+> myManageHook
       }
-      , manageHook = manageDocks <+> myManageHook
-    }
+  else do
+      xmproc <- spawnPipe "polybar mainbar-xmonad"
+      forM_ [".xmonad-workspace-log", ".xmonad-title-log"] $ \file -> do safeSpawn "mkfifo" ["/tmp/" ++ file]
+      xmonad $ docks defaults {
+        logHook = eventLogHookForPolybar
+      }
+
+eventLogHookForPolybar = do
+  winset <- gets windowset
+  title <- maybe (return "") (fmap show . getName) . W.peek $ winset
+  let currWs = W.currentTag winset
+  let wss = map W.tag $ W.workspaces winset
+  let wsStr = join $ map (fmt currWs) $ sort' wss
+
+  io $ appendFile "/tmp/.xmonad-title-log" (title ++ "\n")
+  io $ appendFile "/tmp/.xmonad-workspace-log" (wsStr ++ "\n")
+
+  where fmt currWs ws
+          | currWs == ws = "[" ++ ws ++ "]"
+          | otherwise    = " " ++ ws ++ " "
+        sort' = sortBy (compare `on` (!! 0))
+
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

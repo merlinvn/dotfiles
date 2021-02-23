@@ -14,7 +14,7 @@ rm -f ~/.config/rofi/config.rasi
 rm -f ~/.config/picom/picom.conf
 rm -f ~/.config/dunst/dunstrc
 rm -rf ~/.config/betterlockscreenrc
-
+rm -rf ~/.config/polybar/config
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -43,6 +43,10 @@ mkdir -p ~/.config/dunst
 ln -s ~/dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 ln -s ~/dotfiles/.config/betterlockscreen/betterlockscreenrc ~/.config/betterlockscreenrc
+
+mkdir -p ~/.config/polybar
+ln -s ~/dotfiles/.config/polybar/config ~/.config/polybar/config
+
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin
