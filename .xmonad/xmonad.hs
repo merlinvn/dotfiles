@@ -86,6 +86,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- lock screen
     , ((modm .|. shiftMask, xK_l     ), spawn "betterlockscreen -l dim")
 
+    -- screenshot portion of screen
+    , ((modm .|. shiftMask, xK_s     ), spawn "flameshot gui -p ~/screenshots")
+
+    -- screenshot full screen
+    , ((modm .|. shiftMask, xK_f     ), spawn "flameshot full -c -p ~/screenshots")
+
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
 
@@ -259,9 +265,10 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce "nitrogen --restore&"
+  spawnOnce "nitrogen --restore &"
   -- spawnOnce "compton"
-  spawnOnce "picom&"
+  spawnOnce "picom &"
+  spawnOnce "flameshot &"
   -- spawnOnce "echo 'Hello'"
 
 ------------------------------------------------------------------------
