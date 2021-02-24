@@ -15,6 +15,10 @@ rm -f ~/.config/picom/picom.conf
 rm -f ~/.config/dunst/dunstrc
 rm -rf ~/.config/betterlockscreenrc
 rm -rf ~/.config/polybar/config
+rm -rf ~/.config/leftwm/config.toml
+rm -rf ~/.config/leftwm/themes/current
+
+
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -47,6 +51,9 @@ ln -s ~/dotfiles/.config/betterlockscreen/betterlockscreenrc ~/.config/betterloc
 mkdir -p ~/.config/polybar
 ln -s ~/dotfiles/.config/polybar/config ~/.config/polybar/config
 
+mkdir -p ~/.config/leftwm/themes/
+ln -s ~/dotfiles/.config/leftwm/config.toml ~/.config/leftwm/config.toml
+ln -s ~/dotfiles/.config/leftwm/themes/current ~/.config/leftwm/themes/current
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.config/nvim/plugin

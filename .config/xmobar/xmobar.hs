@@ -1,5 +1,5 @@
 Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=16:antialias=true:hiting=true"
-       , additionalFonts = []
+       , additionalFonts = ["xft:FontAwesome:size=16"]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -24,16 +24,15 @@ Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=16:antialias=true:hiting=
                     --                       "--normal","green","--high","red"] 10
                     -- , Run Network "wlo1" ["-L","0","-H","32",
                    --                        "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50", "-p","2",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%", "-p","2"] 10
-                    , Run Swap ["-p","2"] 10
+                    , Run Cpu ["-L","3","-H","50","-w","2", "-c","0",
+                               "--normal","green","--high","red", "-t","\xe716 <total>%"] 10
+                    , Run Memory ["-t","<fn=0>\xf85a</fn> <usedratio>%","-w", "2","-c","0"] 10
+                    -- , Run Swap ["-p","2"] 10
                     -- , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% } { %cpu% | %memory% * %swap% |\
-                    \ %KUNV% | <fc=#d65d0e>%date%</fc> "
+       , template = "%StdinReader% } { %cpu% | %memory% | %KUNV% | <fc=#d65d0e>%date%</fc> "
        }

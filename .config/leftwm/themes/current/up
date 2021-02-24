@@ -1,0 +1,51 @@
+#!/bin/bash
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# Down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+    /tmp/leftwm-theme-down
+    rm /tmp/leftwm-theme-down
+fi
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+
+
+# Boot picom or compton if it exists
+if [ -x "$(command -v picom)" ]; then
+  picom --experimental-backends &> /dev/null &
+elif [ -x "$(command -v compton)" ]; then
+  compton &> /dev/null &
+fi
+
+# Boot flameshot if it exists
+if [ -x "$(command -v flameshot)" ]; then
+  flameshot &> /dev/null &
+fi
+
+# change lock screen background
+if [ -x "$(command -v betterlockscreen)" ]; then
+  betterlockscreen -u ~/wallpapers/ &> /dev/null &
+fi
+
+# Set the theme.toml config
+echo "LoadTheme $SCRIPTPATH/theme.toml" > $XDG_RUNTIME_DIR/leftwm/commands.pipe
+
+
+# Set background
+if [ -x "$(command -v feh)" ]; then
+  # feh --bg-scale $SCRIPTPATH/background.jpg
+  feh --bg-scale --randomize ~/wallpapers/*
+fi
+
+# Conky
+~/.config/conky/start-conky.sh
+
+# Get monitors info
+index=0
+monitor="$(polybar -m | grep +0+0 | sed s/:.*// | tac)"
+leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' | while read -r width x y
+do
+  barname="mainbar$index"
+  monitor=$monitor offsetx=$x width=$width polybar -c $SCRIPTPATH/polybar.config $barname &> /dev/null &
+  let index=index+1
+done
+

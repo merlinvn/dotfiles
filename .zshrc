@@ -122,6 +122,10 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 unsetopt BEEP
 
+# source autojump
+[ -f /usr/share/autojump/autojump.zsh ] && source autojump.zsh
+
+
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
       fortune | cowsay
 fi
