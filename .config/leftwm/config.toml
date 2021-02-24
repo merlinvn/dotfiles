@@ -1,6 +1,9 @@
-modkey = "Mod4"
+# Mod1: Alt key
+# Mod4: Window key
+
+modkey = "Mod1"
 workspaces = []
-tags = ["爵", "", "", "", "5", "6", "7", "8", "9"]
+tags = ["爵", "", "", "", "", "6", "7", "8", "9"]
 
 [[keybind]]
 command = "Execute"
@@ -17,7 +20,7 @@ key = "Return"
 [[keybind]]
 command = "Execute"
 value = "betterlockscreen -l dim"
-modifier = ["modkey", "Shift"]
+modifier = ["modkey", "Control"]
 key = "l"
 
 [[keybind]]
@@ -34,25 +37,19 @@ key = "f"
 
 [[keybind]]
 command = "CloseWindow"
-modifier = ["modkey", "Shift"]
-key = "c"
+modifier = ["modkey"]
+key = "q"
 
 [[keybind]]
 command = "SoftReload"
-modifier = ["modkey"]
-key = "q"
+modifier = ["modkey", "Shift"]
+key = "r"
 
 [[keybind]]
 command = "Execute"
 value = "pkill leftwm"
 modifier = ["modkey", "Shift"]
 key = "q"
-
-[[keybind]]
-command = "Execute"
-value = "slock"
-modifier = ["modkey", "Control"]
-key = "l"
 
 [[keybind]]
 command = "MoveToLastWorkspace"
@@ -108,6 +105,18 @@ key = "j"
 command = "FocusWindowDown"
 modifier = ["modkey"]
 key = "k"
+
+[[keybind]]
+command = "IncreaseMainWidth"
+value="5"
+modifier = ["modkey"]
+key = "l"
+
+[[keybind]]
+command = "DecreaseMainWidth"
+value="5"
+modifier = ["modkey"]
+key = "h"
 
 [[keybind]]
 command = "NextLayout"

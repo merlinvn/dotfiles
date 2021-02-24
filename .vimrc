@@ -58,7 +58,7 @@ Plug 'mhinz/vim-startify'
 
 " other language enhancements
 Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'bfrg/vim-cpp-modern'
+Plug 'bfrg/vim-cpp-modern'
 
 " Plug 'rust-lang/rust.vim'
 " Plug 'tweekmonster/gofmt.vim'
@@ -155,16 +155,16 @@ nnoremap <leader>l :wincmd l<CR>
 
 " move lines up down
 if !has('nvim')
-  execute "set <A-k>=\ek"
-  execute "set <A-j>=\ej"
+  execute "set <C-k>=\ek"
+  execute "set <C-j>=\ej"
 endif
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " buffers navigation
 nnoremap <Leader>bd :bd<CR>

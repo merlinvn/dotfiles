@@ -27,10 +27,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if xhost >& /dev/null ; then
-  echo "using X11 display"
+  # echo "using X11 display"
   setxkbmap -option caps:swapescape
 else
-  echo "non-X11 display" ;
+  # echo "non-X11 display" ;
 fi
 
 
@@ -54,3 +54,7 @@ if [ -f "/usr/bin/rbenv" ]; then
 fi
 
 [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8

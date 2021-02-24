@@ -126,6 +126,6 @@ unsetopt BEEP
 [ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
 
 
-if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
+if [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ]; then
       fortune | cowsay
 fi
