@@ -112,7 +112,7 @@ precmd_functions+=(_fix_cursor)
 
 [ -x /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
 
-[ -x /usr/local/bin/starship ] && eval "$(starship init zsh)"
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
 # bindkey '^[[1;5C' forward-word
 # bindkey '^[[1;5D' backward-word
@@ -123,7 +123,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 unsetopt BEEP
 
 # source autojump
-[ -f /usr/share/autojump/autojump.zsh ] && source autojump.zsh
+[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
 
 
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
