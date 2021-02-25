@@ -6,6 +6,8 @@ rm -f ~/.bashrc
 rm -f ~/.vimrc
 rm -f ~/.bash_aliases
 rm -f ~/.profile
+rm -rf ~/.xinitrc
+
 rm -f ~/.config/nvim/init.vim
 rm -f ~/.xmonad/xmonad.hs
 rm -f ~/.config/xmobar/xmobar.hs
@@ -18,8 +20,6 @@ rm -rf ~/.config/polybar/config
 rm -rf ~/.config/leftwm/config.toml
 rm -rf ~/.config/leftwm/themes/current
 
-
-
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
@@ -27,6 +27,7 @@ ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/.profile ~/.profile
+ln -s ~/dotfiles/.xinitrc ~/.xinitrc
 
 mkdir -p ~/.xmonad
 ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs

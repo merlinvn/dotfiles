@@ -35,4 +35,6 @@ fi
 # nitrogen --restore &
 # picom &
 setxkbmap -option caps:swapescape
-exec xmonad
+
+# exec xmonad
+exec dbus-launch leftwm

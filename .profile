@@ -53,8 +53,9 @@ if [ -f "/usr/bin/rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-[[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+# [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
+
