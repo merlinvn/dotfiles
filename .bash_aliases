@@ -54,10 +54,14 @@ alias ns="npm start"
 
 
 # kubernetes
-alias k='kubectl'
+[ -x "$(command -v kubectl)" ] && alias k='kubectl'
+
+# cheat.sh
+[ -x "$(command -v cht.sh)" ] && alias c='cht.sh'
+
 
 # micro editor
-alias m='micro'
+[ -x "$(command -v micro)" ] && alias m='micro'
 
 if [[ -f "/usr/bin/nvim" ]]; then
   alias vi="nvim"
@@ -65,4 +69,5 @@ if [[ -f "/usr/bin/nvim" ]]; then
   # alias oldvim="\vim"
 fi
 
-alias fd=fdfind
+[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
+#alias fd=fdfind
