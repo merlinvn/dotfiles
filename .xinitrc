@@ -34,6 +34,7 @@ fi
 
 # nitrogen --restore &
 # picom &
+xsetroot -cursor_name Left_ptr
 setxkbmap -option caps:swapescape
 
 exec xmonad
