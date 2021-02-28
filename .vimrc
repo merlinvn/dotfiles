@@ -1,3 +1,18 @@
+" ===== PRE-PLUG =====
+" filetype plugin indent on
+" set exrc
+" set hidden
+" set nobackup
+" set nocompatible
+" set nowritebackup
+" set secure
+" set shortmess+=c
+" set termguicolors
+" set updatetime=300
+" syntax enable
+" ====================
+
+
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })

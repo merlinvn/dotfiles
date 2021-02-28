@@ -6,6 +6,7 @@ require('telescope').setup{
   defaults = {
     file_sorter =  require'telescope.sorters'.get_fuzzy_sorter,
     set_env = { ['COLORTERM'] = 'truecolor' },
+    file_ignore_patterns = {"ext/.*"}, -- comment this line for non C++ project
   }
 }
 EOF
