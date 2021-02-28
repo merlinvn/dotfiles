@@ -70,4 +70,4 @@ if [[ -f "/usr/bin/nvim" ]]; then
 fi
 
 [ -x "$(command -v fdfind)" ] && alias fd='fdfind'
-#alias fd=fdfind
+

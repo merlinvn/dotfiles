@@ -129,3 +129,4 @@ unsetopt BEEP
 if [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ]; then
       fortune | cowsay
 fi
+
