@@ -1,4 +1,4 @@
-Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=16:antialias=true:hiting=true"
+Config { font = "xft:NotoSansMono Nerd Font:pixelsize=16:antialias=true:autohinting=true:hiting=true"
        , additionalFonts = ["xft:FontAwesome:size=16"]
        , borderColor = "black"
        , border = TopB
@@ -26,7 +26,7 @@ Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=16:antialias=true:hiting=
                    --                        "--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50","-w","2", "-c","0",
                                "--normal","green","--high","red", "-t","\xe716 <total>%"] 10
-                    , Run Memory ["-t","<fn=0>\xf85a</fn> <usedratio>%","-w", "2","-c","0"] 10
+                    , Run Memory ["-t","<fn=0>\xf85a</fn> <usedratio>%","-c","0"] 10
                     -- , Run Swap ["-p","2"] 10
                     -- , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10

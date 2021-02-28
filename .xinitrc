@@ -36,5 +36,6 @@ fi
 # picom &
 setxkbmap -option caps:swapescape
 
-# exec xmonad
-exec dbus-launch leftwm
+exec xmonad
+# exec dbus-launch leftwm
+# exec i3

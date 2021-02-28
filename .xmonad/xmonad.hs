@@ -41,7 +41,7 @@ myBorderWidth   = 2
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod4Mask
+myModMask       = mod1Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -52,7 +52,8 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:term","2:web","3","4","5","6","7","8","9"]
+-- myWorkspaces    = ["1:\xfa9e","","","","","6","7","8","9"]
+myWorkspaces    = ["\xfa9e","\xf489","\xf121","\xf07c","\xf719","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -267,7 +268,7 @@ myLogHook = return ()
 myStartupHook = do
   spawnOnce "nitrogen --restore &"
   -- spawnOnce "compton"
-  spawnOnce "picom &"
+  spawnOnce "picom --experimental-backends &"
   spawnOnce "flameshot &"
   -- spawnOnce "echo 'Hello'"
 
