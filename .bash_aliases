@@ -63,7 +63,7 @@ alias ns="npm start"
 # micro editor
 [ -x "$(command -v micro)" ] && alias m='micro'
 
-if [[ -f "/usr/bin/nvim" ]]; then
+if [ -f "/usr/bin/nvim" -a ! -f "/usr/bin/vi" ]; then
   alias vi="nvim"
   #alias vi="nvim"
   # alias oldvim="\vim"
