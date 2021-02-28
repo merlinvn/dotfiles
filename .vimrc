@@ -137,8 +137,13 @@ let mapleader=" "
 
 " ps Project wide Search
 
+" remap save key
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>s :w<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" remap close key
 nnoremap <Leader>q :q<CR>
 
 " Edit vimr configuration file
