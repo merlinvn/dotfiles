@@ -47,6 +47,7 @@ set nu
 set nowrap
 set noswapfile
 set nobackup
+set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
@@ -68,6 +69,8 @@ set shortmess+=c
 set colorcolumn=80
 
 set laststatus=2
+
+set clipboard+=unnamedplus
 
 " for vim wiki
 set nocompatible

@@ -1,6 +1,5 @@
 -- IMPORTS
 
-
 import Data.Monoid
 import System.Exit
 import XMonad
@@ -266,10 +265,12 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce "nitrogen --restore &"
+  spawnOnce "/usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers &"
   -- spawnOnce "compton"
   spawnOnce "picom --experimental-backends &"
   spawnOnce "flameshot &"
+  spawnOnce "stalonetray &"
+  spawnOnce "betterlockscreen -u ~/wallpapers/ &"
   -- spawnOnce "echo 'Hello'"
 
 ------------------------------------------------------------------------

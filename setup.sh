@@ -7,6 +7,7 @@ rm -f ~/.vimrc
 rm -f ~/.bash_aliases
 rm -f ~/.profile
 rm -rf ~/.xinitrc
+rm -rf ~/.stalonetrayrc
 
 rm -f ~/.config/nvim/init.vim
 rm -f ~/.xmonad/xmonad.hs
@@ -28,6 +29,7 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -s ~/dotfiles/.profile ~/.profile
 ln -s ~/dotfiles/.xinitrc ~/.xinitrc
+ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 
 mkdir -p ~/.xmonad
 ln -s ~/dotfiles/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs

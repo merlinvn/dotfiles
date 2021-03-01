@@ -34,5 +34,5 @@ Config { font = "xft:NotoSansMono Nerd Font:pixelsize=16:antialias=true:autohint
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% } { %cpu% | %memory% | %KUNV% | <fc=#d65d0e>%date%</fc> "
+       , template = "%StdinReader% } {| %cpu% | %memory% | %KUNV% | <fc=#d65d0e>%date%</fc> "
        }

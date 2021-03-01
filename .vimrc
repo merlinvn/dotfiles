@@ -7,7 +7,6 @@
 " set nowritebackup
 " set secure
 " set shortmess+=c
-" set termguicolors
 " set updatetime=300
 " syntax enable
 " ====================
