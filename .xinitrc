@@ -37,6 +37,8 @@ fi
 xsetroot -cursor_name Left_ptr
 setxkbmap -option caps:swapescape
 
+ibus-daemon -drx &
+
 exec xmonad
 # exec dbus-launch leftwm
 # exec i3

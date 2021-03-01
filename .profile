@@ -8,6 +8,12 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# those 3 variables were used by ibus
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus
+
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
