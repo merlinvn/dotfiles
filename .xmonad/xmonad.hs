@@ -11,8 +11,15 @@ import XMonad.Layout.Spacing
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+    -- Data
+import Data.Char (isSpace, toUpper)
+import Data.Maybe (fromJust)
+import Data.Monoid
+import Data.Maybe (isJust)
+import Data.Tree
+import qualified Data.Map as M
+
+
 
 import Data.List (sortBy)
 import Data.Function (on)
@@ -54,19 +61,20 @@ myModMask       = mod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:\xfa9e","2:\xf489","3:\xf121","4:\xf07c","5:\xf719","6","7","8","9"]
+myWorkspaces    = ["1:\xfa9e","2:\xf489","3:\xf121","4:\xf07c","5:\xf719"," 6 "," 7 "," 8 "," 9 "]
+myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+
+clickable ws = "<action=xdotool key alt+"++show i++">"++ws++"</action>"
+    where i = fromJust $ M.lookup ws myWorkspaceIndices
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just. wrap "\xfa6f [" "]" . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
 
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#928374"
 myFocusedBorderColor = "#fb4934"
-
--- Color of current window title in xmobar.
-  -- Used to be #00CC00
-xmobarTitleColor = "#458588"
-
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#d65d0e"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -267,14 +275,14 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce "/usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers &"
+  -- spawnOnce "/usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers &"
   -- spawnOnce "compton"
-  spawnOnce "picom --experimental-backends &"
-  spawnOnce "flameshot &"
-  spawnOnce "stalonetray &"
-  spawnOnce "pnmixer &"
-  spawnOnce "betterlockscreen -u ~/wallpapers/ &"
-  -- spawnOnce "echo 'Hello'"
+--   spawnOnce "picom --experimental-backends &"
+  -- spawnOnce "flameshot &"
+  -- spawnOnce "stalonetray &"
+  -- spawnOnce "pnmixer &"
+--   spawnOnce "betterlockscreen -u ~/wallpapers/ &"
+  spawnOnce "echo 'Hello'"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -291,11 +299,16 @@ main = do
       xmonad $ docks defaults {
         logHook = dynamicLogWithPP $ xmobarPP {
           ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
-          -- , ppHiddenNoWindows = xmobarColor "abc"
-          , ppSep = "  |  "
-          , ppOrder = \(ws:_:t:_) -> [ws,t]
+          , ppTitle = xmobarColor "#8ec07c" "" . shorten 60
+          , ppCurrent = xmobarColor "#fe8019" "" . wrap "[" "]"
+          , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
+          , ppHidden = xmobarColor "#458588" "" . wrap "" "" . clickable -- Hidden workspaces in xmobar
+          , ppHiddenNoWindows = xmobarColor "#7c6f64" "" . clickable     -- Hidden workspaces (no windows)
+          , ppSep =  "<fc=#666666> <fn=0>|</fn> </fc>"                    -- Separators in xmobar
+          , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
+          , ppExtras  = [windowCount]                                   -- # of windows current workspace
+          , ppOrder  = \(ws:l:t:ex) -> [ws]++ex++[t] -- 'l' is the current layout, 't' is windows title,
+
         }
         , manageHook = manageDocks <+> myManageHook
       }

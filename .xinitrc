@@ -39,6 +39,13 @@ setxkbmap -option caps:swapescape
 
 ibus-daemon -drx &
 
+/usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers &
+picom --experimental-backends &
+flameshot &
+stalonetray &
+pnmixer &
+betterlockscreen -u ~/wallpapers/ &
+
 exec xmonad
 # exec dbus-launch leftwm
 # exec i3

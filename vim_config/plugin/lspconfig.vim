@@ -6,7 +6,7 @@ if has('nvim')
 lua << EOF
   require'lspconfig'.clangd.setup{
     on_attach=require'completion'.on_attachustom_attach;
-    cmd = { "clangd", "--background-index", "--clang-tidy"};
+    cmd = { "clangd", "--background-index"};
   }
 EOF
 
