@@ -59,8 +59,10 @@ ln -s ~/dotfiles/.config/leftwm/config.toml ~/.config/leftwm/config.toml
 ln -s ~/dotfiles/.config/leftwm/themes/current ~/.config/leftwm/themes/current
 
 mkdir -p ~/.vim/plugin
+mkdir -p ~/.vim/after/syntax
 mkdir -p ~/.config/nvim/plugin
 mkdir -p ~/.config/nvim/after/plugin
+mkdir -p ~/.config/nvim/after/syntax
 mkdir -p ~/.config/nvim/lua
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 
