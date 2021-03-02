@@ -5,6 +5,9 @@ import System.Exit
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Gaps
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
@@ -51,8 +54,7 @@ myModMask       = mod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
--- myWorkspaces    = ["1:\xfa9e","","","","","6","7","8","9"]
-myWorkspaces    = ["\xfa9e","\xf489","\xf121","\xf07c","\xf719","6","7","8","9"]
+myWorkspaces    = ["1:\xfa9e","2:\xf489","3:\xf121","4:\xf07c","5:\xf719","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -202,7 +204,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts $ smartSpacing 5 $ smartBorders $ gaps [(U,5), (D,5), (R,5), (L,5)] ( tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -270,6 +272,7 @@ myStartupHook = do
   spawnOnce "picom --experimental-backends &"
   spawnOnce "flameshot &"
   spawnOnce "stalonetray &"
+  spawnOnce "pnmixer &"
   spawnOnce "betterlockscreen -u ~/wallpapers/ &"
   -- spawnOnce "echo 'Hello'"
 
