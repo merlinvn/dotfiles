@@ -59,14 +59,15 @@ ln -s ~/dotfiles/.config/leftwm/config.toml ~/.config/leftwm/config.toml
 ln -s ~/dotfiles/.config/leftwm/themes/current ~/.config/leftwm/themes/current
 
 mkdir -p ~/.vim/plugin
+mkdir -p ~/.vim/lua/merlinvn
 mkdir -p ~/.vim/after/syntax
 mkdir -p ~/.config/nvim/plugin
 mkdir -p ~/.config/nvim/after/plugin
 mkdir -p ~/.config/nvim/after/syntax
-mkdir -p ~/.config/nvim/lua
+mkdir -p ~/.config/nvim/lua/merlinvn
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 
-# link setting
+# link setting for nvim
 for f in `find ./vim_config -regex ".*\.vim$\|.*\.lua$"`; do
   rm -rf ~/.vim/${f:13}
   rm -rf ~/.config/nvim/${f:13}

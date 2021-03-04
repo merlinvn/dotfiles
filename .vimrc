@@ -96,6 +96,7 @@ if has('nvim')
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
   " autocompletion with language server by nvim built-in
   Plug 'neovim/nvim-lspconfig'

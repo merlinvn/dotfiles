@@ -1,29 +1,23 @@
 if has('nvim')
-
+  lua require("merlinvn")
   " Telescope mapping
-lua << EOF
-require('telescope').setup{
-  defaults = {
-    file_sorter =  require'telescope.sorters'.get_fuzzy_sorter,
-    set_env = { ['COLORTERM'] = 'truecolor' },
-    file_ignore_patterns = {"ext/.*"}, -- comment this line for non C++ project
-  }
-}
-EOF
-
   " Using lua functions
   nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
   nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 
-  nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
 
   " required ripgrep via `sudo apt install ripgrep`
-  nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
 
   nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-  nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
-  nnoremap <leader>ph <cmd>lua require('telescope.builtin').help_tags()<cr>
+  nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
 
+  nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
+
+  nnoremap <leader>vdf :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+
+  nnoremap <leader>gc :lua require('merlinvn.telescope').git_branches()<CR>
 else
   if v:version >= 802
     let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
