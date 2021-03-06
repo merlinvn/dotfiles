@@ -117,6 +117,10 @@ call plug#end()
 
 """ Plugin settings
 
+if has('nvim')
+  lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+endif
+
 " Gruvbox settings
 if has('nvim')
   colorscheme gruvbox

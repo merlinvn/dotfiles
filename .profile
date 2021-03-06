@@ -33,12 +33,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if xhost >& /dev/null ; then
-  # echo "using X11 display"
   setxkbmap -option caps:swapescape
-else
-  # echo "non-X11 display" ;
 fi
-
 
 if [ -f "$HOME/.cargo/env" ]; then
   source "$HOME/.cargo/env"
@@ -59,14 +55,14 @@ if [ -f "/usr/bin/rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-
-[[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
-
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+[[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
+
