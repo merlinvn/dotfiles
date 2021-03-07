@@ -121,18 +121,11 @@ call plug#end()
 
 if has('nvim')
   lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-endif
 
 " Gruvbox settings
-if has('nvim')
   colorscheme gruvbox
 else
-  " if (v:version < 801)
-  "   autocmd vimenter * colorscheme gruvbox
-  " else
-  "   autocmd vimenter * nested colorscheme gruvbox
-  " endif
-  "colorscheme gruvbox
+ "colorscheme gruvbox
   autocmd vimenter * nested colorscheme gruvbox
 endif
 
