@@ -7,6 +7,10 @@ if has('nvim')
 
   nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
 
+  nnoremap <leader>pl :lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>
+
+  nnoremap <leader>pt :lua require("telescope.builtin").current_buffer_tags()<CR>
+
   " required ripgrep via `sudo apt install ripgrep`
   nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
 
@@ -20,6 +24,7 @@ if has('nvim')
 
   nnoremap <leader>pd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
   nnoremap <leader>vd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+
 
   nnoremap <leader>pc :lua require('merlinvn.telescope').git_branches()<CR>
 else
@@ -47,10 +52,17 @@ else
         \   'confirm': v:false,
         \ },
         \}
+
   nnoremap <leader>pf :Files<cr>
   nnoremap <C-p> :GFiles<CR>
   " required ripgrep via `sudo apt install ripgrep`
   nnoremap <leader>pg :Rg<cr>
+
+  nnoremap <leader>pl :BLines<CR>
+  nnoremap <leader>pL :Lines<CR>
+
+  nnoremap <leader>pt :BTags<CR>
+  nnoremap <leader>pT :Tags<CR>
 
 endif
 

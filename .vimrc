@@ -87,7 +87,6 @@ Plug 'vimwiki/vimwiki'
 
 " Vim css color
 Plug 'ap/vim-css-color'
-
 Plug 'chrisbra/Colorizer'
 
 Plug 'liuchengxu/vim-which-key'
