@@ -26,8 +26,10 @@ Config { font = "xft:NotoSansMono Nerd Font:pixelsize=16:antialias=true:autohint
                  --                       "--normal","green","--high","red"] 10
                  -- , Run Network "wlo1" ["-L","0","-H","32",
                  --                        "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50","-w","2", "-c","0",
-                               "--normal","green","--high","red", "-t","\xe716 <total>%"] 10
+                    , Run Cpu ["-L","3","-H","50","-w","3", "-c","0",
+                               "--normal","green","--high","red", "-t","\xe716 <vbar>"] 10
+--                     , Run MultiCpu ["-L","3","-H","50","-w","3", "-c","0",
+--                                "--normal","green","--high","red", "-t","\xe716 <autovbar>"] 10
                     , Run Memory ["-t","<fn=0>\xf85a</fn> <usedratio>%","-c","0"] 10
                     -- , Run Swap ["-p","2"] 10
                     -- , Run Com "uname" ["-s","-r"] "" 36000
