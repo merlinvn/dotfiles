@@ -91,6 +91,8 @@ Plug 'chrisbra/Colorizer'
 
 Plug 'liuchengxu/vim-which-key'
 
+Plug 'unblevable/quick-scope'
+
 if has('nvim')
   " telescope
   Plug 'nvim-lua/popup.nvim'
