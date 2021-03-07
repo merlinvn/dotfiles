@@ -90,6 +90,7 @@ Plug 'ap/vim-css-color'
 
 Plug 'chrisbra/Colorizer'
 
+Plug 'liuchengxu/vim-which-key'
 
 if has('nvim')
   " telescope
@@ -139,6 +140,7 @@ set background=dark
 
 " set path for gofmt
 let g:gofmt_exe='/usr/local/go/bin/gofmt'
+
 " ======== End Plugin Section =============
 "
 " ======== Remap Section =================
@@ -153,11 +155,7 @@ let g:gofmt_exe='/usr/local/go/bin/gofmt'
 " change Leader from '\' to '\s'
 let mapleader=" "
 
-
-" ps Project wide Search
-
 " remap save key
-nnoremap <Leader>w :w<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
@@ -225,6 +223,19 @@ augroup END
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " " deletes netrw's buffer once it's hidden (using ':q', for example)
 autocmd FileType netrw setl bufhidden=delete
+
+
+" Clear cmd line message
+function! s:empty_message(timer)
+  if mode() ==# 'n'
+    echon ''
+  endif
+endfunction
+
+augroup cmd_msg_cls
+  autocmd!
+  autocmd CmdlineLeave :  call timer_start(3000, funcref('s:empty_message'))
+augroup END
 
 " ======= End Hook Section ================
 

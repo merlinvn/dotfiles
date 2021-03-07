@@ -11,13 +11,17 @@ if has('nvim')
   nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
 
   nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-  nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
 
+  nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
+  nnoremap <leader>bs :lua require('telescope.builtin').buffers()<CR>
+
+  nnoremap <leader>ph :lua require('telescope.builtin').help_tags()<CR>
   nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 
-  nnoremap <leader>vdf :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+  nnoremap <leader>pd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+  nnoremap <leader>vd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
 
-  nnoremap <leader>gc :lua require('merlinvn.telescope').git_branches()<CR>
+  nnoremap <leader>pc :lua require('merlinvn.telescope').git_branches()<CR>
 else
   if v:version >= 802
     let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }

@@ -24,14 +24,12 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-
-
 nnoremap <leader>cc :call NERDComment('n', 'comment')<CR>
 xnoremap <leader>cc :call NERDComment('x', 'comment')<CR>
 
 nnoremap <leader>cu :call NERDComment('n', 'Uncomment')<CR>
 xnoremap <leader>cu :call NERDComment('x', 'Uncomment')<CR>
 
-nnoremap <leader>ci :call NERDComment('n', 'Invert')<CR>
-xnoremap <leader>ci :call NERDComment('x', 'Invert')<CR>
+nnoremap <leader>c/ :call NERDComment('n', 'Invert')<CR>
+xnoremap <leader>c/ :call NERDComment('x', 'Invert')<CR>
 
