@@ -91,7 +91,7 @@ Plug 'chrisbra/Colorizer'
 
 Plug 'liuchengxu/vim-which-key'
 
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 
 if has('nvim')
   " telescope

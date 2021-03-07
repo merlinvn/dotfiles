@@ -3,9 +3,10 @@ if has('nvim')
   set completeopt=menuone,noinsert,noselect
 
   let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 lua << EOF
   require'lspconfig'.clangd.setup{
-    on_attach=require'completion'.on_attachustom_attach;
+    on_attach=require'completion'.on_attach;
     cmd = { "clangd", "--background-index"};
   }
 EOF
