@@ -27,6 +27,35 @@ require('telescope').setup{
   }
 }
 
+require('lspkind').init({
+  with_text = true,
+  symbol_map = {
+    Text = '  ',
+    Method = '  ',
+    Function = '  ',
+    Constructor = '',
+    Variable = '[]',
+    Class = ' פּ ',
+    Interface = ' 蘒 ',
+    Module = '  ',
+    Property = '  ',
+    Unit = ' 塞 ',
+    Value = '  ',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    UltiSnips = '  ',
+    Color = '  ',
+    File = '  ',
+    Folder = ' ﱮ ',
+    EnumMember = '  ',
+    Constant = '  ',
+    Struct = '   ',
+    Field = '  ',
+    Event = '  ',
+  },
+})
+
 require('telescope').load_extension('fzy_native')
 
 local M = {}

@@ -115,6 +115,8 @@ if has('nvim')
   " need to call :TSInstall {language} later
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+  Plug 'onsails/lspkind-nvim'
+
 else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
