@@ -12,3 +12,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/dotfiles/vim_config/UltiSnips']
+
+let g:completion_enable_snippet = 'UltiSnips'
+

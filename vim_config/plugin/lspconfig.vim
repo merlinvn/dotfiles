@@ -1,8 +1,8 @@
 if has('nvim')
   " lspconfig settings
   set completeopt=menuone,noinsert,noselect
-
   let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 
 lua << EOF
   require'lspconfig'.clangd.setup{
