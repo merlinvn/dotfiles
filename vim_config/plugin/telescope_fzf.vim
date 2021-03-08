@@ -25,7 +25,6 @@ if has('nvim')
   nnoremap <leader>pd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
   nnoremap <leader>vd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
 
-
   nnoremap <leader>pc :lua require('merlinvn.telescope').git_branches()<CR>
 else
   if v:version >= 802

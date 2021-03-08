@@ -59,7 +59,7 @@ EOF
   nnoremap <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
   nnoremap <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
 
-  nnoremap <leader>cl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+  " nnoremap <leader>cl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
   nnoremap <leader>cd <cmd>lua require('telescope.builtin').lsp_document_diagnostics()<CR>
   nnoremap <leader>cD <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>
 

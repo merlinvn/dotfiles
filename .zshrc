@@ -125,6 +125,9 @@ unsetopt BEEP
 # source autojump
 [ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
 
+# source fzf
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
 if [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ]; then
       fortune | cowsay

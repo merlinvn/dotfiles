@@ -91,6 +91,12 @@ Plug 'chrisbra/Colorizer'
 
 Plug 'liuchengxu/vim-which-key'
 
+" Snippet engine
+Plug 'SirVer/ultisnips'
+" Sippets manager
+Plug 'honza/vim-snippets'
+
+
 " Plug 'unblevable/quick-scope'
 
 if has('nvim')
