@@ -1,29 +1,39 @@
-if [[ -f ~/.cargo/bin/exa ]] || [[ -f /usr/bin/exa ]]; then
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+if [[ -x "$(command -v exa)" ]] ; then
   alias ls='exa --color=auto'
   alias ll='exa -alhF'
   alias la='exa -a'
   alias l='exa -F'
 else
-  alias ls='ls --color'
-  alias ll='ls -alhF'
-  alias la='ls -A'
-  alias l='ls -F'
+  if [[ "$(machine)" == "Linux" ]]; then
+    alias ls='ls --color'
+    alias ll='ls -alhF'
+    alias la='ls -A'
+    alias l='ls -F'
+  fi
 fi
 
-if [[ -f ~/.cargo/bin/rg ]] || [[ -f /usr/bin/rg ]]; then
+if [[ -x "$(command -v rg)" ]]; then
   alias grep='rg'
 fi
 
-if [[ -f ~/.cargo/bin/bat ]] || [[ -f /usr/bin/bat ]]; then
+if [[ -x "$(command -v bat)" ]]; then
   alias cat='bat'
 fi
 
-if [[ -f /usr/bin/batcat ]]; then
+if [[ -x "$(command -v batcat)" ]]; then
   alias cat='batcat'
 fi
 
-
-if [[ -f ~/.cargo/bin/fd ]] || [[ -f /usr/bin/fd ]]; then
+if [[ -x "$(command -v fd)" ]]; then
   alias find='fd'
 fi
 

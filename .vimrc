@@ -9,6 +9,16 @@
 " set shortmess+=c
 " set updatetime=300
 " syntax enable
+set shell=/bin/bash
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin\n"
+    " Do Mac stuff here
+    set clipboard=unnamed
+  endif
+endif
+
+set shell=/bin/zsh
 " ====================
 
 
@@ -91,12 +101,6 @@ Plug 'chrisbra/Colorizer'
 
 Plug 'liuchengxu/vim-which-key'
 
-" Snippet engine
-Plug 'SirVer/ultisnips'
-" Sippets manager
-Plug 'honza/vim-snippets'
-
-
 " Plug 'unblevable/quick-scope'
 
 if has('nvim')
@@ -116,6 +120,11 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   Plug 'onsails/lspkind-nvim'
+
+  " Snippet engine
+  Plug 'SirVer/ultisnips'
+  " Sippets manager
+  Plug 'honza/vim-snippets'
 
 else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
