@@ -21,22 +21,6 @@ else
   fi
 fi
 
-if [[ -x "$(command -v rg)" ]]; then
-  alias grep='rg'
-fi
-
-if [[ -x "$(command -v bat)" ]]; then
-  alias cat='bat'
-fi
-
-if [[ -x "$(command -v batcat)" ]]; then
-  alias cat='batcat'
-fi
-
-if [[ -x "$(command -v fd)" ]]; then
-  alias find='fd'
-fi
-
 alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
 
@@ -63,21 +47,36 @@ alias nr="npm run"
 alias ns="npm start"
 
 
+[ -x "$(command -v rg)" ] && alias grep='rg'
+
+[ -x "$(command -v bat)" ] && alias cat='bat'
+[ -x "$(command -v batcat)" ] && alias cat='batcat'
+
+[ -x "$(command -v fd)" ] && alias find='fd'
+[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
+
+[ -x "$(command -v htop)" ] && alias top='htop'
+[ -x "$(command -v bpytop)" ] && alias top='bpytop'
+
 # kubernetes
 [ -x "$(command -v kubectl)" ] && alias k='kubectl'
 
 # cheat.sh
 [ -x "$(command -v cht.sh)" ] && alias c='cht.sh'
 
-
 # micro editor
 [ -x "$(command -v micro)" ] && alias m='micro'
 
-if [ -f "/usr/bin/nvim" -a ! -f "/usr/bin/vi" ]; then
+if [[ ! -x "$(command -v cht.sh)" ]]; then
+  c(){
+    curl cht.sh/$1
+  }
+fi
+
+if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
   #alias vi="nvim"
   # alias oldvim="\vim"
 fi
 
-[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
 
