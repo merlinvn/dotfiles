@@ -119,7 +119,7 @@ if has('nvim')
   " need to call :TSInstall {language} later
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  Plug 'onsails/lspkind-nvim'
+  " Plug 'onsails/lspkind-nvim'
 
   " Snippet engine
   Plug 'SirVer/ultisnips'

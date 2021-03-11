@@ -22,8 +22,8 @@ if has('nvim')
   nnoremap <leader>ph :lua require('telescope.builtin').help_tags()<CR>
   nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 
-  nnoremap <leader>pd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
-  nnoremap <leader>vd :lua require("telescope.builtin").find_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+  nnoremap <leader>pd :lua require("telescope.builtin").git_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
+  nnoremap <leader>vd :lua require("telescope.builtin").git_files({ prompt_title = "< My dotfiles >", cwd = "$HOME/dotfiles/"})<CR>
 
   nnoremap <leader>pc :lua require('merlinvn.telescope').git_branches()<CR>
 else
