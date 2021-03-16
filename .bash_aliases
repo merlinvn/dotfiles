@@ -1,32 +1,24 @@
-if [[ -f ~/.cargo/bin/exa ]] || [[ -f /usr/bin/exa ]]; then
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+if [[ -x "$(command -v exa)" ]] ; then
   alias ls='exa --color=auto'
   alias ll='exa -alhF'
   alias la='exa -a'
   alias l='exa -F'
 else
-  alias ls='ls --color'
-  alias ll='ls -alhF'
-  alias la='ls -A'
-  alias l='ls -F'
-fi
-
-if [[ -f ~/.cargo/bin/rg ]] || [[ -f /usr/bin/rg ]]; then
-  alias grep='rg'
-fi
-
-if [[ -f ~/.cargo/bin/bat ]] || [[ -f /usr/bin/bat ]]; then
-  alias cat='bat'
-fi
-
-if [[ -f /usr/bin/batcat ]]; then
-  alias cat='batcat'
-fi
-
-[ -f /usr/bin/bpytop ] && alias top='bpytop'
-
-
-if [[ -f ~/.cargo/bin/fd ]] || [[ -f /usr/bin/fd ]]; then
-  alias find='fd'
+  if [[ "$(machine)" == "Linux" ]]; then
+    alias ls='ls --color'
+    alias ll='ls -alhF'
+    alias la='ls -A'
+    alias l='ls -F'
+  fi
 fi
 
 alias python='/usr/bin/python3'
@@ -55,21 +47,36 @@ alias nr="npm run"
 alias ns="npm start"
 
 
+[ -x "$(command -v rg)" ] && alias grep='rg'
+
+[ -x "$(command -v bat)" ] && alias cat='bat'
+[ -x "$(command -v batcat)" ] && alias cat='batcat'
+
+[ -x "$(command -v fd)" ] && alias find='fd'
+[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
+
+[ -x "$(command -v htop)" ] && alias top='htop'
+[ -x "$(command -v bpytop)" ] && alias top='bpytop'
+
 # kubernetes
 [ -x "$(command -v kubectl)" ] && alias k='kubectl'
 
 # cheat.sh
 [ -x "$(command -v cht.sh)" ] && alias c='cht.sh'
 
-
 # micro editor
 [ -x "$(command -v micro)" ] && alias m='micro'
 
-if [ -f "/usr/bin/nvim" -a ! -f "/usr/bin/vi" ]; then
+if [[ ! -x "$(command -v cht.sh)" ]]; then
+  c(){
+    curl cht.sh/$1
+  }
+fi
+
+if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
   #alias vi="nvim"
   # alias oldvim="\vim"
 fi
 
-[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
 

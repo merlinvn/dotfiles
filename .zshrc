@@ -102,7 +102,8 @@ function dipa(){
   docker rmi $(docker images -qf dangling=true);
 }
 
-. /usr/share/autojump/autojump.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] &&  . /usr/share/autojump/autojump.zsh
 
 function _fix_cursor() {
   echo -ne '\e[6 q'
@@ -121,9 +122,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 unsetopt BEEP
-
-# source autojump
-[ -f /usr/share/autojump/autojump.zsh ] && source /usr/share/autojump/autojump.zsh
 
 # source fzf
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh

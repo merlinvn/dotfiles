@@ -68,7 +68,10 @@ mkdir -p ~/.config/nvim/lua/merlinvn
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 
 # link setting for nvim
-for f in `find ./vim_config -regex ".*\.vim$\|.*\.lua$"`; do
+# change to -E when using MacOsx
+# for f in `find -E ./vim_config -regex ".*\.(vim|lua)$"`; do
+for f in `find ./vim_config -regex ".*\.(vim|lua)$"`; do
+  echo ${f:13} - ${f:2}
   rm -rf ~/.vim/${f:13}
   rm -rf ~/.config/nvim/${f:13}
 
