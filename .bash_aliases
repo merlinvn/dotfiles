@@ -22,6 +22,8 @@ if [[ -f /usr/bin/batcat ]]; then
   alias cat='batcat'
 fi
 
+[ -f /usr/bin/bpytop ] && alias top='bpytop'
+
 
 if [[ -f ~/.cargo/bin/fd ]] || [[ -f /usr/bin/fd ]]; then
   alias find='fd'

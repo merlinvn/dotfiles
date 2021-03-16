@@ -55,6 +55,8 @@ slot_size 24
                              # NEW in @VERSION_STR@.
 log_level err
 
+kludges force_icons_size
+
 # kludges kludge[,kludge]    # enable specific kludges to work around
                              # non-conforming WMs and/or stalonetray bugs.
                              # NEW in @VERSION_STR@. Argument is a
