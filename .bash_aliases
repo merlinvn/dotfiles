@@ -62,16 +62,16 @@ alias ns="npm start"
 [ -x "$(command -v kubectl)" ] && alias k='kubectl'
 
 # cheat.sh
-[ -x "$(command -v cht.sh)" ] && alias c='cht.sh'
-
-# micro editor
-[ -x "$(command -v micro)" ] && alias m='micro'
-
-if [[ ! -x "$(command -v cht.sh)" ]]; then
+if [[ -x "$(command -v cht.sh)" ]]; then
+  alias c='cht.sh'
+else
   c(){
     curl cht.sh/$1
   }
 fi
+
+# micro editor
+[ -x "$(command -v micro)" ] && alias m='micro'
 
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
