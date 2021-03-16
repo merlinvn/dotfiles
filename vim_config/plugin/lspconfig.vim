@@ -1,23 +1,16 @@
 if has('nvim')
+
+  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " imap <tab> <Plug>(completion_smart_tab)
+  " imap <s-tab> <Plug>(completion_smart_s_tab)
+
   " lspconfig settings
   set completeopt=menuone,noinsert,noselect
   let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+  let g:completion_enable_snippet = 'UltiSnips'
 
   lua require'merlinvn.lspconfig'
-
-"
-" lua << EOF
-"   require'lspconfig'.clangd.setup{
-"     on_attach=require'completion'.on_attach;
-"     cmd = { "clangd", "--background-index"};
-"   }
-" EOF
-
-  " lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
-  " lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-  " lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-  " lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
-  " lua require'nvim_lsp'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 
   nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
   nnoremap <leader>cgD <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -76,10 +69,6 @@ if has('nvim')
 
   nnoremap <leader>ci <cmd>lua vim.lsp.buf.incoming_calls()<CR>
   nnoremap <leader>co <cmd>lua vim.lsp.buf.outgoing_calls()<CR>
-
-
-  imap <tab> <Plug>(completion_smart_tab)
-  imap <s-tab> <Plug>(completion_smart_s_tab)
 
 endif
 
