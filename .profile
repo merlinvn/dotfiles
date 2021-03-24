@@ -32,9 +32,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if xhost >& /dev/null ; then
-  setxkbmap -option caps:swapescape
-fi
+# if xhost >& /dev/null ; then
+  # setxkbmap -option caps:swapescape
+# fi
 
 if [ -f "$HOME/.cargo/env" ]; then
   source "$HOME/.cargo/env"

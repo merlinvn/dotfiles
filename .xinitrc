@@ -34,8 +34,8 @@ fi
 
 # nitrogen --restore &
 # picom &
+# setxkbmap -option caps:swapescape
 xsetroot -cursor_name Left_ptr
-setxkbmap -option caps:swapescape
 
 ibus-daemon -drx &
 

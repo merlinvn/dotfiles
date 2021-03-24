@@ -66,7 +66,7 @@ set updatetime=50
 " " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 "
-set colorcolumn=80
+set colorcolumn=120
 
 set laststatus=2
 
