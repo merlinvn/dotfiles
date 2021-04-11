@@ -72,6 +72,7 @@ fi
 
 # micro editor
 [ -x "$(command -v micro)" ] && alias m='micro'
+=======
 
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
