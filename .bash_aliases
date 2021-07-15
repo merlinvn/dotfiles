@@ -13,7 +13,7 @@ if [[ -x "$(command -v exa)" ]] ; then
   alias la='exa -a'
   alias l='exa -F'
 else
-  if [[ "$(machine)" == "Linux" ]]; then
+  if [[ "${machine}" == "Linux" ]]; then
     alias ls='ls --color'
     alias ll='ls -alhF'
     alias la='ls -A'
