@@ -20,6 +20,7 @@ rm -rf ~/.config/betterlockscreenrc
 rm -rf ~/.config/polybar/config
 rm -rf ~/.config/leftwm/config.toml
 rm -rf ~/.config/leftwm/themes/current
+rm -f ~/.config/i3/config
 
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.inputrc ~/.inputrc
@@ -57,6 +58,9 @@ ln -s ~/dotfiles/.config/polybar/config ~/.config/polybar/config
 mkdir -p ~/.config/leftwm/themes/
 ln -s ~/dotfiles/.config/leftwm/config.toml ~/.config/leftwm/config.toml
 ln -s ~/dotfiles/.config/leftwm/themes/current ~/.config/leftwm/themes/current
+
+mkdir -p ~/.config/i3
+ln -s ~/dotfiles/.config/i3/config ~/.config/i3/config
 
 mkdir -p ~/.vim/plugin
 mkdir -p ~/.vim/lua/merlinvn
