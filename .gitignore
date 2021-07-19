@@ -4,3 +4,5 @@ Thumbs.db
 .bundle
 .nvimlog
 
+**/plugged/*
+**/undodir/*
