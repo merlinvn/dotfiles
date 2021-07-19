@@ -29,27 +29,16 @@ endfunction
 
 " ========= Plugin Section ===============
 " Initialize plugin system
-
-if has('nvim')
-  " Bootstrap Plug
-  let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
-  if !filereadable(autoload_plug_path)
-    silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs
-        \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  unlet autoload_plug_path
-
-  call plug#begin(stdpath('data') . '/plugged')
-else
-  " Install vim-plug if not found
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  call plug#begin('~/.vim/plugged')
+" Bootstrap Plug, check and install vimplug
+let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
+if !filereadable(autoload_plug_path)
+  silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs
+      \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+unlet autoload_plug_path
+
+call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'gruvbox-community/gruvbox'
 
@@ -70,8 +59,6 @@ Plug 'tpope/vim-repeat'
 " <Leader>ci toggle
 Plug 'preservim/nerdcommenter'
 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 
 " for neovim install `pip3 install neovim-remote` to allow floaterm to open
@@ -103,34 +90,28 @@ Plug 'liuchengxu/vim-which-key'
 
 " Plug 'unblevable/quick-scope'
 
-if has('nvim')
-  " telescope
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-  " autocompletion with language server by nvim built-in
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'tjdevries/nlua.nvim'
-  Plug 'tjdevries/lsp_extensions.nvim'
+" autocompletion with language server by nvim built-in
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/lsp_extensions.nvim'
 
-  " need to call :TSInstall {language} later
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" need to call :TSInstall {language} later
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  " Plug 'onsails/lspkind-nvim'
+" Plug 'onsails/lspkind-nvim'
 
-  " Snippet engine
-  Plug 'SirVer/ultisnips'
-  " Sippets manager
-  Plug 'honza/vim-snippets'
+" Snippet engine
+Plug 'SirVer/ultisnips'
+" Sippets manager
+Plug 'honza/vim-snippets'
 
-else
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'stsewd/fzf-checkout.vim'
-endif
 
 call plug#end()
 
