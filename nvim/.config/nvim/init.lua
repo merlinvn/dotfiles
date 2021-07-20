@@ -7,6 +7,8 @@ local fmt = string.format
 -- set leader to space early
 vim.g.mapleader = " "
 
+vim.g.isColemakDH = true
+
 require("settings")
 require("plugins")
 
@@ -32,13 +34,6 @@ require("settings.keymap")
   --"savq/paq-nvim";                  -- Let Paq manage itself
 
   --"gruvbox-community/gruvbox";
-
-  ---- telescope
-  --"nvim-lua/popup.nvim";
-  --"nvim-lua/plenary.nvim";
-  --"nvim-telescope/telescope.nvim";
-  --{ "nvim-telescope/telescope-fzy-native.nvim", hook='git submodule update --init --recursive' };
-  --"romgrk/fzy-lua-native";
 
   --"easymotion/vim-easymotion";        -- easy moving around
 

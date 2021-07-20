@@ -1,3 +1,4 @@
+local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 
 local function map(mode, lhs, rhs, opts)
   local options = {noremap  = true}
@@ -7,6 +8,19 @@ end
 
 -- avoid clashing with leader as space
 map("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+
+-- remap navigation key for ColemakDH
+map("", "m", "h", { noremap = true, silent = true })
+map("", "n", "j", { noremap = true, silent = true })
+map("", "e", "k", { noremap = true, silent = true })
+map("", "i", "l", { noremap = true, silent = true })
+
+map("", "j", "m", { noremap = true, silent = true })
+map("", "l", "n", { noremap = true, silent = true })
+map("", "k", "e", { noremap = true, silent = true })
+map("", "h", "i", { noremap = true, silent = true })
+
+--------------- end mapping for ColemakDH navigation ---------
 
 -- vim.api.nvim_set_keymap('n', '<Leader>s', '<cmd>w<CR>', { map('', '= true, silent = true })
 -- remap save
