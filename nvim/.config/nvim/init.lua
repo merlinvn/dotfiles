@@ -1,55 +1,110 @@
--- set leader to space early
-vim.g.mapleader = " "
-
-require("merlinvn.mappings")
-
 -------------------- HELPERS -------------------------------
+vim.api.nvim_set_keymap('n', '<leader>tg', ":lua require('plugins.telescope').my_git_status()<CR>", {noremap = true, silent = true})
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 local opt, wo = vim.opt, vim.wo
 local fmt = string.format
 
+-- set leader to space early
+vim.g.mapleader = " "
 
+require("settings")
+require("plugins")
+
+
+-- Plugins Configs
+cmd 'colorscheme gruvbox'
+
+require("plugins.telescope")
+
+
+-- Key maps
+require("settings.keymap")
 -------------------- PLUGINS -------------------------------
+-- git clone https://github.com/wbthomason/packer.nvim\
+-- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+ --
+ --
+
+-- install plugins manager git clone --depth=1 https://github.com/savq/paq-nvim.git \
+--    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+--require "paq"{
+  --"savq/paq-nvim";                  -- Let Paq manage itself
+
+  --"gruvbox-community/gruvbox";
+
+  ---- telescope
+  --"nvim-lua/popup.nvim";
+  --"nvim-lua/plenary.nvim";
+  --"nvim-telescope/telescope.nvim";
+  --{ "nvim-telescope/telescope-fzy-native.nvim", hook='git submodule update --init --recursive' };
+  --"romgrk/fzy-lua-native";
+
+  --"easymotion/vim-easymotion";        -- easy moving around
+
+  --"machakann/vim-highlightedyank";    -- highlight yanked text for 1 second
+
+  --"tpope/vim-surround";               -- quick add, delete, change surround
+
+  --"tpope/vim-repeat";
+
+---- NerdCommenter
+---- https://github.com/preservim/nerdcommenter
+---- <Leader>cc comment
+---- <Leader>cu uncomment
+---- <Leader>ci toggle
+  --"preservim/nerdcommenter";
+
+---- "itchyny/lightline.vim";
+
+---- for neovim install `pip3 install neovim-remote` to allow floaterm to open
+---- windows in side neovim
+---- "voldikss/vim-floaterm";
+
+---- "mhinz/vim-startify";
+
+---- other language enhancements
+----  "octol/vim-cpp-enhanced-highlight";
+----  "bfrg/vim-cpp-modern";
+
+---- "rust-lang/rust.vim";
+---- "tweekmonster/gofmt.vim";
+
+---- "cespare/vim-toml";
+
+---- Cheat Sheet
+---- "dbeniamine/cheat.sh-vim";
+
+---- Vim Wiki 
+  --"vimwiki/vimwiki";
+
+---- Vim css color
+  --"ap/vim-css-color";
+  --"chrisbra/Colorizer";
+
+  --"liuchengxu/vim-which-key";
+
+---- "unblevable/quick-scope";
 
 
+---- autocompletion with language server by nvim built-in
+---- "neovim/nvim-lspconfig";
+---- "nvim-lua/completion-nvim";
+---- "tjdevries/nlua.nvim";
+---- "tjdevries/lsp_extensions.nvim";
 
+---- need to call :TSInstall {language} later
+---- "nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate";}
 
+---- "onsails/lspkind-nvim";
 
+---- Snippet engine
+---- "SirVer/ultisnips";
+---- Sippets manager
+---- "mhonza/vim-snippets";
+----
+--}
 
--------------------- OPTIONS -------------------------------
-local indent, width = 2, 80
-opt.colorcolumn = tostring(width)   -- Line length marker
-opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
-opt.cursorline = true               -- Highlight cursor line
-opt.expandtab = true                -- Use spaces instead of tabs
-opt.formatoptions = 'crqnj'         -- Automatic formatting options
-opt.hidden = true                   -- Enable background buffers
-opt.ignorecase = true               -- Ignore case
-opt.joinspaces = false              -- No double spaces with join
-opt.list = true                     -- Show some invisible characters
-opt.number = true                   -- Show line numbers
-opt.pastetoggle = '<F2>'            -- Paste mode
-opt.pumheight = 12                  -- Max height of popup menu
-opt.relativenumber = true           -- Relative line numbers
-opt.scrolloff = 4                   -- Lines of context
-opt.shiftround = true               -- Round indent
-opt.shiftwidth = indent             -- Size of an indent
-opt.shortmess = 'atToOFc'           -- Prompt message options
-opt.sidescrolloff = 8               -- Columns of context
-opt.signcolumn = 'yes'              -- Show sign column
-opt.smartcase = true                -- Do not ignore case with capitals
-opt.smartindent = true              -- Insert indents automatically
-opt.splitbelow = true               -- Put new windows below current
-opt.splitright = true               -- Put new windows right of current
-opt.tabstop = indent                -- Number of spaces tabs count for
-opt.termguicolors = true            -- True color support
-opt.textwidth = width               -- Maximum width of text
-opt.updatetime = 100                -- Delay before swap file is saved
-opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
-opt.wrap = false                    -- Disable line wrap
--- cmd 'colorscheme onedark'
-
--------------------- MAPPINGS ------------------------------
 
 
 
