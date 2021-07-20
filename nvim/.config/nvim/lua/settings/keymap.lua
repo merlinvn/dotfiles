@@ -58,48 +58,31 @@ map('', '<leader>0', ':tablast<cr>')
 
 
 -- Telescope
+-- File pickers
+vim.api.nvim_set_keymap('n', '<leader>tf', ":lua require('telescope.builtin').find_files()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ta', ":lua require('telescope.builtin').file_browser()<CR>", {noremap = true, silent = true})
+
 vim.api.nvim_set_keymap('n', '<leader>tg', ":lua require('telescope.builtin').live_grep()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tb', ":lua require('telescope.builtin').buffers()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tm', ":lua require('telescope.builtin').marks()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tt', ":lua require('telescope.builtin').treesitter()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tl', ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tf', ":lua require('plugins.telescope').project_files()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tp', ":lua require('telescope').extensions.project.project{}<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tc', ":lua require('plugins.telescope').my_git_commits()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ts', ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > ')})<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tw', ":lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>')}<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<leader>td', ":lua require('telescope.builtin').git_files({ prompt_title = '< My dotfiles >', cwd = '$HOME/dotfiles/'})<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>vd', ":lua require('telescope.builtin').git_files({ prompt_title = '< My dotfiles >', :wd = '$HOME/dotfiles/'})<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>vd', ":lua require('telescope.builtin').git_files({ prompt_title = '< My dotfiles >', cwd = '$HOME/dotfiles/'})<CR>", {noremap = true, silent = true})
 
---vim.api.nvim_set_keymap('n', '<leader>tg', ":lua require('plugins.telescope').my_git_status()<CR>", {noremap = true, silent = true})
---vim.api.nvim_set_keymap('n', '<leader>tb', ":lua require('plugins.telescope').my_git_bcommits()<CR>", {noremap = true, silent = true})
---vim.api.nvim_set_keymap('n', '<leader>tn', ":lua require('plugins.telescope').my_note()<CR>", {noremap = true, silent = true})
---vim.api.nvim_set_keymap('n', '<leader>tnn', ":e ~/Note/", {noremap = true, silent = false})
---vim.api.nvim_set_keymap('n', '<leader>gc', ':Octo issue create<CR>', {noremap = true, silent = false})
---vim.api.nvim_set_keymap('n', '<leader>i', ':Octo issue list<CR>', {noremap = true, silent = false})
-
-
-  --nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-  --nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
-
-  --nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
-
-  --nnoremap <leader>pl :lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>
-
-  --nnoremap <leader>pt :lua require("telescope.builtin").current_buffer_tags()<CR>
-
-  --" required ripgrep via `sudo apt install ripgrep`
-  --nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
-
-  --nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-
-  --nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
-  --nnoremap <leader>bs :lua require('telescope.builtin').buffers()<CR>
-
-  --nnoremap <leader>ph :lua require('telescope.builtin').help_tags()<CR>
-  --nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
+-- Vim pickers
+vim.api.nvim_set_keymap('n', '<leader>tb', ":lua require('telescope.builtin').buffers()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tk', ":lua require('telescope.builtin').keymaps()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tt', ":lua require('telescope.builtin').current_buffer_tags()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tl', ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>th', ":lua require('telescope.builtin').help_tags()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tm', ":lua require('telescope.builtin').marks()<CR>", {noremap = true, silent = true})
 
 
-  --nnoremap <leader>pc :lua require('merlinvn.telescope').git_branches()<CR>
+vim.api.nvim_set_keymap('n', '<leader>tc', ":lua require('plugins.telescope').git_branches()<CR>", {noremap = true, silent = true})
+
+vim.api.nvim_set_keymap('n', '<leader>tr', ":lua require('telescope.builtin').treesitter()<CR>", {noremap = true, silent = true})
+
+-- LSP
 
 
 --
