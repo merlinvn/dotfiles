@@ -1,3 +1,4 @@
+-- Ref: https://github.com/crivotz/nv-ide
 -------------------- HELPERS -------------------------------
 -- local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 -- local opt, wo = vim.opt, vim.wo
