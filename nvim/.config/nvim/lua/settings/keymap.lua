@@ -12,17 +12,17 @@ map("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 map('n', '<Leader><Esc>', ':nohlsearch<CR>')
 
 -- remap navigation key for ColemakDH
-if vim.g.isColemakDH then
-    map("", "m", "h", {noremap = true, silent = true})
-    map("", "n", "j", {noremap = true, silent = true})
-    map("", "e", "k", {noremap = true, silent = true})
-    map("", "i", "l", {noremap = true, silent = true})
-
-    map("", "j", "m", {noremap = true, silent = true})
-    map("", "l", "n", {noremap = true, silent = true})
-    map("", "k", "e", {noremap = true, silent = true})
-    map("", "h", "i", {noremap = true, silent = true})
-end
+-- if vim.g.isColemakDH then
+--     map("", "m", "h", {noremap = true, silent = true})
+--     map("", "n", "j", {noremap = true, silent = true})
+--     map("", "e", "k", {noremap = true, silent = true})
+--     map("", "i", "l", {noremap = true, silent = true})
+--
+--     map("", "j", "m", {noremap = true, silent = true})
+--     map("", "l", "n", {noremap = true, silent = true})
+--     map("", "k", "e", {noremap = true, silent = true})
+--     map("", "h", "i", {noremap = true, silent = true})
+-- end
 
 -- remap save
 map('n', '<Leader>s', ':w<CR>')
@@ -130,5 +130,13 @@ map('n', '<leader>tr', ":lua require('telescope.builtin').treesitter()<CR>",
     {noremap = true, silent = true})
 
 -- LSP
+
+-- Vim Compe
+map('i', '<C-Space>', 'compe#complete()', {silent = true, expr = true})
+map('i', '<CR>', "compe#confirm('<CR>')", {silent = true, expr = true})
+map('i', '<C-x>', "compe#close('<C-x>')", {silent = true, expr = true})
+-- not working
+-- map('i', '<C-f>', "compe#scroll({ 'delta': +4 })", {silent = true, expr = true})
+-- map('i', '<C-d>', "compe#scroll({ 'delta': -4 })", {silent = true, expr = true})
 
 --
