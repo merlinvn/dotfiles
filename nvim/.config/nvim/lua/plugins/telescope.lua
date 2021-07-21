@@ -1,30 +1,25 @@
-local actions = require ('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    file_sorter =  require'telescope.sorters'.get_fuzzy_sorter,
-    prompt_prefix = ' > ',
-    color_devicons = true,
+local actions = require('telescope.actions')
+require('telescope').setup {
+    defaults = {
+        file_sorter = require'telescope.sorters'.get_fuzzy_sorter,
+        prompt_prefix = ' > ',
+        color_devicons = true,
 
-    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-    file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+        grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+        file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
-    mappings = {
-      i = {
-        ["<C-x>"] = false,
-        ["<C-q>"] = actions.send_to_qflist,
-      }
+        mappings = {i = {["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist}},
+
+        set_env = {['COLORTERM'] = 'truecolor'},
+        file_ignore_patterns = {"ext/.*"} -- comment this line for non C++ project
     },
-
-    set_env = { ['COLORTERM'] = 'truecolor' },
-    file_ignore_patterns = {"ext/.*"}, -- comment this line for non C++ project
-  },
-  extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true
+        }
     }
-  }
 }
 
 require('telescope').load_extension('fzy_native')
@@ -33,7 +28,7 @@ local M = {}
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< My dotfiles >",
-        cwd = "$HOME/dotfiles/",
+        cwd = "$HOME/dotfiles/"
     })
 end
 

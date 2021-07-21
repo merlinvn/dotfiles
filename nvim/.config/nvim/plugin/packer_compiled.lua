@@ -69,6 +69,22 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  gruvbox = {
+    loaded = true,
+    path = "/home/neo/.local/share/nvim/site/pack/packer/start/gruvbox"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/neo/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/neo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/neo/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/neo/.local/share/nvim/site/pack/packer/start/packer.nvim"

@@ -19,13 +19,33 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Fuzzy finder
+-- Telescope  
   use {
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
-  
   use 'nvim-telescope/telescope-fzy-native.nvim'
 
+-- Color scheme
   use 'gruvbox-community/gruvbox'
+
+-- lsp
+  use 'neovim/nvim-lspconfig'
+
+-- Autocomplete
+  use 'hrsh7th/nvim-compe'
+
+-- formatter
+  use 'sbdchd/neoformat'
+
+-- Treesitter
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+-- must run :TSInstall <language> latter{
+
+  --use 'p00f/nvim-ts-rainbow'
+  --use 'lukas-reineke/indent-blankline.nvim'
+  --use 'JoosepAlviste/nvim-ts-context-commentstring'
+  --use 'romgrk/nvim-treesitter-context'
+
 
 end)

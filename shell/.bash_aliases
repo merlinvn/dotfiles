@@ -79,4 +79,4 @@ if [[ -x "$(command -v nvim)" ]]; then
   # alias oldvim="\vim"
 fi
 
-
+alias luamake=${HOME}/lua-language-server/3rd/luamake/luamake
