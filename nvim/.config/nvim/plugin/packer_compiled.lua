@@ -73,6 +73,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neo/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
+  neoformat = {
+    loaded = true,
+    path = "/home/neo/.local/share/nvim/site/pack/packer/start/neoformat"
+  },
   ["nvim-compe"] = {
     loaded = true,
     path = "/home/neo/.local/share/nvim/site/pack/packer/start/nvim-compe"

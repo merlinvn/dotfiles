@@ -1,4 +1,8 @@
 -- Ref: https://github.com/crivotz/nv-ide
+--
+-- Neoformat:
+-- https://github.com/sbdchd/neoformat
+-- Lua Fommatter: sudo luarocks install --server=https://luarocks.org/dev luaformatter
 -------------------- HELPERS -------------------------------
 -- local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 -- local opt, wo = vim.opt, vim.wo
@@ -15,26 +19,14 @@ vim.cmd 'colorscheme gruvbox'
 
 require("plugins.lsp")
 require("plugins.nvim-compe")
-require("plugins.neoformat")
 require("plugins.telescope")
 require("plugins.treesitter")
 
 -- Key maps
 require("settings.keymap")
 
--- Hook
-
-vim.api.nvim_exec([[
-function! StripTrailingWhitespaces()
-  if !&binary && &filetype != 'diff'
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-  endif
-endfun
-autocmd BufWritePre,FileWritePre,FileAppendPre,FilterWritePre * :call StripTrailingWhitespaces()
-" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
-]], true)
+-- Hooks
+require('hooks')
 --
 -------------------- PLUGINS -------------------------------
 -- git clone https://github.com/wbthomason/packer.nvim\
