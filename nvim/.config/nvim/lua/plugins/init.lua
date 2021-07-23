@@ -42,6 +42,9 @@ return require('packer').startup(function(use)
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
 
+    -- commenter
+    use 'preservim/nerdcommenter'
+
     -- formatter
     use 'sbdchd/neoformat'
 
@@ -66,6 +69,8 @@ return require('packer').startup(function(use)
 
     -- Color highlight
     use 'norcalli/nvim-colorizer.lua'
-
     use 'machakann/vim-highlightedyank'
+
+    -- debuger
+    -- use 'mfussenegger/nvim-dap'
 end)

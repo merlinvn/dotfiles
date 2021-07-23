@@ -51,4 +51,14 @@ map('i', '<C-x>', "compe#close('<C-x>')", {silent = true, expr = true})
 -- map('i', '<C-f>', "compe#scroll({ 'delta': +4 })", {silent = true, expr = true})
 -- map('i', '<C-d>', "compe#scroll({ 'delta': -4 })", {silent = true, expr = true})
 
---
+-- NerdCommenter
+
+map('n', '<leader>cc', ":call NERDComment('n', 'comment')<CR>")
+map('x', '<leader>cc', ":call NERDComment('x', 'comment')<CR>")
+
+map('n', '<leader>cu', ":call NERDComment('n', 'Uncomment')<CR>")
+map('x', '<leader>cu', ":call NERDComment('x', 'Uncomment')<CR>")
+
+map('n', '<leader>c/', ":call NERDComment('n', 'Invert')<CR>")
+map('n', '<leader>c/', ":call NERDComment('x', 'Invert')<CR>")
+
