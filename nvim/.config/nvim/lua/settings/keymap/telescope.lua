@@ -40,6 +40,9 @@ map('n', '<leader>tm', ":lua require('telescope.builtin').marks()<CR>",
 map('n', '<leader>tc', ":lua require('plugins.telescope').git_branches()<CR>",
     {noremap = true, silent = true})
 
-map('n', '<leader>tr', ":lua require('telescope.builtin').treesitter()<CR>",
+map('n', '<leader>ti', ":lua require('telescope.builtin').treesitter()<CR>",
+    {noremap = true, silent = true})
+
+map('n', '<leader>tr', ":lua require('telescope.builtin').registers()<CR>",
     {noremap = true, silent = true})
 

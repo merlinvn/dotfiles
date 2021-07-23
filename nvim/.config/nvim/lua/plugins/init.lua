@@ -54,6 +54,18 @@ return require('packer').startup(function(use)
     -- use 'JoosepAlviste/nvim-ts-context-commentstring'
     -- use 'romgrk/nvim-treesitter-context'
 
+    -- Navigation
+    use {
+        'phaazon/hop.nvim',
+        as = 'hop',
+        config = function()
+            -- you can configure Hop the way you like here; see :h hop-config
+            require'hop'.setup {keys = 'tndhseriaoc,plfux.z/wy'}
+        end
+    }
+
     -- Color highlight
     use 'norcalli/nvim-colorizer.lua'
+
+    use 'machakann/vim-highlightedyank'
 end)
