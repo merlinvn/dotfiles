@@ -15,14 +15,14 @@ require("settings")
 require("plugins")
 
 -- Plugins Configs
-vim.cmd 'colorscheme gruvbox'
-
 require("plugins.lsp")
 require("plugins.nvim-compe")
 require("plugins.telescope")
 require("plugins.treesitter")
+require("plugins.lualine")
 
 -- Key maps
+require("settings.colors")
 require("settings.keymap")
 
 -- Hooks

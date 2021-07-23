@@ -29,8 +29,13 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope-fzy-native.nvim'
 
     -- Color scheme
-    use 'gruvbox-community/gruvbox'
-
+    -- use 'gruvbox-community/gruvbox'
+    use 'sainnhe/gruvbox-material'
+    -- status line
+    use {
+        'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
     -- lsp
     use 'neovim/nvim-lspconfig'
 
@@ -49,4 +54,6 @@ return require('packer').startup(function(use)
     -- use 'JoosepAlviste/nvim-ts-context-commentstring'
     -- use 'romgrk/nvim-treesitter-context'
 
+    -- Color highlight
+    use 'norcalli/nvim-colorizer.lua'
 end)
