@@ -43,7 +43,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-compe'
 
     -- commenter
-    use 'preservim/nerdcommenter'
+    -- use 'preservim/nerdcommenter
+    -- use 'tpope/vim-commentary'
+    use 'terrortylor/nvim-comment'
 
     -- formatter
     use 'sbdchd/neoformat'
@@ -73,4 +75,11 @@ return require('packer').startup(function(use)
 
     -- debuger
     -- use 'mfussenegger/nvim-dap'
+    --
+    -- General
+
+    use 'mhinz/vim-startify'
+    use {"folke/which-key.nvim"}
+    -- use 'liuchengxu/vim-which-key'
+
 end)

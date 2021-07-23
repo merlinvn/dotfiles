@@ -20,6 +20,8 @@ require("plugins.nvim-compe")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.lualine")
+require("plugins.nvim-comment")
+require("plugins.which-key")
 
 -- Key maps
 require("settings.colors")

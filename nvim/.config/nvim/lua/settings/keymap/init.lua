@@ -1,4 +1,5 @@
 local map = require('utils').map
+
 -- avoid clashing with leader as space
 map("n", "<Space>", "<NOP>", {noremap = true, silent = true})
 -- Navigation
@@ -7,6 +8,8 @@ require('settings.keymap.navigation')
 require('settings.keymap.telescope')
 -- LSP
 require('settings.keymap.lsp')
+
+require('settings.keymap.hop')
 
 -- turn off hightlight search
 map('n', '<Leader><Esc>', ':nohlsearch<CR>')
@@ -50,15 +53,4 @@ map('i', '<C-x>', "compe#close('<C-x>')", {silent = true, expr = true})
 -- not working
 -- map('i', '<C-f>', "compe#scroll({ 'delta': +4 })", {silent = true, expr = true})
 -- map('i', '<C-d>', "compe#scroll({ 'delta': -4 })", {silent = true, expr = true})
-
--- NerdCommenter
-
-map('n', '<leader>cc', ":call NERDComment('n', 'comment')<CR>")
-map('x', '<leader>cc', ":call NERDComment('x', 'comment')<CR>")
-
-map('n', '<leader>cu', ":call NERDComment('n', 'Uncomment')<CR>")
-map('x', '<leader>cu', ":call NERDComment('x', 'Uncomment')<CR>")
-
-map('n', '<leader>c/', ":call NERDComment('n', 'Invert')<CR>")
-map('n', '<leader>c/', ":call NERDComment('x', 'Invert')<CR>")
 
