@@ -33,6 +33,12 @@ require'lspconfig'.jsonls.setup {
 require'lspconfig'.yamlls.setup {}
 require'lspconfig'.vimls.setup {}
 
+require'lspconfig'.clangd.setup {
+    -- on_attach = require'completion'.on_attach,
+    cmd = {"clangd", "--background-index"}
+}
+
+--
 -- require'lspconfig'.dartls.setup{
 -- }
 -- require("flutter-tools").setup{} -- use defaults
