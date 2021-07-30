@@ -47,6 +47,10 @@ return require('packer').startup(function(use)
     -- use 'tpope/vim-commentary'
     use 'terrortylor/nvim-comment'
 
+    -- GIT
+    use 'airblade/vim-gitgutter'
+    --
+    --
     -- formatter
     use 'sbdchd/neoformat'
 
@@ -77,9 +81,7 @@ return require('packer').startup(function(use)
     -- use 'mfussenegger/nvim-dap'
     --
     -- General
-
     use 'mhinz/vim-startify'
     use {"folke/which-key.nvim"}
-    -- use 'liuchengxu/vim-which-key'
 
 end)
