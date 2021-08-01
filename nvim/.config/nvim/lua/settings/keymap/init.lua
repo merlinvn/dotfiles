@@ -29,6 +29,22 @@ map('n', '<Leader>vr', ':source $MYVIMRC<CR>')
 
 map('n', '<Leader>lr', ':luafile %<CR>')
 
+-- Yank from the current cursor to the end of line
+map('n', 'Y', 'y$')
+
+-- Go to next / previous, center with zz, and zv to open fold
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+
+-- join and stay in the same line
+map('n', 'J', 'mzJ`z')
+
+-- undo break points
+map('i', ',', ',<c-g>u')
+map('i', '.', '.<c-g>u')
+map('i', '!', '!<c-g>u')
+map('i', '?', '/<c-g>u')
+
 -- move line up down
 if vim.g.isColemakDH then
     map('n', '<C-n>', ':m .+1<CR>==')
