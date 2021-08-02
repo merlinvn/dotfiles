@@ -1,9 +1,16 @@
 local map = require('utils').map
+local my_telescope = require('plugins.telescope')
 
 -- File pickers
 map('n', '<leader>tf', ":lua require('telescope.builtin').find_files()<CR>",
     {noremap = true, silent = true})
-map('n', '<leader>ta', ":lua require('telescope.builtin').file_browser()<CR>",
+
+map('n', '<leader>tp',
+    ":lua require('telescope.builtin').find_files({ find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },  })<CR>",
+    {noremap = true, silent = true})
+
+map('n', '<leader>ta',
+    ":lua require('telescope.builtin').file_browser({ })<CR>",
     {noremap = true, silent = true})
 
 map('n', '<leader>tg', ":lua require('telescope.builtin').live_grep()<CR>",
@@ -14,11 +21,14 @@ map('n', '<leader>ts',
 map('n', '<leader>tw',
     ":lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>')}<CR>",
     {noremap = true, silent = true})
+
+-- dotfiles search
 map('n', '<leader>td',
-    ":lua require('telescope.builtin').git_files({ prompt_title = '< My dotfiles >', cwd = '$HOME/dotfiles/'})<CR>",
+    ":lua require('plugins.telescope').search_dotfiles()<CR>",
     {noremap = true, silent = true})
+
 map('n', '<leader>vd',
-    ":lua require('telescope.builtin').git_files({ prompt_title = '< My dotfiles >', cwd = '$HOME/dotfiles/'})<CR>",
+    ":lua require('plugins.telescope').search_dotfiles()<CR>",
     {noremap = true, silent = true})
 
 -- Vim pickers

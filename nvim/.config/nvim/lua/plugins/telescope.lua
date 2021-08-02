@@ -9,8 +9,8 @@ require('telescope').setup {
         file_previewer = require('telescope.previewers').vim_buffer_cat.new,
         qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
 
-        --mappings = {i = {["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist}},
-        mappings = {i = { ["<C-q>"] = actions.send_to_qflist}},
+        -- mappings = {i = {["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist}},
+        mappings = {i = {["<C-q>"] = actions.send_to_qflist}},
 
         set_env = {['COLORTERM'] = 'truecolor'},
         file_ignore_patterns = {"ext/.*"} -- comment this line for non C++ project
@@ -29,7 +29,8 @@ local M = {}
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< My dotfiles >",
-        cwd = "$HOME/dotfiles/"
+        cwd = "$HOME/dotfiles/",
+        find_command = {'rg', '--files', '--iglob', '!.git', '--hidden'}
     })
 end
 
