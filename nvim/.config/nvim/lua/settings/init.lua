@@ -17,7 +17,7 @@ end
 
 opt.backup = false -- combine with nowritebackup to completely turn off backup
 opt.belloff = 'all'
-opt.clipboard:prepend{"unnamedplus"}
+-- opt.clipboard:prepend{"unnamedplus"}
 opt.colorcolumn = tostring(width) -- Line length marker
 opt.completeopt = {'menuone', 'noinsert', 'noselect'} -- Completion options
 opt.cursorline = true -- Highlight cursor line

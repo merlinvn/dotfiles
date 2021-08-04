@@ -15,7 +15,7 @@ require('settings.keymap.hop')
 map('n', '<Leader><Esc>', ':nohlsearch<CR>')
 
 -- remap save
-map('n', '<Leader>s', ':w<CR>')
+map('n', '<Leader>s', ':up<CR>')
 map('n', '<C-s>', ':w<CR>')
 map('i', '<C-s>', '<Esc>:w<CR>a')
 
@@ -61,6 +61,17 @@ else
     map('v', '<C-j>', ':m \'>+1<CR>gv=gv')
     map('v', '<C-k>', ':m \'<-2<CR>gv=gv')
 end
+
+-- better p
+map('n', ',p', '"0p')
+map('n', ',P', '"0p')
+
+-- paste from clipboard
+map('n', '<C-p>', '"*p')
+map('n', '<C-f>', '"*P')
+
+-- copy whole text in file
+map('n', 'va', ':%y+<CR>')
 
 -- Vim Compe
 map('i', '<C-Space>', 'compe#complete()', {silent = true, expr = true})
