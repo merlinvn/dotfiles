@@ -71,7 +71,7 @@ map('n', '<C-p>', '"*p')
 map('n', '<C-f>', '"*P')
 
 -- copy whole text in file
-map('n', 'va', ':%y+<CR>')
+map('n', 'yz', ':%y+<CR>')
 
 -- Vim Compe
 map('i', '<C-Space>', 'compe#complete()', {silent = true, expr = true})
