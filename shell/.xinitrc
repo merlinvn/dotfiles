@@ -11,6 +11,11 @@ if [ -f $sysresources ]; then
   xrdb -merge $sysresources
 fi
 
+if [ -f ~/.Xresources ]; then
+  xrdb -merge ~/.Xresources
+fi
+
+
 if [ -f $sysmodmap ]; then
   xmodmap $sysmodmap
 fi
@@ -37,15 +42,14 @@ fi
 # setxkbmap -option caps:swapescape
 xsetroot -cursor_name Left_ptr
 
-ibus-daemon -drx &
+# ibus-daemon -drx &
 
-/usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers &
-picom --experimental-backends &
-flameshot &
-stalonetray &
-pnmixer &
-betterlockscreen -u ~/wallpapers/ &
+# picom --experimental-backends &
+# flameshot &
+# stalonetray &
+# pnmixer &
+# betterlockscreen -u ~/wallpapers/ &
 
-exec xmonad
+# exec xmonad
 # exec dbus-launch leftwm
-# exec i3
+# exec i4
