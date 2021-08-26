@@ -124,7 +124,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash
 
 # source fzf
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-
-
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
