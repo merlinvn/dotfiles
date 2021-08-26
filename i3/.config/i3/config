@@ -249,23 +249,6 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
-bar {
-    status_command i3status --config ~/.config/i3/i3status.conf
-    # tray_output none
-#     colors {
-#         background $black2
-#         statusline $white2
-#         separator $white2 
-# 
-#         #                  border background text
-#         focused_workspace  $background $background $red1
-#         active_workspace   $black2 $black1 $white2
-#         inactive_workspace $black1 $black2 $foreground
-#         urgent_workspace   $red1 $red1 $white2
-#         binding_mode       $background $red2 $white2
-#     }
-}
-
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -307,4 +290,22 @@ set_from_resource $term_color15    color15
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
   client.background       #2B2C2B
+
+
+bar {
+    status_command i3status --config ~/.config/i3/i3status.conf
+    # tray_output none
+#     colors {
+#         background $black2
+#         statusline $white2
+#         separator $white2 
+# 
+#         # border background text
+#         focused_workspace  $background $background $red1
+#         active_workspace   $black2 $black1 $white2
+#         inactive_workspace $black1 $black2 $foreground
+#         urgent_workspace   $red1 $red1 $white2
+#         binding_mode       $background $red2 $white2
+#     }
+}
 
