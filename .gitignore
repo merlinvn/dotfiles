@@ -6,3 +6,5 @@ Thumbs.db
 
 **/plugged/*
 **/undodir/*
+
+go*.tar.gz
