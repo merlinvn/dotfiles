@@ -33,10 +33,10 @@ rm -rf ~/.config/rofi
 # stow rofi
 
 rm -rf ~/.config/picom
-# stow picom
+stow picom
 
 rm -rf ~/.config/dunst
-# stow dunst
+stow dunst
 
 rm -rf ~/.config/betterlockscreenrc
 # stow betterlockscreenrc
