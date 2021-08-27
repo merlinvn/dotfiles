@@ -121,6 +121,8 @@ precmd_functions+=(_fix_cursor)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+[ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
+
 unsetopt BEEP
 
 if [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ]; then
@@ -130,3 +132,5 @@ fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake

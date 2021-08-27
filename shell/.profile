@@ -66,3 +66,4 @@ export LANGUAGE=en_US.UTF-8
 
 [[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
 
+

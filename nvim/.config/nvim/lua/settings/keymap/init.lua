@@ -1,7 +1,8 @@
 local map = require('utils').map
 
 -- avoid clashing with leader as space
-map("n", "<Space>", "<NOP>", {noremap = true, silent = true})
+-- map("n", "<Space>", "<NOP>", {noremap = true, silent = true})
+
 -- Navigation
 require('settings.keymap.navigation')
 -- Telescope

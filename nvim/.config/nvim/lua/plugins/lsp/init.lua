@@ -38,6 +38,8 @@ require'lspconfig'.clangd.setup {
     cmd = {"clangd", "--background-index"}
 }
 
+require'lspconfig'.tailwindcss.setup{}
+
 --
 -- require'lspconfig'.dartls.setup{
 -- }

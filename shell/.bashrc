@@ -117,8 +117,9 @@ if [ -f /usr/local/bin/starship ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f /usr/share/autojump/autojump.bash ] && . /usr/share/autojump/autojump.bash

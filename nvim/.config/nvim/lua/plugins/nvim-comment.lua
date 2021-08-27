@@ -8,7 +8,7 @@ require('nvim_comment').setup({
     -- Normal mode mapping left hand side
     line_mapping = "<leader>cc",
     -- Visual/Operator mapping left hand side
-    operator_mapping = "<leader>c"
+    operator_mapping = "<leader>c,"
 })
 
 -- Assumes this is being run in the context of the filetype...
