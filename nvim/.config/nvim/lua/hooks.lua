@@ -9,8 +9,10 @@ endfun
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.lua,*.js try | :call StripTrailingWhitespaces() | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent  Neoformat | endtry
+  " autocmd BufWritePre *.lua try | :call StripTrailingWhitespaces() | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent  Neoformat | endtry
   " autocmd FileType lua autocmd BufWritePre <buffer> try | :call StripTrailingWhitespaces() | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent  Neoformat | endtry
+
+  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
 augroup END
 
 " autocmd BufWritePre,FileWritePre,FileAppendPre,FilterWritePre * :call StripTrailingWhitespaces()

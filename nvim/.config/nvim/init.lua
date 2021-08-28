@@ -22,13 +22,14 @@ require("plugins.treesitter")
 require("plugins.lualine")
 require("plugins.nvim-comment")
 require("plugins.which-key")
+require("plugins.formatter")
 
 -- Key maps
 require("settings.colors")
 require("settings.keymap")
 
 -- Hooks
-require('hooks')
+require("hooks")
 --
 -------------------- PLUGINS -------------------------------
 -- git clone https://github.com/wbthomason/packer.nvim\
@@ -107,4 +108,3 @@ require('hooks')
 ---- "mhonza/vim-snippets";
 ----
 -- }
-

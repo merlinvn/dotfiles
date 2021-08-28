@@ -52,7 +52,8 @@ return require('packer').startup(function(use)
     --
     --
     -- formatter
-    use 'sbdchd/neoformat'
+    -- use 'sbdchd/neoformat'
+    use 'mhartington/formatter.nvim'
 
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -85,3 +86,4 @@ return require('packer').startup(function(use)
     use {"folke/which-key.nvim"}
 
 end)
+
