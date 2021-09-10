@@ -54,6 +54,8 @@ stow vim
 rm -rf ~/.config/nvim
 stow nvim
 
+stow tmux
+
 rm -f ~/viminfo
 touch ~/viminfo
 chmod 700 ~/viminfo
