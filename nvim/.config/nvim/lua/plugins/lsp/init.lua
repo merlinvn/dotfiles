@@ -42,6 +42,8 @@ require "lspconfig".clangd.setup {
 
 require "lspconfig".tailwindcss.setup {}
 
+require "lspconfig".gopls.setup {capabilities = capabilities}
+
 --
 -- require'lspconfig'.dartls.setup{
 -- }

@@ -16,7 +16,8 @@ require("plugins")
 
 -- Plugins Configs
 require("plugins.lsp")
-require("plugins.nvim-compe")
+-- require("plugins.nvim-compe")
+require("plugins.nvim-cmp")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.lualine")

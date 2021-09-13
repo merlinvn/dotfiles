@@ -40,6 +40,7 @@ if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
+export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin
 

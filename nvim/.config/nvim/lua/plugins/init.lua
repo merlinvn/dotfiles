@@ -2,61 +2,88 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-        'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
-        install_path
-    })
-    execute 'packadd packer.nvim'
+  fn.system(
+    {
+      "git",
+      "clone",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path
+    }
+  )
+  execute "packadd packer.nvim"
 end
 
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
 
-return require('packer').startup(function(use)
+return require("packer").startup(
+  function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use "wbthomason/packer.nvim"
 
     -- Telescope
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+      "nvim-telescope/telescope.nvim",
+      requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
     }
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+    use "nvim-telescope/telescope-fzy-native.nvim"
 
     -- Color scheme
     -- use 'gruvbox-community/gruvbox'
-    use 'sainnhe/gruvbox-material'
+    use "sainnhe/gruvbox-material"
     -- status line
     use {
-        'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+      "hoob3rt/lualine.nvim",
+      requires = {"kyazdani42/nvim-web-devicons", opt = true}
     }
     -- lsp
-    use 'neovim/nvim-lspconfig'
+    use "neovim/nvim-lspconfig"
 
     -- Autocomplete
-    use 'hrsh7th/nvim-compe'
+    -- use "hrsh7th/nvim-compe"
+    -- Install nvim-cmp, and buffer source as a dependency
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        "hrsh7th/cmp-nvim-lua",
+        "octaltree/cmp-look",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-calc",
+        "f3fora/cmp-spell",
+        "hrsh7th/cmp-emoji",
+        "onsails/lspkind-nvim"
+      }
+    }
+
+    use {
+      "tzachar/cmp-tabnine",
+      run = "./install.sh",
+      requires = "hrsh7th/nvim-cmp"
+    }
 
     -- commenter
     -- use 'preservim/nerdcommenter
     -- use 'tpope/vim-commentary'
-    use 'terrortylor/nvim-comment'
+    use "terrortylor/nvim-comment"
 
     -- GIT
-    use 'airblade/vim-gitgutter'
+    use "airblade/vim-gitgutter"
     --
     --
     -- formatter
     -- use 'sbdchd/neoformat'
-    use 'mhartington/formatter.nvim'
+    use "mhartington/formatter.nvim"
 
     -- Treesitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     -- must run :TSInstall <language> latter{
 
     -- use 'p00f/nvim-ts-rainbow'
@@ -66,24 +93,23 @@ return require('packer').startup(function(use)
 
     -- Navigation
     use {
-        'phaazon/hop.nvim',
-        as = 'hop',
-        config = function()
-            -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup {keys = 'tndhseriaoc,plfux.z/wy'}
-        end
+      "phaazon/hop.nvim",
+      as = "hop",
+      config = function()
+        -- you can configure Hop the way you like here; see :h hop-config
+        require "hop".setup {keys = "tndhseriaoc,plfux.z/wy"}
+      end
     }
 
     -- Color highlight
-    use 'norcalli/nvim-colorizer.lua'
-    use 'machakann/vim-highlightedyank'
+    use "norcalli/nvim-colorizer.lua"
+    use "machakann/vim-highlightedyank"
 
     -- debuger
     -- use 'mfussenegger/nvim-dap'
     --
     -- General
-    use 'mhinz/vim-startify'
+    use "mhinz/vim-startify"
     use {"folke/which-key.nvim"}
-
-end)
-
+  end
+)
