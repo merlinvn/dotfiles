@@ -44,8 +44,14 @@ return require("packer").startup(
     -- lsp
     use "neovim/nvim-lspconfig"
 
+    use {
+      "windwp/nvim-autopairs",
+      run = "make",
+      config = function()
+        require("nvim-autopairs").setup {}
+      end
+    }
     -- Autocomplete
-    -- use "hrsh7th/nvim-compe"
     -- Install nvim-cmp, and buffer source as a dependency
     use {
       "hrsh7th/nvim-cmp",
@@ -59,14 +65,32 @@ return require("packer").startup(
         "hrsh7th/cmp-calc",
         "f3fora/cmp-spell",
         "hrsh7th/cmp-emoji",
-        "onsails/lspkind-nvim"
-      }
+        "ray-x/cmp-treesitter"
+      },
+      config = function()
+        require("plugins.nvim-cmp").setup()
+      end
     }
-
     use {
       "tzachar/cmp-tabnine",
       run = "./install.sh",
       requires = "hrsh7th/nvim-cmp"
+    }
+
+    -- Better LSP experience
+    -- use {'tjdevries/astronauta.nvim'}
+    use {
+      "glepnir/lspsaga.nvim",
+      config = function()
+        require("plugins.lspsaga").setup()
+      end
+    }
+
+    use {
+      "onsails/lspkind-nvim",
+      config = function()
+        require("lspkind").init()
+      end
     }
 
     -- commenter

@@ -17,13 +17,14 @@ require("plugins")
 -- Plugins Configs
 require("plugins.lsp")
 -- require("plugins.nvim-compe")
-require("plugins.nvim-cmp")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.lualine")
 require("plugins.nvim-comment")
 require("plugins.which-key")
 require("plugins.formatter")
+
+-- require("plugins.nvim-cmp").setup()
 
 -- Key maps
 require("settings.colors")
