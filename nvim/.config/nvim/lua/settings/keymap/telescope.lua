@@ -1,5 +1,5 @@
 local map = require('utils').map
-local my_telescope = require('plugins.telescope')
+-- local my_telescope = require('plugins.config.telescope')
 
 -- File pickers
 map('n', '<leader>tf', ":lua require('telescope.builtin').find_files()<CR>",

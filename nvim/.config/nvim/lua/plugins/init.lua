@@ -16,7 +16,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute "packadd packer.nvim"
 end
 
-vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
+-- vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
@@ -29,7 +29,10 @@ return require("packer").startup(
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
-      requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
+      requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
+      config = function()
+        require("plugins.config.telescope").setup {}
+      end
     }
     use "nvim-telescope/telescope-fzy-native.nvim"
 
@@ -39,10 +42,18 @@ return require("packer").startup(
     -- status line
     use {
       "hoob3rt/lualine.nvim",
-      requires = {"kyazdani42/nvim-web-devicons", opt = true}
+      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      config = function()
+        require("lualine").setup {options = {theme = "gruvbox"}}
+      end
     }
     -- lsp
-    use "neovim/nvim-lspconfig"
+    use {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("plugins.config.lsp").setup {}
+      end
+    }
 
     use {
       "windwp/nvim-autopairs",
@@ -68,7 +79,7 @@ return require("packer").startup(
         "ray-x/cmp-treesitter"
       },
       config = function()
-        require("plugins.nvim-cmp").setup()
+        require("plugins.config.nvim-cmp").setup()
       end
     }
     use {
@@ -79,12 +90,12 @@ return require("packer").startup(
 
     -- Better LSP experience
     -- use {'tjdevries/astronauta.nvim'}
-    use {
-      "glepnir/lspsaga.nvim",
-      config = function()
-        require("plugins.lspsaga").setup()
-      end
-    }
+    -- use {
+    --   "glepnir/lspsaga.nvim",
+    --   config = function()
+    --     require("plugins.config.lspsaga").setup()
+    --   end
+    -- }
 
     use {
       "onsails/lspkind-nvim",
@@ -93,10 +104,32 @@ return require("packer").startup(
       end
     }
 
+    -- Snippets
+    -- use {
+    --     'hrsh7th/vim-vsnip',
+    --     requires = {
+    --         'rafamadriz/friendly-snippets', 'cstrap/python-snippets',
+    --         'ylcnfrht/vscode-python-snippet-pack', 'xabikos/vscode-javascript',
+    --         'golang/vscode-go', 'rust-lang/vscode-rust'
+    --     }
+    -- }
+    use {
+      "SirVer/ultisnips",
+      requires = {"honza/vim-snippets"},
+      config = function()
+        vim.g.UltiSnipsRemoveSelectModeMappings = 0
+      end
+    }
+
     -- commenter
     -- use 'preservim/nerdcommenter
     -- use 'tpope/vim-commentary'
-    use "terrortylor/nvim-comment"
+    use {
+      "terrortylor/nvim-comment",
+      config = function()
+        require("plugins.config.nvim-comment").setup {}
+      end
+    }
 
     -- GIT
     use "airblade/vim-gitgutter"
@@ -104,10 +137,21 @@ return require("packer").startup(
     --
     -- formatter
     -- use 'sbdchd/neoformat'
-    use "mhartington/formatter.nvim"
+    use {
+      "mhartington/formatter.nvim",
+      config = function()
+        require("plugins.config.formatter").setup {}
+      end
+    }
 
     -- Treesitter
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = function()
+        require("plugins.config.treesitter").setup()
+      end
+    }
     -- must run :TSInstall <language> latter{
 
     -- use 'p00f/nvim-ts-rainbow'
@@ -126,7 +170,12 @@ return require("packer").startup(
     }
 
     -- Color highlight
-    use "norcalli/nvim-colorizer.lua"
+    use {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("plugins.config.colorizer").setup()
+      end
+    }
     use "machakann/vim-highlightedyank"
 
     -- debuger
@@ -134,6 +183,11 @@ return require("packer").startup(
     --
     -- General
     use "mhinz/vim-startify"
-    use {"folke/which-key.nvim"}
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("plugins.config.which-key").setup()
+      end
+    }
   end
 )
