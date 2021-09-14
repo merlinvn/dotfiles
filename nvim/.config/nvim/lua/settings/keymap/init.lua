@@ -44,7 +44,7 @@ map("n", "J", "mzJ`z")
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", "!", "!<c-g>u")
-map("i", "?", "/<c-g>u")
+map("i", "?", "?<c-g>u")
 
 -- move line up down
 if vim.g.isColemakDH then
