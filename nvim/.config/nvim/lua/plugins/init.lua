@@ -165,7 +165,8 @@ return require("packer").startup(
       as = "hop",
       config = function()
         -- you can configure Hop the way you like here; see :h hop-config
-        require "hop".setup {keys = "tndhseriaoc,plfux.z/wy"}
+        require "hop".setup {keys = "arsgmeioqwfpbjluyzxcdvkhtn"}
+        -- require "hop".setup()
       end
     }
 
