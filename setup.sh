@@ -11,8 +11,6 @@ stow shell
 rm -rf ~/.config/alacritty
 stow alacrity
 
-# rm -rf ~/.stalonetrayrc
-# stowstanlonetrayrc
 
 rm -f ~/.config/starship.toml
 stow starship
@@ -23,29 +21,8 @@ stow git
 rm -rf ~/.config/i3
 stow i3
 
-rm -rf ~/.xmonad
-# stow xmonad
-
-rm -rf ~/.config/xmobar
-# stow xmobar
-
-rm -rf ~/.config/rofi
-# stow rofi
-
 rm -rf ~/.config/picom
 stow picom
-
-rm -rf ~/.config/dunst
-stow dunst
-
-rm -rf ~/.config/betterlockscreenrc
-# stow betterlockscreenrc
-
-rm -rf ~/.config/polybar
-# stow polybar
-
-rm -rf ~/.config/leftwm
-# stow leftwm
 
 rm -f ~/.vimrc
 rm -rf ~/.vim
@@ -56,6 +33,33 @@ stow nvim
 
 stow tmux
 
+ln -sf $HOME/dotfiles/chtsh $HOME/.local/bin/chtsh
+
 rm -f ~/viminfo
 touch ~/viminfo
 chmod 700 ~/viminfo
+
+# rm -rf ~/.stalonetrayrc
+# stow stanlonetrayrc
+
+# rm -rf ~/.xmonad
+# stow xmonad
+
+# rm -rf ~/.config/xmobar
+# stow xmobar
+
+# rm -rf ~/.config/rofi
+# stow rofi
+
+# rm -rf ~/.config/dunst
+# stow dunst
+
+# rm -rf ~/.config/betterlockscreenrc
+# stow betterlockscreenrc
+
+# rm -rf ~/.config/polybar
+# stow polybar
+
+# rm -rf ~/.config/leftwm
+# stow leftwm
+
