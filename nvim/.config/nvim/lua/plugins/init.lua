@@ -82,10 +82,9 @@ return require("packer").startup(
         require("plugins.config.nvim-cmp").setup()
       end
     }
+
     use {
-      "tzachar/cmp-tabnine",
-      run = "./install.sh",
-      requires = "hrsh7th/nvim-cmp"
+      "github/copilot.vim"
     }
 
     -- Better LSP experience

@@ -24,7 +24,7 @@ function M.setup()
           nvim_lsp = "[LSP]",
           ultisnips = "[UltiSnips]",
           nvim_lua = "[Lua]",
-          cmp_tabnine = "[TabNine]",
+          -- cmp_tabnine = "[TabNine]",
           look = "[Look]",
           path = "[Path]",
           spell = "[Spell]",
@@ -114,18 +114,20 @@ function M.setup()
   }
 
   -- Autopairs
-  require("nvim-autopairs.completion.cmp").setup(
-    {
-      map_cr = true,
-      map_complete = true,
-      auto_select = true
-    }
-  )
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({map_char = {tex = ""}}))
+  -- require("nvim-autopairs.completion.cmp").setup(
+  --   {
+  --     map_cr = true,
+  --     map_complete = true,
+  --     auto_select = true
+  --   }
+  -- )
 
   -- TabNine
-  local tabnine = require("cmp_tabnine.config")
-  tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
-
+  --   local tabnine = require("cmp_tabnine.config")
+  --   tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
+  --
   -- Database completion
   vim.api.nvim_exec(
     [[
