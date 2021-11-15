@@ -34,7 +34,9 @@ return require("packer").startup(
         require("plugins.config.telescope").setup {}
       end
     }
-    use "nvim-telescope/telescope-fzy-native.nvim"
+    -- use "nvim-telescope/telescope-fzy-native.nvim"use
+    -- {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- Color scheme
     -- use 'gruvbox-community/gruvbox'
