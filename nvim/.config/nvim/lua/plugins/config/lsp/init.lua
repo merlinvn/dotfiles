@@ -45,6 +45,8 @@ function M.setup()
   require "lspconfig".tailwindcss.setup {}
 
   require "lspconfig".gopls.setup {capabilities = capabilities}
+
+  require "lspconfig".hls.setup {}
 end
 
 return M
