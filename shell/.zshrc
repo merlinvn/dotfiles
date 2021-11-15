@@ -134,3 +134,4 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
