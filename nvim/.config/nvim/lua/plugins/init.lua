@@ -191,5 +191,13 @@ return require("packer").startup(
         require("plugins.config.which-key").setup()
       end
     }
+
+
+    -- other programming languages
+    use 'neovimhaskell/haskell-vim'
+    use {
+      "ndmitchell/ghcid",
+      rtp = 'plugins/nvim'
+    }
   end
 )
