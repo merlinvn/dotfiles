@@ -102,49 +102,15 @@ Plug 'chrisbra/Colorizer'
 Plug 'liuchengxu/vim-which-key'
 
 " Plug 'unblevable/quick-scope'
-
-if has('nvim')
-  " telescope
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-  " autocompletion with language server by nvim built-in
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'tjdevries/nlua.nvim'
-  Plug 'tjdevries/lsp_extensions.nvim'
-
-  " need to call :TSInstall {language} later
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-  " Plug 'onsails/lspkind-nvim'
-
-  " Snippet engine
-  Plug 'SirVer/ultisnips'
-  " Sippets manager
-  Plug 'honza/vim-snippets'
-
-else
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'stsewd/fzf-checkout.vim'
-endif
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 
 call plug#end()
 
 """ Plugin settings
-
-if has('nvim')
-  lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-
-" Gruvbox settings
-  colorscheme gruvbox
-else
  "colorscheme gruvbox
-  autocmd vimenter * nested colorscheme gruvbox
-endif
+autocmd vimenter * nested colorscheme gruvbox
 
 highlight Normal guibg=NONE
 set background=dark
@@ -187,11 +153,6 @@ nnoremap <leader>l :wincmd l<CR>
 
 
 " move lines up down
-if !has('nvim')
-  execute "set <C-k>=\ek"
-  execute "set <C-j>=\ej"
-endif
-
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
