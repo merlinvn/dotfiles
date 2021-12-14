@@ -28,6 +28,16 @@ function M.setup()
               stdin = true
             }
           end
+        },
+        rust = {
+          -- Rustfmt
+          function()
+            return {
+              exe = "rustfmt",
+              args = {"--emit=stdout"},
+              stdin = true
+            }
+          end
         }
       }
     }

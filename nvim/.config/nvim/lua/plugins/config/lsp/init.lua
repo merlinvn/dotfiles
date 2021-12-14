@@ -22,7 +22,7 @@ function M.setup()
 
   require "lspconfig".tsserver.setup {}
 
-  require "lspconfig".solargraph.setup {capabilities = capabilities}
+  -- require "lspconfig".solargraph.setup {capabilities = capabilities}
   require "lspconfig".cssls.setup {capabilities = capabilities}
   require "lspconfig".dockerls.setup {}
   require "lspconfig".jsonls.setup {
@@ -35,7 +35,7 @@ function M.setup()
     }
   }
   require "lspconfig".yamlls.setup {}
-  require "lspconfig".vimls.setup {}
+  -- require "lspconfig".vimls.setup {}
 
   require "lspconfig".clangd.setup {
     -- on_attach = require'completion'.on_attach,
@@ -47,6 +47,8 @@ function M.setup()
   require "lspconfig".gopls.setup {capabilities = capabilities}
 
   require "lspconfig".hls.setup {}
+
+  require "lspconfig".rust_analyzer.setup {}
 end
 
 return M

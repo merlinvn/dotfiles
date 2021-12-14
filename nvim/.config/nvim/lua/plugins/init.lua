@@ -36,7 +36,7 @@ return require("packer").startup(
     }
     -- use "nvim-telescope/telescope-fzy-native.nvim"use
     -- {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
 
     -- Color scheme
     -- use 'gruvbox-community/gruvbox'
@@ -70,14 +70,15 @@ return require("packer").startup(
       "hrsh7th/nvim-cmp",
       requires = {
         "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-nvim-lsp",
-        "quangnguyen30192/cmp-nvim-ultisnips",
-        "hrsh7th/cmp-nvim-lua",
-        "octaltree/cmp-look",
         "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-calc",
-        "f3fora/cmp-spell",
         "hrsh7th/cmp-emoji",
+        "SirVer/ultisnips",
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        "octaltree/cmp-look",
+        "f3fora/cmp-spell",
         "ray-x/cmp-treesitter"
       },
       config = function()
@@ -192,12 +193,11 @@ return require("packer").startup(
       end
     }
 
-
     -- other programming languages
-    use 'neovimhaskell/haskell-vim'
+    use "neovimhaskell/haskell-vim"
     use {
       "ndmitchell/ghcid",
-      rtp = 'plugins/nvim'
+      rtp = "plugins/nvim"
     }
   end
 )
