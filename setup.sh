@@ -5,7 +5,7 @@ rm -f ~/.zshrc
 rm -f ~/.bashrc
 rm -f ~/.profile
 rm -f ~/.bash_aliases
-rm -rf ~/.xinitrc
+#rm -rf ~/.xinitrc
 stow shell
 
 rm -rf ~/.config/alacritty
