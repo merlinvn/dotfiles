@@ -73,9 +73,39 @@ return require("packer").startup(
       end
     }
     -- lsp
+    use "neovim/nvim-lspconfig"
+
+    -- Better LSP experience
+    -- use "wbthomason/lsp-status.nvim"
     use {
-      "neovim/nvim-lspconfig"
+      "j-hui/fidget.nvim",
+      config = function()
+        require "fidget".setup {}
+      end
     }
+
+    -- use {
+    --   "ericpubu/lsp_codelens_extensions.nvim",
+    --   config = function()
+    --     require("codelens_extensions").setup {}
+    --   end
+    -- }
+    -- use {'tjdevries/astronauta.nvim'}
+    -- use {
+    --   "glepnir/lspsaga.nvim",
+    --   config = function()
+    --     require("plugins.config.lspsaga").setup()
+    --   end
+    -- }
+
+    use {
+      "onsails/lspkind-nvim",
+      config = function()
+        require("lspkind").init()
+      end
+    }
+
+    use "nvim-lua/lsp_extensions.nvim"
 
     use {
       "windwp/nvim-autopairs",
@@ -105,22 +135,6 @@ return require("packer").startup(
 
     use {
       "github/copilot.vim"
-    }
-
-    -- Better LSP experience
-    -- use {'tjdevries/astronauta.nvim'}
-    -- use {
-    --   "glepnir/lspsaga.nvim",
-    --   config = function()
-    --     require("plugins.config.lspsaga").setup()
-    --   end
-    -- }
-
-    use {
-      "onsails/lspkind-nvim",
-      config = function()
-        require("lspkind").init()
-      end
     }
 
     -- Snippets
