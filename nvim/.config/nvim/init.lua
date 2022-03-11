@@ -1,99 +1,47 @@
--- Ref: https://github.com/crivotz/nv-ide
+--[[
+Much of the configuration of individual plugins you can find in either:
+./plugin/*.lua
+  This is where many of the new plugin configurations live.
+  These are sourced by using https://github.com/tjdevries/astronauta.nvim
+  You can check out the readme there for more info.
+./after/plugin/*.vim
+  This is where configuration for plugins live.
+  They get auto sourced on startup. In general, the name of the file configures
+  the plugin with the corresponding name.
+./lua/merlinvn/*.lua
+  This is where configuration/extensions for new style plugins live.
+  They don't get sourced automatically, but do get sourced by doing something like:
+    require('merlinvn.dap')
+  or similar. I generally recommend that people do this so that you don't accidentally
+  override any of the plugin requires with namespace clashes. So don't just put your configuration
+  in "./lua/dap.lua" because then it will override the plugin version of "dap.lua"
+--]]
+pcall(require, "impatient")
+
+require "merlinvn.profile"
+
+if require "merlinvn.first_load"() then
+  return
+end
+
+-- Leader key -> ","
 --
--- Neoformat:
--- https://github.com/sbdchd/neoformat
--- Lua Fommatter: sudo luarocks install --server=https://luarocks.org/dev luaformatter
--------------------- HELPERS -------------------------------
--- local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
--- local opt, wo = vim.opt, vim.wo
--- local fmt = string.format
--- set leader to space early
+-- In general, it's a good idea to set this early in your config, because otherwise
+-- if you have any mappings you set BEFORE doing this, they will be set to the OLD
+-- leader.
 vim.g.mapleader = " "
 vim.g.isColemakDH = true
 
-require("settings")
-require("plugins")
+-- I set some global variables to use as configuration throughout my config.
+-- These don't have any special meaning.
+vim.g.snippets = "luasnip"
 
-require("settings.colors")
-require("settings.keymap")
+-- Setup globals that I expect to be always available.
+--  See `./lua/merlinvn/globals/*.lua` for more information.
+require "merlinvn.globals"
 
--- Hooks
-require("hooks")
---
--------------------- PLUGINS -------------------------------
--- git clone https://github.com/wbthomason/packer.nvim\
--- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+require "merlinvn.load_plugins"
 
---
---
+require "merlinvn.setup_plugins"
 
--- install plugins manager git clone --depth=1 https://github.com/savq/paq-nvim.git \
---    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
--- require "paq"{
--- "savq/paq-nvim";                  -- Let Paq manage itself
-
--- "gruvbox-community/gruvbox";
-
--- "easymotion/vim-easymotion";        -- easy moving around
-
--- "machakann/vim-highlightedyank";    -- highlight yanked text for 1 second
-
--- "tpope/vim-surround";               -- quick add, delete, change surround
-
--- "tpope/vim-repeat";
-
----- NerdCommenter
----- https://github.com/preservim/nerdcommenter
----- <Leader>cc comment
----- <Leader>cu uncomment
----- <Leader>ci toggle
--- "preservim/nerdcommenter";
-
----- "itchyny/lightline.vim";
-
----- for neovim install `pip3 install neovim-remote` to allow floaterm to open
----- windows in side neovim
----- "voldikss/vim-floaterm";
-
----- "mhinz/vim-startify";
-
----- other language enhancements
-----  "octol/vim-cpp-enhanced-highlight";
-----  "bfrg/vim-cpp-modern";
-
----- "rust-lang/rust.vim";
----- "tweekmonster/gofmt.vim";
-
----- "cespare/vim-toml";
-
----- Cheat Sheet
----- "dbeniamine/cheat.sh-vim";
-
----- Vim Wiki
--- "vimwiki/vimwiki";
-
----- Vim css color
--- "ap/vim-css-color";
--- "chrisbra/Colorizer";
-
--- "liuchengxu/vim-which-key";
-
----- "unblevable/quick-scope";
-
----- autocompletion with language server by nvim built-in
----- "neovim/nvim-lspconfig";
----- "nvim-lua/completion-nvim";
----- "tjdevries/nlua.nvim";
----- "tjdevries/lsp_extensions.nvim";
-
----- need to call :TSInstall {language} later
----- "nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate";}
-
----- "onsails/lspkind-nvim";
-
----- Snippet engine
----- "SirVer/ultisnips";
----- Sippets manager
----- "mhonza/vim-snippets";
-----
--- }
+require "merlinvn.mappings"

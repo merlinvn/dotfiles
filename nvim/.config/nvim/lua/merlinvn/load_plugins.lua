@@ -1,42 +1,65 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-local execute = vim.api.nvim_command
-local fn = vim.fn
+_ = vim.cmd [[packadd packer.nvim]]
+_ = vim.cmd [[packadd vimball]]
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system(
-    {
-      "git",
-      "clone",
-      "https://github.com/wbthomason/packer.nvim",
-      install_path
-    }
-  )
-  execute "packadd packer.nvim"
+local has = function(x)
+  return vim.fn.has(x) == 1
 end
 
--- vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
+local executable = function(x)
+  return vim.fn.executable(x) == 1
+end
 
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
--- vim._update_package_paths()
+local is_wsl = (function()
+  local output = vim.fn.systemlist "uname -r"
+  return not (not string.find(output[1] or "", "WSL"))
+end)()
 
 return require("packer").startup(
   function(use)
+    local local_use = function(first, second, opts)
+      opts = opts or {}
+
+      local plug_path, home
+      if second == nil then
+        plug_path = first
+        home = "neo"
+      else
+        plug_path = second
+        home = first
+      end
+
+      if vim.fn.isdirectory(vim.fn.expand("~/plugins/" .. plug_path)) == 1 then
+        opts[1] = "~/plugins/" .. plug_path
+      else
+        opts[1] = string.format("%s/%s", home, plug_path)
+      end
+
+      use(opts)
+    end
+
+    local py_use = function(opts)
+      if not has "python3" then
+        return
+      end
+
+      use(opts)
+    end
+
     -- Packer can manage itself
     use "wbthomason/packer.nvim"
+    use "lewis6991/impatient.nvim"
 
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
-      requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
-      config = function()
-        require("plugins.config.telescope").setup {}
-      end
+      requires = {{"nvim-lua/plenary.nvim"}}
     }
-    -- use "nvim-telescope/telescope-fzy-native.nvim"use
-    -- {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+    use {"nvim-telescope/telescope-hop.nvim"}
+    use {"nvim-telescope/telescope-file-browser.nvim"}
+    use {"nvim-telescope/telescope-ui-select.nvim"}
+    use {"nvim-telescope/telescope-smart-history.nvim"}
 
     -- Color scheme
     -- use 'gruvbox-community/gruvbox'
@@ -51,10 +74,7 @@ return require("packer").startup(
     }
     -- lsp
     use {
-      "neovim/nvim-lspconfig",
-      config = function()
-        require("plugins.config.lsp").setup {}
-      end
+      "neovim/nvim-lspconfig"
     }
 
     use {
@@ -80,10 +100,7 @@ return require("packer").startup(
         "octaltree/cmp-look",
         "f3fora/cmp-spell",
         "ray-x/cmp-treesitter"
-      },
-      config = function()
-        require("plugins.config.nvim-cmp").setup()
-      end
+      }
     }
 
     use {
@@ -126,12 +143,7 @@ return require("packer").startup(
     -- commenter
     -- use 'preservim/nerdcommenter
     -- use 'tpope/vim-commentary'
-    use {
-      "terrortylor/nvim-comment",
-      config = function()
-        require("plugins.config.nvim-comment").setup {}
-      end
-    }
+    use "terrortylor/nvim-comment"
 
     -- GIT
     use "airblade/vim-gitgutter"
@@ -139,20 +151,12 @@ return require("packer").startup(
     --
     -- formatter
     -- use 'sbdchd/neoformat'
-    use {
-      "mhartington/formatter.nvim",
-      config = function()
-        require("plugins.config.formatter").setup {}
-      end
-    }
+    use "mhartington/formatter.nvim"
 
     -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = function()
-        require("plugins.config.treesitter").setup()
-      end
+      run = ":TSUpdate"
     }
     -- must run :TSInstall <language> latter{
 
@@ -176,9 +180,10 @@ return require("packer").startup(
     use {
       "norcalli/nvim-colorizer.lua",
       config = function()
-        require("plugins.config.colorizer").setup()
+        require "colorizer".setup()
       end
     }
+
     use "machakann/vim-highlightedyank"
 
     -- debuger
@@ -186,12 +191,7 @@ return require("packer").startup(
     --
     -- General
     use "mhinz/vim-startify"
-    use {
-      "folke/which-key.nvim",
-      config = function()
-        require("plugins.config.which-key").setup()
-      end
-    }
+    use "folke/which-key.nvim"
 
     -- other programming languages
     use "neovimhaskell/haskell-vim"

@@ -20,11 +20,10 @@ augroup END
 " autocmd BufWritePre,FileWritePre,FileAppendPre,FilterWritePre * :call StripTrailingWhitespaces()
 " autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
 
-augroup cmdline
-    autocmd!
-    autocmd CmdlineLeave : lua vim.defer_fn(function() vim.cmd('echo ""') end, 4000)
-augroup END
-
+"augroup cmdline
+"    autocmd!
+"    autocmd CmdlineLeave : lua vim.defer_fn(function() vim.cmd('echo ""') end, 4000)
+"augroup END 
 
 ]],
   true

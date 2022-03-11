@@ -1,22 +1,19 @@
-local M = {}
+local wk = require("which-key")
+wk.setup {}
 
-function M.setup()
-  local wk = require("which-key")
-  wk.setup {}
+wk.register(
+  {
+    ["<Space>"] = {
+      name = "Jump",
+      w = {"Jump Word"},
+      c = {"Jump Char"},
+      l = {"Jump Line"},
+      ["/"] = {"Jump Pattern"}
+    }
+  },
+  {prefix = "<leader>"}
+)
 
-  wk.register(
-    {
-      ["<Space>"] = {
-        name = "Jump",
-        w = {"Jump Word"},
-        c = {"Jump Char"},
-        l = {"Jump Line"},
-        ["/"] = {"Jump Pattern"}
-      }
-    },
-    {prefix = "<leader>"}
-  )
-end
 -- optional group name
 --         f = {"<cmd>Telescope find_files<cr>", "Find File"}, -- create a binding with label
 --         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = false, buffer = 123}, -- additional options for creating the keymap
@@ -169,5 +166,3 @@ end
 -- " \ '?' : ['Windows'    , 'fzf-window']            ,
 -- " " Register which key map
 -- call which_key#register('<Space>', "g:which_key_map")
-
-return M
