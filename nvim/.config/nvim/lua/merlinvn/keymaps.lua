@@ -1,22 +1,37 @@
 local M = {}
 
 M.map = function(tbl)
-  vim.keymap.set("", tbl[1], tbl[2], tbl[3])
+  if tbl[3] == nil then
+    tbl[3] = {noremap = true, silent = true}
+  end
+  vim.api.nvim_set_keymap("", tbl[1], tbl[2], tbl[3])
 end
 
 M.imap = function(tbl)
-  vim.keymap.set("i", tbl[1], tbl[2], tbl[3])
+  if tbl[3] == nil then
+    tbl[3] = {noremap = true, silent = true}
+  end
+  vim.api.nvim_set_keymap("i", tbl[1], tbl[2], tbl[3])
 end
 
 M.nmap = function(tbl)
-  vim.keymap.set("n", tbl[1], tbl[2], tbl[3])
+  if tbl[3] == nil then
+    tbl[3] = {noremap = true, silent = true}
+  end
+  vim.api.nvim_set_keymap("n", tbl[1], tbl[2], tbl[3])
 end
 
 M.vmap = function(tbl)
-  vim.keymap.set("v", tbl[1], tbl[2], tbl[3])
+  if tbl[3] == nil then
+    tbl[3] = {noremap = true, silent = true}
+  end
+  vim.api.nvim_set_keymap("v", tbl[1], tbl[2], tbl[3])
 end
 
 M.omap = function(tbl)
-  vim.keymap.set("o", tbl[1], tbl[2], tbl[3])
+  if tbl[3] == nil then
+    tbl[3] = {noremap = true, silent = true}
+  end
+  vim.api.nvim_set_keymap("o", tbl[1], tbl[2], tbl[3])
 end
 return M
