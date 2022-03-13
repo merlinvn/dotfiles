@@ -69,12 +69,14 @@ if vim.g.isColemakDH then
 
 -- next search
   nmap{"k", "n"}
-  nmap{"K", "K"}
+  nmap{"K", "N"}
 
 -- BOL/EOL/ Join line
   nmap{"l","^"}
   nmap{"L","$"}
   nmap{"<C-l>","J"}
+-- remap bottom line  
+  nmap{"N","L"}
 
 -- _r_ = inneR text objects
   omap{"r","i"}
@@ -82,6 +84,7 @@ if vim.g.isColemakDH then
 -- end of word
   nmap{"j","e"}
   nmap{"J","E"}
+  
 else
   nmap{"<C-j>", ":m .+1<CR>=="}
   nmap{"<C-k>", ":m .-2<CR>=="}
