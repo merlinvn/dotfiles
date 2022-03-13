@@ -2,6 +2,7 @@ local map = require("merlinvn.keymaps").map
 local nmap = require("merlinvn.keymaps").nmap
 local imap = require("merlinvn.keymaps").imap
 local vmap = require("merlinvn.keymaps").vmap
+local omap = require("merlinvn.keymaps").omap
 
 -- avoid clashing with leader as space
 -- nmap{"<Space>", "<NOP>", {noremap = true, silent = true})
@@ -55,6 +56,32 @@ if vim.g.isColemakDH then
   imap{"<C-e>", "<Esc>:m .-2<CR>==gi"}
   vmap{"<C-n>", ":m '>+1<CR>gv=gv"}
   vmap{"<C-e>", ":m '<-2<CR>gv=gv"}
+-- MNEI arrows.
+  nmap{"m", "h"}
+  nmap{"n", "j"}
+  nmap{"e", "k"}
+  nmap{"i", "l"}
+  nmap{"gn", "gj"}
+  nmap{"gi", "gk"}
+-- In(s)ert. The default s/S is synonymous with cl/cc and is not very useful.
+  nmap{"s", "i"}
+  nmap{"S", "I"}
+
+-- next search
+  nmap{"k", "n"}
+  nmap{"K", "K"}
+
+-- BOL/EOL/ Join line
+  nmap{"l","^"}
+  nmap{"L","$"}
+  nmap{"<C-l>","J"}
+
+-- _r_ = inneR text objects
+  omap{"r","i"}
+
+-- end of word
+  nmap{"j","e"}
+  nmap{"J","E"}
 else
   nmap{"<C-j>", ":m .+1<CR>=="}
   nmap{"<C-k>", ":m .-2<CR>=="}

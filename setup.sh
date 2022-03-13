@@ -34,7 +34,7 @@ stow nvim
 stow tmux
 
 mkdir -p $HOME/.local/bin
-ln -sf $HOME/dotfiles/chtsh $HOME/.local/bin/chtsh
+stow scripts
 
 rm -f ~/viminfo
 touch ~/viminfo
