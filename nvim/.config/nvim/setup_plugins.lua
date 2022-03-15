@@ -1,7 +1,0 @@
-require "merlinvn.telescope.setup"
-require "merlinvn.lsp.setup"
-require "merlinvn.treesitter.setup"
-require "merlinvn.nvim-cmp.setup"
-require "merlinvn.nvim_comment.setup"
-require "merlinvn.formatter.setup"
-require "merlinvn.which-key.setup"
