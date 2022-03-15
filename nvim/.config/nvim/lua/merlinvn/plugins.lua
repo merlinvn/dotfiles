@@ -125,11 +125,11 @@ return require("packer").startup(
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-calc",
         "hrsh7th/cmp-emoji",
-        "SirVer/ultisnips",
-        "quangnguyen30192/cmp-nvim-ultisnips",
         "octaltree/cmp-look",
         "f3fora/cmp-spell",
-        "ray-x/cmp-treesitter"
+        "ray-x/cmp-treesitter",
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip"
       }
     }
 

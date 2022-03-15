@@ -7,13 +7,6 @@ local omap = require("merlinvn.keymaps").omap
 -- avoid clashing with leader as space
 -- nmap{"<Space>", "<NOP>", {noremap = true, silent = true})
 
--- Telescope
-require("merlinvn.telescope.mappings")
--- LSP
-require("merlinvn.lsp.mappings")
-
-require("merlinvn.hop.mappings")
-
 -- turn off hightlight search
 nmap {"<Leader><Esc>", ":nohlsearch<CR>"}
 

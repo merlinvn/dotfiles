@@ -40,8 +40,8 @@ vim.g.snippets = "luasnip"
 --  See `./lua/merlinvn/globals/*.lua` for more information.
 require "merlinvn.globals"
 
-require "merlinvn.load_plugins"
+require "merlinvn.plugins"
 
-require "merlinvn.setup_plugins"
-
-require "merlinvn.mappings"
+require "merlinvn.lsp"
+require "merlinvn.telescope.setup"
+require "merlinvn.telescope.mappings"
