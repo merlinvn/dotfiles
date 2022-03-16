@@ -12,8 +12,8 @@ nmap {"<Leader><Esc>", ":nohlsearch<CR>"}
 
 -- remap save
 nmap {"<Leader>s", ":up<CR>"}
-nmap {"<C-s>", ":w<CR>"}
-imap {"<C-s>", "<Esc>:w<CR>a"}
+-- nmap {"<C-s>", ":w<CR>"}
+-- imap {"<C-s>", "<Esc>:w<CR>a"}
 
 -- remap quit
 nmap {"<Leader>q", ":q<CR>"}
@@ -37,42 +37,42 @@ imap {"?", "?<c-g>u"}
 
 -- move line up down
 if vim.g.isColemakDH then
+  --   -- MNEI arrows.
+  --   nmap {"m", "h"}
+  --   nmap {"n", "j"}
+  --   nmap {"e", "k"}
+  --   nmap {"i", "l"}
+  --   nmap {"gn", "gj"}
+  --   nmap {"gi", "gk"}
+  --   -- In(s)ert. The default s/S is synonymous with cl/cc and is not very useful.
+  --   nmap {"s", "i"}
+  --   nmap {"S", "I"}
+  --
+  --   -- BOL/EOL/ Join line
+  --   nmap {"l", "^"}
+  --   nmap {"L", "$"}
+  --   -- join and stay in the same line
+  --   nmap {"<C-l>", "mzJ`z"}
+  --
+  --   -- remap bottom line
+  --   -- nmap {"N", "L"}
+  --
+  --   -- _r_ = inneR text objects
+  --   omap {"r", "i"}
+  --
+  --   -- end of word
+  --   nmap {"j", "e"}
+  --   nmap {"J", "E"}
+  --
+  --   -- Go to next / previous, center with zz, and zv to open fold
+  --   nmap {"k", "nzzzv"}
+  --   nmap {"K", "Nzzzv"}
   nmap {"<C-n>", ":m .+1<CR>=="}
   nmap {"<C-e>", ":m .-2<CR>=="}
   imap {"<C-n>", "<Esc>:m .+1<CR>==gi"}
   imap {"<C-e>", "<Esc>:m .-2<CR>==gi"}
   vmap {"<C-n>", ":m '>+1<CR>gv=gv"}
   vmap {"<C-e>", ":m '<-2<CR>gv=gv"}
-  -- MNEI arrows.
-  nmap {"m", "h"}
-  nmap {"n", "j"}
-  nmap {"e", "k"}
-  nmap {"i", "l"}
-  nmap {"gn", "gj"}
-  nmap {"gi", "gk"}
-  -- In(s)ert. The default s/S is synonymous with cl/cc and is not very useful.
-  nmap {"s", "i"}
-  nmap {"S", "I"}
-
-  -- BOL/EOL/ Join line
-  nmap {"l", "^"}
-  nmap {"L", "$"}
-  -- join and stay in the same line
-  nmap {"<C-l>", "mzJ`z"}
-
-  -- remap bottom line
-  -- nmap {"N", "L"}
-
-  -- _r_ = inneR text objects
-  omap {"r", "i"}
-
-  -- end of word
-  nmap {"j", "e"}
-  nmap {"J", "E"}
-
-  -- Go to next / previous, center with zz, and zv to open fold
-  nmap {"k", "nzzzv"}
-  nmap {"K", "Nzzzv"}
 
   nmap {"<leader>m", ":wincmd h<CR>"}
   nmap {"<leader>n", ":wincmd j<CR>"}
@@ -85,19 +85,20 @@ else
   imap {"<C-k>", "<Esc>:m .-2<CR>==gi"}
   vmap {"<C-j>", ":m '>+1<CR>gv=gv"}
   vmap {"<C-k>", ":m '<-2<CR>gv=gv"}
-  -- Go to next / previous, center with zz, and zv to open fold
-  nmap {"n", "nzzzv"}
-  nmap {"N", "Nzzzv"}
-  -- join and stay in the same line
+
   nmap {"<leader>h", ":wincmd h<CR>"}
   nmap {"<leader>j", ":wincmd j<CR>"}
   nmap {"<leader>k", ":wincmd k<CR>"}
   nmap {"<leader>l", ":wincmd l<CR>"}
-  nmap {"J", "mzJ`z"}
-  -- jump list mutation
-  nmap {"<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'"}
-  nmap {"<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'"}
 end
+-- Go to next / previous, center with zz, and zv to open fold
+nmap {"n", "nzzzv"}
+nmap {"N", "Nzzzv"}
+-- join and stay in the same line
+nmap {"J", "mzJ`z"}
+-- jump list mutation
+nmap {"<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'"}
+nmap {"<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'"}
 
 -- better p
 nmap {",p", '"0p'}
@@ -109,11 +110,6 @@ nmap {"<C-f>", '"*P'}
 
 -- copy whole text in file
 nmap {"yz", ":%y+<CR>"}
-
--- Window navigations
-if vim.g.isColemakDH then
-else
-end
 
 -- buffers navigation
 nmap {"<Leader>bd", ":bd<CR>"}
