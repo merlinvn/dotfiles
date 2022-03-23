@@ -135,3 +135,5 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env

@@ -126,3 +126,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # source fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env
