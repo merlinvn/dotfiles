@@ -30,26 +30,13 @@ endfunction
 " ========= Plugin Section ===============
 " Initialize plugin system
 
-if has('nvim')
-  " Bootstrap Plug
-  let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
-  if !filereadable(autoload_plug_path)
-    silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs
-        \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  unlet autoload_plug_path
-
-  call plug#begin(stdpath('data') . '/plugged')
-else
-  " Install vim-plug if not found
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  call plug#begin('~/.vim/plugged')
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
 
@@ -133,7 +120,7 @@ let g:gofmt_exe='/usr/local/go/bin/gofmt'
 let mapleader=" "
 
 " remap save key
-nnoremap <Leader>s :w<CR>
+nnoremap <Leader>w :up<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 
@@ -146,10 +133,10 @@ nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 " Split windows navigations
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>m :wincmd h<CR>
+nnoremap <leader>n :wincmd j<CR>
+nnoremap <leader>e :wincmd k<CR>
+nnoremap <leader>i :wincmd l<CR>
 
 
 " move lines up down
@@ -176,6 +163,35 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
+" Yank from the current cursor to the end of line
+noremap Y y$
+
+" undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap [ [<c-g>u
+inoremap ? ?<c-g>u
+
+" Go to next / previous, center with zz, and zv to open fold
+noremap n nzzzv
+noremap N Nzzzv
+" join and stay in the same line
+noremap J mzJ`z
+" jump list mutation
+noremap <expr> k (v:count > 5 ? 'm'' . v:count : '') . 'k'
+noremap <expr> j (v:count > 5 ? 'm'' . v:count : '') . 'j'
+
+" better p
+noremap ,p "0p
+noremap ,P "0p
+
+" paste from clipboard
+noremap <C-p> "*p
+noremap <C-f> "*P
+
+" copy whole text in file
+noremap yz :%y+<CR>
 
 " ======= End Remap Section ===============
 "

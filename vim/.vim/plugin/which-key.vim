@@ -83,7 +83,7 @@ let g:which_key_map['`'] = {
     \ },
   \}
 
-let g:which_key_map[' '] = {
+let g:which_key_map['s'] = {
   \ 'name' : '+easymotion' ,
   \}
 
