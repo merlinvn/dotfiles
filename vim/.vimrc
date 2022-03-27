@@ -176,11 +176,13 @@ inoremap ? ?<c-g>u
 " Go to next / previous, center with zz, and zv to open fold
 noremap n nzzzv
 noremap N Nzzzv
+
 " join and stay in the same line
 noremap J mzJ`z
+
 " jump list mutation
-noremap <expr> k (v:count > 5 ? 'm'' . v:count : '') . 'k'
-noremap <expr> j (v:count > 5 ? 'm'' . v:count : '') . 'j'
+noremap <expr> k (v:count > 5 ? 'm' . v:count : '') . 'k'
+noremap <expr> j (v:count > 5 ? 'm' . v:count : '') . 'j'
 
 " better p
 noremap ,p "0p
@@ -192,6 +194,17 @@ noremap <C-f> "*P
 
 " copy whole text in file
 noremap yz :%y+<CR>
+
+" greatest remap ever
+"xnoremap <leader>p "_dP
+
+" next greatest remap ever : asbjornHaland
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nmap <leader>Y "+Y
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
 " ======= End Remap Section ===============
 "
