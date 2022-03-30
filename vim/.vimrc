@@ -121,6 +121,7 @@ let mapleader=" "
 
 " remap save key
 nnoremap <Leader>w :up<CR>
+nnoremap <Leader>wq :wq<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 
