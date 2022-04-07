@@ -12,6 +12,7 @@ nmap {"<Leader><Esc>", ":nohlsearch<CR>"}
 
 -- remap save
 nmap {"<Leader>w", ":up<CR>"}
+nmap {"<Leader>wq", ":wq<CR>"}
 -- nmap {"<C-s>", ":w<CR>"}
 -- imap {"<C-s>", "<Esc>:w<CR>a"}
 
