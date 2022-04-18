@@ -25,6 +25,9 @@ augroup END
 "    autocmd CmdlineLeave : lua vim.defer_fn(function() vim.cmd('echo ""') end, 4000)
 "augroup END 
 
+" Reset cursos when exit vim
+autocmd VimLeave * set guicursor=a:ver25
+
 ]],
   true
 )

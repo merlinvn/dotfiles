@@ -11,9 +11,9 @@ local omap = require("merlinvn.keymaps").omap
 nmap {"<Leader><Esc>", ":nohlsearch<CR>"}
 
 -- remap save
-nmap {"<Leader>w", ":up<CR>"}
+-- nmap {"<Leader>a", ":up<CR>"}
 nmap {"<Leader>wq", ":wq<CR>"}
--- nmap {"<C-s>", ":w<CR>"}
+nmap {"<C-s>", ":up<CR>"}
 -- imap {"<C-s>", "<Esc>:w<CR>a"}
 
 -- remap quit
