@@ -17,7 +17,8 @@ else
   print("Unsupported system for sumneko")
 end
 
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+-- local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+local sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
