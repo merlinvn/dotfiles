@@ -82,7 +82,14 @@ return require("packer").startup(
       end
     }
     -- lsp
-    use "neovim/nvim-lspconfig"
+    use {
+      'junnplus/nvim-lsp-setup',
+      requires = {
+        'neovim/nvim-lspconfig',
+        'williamboman/nvim-lsp-installer',
+      }
+    }
+    -- use "neovim/nvim-lspconfig"
 
     -- Better LSP experience
     -- use "wbthomason/lsp-status.nvim"
