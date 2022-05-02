@@ -1,5 +1,6 @@
 # export TERM="xterm-256color" # This sets up colors properly
-export TERM="screen-256color" # This sets up colors properly
+# export TERM="tmux-256color" # This sets up colors properly
+# export TERM="screen-256color" # This sets up colors properly
 
 # set shell
 export SHELL=/usr/bin/zsh

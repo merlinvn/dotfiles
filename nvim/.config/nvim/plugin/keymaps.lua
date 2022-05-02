@@ -8,33 +8,33 @@ local omap = require("merlinvn.keymaps").omap
 -- nmap{"<Space>", "<NOP>", {noremap = true, silent = true})
 
 -- turn off hightlight search
-nmap {"<Leader><Esc>", ":nohlsearch<CR>"}
+nmap { "<Leader><Esc>", ":nohlsearch<CR>" }
 
 -- remap save
 -- nmap {"<Leader>a", ":up<CR>"}
-nmap {"<Leader>wq", ":wq<CR>"}
-nmap {"<C-s>", ":up<CR>"}
--- imap {"<C-s>", "<Esc>:w<CR>a"}
+nmap { "<Leader>wq", ":wq<CR>" }
+nmap { "<C-s>", ":up<CR>" }
+imap { "<C-s>", "<Esc>:w<CR>a" }
 
 -- remap quit
-nmap {"<Leader>q", ":q<CR>"}
+nmap { "<Leader>q", ":q<CR>" }
 
 -- Edit vimr configuration file
-nmap {"<Leader>ve", ":e $MYVIMRC<CR>"}
+nmap { "<Leader>ve", ":e $MYVIMRC<CR>" }
 -- Reload vims configuration file
-nmap {"<Leader>vr", ":source $MYVIMRC<CR>"}
+nmap { "<Leader>vr", ":source $MYVIMRC<CR>" }
 
-nmap {"<Leader>lr", ":luafile %<CR>"}
+nmap { "<Leader>lr", ":luafile %<CR>" }
 
 -- Yank from the current cursor to the end of line
-nmap {"Y", "y$"}
+nmap { "Y", "y$" }
 
 -- undo break points
-imap {",", ",<c-g>u"}
-imap {".", ".<c-g>u"}
-imap {"!", "!<c-g>u"}
-imap {"[", "[<c-g>u"}
-imap {"?", "?<c-g>u"}
+imap { ",", ",<c-g>u" }
+imap { ".", ".<c-g>u" }
+imap { "!", "!<c-g>u" }
+imap { "[", "[<c-g>u" }
+imap { "?", "?<c-g>u" }
 
 -- move line up down
 if vim.g.isColemakDH then
@@ -68,62 +68,62 @@ if vim.g.isColemakDH then
   --   -- Go to next / previous, center with zz, and zv to open fold
   --   nmap {"k", "nzzzv"}
   --   nmap {"K", "Nzzzv"}
-  nmap {"<C-n>", ":m .+1<CR>=="}
-  nmap {"<C-e>", ":m .-2<CR>=="}
-  imap {"<C-n>", "<Esc>:m .+1<CR>==gi"}
-  imap {"<C-e>", "<Esc>:m .-2<CR>==gi"}
-  vmap {"<C-n>", ":m '>+1<CR>gv=gv"}
-  vmap {"<C-e>", ":m '<-2<CR>gv=gv"}
+  nmap { "<C-n>", ":m .+1<CR>==" }
+  nmap { "<C-e>", ":m .-2<CR>==" }
+  imap { "<C-n>", "<Esc>:m .+1<CR>==gi" }
+  imap { "<C-e>", "<Esc>:m .-2<CR>==gi" }
+  vmap { "<C-n>", ":m '>+1<CR>gv=gv" }
+  vmap { "<C-e>", ":m '<-2<CR>gv=gv" }
 
-  nmap {"<leader>m", ":wincmd h<CR>"}
-  nmap {"<leader>n", ":wincmd j<CR>"}
-  nmap {"<leader>e", ":wincmd k<CR>"}
-  nmap {"<leader>i", ":wincmd l<CR>"}
+  nmap { "<leader>m", ":wincmd h<CR>" }
+  nmap { "<leader>n", ":wincmd j<CR>" }
+  nmap { "<leader>e", ":wincmd k<CR>" }
+  nmap { "<leader>i", ":wincmd l<CR>" }
 else
-  nmap {"<C-j>", ":m .+1<CR>=="}
-  nmap {"<C-k>", ":m .-2<CR>=="}
-  imap {"<C-j>", "<Esc>:m .+1<CR>==gi"}
-  imap {"<C-k>", "<Esc>:m .-2<CR>==gi"}
-  vmap {"<C-j>", ":m '>+1<CR>gv=gv"}
-  vmap {"<C-k>", ":m '<-2<CR>gv=gv"}
+  nmap { "<C-j>", ":m .+1<CR>==" }
+  nmap { "<C-k>", ":m .-2<CR>==" }
+  imap { "<C-j>", "<Esc>:m .+1<CR>==gi" }
+  imap { "<C-k>", "<Esc>:m .-2<CR>==gi" }
+  vmap { "<C-j>", ":m '>+1<CR>gv=gv" }
+  vmap { "<C-k>", ":m '<-2<CR>gv=gv" }
 
-  nmap {"<leader>h", ":wincmd h<CR>"}
-  nmap {"<leader>j", ":wincmd j<CR>"}
-  nmap {"<leader>k", ":wincmd k<CR>"}
-  nmap {"<leader>l", ":wincmd l<CR>"}
+  nmap { "<leader>h", ":wincmd h<CR>" }
+  nmap { "<leader>j", ":wincmd j<CR>" }
+  nmap { "<leader>k", ":wincmd k<CR>" }
+  nmap { "<leader>l", ":wincmd l<CR>" }
 end
 -- Go to next / previous, center with zz, and zv to open fold
-nmap {"n", "nzzzv"}
-nmap {"N", "Nzzzv"}
+nmap { "n", "nzzzv" }
+nmap { "N", "Nzzzv" }
 -- join and stay in the same line
-nmap {"J", "mzJ`z"}
+nmap { "J", "mzJ`z" }
 -- jump list mutation
-nmap {"<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'"}
-nmap {"<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'"}
+nmap { "<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'" }
+nmap { "<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'" }
 
 -- better p
-nmap {",p", '"0p'}
-nmap {",P", '"0p'}
+nmap { ",p", '"0p' }
+nmap { ",P", '"0p' }
 
 -- paste from clipboard
-nmap {"<C-p>", '"*p'}
-nmap {"<C-f>", '"*P'}
+nmap { "<C-p>", '"*p' }
+nmap { "<C-f>", '"*P' }
 
 -- copy whole text in file
-nmap {"yz", ":%y+<CR>"}
+nmap { "yz", ":%y+<CR>" }
 
 -- buffers navigation
-nmap {"<Leader>bd", ":bd<CR>"}
+nmap { "<Leader>bd", ":bd<CR>" }
 
 -- tab navigation
 -- Go to tab by number
-map {"<leader>1", "1gt"}
-map {"<leader>2", "2gt"}
-map {"<leader>3", "3gt"}
-map {"<leader>4", "4gt"}
-map {"<leader>5", "5gt"}
-map {"<leader>6", "6gt"}
-map {"<leader>7", "7gt"}
-map {"<leader>8", "8gt"}
-map {"<leader>9", "9gt"}
-map {"<leader>0", ":tablast<cr>"}
+map { "<leader>1", "1gt" }
+map { "<leader>2", "2gt" }
+map { "<leader>3", "3gt" }
+map { "<leader>4", "4gt" }
+map { "<leader>5", "5gt" }
+map { "<leader>6", "6gt" }
+map { "<leader>7", "7gt" }
+map { "<leader>8", "8gt" }
+map { "<leader>9", "9gt" }
+map { "<leader>0", ":tablast<cr>" }
