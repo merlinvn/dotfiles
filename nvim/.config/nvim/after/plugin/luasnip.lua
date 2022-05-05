@@ -19,7 +19,7 @@ ls.config.set_config {
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = {{"<-", "Error"}}
+        virt_text = { { "<-", "Error" } }
       }
     }
   }
@@ -76,13 +76,13 @@ local events = require "luasnip.util.events"
 
 local shortcut = function(val)
   if type(val) == "string" then
-    return {t {val}, i(0)}
+    return { t { val }, i(0) }
   end
 
   if type(val) == "table" then
     for k, v in ipairs(val) do
       if type(v) == "string" then
-        val[k] = t {v}
+        val[k] = t { v }
       end
     end
   end
@@ -93,7 +93,7 @@ end
 local make = function(tbl)
   local result = {}
   for k, v in pairs(tbl) do
-    table.insert(result, (snippet({trig = k, desc = v.desc}, shortcut(v))))
+    table.insert(result, (snippet({ trig = k, desc = v.desc }, shortcut(v))))
   end
 
   return result
@@ -104,7 +104,7 @@ local same = function(index)
     function(args)
       return args[1]
     end,
-    {index}
+    { index }
   )
 end
 
@@ -122,17 +122,18 @@ snippets.all = {
   -- callbacks table
   snippet(
     "toexpand",
-    c(1, {t "hello", t "world", t "last"}),
+    c(1, { t "hello", t "world", t "last" }),
     {
-      callbacks = {
-        [1] = {
-          [events.enter] = function()
-            --[[ node ]] toexpand_count = toexpand_count + 1
-            print("Number of times entered:", toexpand_count)
-          end
-        }
+    callbacks = {
+      [1] = {
+        [events.enter] = function()
+          --[[ node ]]
+          toexpand_count = toexpand_count + 1
+          print("Number of times entered:", toexpand_count)
+        end
       }
     }
+  }
   ),
   -- regTrig
   --    snippet.captures
@@ -143,10 +144,10 @@ snippets.all = {
     "never_expands",
     t "this will never expand, condition is false",
     {
-      condition = function()
-        return false
-      end
-    }
+    condition = function()
+      return false
+    end
+  }
   ),
   -- docTrig ??
 
@@ -154,29 +155,29 @@ snippets.all = {
 
   -- date -> Tue 16 Nov 2021 09:43:49 AM EST
   snippet(
-    {trig = "date"},
+    { trig = "date" },
     {
-      f(
-        function()
-          return string.format(string.gsub(vim.bo.commentstring, "%%s", " %%s"), os.date())
-        end,
-        {}
-      )
-    }
+    f(
+      function()
+        return string.format(string.gsub(vim.bo.commentstring, "%%s", " %%s"), os.date())
+      end,
+      {}
+    )
+  }
   ),
   -- Simple snippet, basics
   snippet(
     "for",
     {
-      t "for ",
-      i(1, "k, v"),
-      t " in ",
-      i(2, "ipairs()"),
-      t {"do", "  "},
-      i(0),
-      t {"", ""},
-      t "end"
-    }
+    t "for ",
+    i(1, "k, v"),
+    t " in ",
+    i(2, "ipairs()"),
+    t { "do", "  " },
+    i(0),
+    t { "", "" },
+    t "end"
+  }
   )
 
   --[[
@@ -230,12 +231,12 @@ table.insert(
       t "will only expand in c-style comments"
     },
     {
-      condition = function(line_to_cursor --[[ , matched_trigger, captures ]])
-        local commentstring = "%s*" .. vim.bo.commentstring:gsub("%%s", "")
-        -- optional whitespace followed by //
-        return line_to_cursor:match(commentstring)
-      end
-    }
+    condition = function(line_to_cursor --[[ , matched_trigger, captures ]])
+      local commentstring = "%s*" .. vim.bo.commentstring:gsub("%%s", "")
+      -- optional whitespace followed by //
+      return line_to_cursor:match(commentstring)
+    end
+  }
   )
 )
 
@@ -243,7 +244,7 @@ table.insert(
 table.insert(
   snippets.all,
   snippet(
-    {trig = "$$ (.*)", regTrig = true},
+    { trig = "$$ (.*)", regTrig = true },
     f(
       function(_, snip, command)
         if snip.captures[1] then
@@ -251,7 +252,7 @@ table.insert(
         end
 
         local file = io.popen(command, "r")
-        local res = {"$ " .. snip.captures[1]}
+        local res = { "$ " .. snip.captures[1] }
         for line in file:lines() do
           table.insert(res, line)
         end
@@ -261,11 +262,11 @@ table.insert(
       "ls"
     ),
     {
-      -- Don't show this one, because it's not useful as a general purpose snippet.
-      show_condition = function()
-        return false
-      end
-    }
+    -- Don't show this one, because it's not useful as a general purpose snippet.
+    show_condition = function()
+      return false
+    end
+  }
   )
 )
 
@@ -275,14 +276,14 @@ table.insert(
   snippet(
     "transform2",
     {
-      i(1, "initial text here"),
-      t " :: ",
-      i(2, "replacement for text"),
-      t " :: ",
-      -- t { "", "" },
-      -- Lambdas can also apply transforms USING the text of other nodes:
-      l(l._1:gsub("text", l._2), {1, 2})
-    }
+    i(1, "initial text here"),
+    t " :: ",
+    i(2, "replacement for text"),
+    t " :: ",
+    -- t { "", "" },
+    -- Lambdas can also apply transforms USING the text of other nodes:
+    l(l._1:gsub("text", l._2), { 1, 2 })
+  }
   )
 )
 
@@ -296,13 +297,13 @@ end
 
 local js_attr_split = function(args)
   local val = args[1][1]
-  local split = vim.split(val, ".", {plain = true})
+  local split = vim.split(val, ".", { plain = true })
 
   local choices = {}
   local thus_far = {}
   for index = 0, #split - 1 do
     table.insert(thus_far, 1, split[#split - index])
-    table.insert(choices, t {table.concat(thus_far, ".")})
+    table.insert(choices, t { table.concat(thus_far, ".") })
   end
 
   return snippet_from_nodes(nil, c(1, choices))
@@ -316,21 +317,20 @@ local fill_line = function(char)
   end
 end
 
-snippets.rst =
-  make {
+snippets.rst = make {
   jsa = {
     ":js:attr:`",
-    d(2, js_attr_split, {1}),
+    d(2, js_attr_split, { 1 }),
     " <",
     i(1),
     ">",
     "`"
   },
-  link = {".. _", i(1), ":"},
+  link = { ".. _", i(1), ":" },
   head = f(fill_line "=", {}),
   sub = f(fill_line "-", {}),
   subsub = f(fill_line "^", {}),
-  ref = {":ref:`", same(1), " <", i(1), ">`"}
+  ref = { ":ref:`", same(1), " <", i(1), ">`" }
 }
 
 ls.snippets = snippets
@@ -344,27 +344,27 @@ ls.autosnippets = {
 -- <c-k> is my expansion key
 -- this will expand the current item or jump to the next item within the snippet.
 vim.keymap.set(
-  {"i", "s"},
+  { "i", "s" },
   "<c-k>",
   function()
     if ls.expand_or_jumpable() then
       ls.expand_or_jump()
     end
   end,
-  {silent = true}
+  { silent = true }
 )
 
 -- <c-j> is my jump backwards key.
 -- this always moves to the previous item within the snippet
 vim.keymap.set(
-  {"i", "s"},
+  { "i", "s" },
   "<c-j>",
   function()
     if ls.jumpable(-1) then
       ls.jump(-1)
     end
   end,
-  {silent = true}
+  { silent = true }
 )
 
 -- <c-l> is selecting within a list of options.
@@ -380,4 +380,4 @@ vim.keymap.set(
 -- )
 
 -- shorcut to source my luasnips file again, which will reload my snippets
-vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
+vim.keymap.set("n", "<leader><leader>ls", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
