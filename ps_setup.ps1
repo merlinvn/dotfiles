@@ -22,7 +22,9 @@ scoop install neovim gcc
 
 # Install OhMyPosh
 Install-Module posh-git -Scope CurrentUser -Force
-Install-Module oh-my-posh -Scope CurrentUser -Force
+
+#Install-Module oh-my-posh -Scope CurrentUser -Force
+scoop install oh-my-posh
 
 # Install Nvm
 scoop install nvm
@@ -30,9 +32,9 @@ scoop install nvm
 
 
 # Install Terminal Icons, z (jump)
-Install-Module --name Terminal-Icons -Repository PSGallery -Force
-Install-Module --name z -Force
-Install-Module --name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+Install-Module -Name z -Force
+Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
 
 # Install fzf
 scoop install fzf

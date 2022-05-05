@@ -36,8 +36,13 @@ imap { "!", "!<c-g>u" }
 imap { "[", "[<c-g>u" }
 imap { "?", "?<c-g>u" }
 
--- move line up down
+nmap { "<leader><left>", ":wincmd h<CR>" }
+nmap { "<leader><down>", ":wincmd j<CR>" }
+nmap { "<leader><up>", ":wincmd k<CR>" }
+nmap { "<leader><right>", ":wincmd l<CR>" }
+
 if vim.g.isColemakDH then
+  -- move line up down
   --   -- MNEI arrows.
   --   nmap {"m", "h"}
   --   nmap {"n", "j"}
