@@ -7,19 +7,20 @@ local USER = vim.fn.expand('$USER')
 
 local undo_path
 if vim.fn.has("mac") == 1 then
-    undo_path = '/Users/' .. USER .. '/.vim/undodir'
+  undo_path = '/Users/' .. USER .. '/.vim/undodir'
 elseif vim.fn.has("unix") == 1 then
-    undo_path = '/home/' .. USER .. '/.vim/undodir'
+  undo_path = '/home/' .. USER .. '/.vim/undodir'
 elseif vim.fn.has('win32') == 1 then
 else
-    print("Unsupported system for undo_path")
+  print("Unsupported system for undo_path")
 end
+
 
 opt.backup = false -- combine with nowritebackup to completely turn off backup
 opt.belloff = 'all'
--- opt.clipboard:prepend{"unnamedplus"}
+-- opt.clipboard:prepend { "unnamedplus" }
 opt.colorcolumn = tostring(width) -- Line length marker
-opt.completeopt = {'menuone', 'noinsert', 'noselect'} -- Completion options
+opt.completeopt = { 'menuone', 'noinsert', 'noselect' } -- Completion options
 opt.cursorline = true -- Highlight cursor line
 opt.errorbells = false
 opt.expandtab = true -- Use spaces instead of tabs
@@ -53,7 +54,7 @@ opt.textwidth = width -- Maximum width of text
 opt.undodir = undo_path
 opt.undofile = true
 opt.updatetime = 100 -- Delay before swap file is saved
-opt.wildmode = {'list', 'longest'} -- Command-line completion mode
+opt.wildmode = { 'list', 'longest' } -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
 opt.writebackup = false
 

@@ -45,7 +45,7 @@ nmap {
 nmap { "<leader>th", ":lua require('telescope.builtin').help_tags()<CR>", { noremap = true, silent = true } }
 nmap { "<leader>tm", ":lua require('telescope.builtin').marks()<CR>", { noremap = true, silent = true } }
 
-nmap { "<leader>tc", ":lua require('merlinvn.telescope').git_branches()<CR>", { noremap = true, silent = true } }
+nmap { "<leader>tc", ":lua require('telescope.builtin').commands()<CR>", { noremap = true, silent = true } }
 
 nmap { "<leader>ti", ":lua require('telescope.builtin').treesitter()<CR>", { noremap = true, silent = true } }
 

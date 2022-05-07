@@ -6,7 +6,7 @@ end
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
--- require('luasnip.loaders.from_vscode').lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
   formatting = {
@@ -35,8 +35,9 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-o>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
-    ['<CR>'] = cmp.mapping({
+    ["<C-o>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+    ["<CR>"] = cmp.mapping(
+      {
       i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
       c = function(fallback)
         if cmp.visible() then
@@ -45,7 +46,8 @@ cmp.setup {
           fallback()
         end
       end
-    }),
+    }
+    ),
     ["<Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
@@ -72,14 +74,15 @@ cmp.setup {
       end,
       { "i", "s" }
     ),
-    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
-    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
-    ['<C-n>'] = cmp.mapping({
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+    ["<C-n>"] = cmp.mapping(
+      {
       c = function()
         if cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         else
-          vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+          vim.api.nvim_feedkeys(t("<Down>"), "n", true)
         end
       end,
       i = function(fallback)
@@ -89,13 +92,15 @@ cmp.setup {
           fallback()
         end
       end
-    }),
-    ['<C-e>'] = cmp.mapping({
+    }
+    ),
+    ["<C-e>"] = cmp.mapping(
+      {
       c = function()
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
         else
-          vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+          vim.api.nvim_feedkeys(t("<Up>"), "n", true)
         end
       end,
       i = function(fallback)
@@ -105,7 +110,8 @@ cmp.setup {
           fallback()
         end
       end
-    }),
+    }
+    )
   },
   snippet = {
     expand = function(args)
@@ -131,25 +137,25 @@ cmp.setup {
 cmp.setup.cmdline(
   "/",
   {
-    sources = {
-      { name = "buffer" }
-    }
+  sources = {
+    { name = "buffer" }
   }
+}
 )
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(
   ":",
   {
-    sources = cmp.config.sources(
-      {
-        { name = "path" }
-      },
-      {
-        { name = "cmdline" }
-      }
-    )
+  sources = cmp.config.sources(
+    {
+      { name = "path" }
+    },
+    {
+    { name = "cmdline" }
   }
+  )
+}
 )
 
 -- Autopairs

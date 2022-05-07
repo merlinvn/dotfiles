@@ -1,4 +1,3 @@
-local nvim_lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -11,116 +10,70 @@ vim.cmd("sign define LspDiagnosticsSignInformation text=")
 vim.cmd("sign define LspDiagnosticsSignHint text=")
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
-require('nvim-lsp-setup').setup({
-  -- nvim-lsp-installer
-  -- https://github.com/williamboman/nvim-lsp-installer#configuration
-  installer = {},
-  -- Default mappings
-  -- gD = 'lua vim.lsp.buf.declaration()',
-  -- gd = 'lua vim.lsp.buf.definition()',
-  -- gt = 'lua vim.lsp.buf.type_definition()',
-  -- gi = 'lua vim.lsp.buf.implementation()',
-  -- gr = 'lua vim.lsp.buf.references()',
-  -- K = 'lua vim.lsp.buf.hover()',
-  -- ['<C-k>'] = 'lua vim.lsp.buf.signature_help()',
-  -- ['<space>rn'] = 'lua vim.lsp.buf.rename()',
-  -- ['<space>ca'] = 'lua vim.lsp.buf.code_action()',
-  -- ['<space>f'] = 'lua vim.lsp.buf.formatting()',
-  -- ['<space>e'] = 'lua vim.lsp.diagnostic.show_line_diagnostics()',
-  -- ['[d'] = 'lua vim.lsp.diagnostic.goto_prev()',
-  -- [']d'] = 'lua vim.lsp.diagnostic.goto_next()',
-  default_mappings = true,
-  -- Custom mappings, will overwrite the default mappings for the same key
-  -- Example mappings for telescope pickers:
-  -- gd = 'lua require"telescope.builtin".lsp_definitions()',
-  -- gi = 'lua require"telescope.builtin".lsp_implementations()',
-  -- gr = 'lua require"telescope.builtin".lsp_references()',
-  mappings = {},
-  -- Global on_attach
-  on_attach = function(client, bufnr)
-    require('nvim-lsp-setup.utils').format_on_save(client)
-  end,
-  -- Global capabilities
-  capabilities = vim.lsp.protocol.make_client_capabilities(),
-  -- Configuration of LSP servers
-  servers = {
-    -- Install LSP servers automatically
-    -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    -- not automatically install yet
-    -- clangd = {},
-    -- hls = {},
-    -- pylsp = {},
-    sumneko_lua = {},
-    gopls = {},
-    html = {
-      filetypes = { "html", "eruby" },
-      capabilities = capabilities
-    },
-    cssls = {
-      capabilities = capabilities
-    },
-    dockerls = {},
-    tailwindcss = {},
-    jsonls = {
-      commands = {
-        Format = {
-          function()
-            vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
-          end
-        }
-      }
-    },
-    yamlls = {},
-    rust_analyzer = {
-      settings = {
-        ['rust-analyzer'] = {
-          cargo = {
-            loadOutDirsFromCheck = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-        },
-      },
-    },
-  },
-})
+require("nvim-lsp-installer").setup {}
+local lspconfig = require("lspconfig")
 
-require "lspconfig".clangd.setup {
-  -- on_attach = require'completion'.on_attach,
-  cmd = { "clangd", "--background-index" }
-}
-require "lspconfig".hls.setup {}
 
--- require("merlinvn.lsp.lua-ls")
---
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'hls', 'tsserver', 'yamlls', 'tailwindcss', 'sumneko_lua', 'gopls', 'dockerls', 'cssls' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      -- This will be the default in neovim 0.7+
+      debounce_text_changes = 150,
+    }
+  }
+end
+
+-- require "lspconfig".clangd.setup {
+--   cmd = { "clangd", "--background-index" },
+-- }
+
+
 -- require "lspconfig".html.setup {
---   filetypes = {"html", "eruby"},
+--   filetypes = { "html", "eruby" },
 --   capabilities = capabilities
 -- }
---
--- require "lspconfig".tsserver.setup {}
---
--- -- require "lspconfig".solargraph.setup {capabilities = capabilities}
--- require "lspconfig".cssls.setup {capabilities = capabilities}
--- require "lspconfig".dockerls.setup {}
+
 -- require "lspconfig".jsonls.setup {
 --   commands = {
 --     Format = {
 --       function()
---         vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), 0})
+--         vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
 --       end
 --     }
---   B
 --   }
 -- }
--- require "lspconfig".yamlls.setup {}
--- -- require "lspconfig".vimls.setup {}
---
---
--- require "lspconfig".tailwindcss.setup {}
---
--- require "lspconfig".gopls.setup {capabilities = capabilities}
---
---
--- require "lspconfig".rust_analyzer.setup {}
