@@ -125,6 +125,8 @@ return require("packer").startup(
   -- LSP source for nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp'
 
+  use 'p00f/clangd_extensions.nvim'
+
   -- merge with tools for languages that has no LSP support
   -- or extend the functionallity of LSP
   use({

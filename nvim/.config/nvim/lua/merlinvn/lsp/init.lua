@@ -1,8 +1,6 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- require('lspkind').init()
-
 -- Diagnostics symbols for display in the sign column.
 vim.cmd("sign define LspDiagnosticsSignError text=")
 vim.cmd("sign define LspDiagnosticsSignWarning text=")
@@ -11,8 +9,8 @@ vim.cmd("sign define LspDiagnosticsSignHint text=")
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 require("nvim-lsp-installer").setup {}
-local lspconfig = require("lspconfig")
 
+local lspconfig = require("lspconfig")
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -47,10 +45,12 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'hls', 'tsserver', 'yamlls', 'tailwindcss', 'sumneko_lua', 'gopls', 'dockerls', 'cssls' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'hls', 'tsserver', 'yamlls', 'tailwindcss', 'sumneko_lua', 'gopls', 'dockerls', 'cssls' }
+
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
@@ -58,10 +58,19 @@ for _, lsp in pairs(servers) do
   }
 end
 
+require("clangd_extensions").setup {
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    -- options to pass to nvim-lspconfig
+    -- i.e. the arguments to require("lspconfig").clangd.setup({})
+  },
+}
+
+
 -- require "lspconfig".clangd.setup {
 --   cmd = { "clangd", "--background-index" },
 -- }
-
 
 -- require "lspconfig".html.setup {
 --   filetypes = { "html", "eruby" },
