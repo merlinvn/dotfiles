@@ -17,7 +17,9 @@ nmap { "<C-s>", ":up<CR>" }
 imap { "<C-s>", "<Esc>:w<CR>a" }
 
 -- remap quit
-nmap { "<Leader>q", ":q<CR>" }
+nmap { "<Leader>q", ":bd<CR>" }
+nmap { "<C-q>", ":q<CR>" }
+imap { "<C-q>", "<Esc>:q<CR>" }
 
 -- Edit vimr configuration file
 nmap { "<Leader>ve", ":e $MYVIMRC<CR>" }

@@ -1,41 +1,81 @@
+if not pcall(require, "telescope") then
+  return
+end
+
+local sorters = require "telescope.sorters"
+
+TelescopeMapArgs = TelescopeMapArgs or {}
+
 local nmap = require("merlinvn.keymaps").nmap
 
+local map_tele = function(key, f, options, buffer)
+  local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
+
+  TelescopeMapArgs[map_key] = options or {}
+
+  local mode = "n"
+  local rhs = string.format("<cmd>lua R('merlinvn.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+
+  local map_options = {
+    noremap = true,
+    silent = true,
+  }
+
+  if not buffer then
+    vim.api.nvim_set_keymap(mode, key, rhs, map_options)
+  else
+    vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
+  end
+end
+
+-- Press Ctrl-R twice after ':' to fuzzy search command, b/c Ctrl-R is already mapped to register
+-- paste.
+vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
+
+-- dotfiles
+map_tele("<leader>en", "edit_neovim")
+map_tele("<leader>ed", "edit_dotfiles")
+
+-- SEARCH
+-- search word under cursor
+map_tele("<space>gw", "grep_string", {
+  short_path = true,
+  word_match = "-w",
+  only_sort_text = true,
+  layout_strategy = "vertical",
+  sorter = sorters.get_fzy_sorter(),
+})
+-- search word from input
+map_tele("<space>gs", "grep_prompt")
+
+-- search exact match with last search
+map_tele("<space>g/", "grep_last_search", {
+  layout_strategy = "vertical",
+})
+
 -- File pickers
-nmap { "<leader>tf", ":lua require('merlinvn.telescope').project_files()<CR>" }
-
-nmap {
-  "<leader>ta",
-  ":lua require 'telescope'.extensions.file_browser.file_browser()<CR>",
-}
-
-nmap { "<leader>tg", ":lua require('telescope.builtin').live_grep()<CR>", }
-nmap {
-  "<leader>ts",
-  ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > ')})<CR>",
-}
-nmap {
-  "<leader>tw",
-  ":lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>')}<CR>",
-}
-
--- dotfiles search
-nmap { "<leader>vd", ":lua require('merlinvn.telescope').search_dotfiles()<CR>", }
+-- pick file using git if there is .git other wise use fd
+map_tele("<leader>tf", "project_files")
+map_tele("<space>te", "file_browser")
+map_tele("<space>td", "fd")
+map_tele("<space>ts", "fs")
+map_tele("<space>tg", "multi_rg")
+-- map_tele("<space>fo", "oldfiles")
+-- map_tele("<space>pp", "project_search")
+map_tele("<space>tz", "search_only_certain_files")
 
 -- Vim pickers
-nmap { "<leader>tb", ":lua require('telescope.builtin').buffers()<CR>", }
+map_tele("<space>tb", "buffers")
+map_tele("<space>tl", "curbuf")
+map_tele("<space>th", "help_tags")
+map_tele("<space>ta", "search_all_files")
+map_tele("<space>to", "vim_options")
+
 nmap { "<leader>tk", ":lua require('telescope.builtin').keymaps()<CR>", }
 nmap { "<leader>tt", ":lua require('telescope.builtin').current_buffer_tags()<CR>", }
-nmap {
-  "<leader>tl",
-  ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
-}
-nmap { "<leader>th", ":lua require('telescope.builtin').help_tags()<CR>", }
 nmap { "<leader>tm", ":lua require('telescope.builtin').marks()<CR>", }
-
 nmap { "<leader>tc", ":lua require('telescope.builtin').commands()<CR>", }
-
 nmap { "<leader>ti", ":lua require('telescope.builtin').treesitter()<CR>", }
-
 nmap { "<leader>tr", ":lua require('telescope.builtin').registers()<CR>", }
 
 -- LSP
