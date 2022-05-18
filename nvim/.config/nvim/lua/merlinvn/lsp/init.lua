@@ -14,10 +14,10 @@ require("nvim-lsp-installer").setup {}
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-nmap({'<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>'})
-nmap({'[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>'})
-nmap({']d', '<cmd>lua vim.diagnostic.goto_next()<CR>'})
-nmap({'<space>d', '<cmd>lua vim.diagnostic.setloclist()<CR>'})
+nmap({ '<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>' })
+nmap({ 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>' })
+nmap({ 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>' })
+-- nmap({ '<space>d', '<cmd>lua vim.diagnostic.setloclist()<CR>' })
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -38,13 +38,13 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'hls', 'tsserver', 'yamlls', 'tailwindcss', 'sumneko_lua', 'gopls', 'dockerls', 'cssls' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'hls', 'tsserver', 'yamlls', 'tailwindcss', 'gopls', 'dockerls', 'cssls' }
 
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
@@ -57,19 +57,85 @@ for _, lsp in pairs(servers) do
   }
 end
 
-require("clangd_extensions").setup {
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    -- options to pass to nvim-lspconfig
-    -- i.e. the arguments to require("lspconfig").clangd.setup({})
+require "lspconfig".sumneko_lua.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          vim = true,
+          nvim = true,
+          -- lsp = true,
+          -- _G = true,
+          -- print = true,
+          -- ipairs = true,
+          -- pairs = true,
+          -- next = true,
+          -- type = true,
+          -- tonumber = true,
+          -- tostring = true,
+          -- unpack = true,
+          -- io = true,
+          -- coroutine = true,
+          -- table = true,
+          -- string = true,
+          -- math = true,
+          -- bit32 = true,
+          -- debug = true,
+          -- assert = true,
+          -- os = true,
+          -- package = true,
+          -- _VERSION = true,
+          -- xpcall = true,
+          -- module = true,
+          -- rawset = true,
+          -- rawget = true,
+          -- pcall = true,
+          -- error = true,
+          -- gcinfo = true,
+          -- collectgarbage = true,
+          -- getmetatable = true,
+          -- setmetatable = true,
+          -- getfenv = true,
+          -- setfenv = true,
+        },
+      },
+    },
   },
 }
 
+require "lspconfig".clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--suggest-missing-includes",
+    "--clang-tidy",
+    "--completion-style=bundled",
+    "--header-insertion=iwyu"
+  },
+}
 
--- require "lspconfig".clangd.setup {
---   cmd = { "clangd", "--background-index" },
+-- require("clangd_extensions").setup {
+--   server = {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     cmd = {
+--       "clangd",
+--       "--background-index",
+--       "--suggest-missing-includes",
+--       "--clang-tidy",
+--       "--completion-style=bundled",
+--       "--header-insertion=iwyu"
+--     },
+--     -- options to pass to nvim-lspconfig
+--     -- i.e. the arguments to require("lspconfig").clangd.setup({})
+--   },
 -- }
+
+
 
 -- require "lspconfig".html.setup {
 --   filetypes = { "html", "eruby" },

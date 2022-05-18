@@ -28,13 +28,13 @@ local map_tele = function(key, f, options, buffer)
   end
 end
 
--- Press Ctrl-R twice after ':' to fuzzy search command, b/c Ctrl-R is already mapped to register
+-- Press Ctrl-R twice after ':' to fuzzy search command, b/c single Ctrl-R is already mapped to register
 -- paste.
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- dotfiles
-map_tele("<leader>en", "edit_neovim")
-map_tele("<leader>ed", "edit_dotfiles")
+map_tele("<leader>vn", "edit_neovim")
+map_tele("<leader>vd", "edit_dotfiles")
 
 -- SEARCH
 -- search word under cursor
@@ -98,20 +98,11 @@ nmap { "<leader>tr", ":lua require('telescope.builtin').registers()<CR>", }
 -- " nnoremap gs :lua vim.lsp.buf.document_symbol()<CR>
 -- " nnoremap <leader>cs :lua vim.lsp.buf.document_symbol()<CR>
 
--- " nnoremap gS :lua vim.lsp.buf.workspace_symbol()<CR>
--- " nnoremap <leader>cS :lua vim.lsp.buf.workspace_symbol()<CR>
-
--- nmap {"gs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>"}
--- nmap {"<leader>cs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>"}
---
--- nmap {"gS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>"}
--- nmap {"<leader>cS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>"}
---
--- " nnoremap gr :lua vim.lsp.buf.references()<CR>
--- " nnoremap <leader>cr :lua vim.lsp.buf.references()<CR>
-
--- nmap {"gr", ":lua require('telescope.builtin').lsp_references()<CR>"}
--- nmap {"<leader>cr", ":lua require('telescope.builtin').lsp_references()<CR>"}
+nmap { "gs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>" }
+nmap { "gS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>" }
+nmap { "gr", ":lua require('telescope.builtin').lsp_references()<CR>" }
+nmap { "<leader>d", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>" }
+nmap { "<leader>D", ":lua require('telescope.builtin').diagnostics()<CR>" }
 
 -- nnoremap [d :lua vim.lsp.diagnostic.goto_prev()<CR>
 -- nnoremap ]d :lua vim.lsp.diagnostic.goto_next()<CR>
@@ -123,8 +114,6 @@ nmap { "<leader>tr", ":lua require('telescope.builtin').registers()<CR>", }
 -- nmap {"<leader>cf", ":lua vim.lsp.buf.formatting()<CR>"}
 
 -- " nnoremap <leader>cl :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
--- nmap {"<leader>cd", ":lua require('telescope.builtin').lsp_document_diagnostics()<CR>"}
--- nmap {"<leader>cD", ":lua require('telescope.builtin').lsp_workspace_diagnostics()<CR>"}
 
 -- nmap {"K", ":lua vim.lsp.buf.hover()<CR>"}
 -- nmap {"<leader>ck", ":lua vim.lsp.buf.hover()<CR>"}

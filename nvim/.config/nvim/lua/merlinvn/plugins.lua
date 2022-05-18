@@ -113,12 +113,7 @@ return require("packer").startup(
   --   end
   -- }
 
-  use {
-    "onsails/lspkind-nvim",
-    config = function()
-      require("lspkind").init()
-    end
-  }
+  use "onsails/lspkind.nvim"
 
   use "nvim-lua/lsp_extensions.nvim"
 

@@ -134,3 +134,11 @@ map { "<leader>7", "7gt" }
 map { "<leader>8", "8gt" }
 map { "<leader>9", "9gt" }
 map { "<leader>0", ":tablast<cr>" }
+
+if vim.fn.has('win32') then
+  nmap { "<C-z", "<nop>"}
+  imap { "<C-z", "<nop>"}
+  vmap { "<C-z", "<nop>"}
+  omap { "<C-z", "<nop>"}
+  map { "<C-z", "<nop>"}
+end
