@@ -124,10 +124,10 @@ return require("packer").startup(
 
   -- merge with tools for languages that has no LSP support
   -- or extend the functionallity of LSP
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+  -- use({
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   requires = { "nvim-lua/plenary.nvim" },
+  -- })
 
   -- END OF LSP CONFIG --
 

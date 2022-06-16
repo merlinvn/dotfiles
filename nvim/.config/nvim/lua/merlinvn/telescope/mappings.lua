@@ -60,9 +60,9 @@ map_tele("<space>te", "file_browser")
 map_tele("<space>td", "fd")
 map_tele("<space>ts", "fs")
 map_tele("<space>tg", "multi_rg")
+map_tele("<space>tz", "search_only_certain_files")
 -- map_tele("<space>fo", "oldfiles")
 -- map_tele("<space>pp", "project_search")
-map_tele("<space>tz", "search_only_certain_files")
 
 -- Vim pickers
 map_tele("<space>tb", "buffers")
@@ -80,18 +80,11 @@ nmap { "<leader>tr", ":lua require('telescope.builtin').registers()<CR>", }
 
 -- LSP
 
--- nmap {"gD", ":lua vim.lsp.buf.declaration()<CR>"}
--- nmap {"<leader>cgD", ":lua vim.lsp.buf.declaration()<CR>"}
---
--- nmap {"gd", ":lua vim.lsp.buf.definition()<CR>"}
--- nmap {"<leader>cgd", ":lua vim.lsp.buf.definition()<CR>"}
---
--- nmap {"gi", ":lua vim.lsp.buf.implementation()<CR>"}
--- nmap {"<leader>cgi", ":lua vim.lsp.buf.implementation()<CR>"}
---
--- nmap {"gt", ":lua vim.lsp.buf.type_definition()<CR>"}
--- nmap {"<leader>cgt", ":lua vim.lsp.buf.type_definition()<CR>"}
---
+nmap { "gd", ":lua require('telescope.builtin').lsp_definitions()<CR>" }
+nmap { "gi", ":lua require('telescope.builtin').lsp_implementations()<CR>" }
+nmap { "gt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>" }
+nmap { "gr", ":lua require('telescope.builtin').lsp_references()<CR>" }
+
 -- nmap {"gh", ":lua vim.lsp.buf.signature_help()<CR>"}
 -- nmap {"<leader>ch", ":lua vim.lsp.buf.signature_help()<CR>"}
 --
@@ -100,7 +93,6 @@ nmap { "<leader>tr", ":lua require('telescope.builtin').registers()<CR>", }
 
 nmap { "gs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>" }
 nmap { "gS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>" }
-nmap { "gr", ":lua require('telescope.builtin').lsp_references()<CR>" }
 nmap { "<leader>d", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>" }
 nmap { "<leader>D", ":lua require('telescope.builtin').diagnostics()<CR>" }
 

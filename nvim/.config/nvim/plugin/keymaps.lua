@@ -43,6 +43,13 @@ nmap { "<leader><down>", ":wincmd j<CR>" }
 nmap { "<leader><up>", ":wincmd k<CR>" }
 nmap { "<leader><right>", ":wincmd l<CR>" }
 
+nmap { "<C-down>", ":m .+1<CR>==" }
+nmap { "<C-up>", ":m .-2<CR>==" }
+imap { "<C-down>", "<Esc>:m .+1<CR>==gi" }
+imap { "<C-up>", "<Esc>:m .-2<CR>==gi" }
+vmap { "<C-down>", ":m '>+1<CR>gv=gv" }
+vmap { "<C-up>", ":m '<-2<CR>gv=gv" }
+
 if vim.g.isColemakDH then
   -- move line up down
   --   -- MNEI arrows.
@@ -136,9 +143,9 @@ map { "<leader>9", "9gt" }
 map { "<leader>0", ":tablast<cr>" }
 
 if vim.fn.has('win32') then
-  nmap { "<C-z", "<nop>"}
-  imap { "<C-z", "<nop>"}
-  vmap { "<C-z", "<nop>"}
-  omap { "<C-z", "<nop>"}
-  map { "<C-z", "<nop>"}
+  nmap { "<C-z", "<nop>" }
+  imap { "<C-z", "<nop>" }
+  vmap { "<C-z", "<nop>" }
+  omap { "<C-z", "<nop>" }
+  map { "<C-z", "<nop>" }
 end
