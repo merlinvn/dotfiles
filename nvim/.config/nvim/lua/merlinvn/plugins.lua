@@ -159,9 +159,9 @@ return require("packer").startup(
 
   use "rafamadriz/friendly-snippets"
 
-  use {
-    "github/copilot.vim"
-  }
+  -- use {
+  --   "github/copilot.vim"
+  -- }
 
   -- commenter
   -- use 'preservim/nerdcommenter
