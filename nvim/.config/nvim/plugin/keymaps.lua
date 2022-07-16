@@ -82,16 +82,16 @@ if vim.g.isColemakDH then
   --   -- Go to next / previous, center with zz, and zv to open fold
   --   nmap {"k", "nzzzv"}
   --   nmap {"K", "Nzzzv"}
-  nmap { "<C-n>", ":m .+1<CR>==" }
-  nmap { "<C-e>", ":m .-2<CR>==" }
-  imap { "<C-n>", "<Esc>:m .+1<CR>==gi" }
-  imap { "<C-e>", "<Esc>:m .-2<CR>==gi" }
-  vmap { "<C-n>", ":m '>+1<CR>gv=gv" }
-  vmap { "<C-e>", ":m '<-2<CR>gv=gv" }
-
-  nmap { "<leader>m", ":wincmd h<CR>" }
-  nmap { "<leader>n", ":wincmd j<CR>" }
-  nmap { "<leader>e", ":wincmd k<CR>" }
+  -- nmap { "<C-e>", ":m .-2<CR>==" }
+  -- imap { "<C-n>", "<Esc>:m .+1<CR>==gi" }
+  -- imap { "<C-e>", "<Esc>:m .-2<CR>==gi" }
+  -- nmap { "<C-n>", ":m .+1<CR>==" }
+  -- vmap { "<C-n>", ":m '>+1<CR>gv=gv" }
+  -- vmap { "<C-e>", ":m '<-2<CR>gv=gv" }
+  --
+  nmap { "<leader>n", ":wincmd h<CR>" }
+  nmap { "<leader>e", ":wincmd j<CR>" }
+  nmap { "<leader>u", ":wincmd k<CR>" }
   nmap { "<leader>i", ":wincmd l<CR>" }
 else
   nmap { "<C-j>", ":m .+1<CR>==" }
@@ -121,7 +121,7 @@ nmap { ",P", '"0p' }
 
 -- paste from clipboard
 nmap { "<C-p>", '"*p' }
-nmap { "<C-f>", '"*P' }
+-- nmap { "<C-f>", '"*P' }
 
 -- copy whole text in file
 nmap { "yz", ":%y+<CR>" }
