@@ -1,7 +1,7 @@
-local actions = require ('telescope.actions')
-require('telescope').setup{
+local actions = require('telescope.actions')
+require('telescope').setup {
   defaults = {
-    file_sorter =  require'telescope.sorters'.get_fuzzy_sorter,
+    file_sorter = require 'telescope.sorters'.get_fuzzy_sorter,
     prompt_prefix = ' > ',
     color_devicons = true,
 
@@ -17,7 +17,7 @@ require('telescope').setup{
     },
 
     set_env = { ['COLORTERM'] = 'truecolor' },
-    file_ignore_patterns = {"ext/.*"}, -- comment this line for non C++ project
+    file_ignore_patterns = { "ext/.*" }, -- comment this line for non C++ project
   },
   extensions = {
     fzy_native = {
@@ -31,20 +31,20 @@ require('telescope').load_extension('fzy_native')
 
 local M = {}
 M.search_dotfiles = function()
-    require("telescope.builtin").find_files({
-        prompt_title = "< My dotfiles >",
-        cwd = "$HOME/dotfiles/",
-    })
+  require("telescope.builtin").find_files({
+    prompt_title = "< My dotfiles >",
+    cwd = "$HOME/dotfiles/",
+  })
 end
 
 M.git_branches = function()
-    require("telescope.builtin").git_branches({
-        attach_mappings = function(prompt_bufnr, map)
-            map('i', '<c-d>', actions.git_delete_branch)
-            map('n', '<c-d>', actions.git_delete_branch)
-            return true
-        end
-    })
+  require("telescope.builtin").git_branches({
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<c-d>', actions.git_delete_branch)
+      map('n', '<c-d>', actions.git_delete_branch)
+      return true
+    end
+  })
 end
 
 return M

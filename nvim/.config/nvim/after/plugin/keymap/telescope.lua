@@ -1,5 +1,5 @@
 if not pcall(require, "telescope") then
-    return
+  return
 end
 
 local sorters = require "telescope.sorters"
@@ -10,174 +10,176 @@ local nnoremap = require("merlinvn.keymap").nnoremap
 
 -- Press Ctrl-R twice after ':' to fuzzy search command, b/c single Ctrl-R is already mapped to register
 -- paste.
-vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", {noremap = false, nowait = true})
+vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- dotfiles
 nnoremap(
-    "<leader>vn",
-    function()
-        my_telescope.edit_neovim()
-    end
+  "<leader>vn",
+  function()
+    my_telescope.edit_neovim()
+  end
 )
 
 --nnoremap("<leader>vn", "edit_neovim")
 nnoremap(
-    "<leader>vd",
-    function()
-        my_telescope.edit_dotfiles()
-    end
+  "<leader>vd",
+  function()
+    my_telescope.edit_dotfiles()
+  end
 )
 
 -- SEARCH
 -- search word under cursor
 nnoremap(
-    "<space>gw",
-    function()
-        my_telescope.grep_string(
-            {
-                short_path = true,
-                word_match = "-w",
-                only_sort_text = true,
-                layout_strategy = "vertical",
-                sorter = sorters.get_fzy_sorter()
-            }
-        )
-    end
+  "<space>tw",
+  function()
+    my_telescope.grep_string(
+      {
+        short_path = true,
+        word_match = "-w",
+        only_sort_text = true,
+        layout_strategy = "vertical",
+        sorter = sorters.get_fzy_sorter()
+      }
+    )
+  end
 )
 
 -- search word from input
 nnoremap(
-    "<space>gs",
-    function()
-        my_telescope.grep_prompt()
-    end
+  "<space>ts",
+  function()
+    my_telescope.grep_prompt()
+  end
 )
 
 -- search exact match with last search
 nnoremap(
-    "<space>g/",
-    function()
-        my_telescope.grep_last_search(
-            {
-                layout_strategy = "vertical"
-            }
-        )
-    end
+  "<space>t/",
+  function()
+    my_telescope.grep_last_search(
+      {
+        layout_strategy = "vertical"
+      }
+    )
+  end
 )
 
 -- File pickers
 -- pick file using git if there is .git other wise use fd
 nnoremap(
-    "<leader>tf",
-    function()
-        my_telescope.project_files()
-    end
+  "<leader>tf",
+  function()
+    my_telescope.project_files()
+  end
 )
 nnoremap(
-    "<space>te",
-    function()
-        my_telescope.file_browser()
-    end
+  "<space>te",
+  function()
+    my_telescope.file_browser()
+  end
 )
 nnoremap(
-    "<space>td",
-    function()
-        my_telescope.fd()
-    end
+  "<space>td",
+  function()
+    my_telescope.fd()
+  end
+)
+
+--nnoremap(
+--  "<space>ts",
+--  function()
+--    my_telescope.fs()
+--  end
+--)
+
+nnoremap(
+  "<space>tg",
+  function()
+    my_telescope.multi_rg()
+  end
 )
 nnoremap(
-    "<space>ts",
-    function()
-        my_telescope.fs()
-    end
-)
-nnoremap(
-    "<space>tg",
-    function()
-        my_telescope.multi_rg()
-    end
-)
-nnoremap(
-    "<space>tz",
-    function()
-        my_telescope.search_only_certain_files()
-    end
+  "<space>tz",
+  function()
+    my_telescope.search_only_certain_files()
+  end
 )
 -- nnoremap("<space>fo", "oldfiles")
 -- nnoremap("<space>pp", "project_search")
 
 -- Vim pickers
 nnoremap(
-    "<space>tb",
-    function()
-        my_telescope.buffers()
-    end
+  "<space>tb",
+  function()
+    my_telescope.buffers()
+  end
 )
 
 nnoremap(
-    "<space>tl",
-    function()
-        my_telescope.curbuf()
-    end
+  "<space>tl",
+  function()
+    my_telescope.curbuf()
+  end
 )
 
 nnoremap(
-    "<space>th",
-    function()
-        my_telescope.help_tags()
-    end
+  "<space>th",
+  function()
+    my_telescope.help_tags()
+  end
 )
 nnoremap(
-    "<space>ta",
-    function()
-        my_telescope.search_all_files()
-    end
+  "<space>ta",
+  function()
+    my_telescope.search_all_files()
+  end
 )
 nnoremap(
-    "<space>to",
-    function()
-        my_telescope.vim_options()
-    end
-)
-
-nnoremap(
-    "<leader>tk",
-    function()
-        require("telescope.builtin").keymaps()
-    end
+  "<space>to",
+  function()
+    my_telescope.vim_options()
+  end
 )
 
 nnoremap(
-    "<leader>tt",
-    function()
-        require("telescope.builtin").current_buffer_tags()
-    end
-)
-nnoremap(
-    "<leader>tm",
-    function()
-        require("telescope.builtin").marks()
-    end
-)
-nnoremap(
-    "<leader>tc",
-    function()
-        require("telescope.builtin").commands()
-    end
+  "<leader>tk",
+  function()
+    require("telescope.builtin").keymaps()
+  end
 )
 
 nnoremap(
-    "<leader>ti",
-    function()
-        require("telescope.builtin").treesitter()
-    end
+  "<leader>tt",
+  function()
+    require("telescope.builtin").current_buffer_tags()
+  end
+)
+nnoremap(
+  "<leader>tm",
+  function()
+    require("telescope.builtin").marks()
+  end
+)
+nnoremap(
+  "<leader>tc",
+  function()
+    require("telescope.builtin").commands()
+  end
 )
 
 nnoremap(
-    "<leader>tr",
-    function()
-        require("telescope.builtin").registers()
-    end
+  "<leader>ti",
+  function()
+    require("telescope.builtin").treesitter()
+  end
+)
+
+nnoremap(
+  "<leader>tr",
+  function()
+    require("telescope.builtin").registers()
+  end
 )
 
 -- LSP

@@ -1,4 +1,4 @@
-print("Hello from keymap")
+--print("Hello from keymap")
 
 local nmap = require("merlinvn.keymap").nmap
 local nnoremap = require("merlinvn.keymap").nnoremap
@@ -7,88 +7,88 @@ local vnoremap = require("merlinvn.keymap").vnoremap
 local onoremap = require("merlinvn.keymap").onoremap
 
 -- turn off hightlight search
-nnoremap( "<Leader><Esc>", ":nohlsearch<CR>" )
+nnoremap("<Leader><Esc>", ":nohlsearch<CR>")
 nnoremap("<leader>fe", ":Ex<CR>")
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
-nnoremap( "<Leader>wq", ":wq<CR>" )
-nnoremap( "<C-s>", ":up<CR>" )
-inoremap( "<C-s>", "<Esc>:w<CR>a" )
+nnoremap("<Leader>wq", ":wq<CR>")
+nnoremap("<C-s>", ":up<CR>")
+inoremap("<C-s>", "<Esc>:w<CR>a")
 
 -- remap quit
-nnoremap( "<Leader>q", ":bd<CR>" )
-nnoremap( "<C-q>", ":q<CR>" )
-inoremap( "<C-q>", "<Esc>:q<CR>" )
+nnoremap("<Leader>q", ":bd<CR>")
+nnoremap("<C-q>", ":q<CR>")
+inoremap("<C-q>", "<Esc>:q<CR>")
 
 -- Edit vimr configuration file
-nnoremap( "<Leader>ve", ":e $MYVIMRC<CR>" )
+nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
-nnoremap( "<Leader>vr", ":source $MYVIMRC<CR>" )
+nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
 
-nnoremap( "<Leader>lr", ":luafile %<CR>" )
+nnoremap("<Leader>lr", ":luafile %<CR>")
 
 -- Yank from the current cursor to the end of line
-nnoremap( "Y", "y$" )
+nnoremap("Y", "y$")
 
 -- undo break points
-inoremap( ",", ",<c-g>u" )
-inoremap( ".", ".<c-g>u" )
-inoremap( "!", "!<c-g>u" )
-inoremap( "[", "[<c-g>u" )
-inoremap( "?", "?<c-g>u" )
+inoremap(",", ",<c-g>u")
+inoremap(".", ".<c-g>u")
+inoremap("!", "!<c-g>u")
+inoremap("[", "[<c-g>u")
+inoremap("?", "?<c-g>u")
 
-nnoremap( "<leader><left>", ":wincmd h<CR>" )
-nnoremap( "<leader><down>", ":wincmd j<CR>" )
-nnoremap( "<leader><up>", ":wincmd k<CR>" )
-nnoremap( "<leader><right>", ":wincmd l<CR>" )
+nnoremap("<leader><left>", ":wincmd h<CR>")
+nnoremap("<leader><down>", ":wincmd j<CR>")
+nnoremap("<leader><up>", ":wincmd k<CR>")
+nnoremap("<leader><right>", ":wincmd l<CR>")
 
-nnoremap( "<C-down>", ":m .+1<CR>==" )
-nnoremap( "<C-up>", ":m .-2<CR>==" )
-inoremap( "<C-down>", "<Esc>:m .+1<CR>==gi" )
-inoremap( "<C-up>", "<Esc>:m .-2<CR>==gi" )
-vnoremap( "<C-down>", ":m '>+1<CR>gv=gv" )
-vnoremap( "<C-up>", ":m '<-2<CR>gv=gv" )
+nnoremap("<C-down>", ":m .+1<CR>==")
+nnoremap("<C-up>", ":m .-2<CR>==")
+inoremap("<C-down>", "<Esc>:m .+1<CR>==gi")
+inoremap("<C-up>", "<Esc>:m .-2<CR>==gi")
+vnoremap("<C-down>", ":m '>+1<CR>gv=gv")
+vnoremap("<C-up>", ":m '<-2<CR>gv=gv")
 
 -- Go to next / previous, center with zz, and zv to open fold
-nnoremap( "n", "nzzzv" )
-nnoremap( "N", "Nzzzv" )
+nnoremap("n", "nzzzv")
+nnoremap("N", "Nzzzv")
 
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
 -- join and stay in the same line
-nnoremap( "J", "mzJ`z" )
+nnoremap("J", "mzJ`z")
 -- jump list mutation
-nnoremap( "<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'" )
-nnoremap( "<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'" )
+nnoremap("<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'")
+nnoremap("<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
 
 -- better p
-nnoremap( ",p", '"0p' )
-nnoremap( ",P", '"0p' )
+nnoremap(",p", '"0p')
+nnoremap(",P", '"0p')
 
 -- paste from clipboard
-nnoremap( "<C-p>", '"*p' )
+nnoremap("<C-p>", '"*p')
 -- nnoremap( "<C-f>", '"*P' )
 
 -- copy whole text in file
-nnoremap( "yz", ":%y+<CR>" )
+nnoremap("yz", ":%y+<CR>")
 
 -- buffers navigation
-nnoremap( "<Leader>bd", ":bd<CR>" )
+nnoremap("<Leader>bd", ":bd<CR>")
 
 -- tab navigation
 -- Go to tab by number
-nmap( "<leader>1", "1gt" )
-nmap( "<leader>2", "2gt" )
-nmap( "<leader>3", "3gt" )
-nmap( "<leader>4", "4gt" )
-nmap( "<leader>5", "5gt" )
-nmap( "<leader>6", "6gt" )
-nmap( "<leader>7", "7gt" )
-nmap( "<leader>8", "8gt" )
-nmap( "<leader>9", "9gt" )
-nmap( "<leader>0", ":tablast<cr>" )
+nmap("<leader>1", "1gt")
+nmap("<leader>2", "2gt")
+nmap("<leader>3", "3gt")
+nmap("<leader>4", "4gt")
+nmap("<leader>5", "5gt")
+nmap("<leader>6", "6gt")
+nmap("<leader>7", "7gt")
+nmap("<leader>8", "8gt")
+nmap("<leader>9", "9gt")
+nmap("<leader>0", ":tablast<cr>")
 
 if vim.g.isColemakDH then
   -- move line up down
@@ -129,28 +129,28 @@ if vim.g.isColemakDH then
   -- vnoremap( "<C-n>", ":m '>+1<CR>gv=gv" )
   -- vnoremap( "<C-e>", ":m '<-2<CR>gv=gv" )
   --
-  nnoremap( "<leader>n", ":wincmd h<CR>" )
-  nnoremap( "<leader>e", ":wincmd j<CR>" )
-  nnoremap( "<leader>u", ":wincmd k<CR>" )
-  nnoremap( "<leader>i", ":wincmd l<CR>" )
+  nnoremap("<leader>n", ":wincmd h<CR>")
+  nnoremap("<leader>e", ":wincmd j<CR>")
+  nnoremap("<leader>u", ":wincmd k<CR>")
+  nnoremap("<leader>i", ":wincmd l<CR>")
 else
-  nnoremap( "<C-j>", ":m .+1<CR>==" )
-  nnoremap( "<C-k>", ":m .-2<CR>==" )
-  inoremap( "<C-j>", "<Esc>:m .+1<CR>==gi" )
-  inoremap( "<C-k>", "<Esc>:m .-2<CR>==gi" )
-  vnoremap( "<C-j>", ":m '>+1<CR>gv=gv" )
-  vnoremap( "<C-k>", ":m '<-2<CR>gv=gv" )
+  nnoremap("<C-j>", ":m .+1<CR>==")
+  nnoremap("<C-k>", ":m .-2<CR>==")
+  inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
+  inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
+  vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
+  vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
 
-  nnoremap( "<leader>h", ":wincmd h<CR>" )
-  nnoremap( "<leader>j", ":wincmd j<CR>" )
-  nnoremap( "<leader>k", ":wincmd k<CR>" )
-  nnoremap( "<leader>l", ":wincmd l<CR>" )
+  nnoremap("<leader>h", ":wincmd h<CR>")
+  nnoremap("<leader>j", ":wincmd j<CR>")
+  nnoremap("<leader>k", ":wincmd k<CR>")
+  nnoremap("<leader>l", ":wincmd l<CR>")
 end
 
 if vim.fn.has('win32') then
-  nnoremap( "<C-z", "<nop>" )
-  inoremap( "<C-z", "<nop>" )
-  vnoremap( "<C-z", "<nop>" )
-  onoremap( "<C-z", "<nop>" )
-  nmap( "<C-z", "<nop>" )
+  nnoremap("<C-z", "<nop>")
+  inoremap("<C-z", "<nop>")
+  vnoremap("<C-z", "<nop>")
+  onoremap("<C-z", "<nop>")
+  nmap("<C-z", "<nop>")
 end
