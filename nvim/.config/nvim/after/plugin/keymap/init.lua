@@ -22,10 +22,9 @@ nnoremap("<C-q>", ":q<CR>")
 inoremap("<C-q>", "<Esc>:q<CR>")
 
 -- Edit vimr configuration file
-nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
+-- nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
 nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
-
 nnoremap("<Leader>lr", ":luafile %<CR>")
 
 -- Yank from the current cursor to the end of line

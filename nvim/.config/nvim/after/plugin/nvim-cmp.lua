@@ -18,29 +18,28 @@ cmp.setup {
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
       before = function(entry, vim_item)
-      -- set a name for each source
-      vim_item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        ultisnips = "[UltiSnips]",
-        nvim_lua = "[Lua]",
-        -- cmp_tabnine = "[TabNine]",
-        look = "[Look]",
-        path = "[Path]",
-        spell = "[Spell]",
-        calc = "[Calc]",
-        emoji = "[Emoji]",
-        treesitter = "[treesitter]"
-      })[entry.source.name]
+        -- set a name for each source
+        vim_item.menu = ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          ultisnips = "[UltiSnips]",
+          nvim_lua = "[Lua]",
+          -- cmp_tabnine = "[TabNine]",
+          look = "[Look]",
+          path = "[Path]",
+          spell = "[Spell]",
+          calc = "[Calc]",
+          emoji = "[Emoji]",
+          treesitter = "[treesitter]"
+        })[entry.source.name]
         return vim_item
       end
     }),
   },
   mapping = {
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-y>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-o>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
     ["<CR>"] = cmp.mapping(
       {
@@ -82,7 +81,7 @@ cmp.setup {
     ),
     ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
-    ["<C-n>"] = cmp.mapping(
+    ["<C-e>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -100,7 +99,7 @@ cmp.setup {
         end
       }
     ),
-    ["<C-e>"] = cmp.mapping(
+    ["<C-u>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then

@@ -5,25 +5,40 @@ local indent, width = 2, 100
 
 local USER = vim.fn.expand('$USER')
 
-local undo_path
-if vim.fn.has("mac") == 1 then
-  undo_path = "/Users/" .. USER .. "/.vim/undodir"
-elseif vim.fn.has("unix") == 1 then
-  undo_path = "/home/" .. USER .. "/.vim/undodir"
-elseif vim.fn.has('win32') == 1 then
-  undo_path = ""
-else
-  print("Unsupported system for undo_path")
-end
-
+-- local undo_path
+-- if vim.fn.has("mac") == 1 then
+--   undo_path = "/Users/" .. USER .. "/.vim/undodir"
+-- elseif vim.fn.has("unix") == 1 then
+--   undo_path = "/home/" .. USER .. "/.vim/undodir"
+-- elseif vim.fn.has('win32') == 1 then
+--   undo_path = ""
+-- else
+--   print("Unsupported system for undo_path")
+-- end
+--
 
 vim.opt.belloff = 'all'
 vim.opt.errorbells = false
 
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' } -- Completion options
+
 vim.opt.cursorline = true -- Highlight cursor line
+local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
+local set_cursorline = function(event, value, pattern)
+  vim.api.nvim_create_autocmd(event, {
+    group = group,
+    pattern = pattern,
+    callback = function()
+      vim.opt_local.cursorline = value
+    end,
+  })
+end
+
+set_cursorline("WinLeave", false)
+set_cursorline("WinEnter", true)
+set_cursorline("FileType", false, "TelescopePrompt")
 
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Relative line numbers
@@ -82,4 +97,3 @@ vim.opt.writebackup = false
 vim.opt.shortmess:append("c")
 
 vim.opt.colorcolumn = tostring(width) --Line length marker
-

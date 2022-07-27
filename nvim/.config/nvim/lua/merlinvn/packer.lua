@@ -26,6 +26,14 @@ return require("packer").startup(
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
 
+    -- Better LSP experience
+    use {
+      "j-hui/fidget.nvim",
+      config = function()
+        require "fidget".setup {}
+      end
+    }
+
     use {
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
@@ -69,6 +77,9 @@ return require("packer").startup(
       end
     }
 
+    -- vim.g.any_jump_disable_default_keybindings = 1
+    use { "pechorin/any-jump.vim" }
+
     -- Color highlight
     use {
       "norcalli/nvim-colorizer.lua",
@@ -79,6 +90,8 @@ return require("packer").startup(
 
     -- use "machakann/vim-highlightedyank"
 
+    -- commenter
+    use { 'numToStr/Comment.nvim' }
     --use("nvim-treesitter/playground")
     -- use("romgrk/nvim-treesitter-context")
 
@@ -86,8 +99,18 @@ return require("packer").startup(
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
 
+    -- status line
+    use {
+      "hoob3rt/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      config = function()
+        require("lualine").setup { options = { theme = "onedark" } }
+      end
+    }
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
+
+    use("github/copilot.vim")
   end
 )

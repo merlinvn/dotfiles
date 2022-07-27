@@ -54,7 +54,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
   -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
 end
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
@@ -88,7 +87,7 @@ require "lspconfig".sumneko_lua.setup {
     Lua = {
       diagnostics = {
         globals = {
-          "vim", "use",
+          "vim", "use", "t",
          -- vim = true,
          -- nvim = true,
          -- use = true,

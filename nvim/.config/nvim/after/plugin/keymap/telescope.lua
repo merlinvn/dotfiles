@@ -216,9 +216,6 @@ nnoremap("<leader>D", ":lua require('telescope.builtin').diagnostics()<CR>")
 
 -- nnoremap ("<leader>ce", ":lua vim.lsp.buf.rename()<CR>")
 -- " nnoremap <leader>c. :lua vim.lsp.buf.code_action()<CR>
--- nnoremap <leader>c. :lua require('telescope.builtin').lsp_code_actions()<CR>
-
--- nnoremap ("<leader>c.", ":lua require('telescope.builtin').lsp_code_actions()<CR>")
 
 -- nnoremap ("<leader>c>", ":lua require('telescope.builtin').lsp_range_code_actions()<CR>")
 
