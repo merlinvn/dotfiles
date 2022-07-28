@@ -4,28 +4,22 @@ end
 
 local sorters = require "telescope.sorters"
 
-local my_telescope = require("merlinvn.telescope")
-
 local nnoremap = require("merlinvn.keymap").nnoremap
 
--- Press Ctrl-R twice after ':' to fuzzy search command, b/c single Ctrl-R is already mapped to register
+-- Press Ctrl-R twice after ':' to fuzzy search command history, b/c single Ctrl-R is already mapped to register
 -- paste.
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- dotfiles
 nnoremap(
   "<leader>vn",
-  function()
-    my_telescope.edit_neovim()
-  end
+  "<cmd>lua require('merlinvn.telescope').edit_neovim() <CR>"
 )
 
 --nnoremap("<leader>vn", "edit_neovim")
 nnoremap(
   "<leader>vd",
-  function()
-    my_telescope.edit_dotfiles()
-  end
+  "<cmd>lua require('merlinvn.telescope').edit_dotfiles() <CR>"
 )
 
 -- SEARCH
@@ -33,77 +27,57 @@ nnoremap(
 nnoremap(
   "<space>tw",
   function()
-    my_telescope.grep_string(
-      {
-        short_path = true,
-        word_match = "-w",
+    require('merlinvn.telescope').grep_string(
+      { short_path = true,
+        word_match = '-w',
         only_sort_text = true,
-        layout_strategy = "vertical",
+        layout_strategy = 'vertical',
         sorter = sorters.get_fzy_sorter()
-      }
-    )
+      })
   end
 )
 
 -- search word from input
 nnoremap(
   "<space>ts",
-  function()
-    my_telescope.grep_prompt()
-  end
+  "<cmd>lua require('merlinvn.telescope').grep_prompt() <CR>"
 )
 
 -- search exact match with last search
 nnoremap(
   "<space>t/",
-  function()
-    my_telescope.grep_last_search(
-      {
-        layout_strategy = "vertical"
-      }
-    )
-  end
+  "<cmd>lua require('merlinvn.telescope').grep_last_search( { layout_strategy = 'vertical' }) <CR>"
 )
 
 -- File pickers
 -- pick file using git if there is .git other wise use fd
 nnoremap(
   "<leader>tf",
-  function()
-    my_telescope.project_files()
-  end
+  "<cmd>lua require('merlinvn.telescope').project_files() <CR>"
 )
 nnoremap(
   "<space>te",
-  function()
-    my_telescope.file_browser()
-  end
+  "<cmd>lua require('merlinvn.telescope').file_browser() <CR>"
 )
 nnoremap(
   "<space>td",
-  function()
-    my_telescope.fd()
-  end
+  "<cmd>lua require('merlinvn.telescope').fd() <CR>"
 )
 
 --nnoremap(
 --  "<space>ts",
---  function()
---    my_telescope.fs()
---  end
+--  "<cmd>lua
+--    require('merlinvn.telescope').fs()
+--  <CR>"
 --)
 
 nnoremap(
   "<space>tg",
-  function()
-    my_telescope.multi_rg()
-  end
+  "<cmd>lua require('merlinvn.telescope').multi_rg() <CR>"
 )
 nnoremap(
   "<space>tz",
-  function()
-    my_telescope.search_only_certain_files()
-  end
+  "<cmd>lua require('merlinvn.telescope').search_only_certain_files() <CR>"
 )
 -- nnoremap("<space>fo", "oldfiles")
 -- nnoremap("<space>pp", "project_search")
@@ -111,75 +85,52 @@ nnoremap(
 -- Vim pickers
 nnoremap(
   "<space>tb",
-  function()
-    my_telescope.buffers()
-  end
+  "<cmd>lua require('merlinvn.telescope').buffers() <CR>"
 )
 
 nnoremap(
   "<space>tl",
-  function()
-    my_telescope.curbuf()
-  end
+  "<cmd>lua require('merlinvn.telescope').curbuf() <CR>"
 )
 
 nnoremap(
   "<space>th",
-  function()
-    my_telescope.help_tags()
-  end
+  "<cmd>lua require('merlinvn.telescope').help_tags() <CR>"
 )
 nnoremap(
   "<space>ta",
-  function()
-    my_telescope.search_all_files()
-  end
+  "<cmd>lua require('merlinvn.telescope').search_all_files() <CR>"
 )
 nnoremap(
   "<space>to",
-  function()
-    my_telescope.vim_options()
-  end
+  "<cmd>lua require('merlinvn.telescope').vim_options() <CR>"
 )
 
 nnoremap(
-  "<leader>tk",
-  function()
-    require("telescope.builtin").keymaps()
-  end
+  "<leader>tk", "<cmd>lua require('telescope.builtin').keymaps()<CR>"
 )
 
 nnoremap(
   "<leader>tt",
-  function()
-    require("telescope.builtin").current_buffer_tags()
-  end
+  "<cmd>lua require('telescope.builtin').current_buffer_tags() <CR>"
 )
 nnoremap(
   "<leader>tm",
-  function()
-    require("telescope.builtin").marks()
-  end
+  "<cmd>lua require('telescope.builtin').marks() <CR>"
 )
 nnoremap(
   "<leader>tc",
-  function()
-    require("telescope.builtin").commands()
-  end
+  "<cmd>lua require('telescope.builtin').commands() <CR>"
 )
 
 nnoremap(
   "<leader>ti",
-  function()
-    require("telescope.builtin").treesitter()
-  end
+  "<cmd>lua require('telescope.builtin').treesitter() <CR>"
 )
 
 nnoremap(
   "<leader>tr",
-  function()
-    require("telescope.builtin").registers()
-  end
+  "<cmd>lua require('telescope.builtin').registers() <CR>"
 )
 
 -- LSP

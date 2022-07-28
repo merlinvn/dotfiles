@@ -35,11 +35,6 @@ return require("packer").startup(
     }
 
     use {
-      "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
-    }
-
-    use {
       "hrsh7th/nvim-cmp",
       requires = {
         "hrsh7th/cmp-buffer",
@@ -66,6 +61,13 @@ return require("packer").startup(
         run = ":TSUpdate"
       }
     )
+
+    -- utilitis
+    use "tpope/vim-surround" -- Surround text objects easily
+    use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+    }
 
     -- Navigation
     use {
