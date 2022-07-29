@@ -139,3 +139,22 @@ alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/neo/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/neo/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/neo/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+      if [[-d /Users/neo/opt/anaconda3/bin]]
+      then
+        export PATH="/Users/neo/opt/anaconda3/bin:$PATH"
+      fi
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
