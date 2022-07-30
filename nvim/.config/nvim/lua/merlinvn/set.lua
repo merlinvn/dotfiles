@@ -1,9 +1,13 @@
 vim.g.isColemakDH = true
 vim.g.mapleader = " "
 
-local indent, width = 2, 100
+if vim.fn.has("mac") == 1 then
+  vim.opt.shell = "/bin/zsh"
+end
 
-local USER = vim.fn.expand('$USER')
+local indent, width = 2, 80
+
+-- local USER = vim.fn.expand('$USER')
 
 -- local undo_path
 -- if vim.fn.has("mac") == 1 then

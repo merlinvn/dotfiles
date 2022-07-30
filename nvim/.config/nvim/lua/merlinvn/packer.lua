@@ -94,9 +94,12 @@ return require("packer").startup(
 
     -- commenter
     use { 'numToStr/Comment.nvim' }
+
+    -- treesitter
     --use("nvim-treesitter/playground")
     -- use("romgrk/nvim-treesitter-context")
 
+    -- Debug
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
@@ -112,7 +115,7 @@ return require("packer").startup(
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
-
+    --
     use("github/copilot.vim")
   end
 )
