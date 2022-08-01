@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 # export TERM="xterm-256color" # This sets up colors properly
 # export TERM="tmux-256color" # This sets up colors properly
 # export TERM="screen-256color" # This sets up colors properly
@@ -15,7 +16,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
+export NVM_LAZY=1
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -82,7 +83,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-autosuggestions docker docker-compose kubectl zsh-syntax-highlighting npm zsh-completions)
+plugins=(git autojump zsh-autosuggestions docker docker-compose kubectl zsh-syntax-highlighting npm zsh-completions nvm)
 
 autoload -U compinit && compinit
 
@@ -120,8 +121,8 @@ precmd_functions+=(_fix_cursor)
 # bindkey '^[[1;5C' forward-word
 # bindkey '^[[1;5D' backward-word
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 [ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
 
@@ -140,21 +141,6 @@ alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
 
 [ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/neo/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/neo/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/neo/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-      if [[-d /Users/neo/opt/anaconda3/bin]]
-      then
-        export PATH="/Users/neo/opt/anaconda3/bin:$PATH"
-      fi
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+alias anaconda='source  ~/.conda.shellrc'
 
+# zprof

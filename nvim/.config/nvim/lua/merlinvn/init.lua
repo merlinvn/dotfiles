@@ -2,7 +2,7 @@
 require("merlinvn.set")
 require("merlinvn.packer")
 require("merlinvn.telescope")
-require("merlinvn.neogit")
+-- require("merlinvn.neogit")
 
 local augroup = vim.api.nvim_create_augroup
 MerlinVnGroup = augroup('MerlinVn', {})
