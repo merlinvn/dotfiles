@@ -7,20 +7,6 @@ end
 
 local indent, width = 2, 80
 
--- local USER = vim.fn.expand('$USER')
-
--- local undo_path
--- if vim.fn.has("mac") == 1 then
---   undo_path = "/Users/" .. USER .. "/.vim/undodir"
--- elseif vim.fn.has("unix") == 1 then
---   undo_path = "/home/" .. USER .. "/.vim/undodir"
--- elseif vim.fn.has('win32') == 1 then
---   undo_path = ""
--- else
---   print("Unsupported system for undo_path")
--- end
---
-
 vim.opt.belloff = 'all'
 vim.opt.errorbells = false
 

@@ -94,7 +94,7 @@ return require("packer").startup(
     -- use "machakann/vim-highlightedyank"
 
     -- commenter
-    use { 'numToStr/Comment.nvim' }
+    use "terrortylor/nvim-comment"
 
     -- treesitter
     --use("nvim-treesitter/playground")
@@ -105,14 +105,14 @@ return require("packer").startup(
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
 
-    -- status line
-    use {
-      "hoob3rt/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
-      config = function()
-        require("lualine").setup { options = { theme = "onedark" } }
-      end
-    }
+    -- -- status line
+    -- use {
+    --   "hoob3rt/lualine.nvim",
+    --   requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    --   config = function()
+    --     require("lualine").setup { options = { theme = "onedark" } }
+    --   end
+    -- }
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
