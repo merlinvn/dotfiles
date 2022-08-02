@@ -12,7 +12,6 @@ nnoremap("<leader>fe", ":Ex<CR>")
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
-nnoremap("<Leader>wq", ":wq<CR>")
 nnoremap("<C-s>", ":up<CR>")
 inoremap("<C-s>", "<Esc>:w<CR>a")
 
@@ -63,8 +62,8 @@ nnoremap("<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'")
 nnoremap("<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
 
 -- better p
-nnoremap(",p", '"0p')
-nnoremap(",P", '"0p')
+-- nnoremap(",p", '"0p')
+-- nnoremap(",P", '"0p')
 
 -- paste from clipboard
 nnoremap("<C-p>", '"*p')

@@ -136,6 +136,17 @@ function M.grep_string(opts)
   require("telescope.builtin").grep_string(opts)
 end
 
+function M.word_under_cursor()
+  local sorters = require "telescope.sorters"
+  M.grep_string(
+    { short_path = true,
+      word_match = '-w',
+      only_sort_text = true,
+      layout_strategy = 'vertical',
+      sorter = sorters.get_fzy_sorter()
+    })
+end
+
 function M.grep_prompt()
   require("telescope.builtin").grep_string {
     path_display = { "shorten" },

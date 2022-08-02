@@ -16,7 +16,13 @@ return require("packer").startup(
 
     -- Simple plugins can be specified as strings
     use("TimUntersberger/neogit")
-    use "airblade/vim-gitgutter"
+    -- use "airblade/vim-gitgutter"
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup()
+      end
+    }
 
     -- All the things
     use("neovim/nvim-lspconfig")
@@ -63,7 +69,8 @@ return require("packer").startup(
     )
 
     -- utilitis
-    use "tpope/vim-surround" -- Surround text objects easily
+    -- use "tpope/vim-surround" -- Surround text objects easily
+
     use {
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
@@ -113,6 +120,11 @@ return require("packer").startup(
     --     require("lualine").setup { options = { theme = "onedark" } }
     --   end
     -- }
+    --
+    -- GUI Keymaps
+    use 'anuvyklack/hydra.nvim'
+    --
+    --
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")

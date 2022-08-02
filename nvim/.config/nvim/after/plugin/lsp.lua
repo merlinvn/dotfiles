@@ -8,14 +8,12 @@ vim.cmd("sign define LspDiagnosticsSignWarning text=")
 vim.cmd("sign define LspDiagnosticsSignInformation text=")
 vim.cmd("sign define LspDiagnosticsSignHint text=")
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
-
 require("nvim-lsp-installer").setup {}
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 nnoremap(
-  "<space>o",
+  "go",
   function()
     vim.diagnostic.open_float()
   end
@@ -40,15 +38,18 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "<space>wl",
-    "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-    opts
-  )
+
+  -- TODO: add workspace later
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(
+  --   bufnr,
+  --   "n",
+  --   "<space>wl",
+  --   "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+  --   opts
+  -- )
+
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
@@ -88,9 +89,9 @@ require "lspconfig".sumneko_lua.setup {
       diagnostics = {
         globals = {
           "vim", "use", "t",
-         -- vim = true,
-         -- nvim = true,
-         -- use = true,
+          -- vim = true,
+          -- nvim = true,
+          -- use = true,
           -- lsp = true,
           -- _G = true,
           -- print = true,
