@@ -9,32 +9,56 @@ local lspkind = require("lspkind")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+local source_mapping = {
+  buffer = "[Buffer]",
+  nvim_lsp = "[LSP]",
+  ultisnips = "[UltiSnips]",
+  nvim_lua = "[Lua]",
+  cmp_tabnine = "[T9]",
+  look = "[Look]",
+  path = "[Path]",
+  spell = "[Spell]",
+  calc = "[Calc]",
+  emoji = "[Emoji]",
+  treesitter = "[treesitter]"
+}
+
 cmp.setup {
   formatting = {
-    format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-
-      -- The function below will be called before any actual modifications from lspkind
-      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function(entry, vim_item)
-        -- set a name for each source
-        vim_item.menu = ({
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          ultisnips = "[UltiSnips]",
-          nvim_lua = "[Lua]",
-          -- cmp_tabnine = "[TabNine]",
-          look = "[Look]",
-          path = "[Path]",
-          spell = "[Spell]",
-          calc = "[Calc]",
-          emoji = "[Emoji]",
-          treesitter = "[treesitter]"
-        })[entry.source.name]
-        return vim_item
+    format = function(entry, vim_item)
+      vim_item.kind = lspkind.presets.default[vim_item.kind]
+      local menu = source_mapping[entry.source.name]
+      if entry.source.name == 'cmp_tabnine' then
+        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+          menu = entry.completion_item.data.detail .. ' ' .. menu
+        end
+        vim_item.kind = ''
       end
-    }),
+      vim_item.menu = menu
+      return vim_item
+    end
+    -- format = lspkind.cmp_format({
+    --   mode = 'symbol_text', -- show only symbol annotations
+    --   maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+    --
+    --   -- The function below will be called before any actual modifications from lspkind
+    --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+    --   before = function(entry, vim_item)
+    --     vim_item.kind = lspkind.presets.default[vim_item.kind]
+    --
+    --     local menu = source_mapping[entry.source.name]
+    --     if entry.source.name == "cmp_tabnine" then
+    --       print("hello")
+    --       if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+    --         menu = entry.completion_item.data.detail .. " " .. menu
+    --       end
+    --       vim_item.kind = ""
+    --     end
+    --
+    --     vim_item.menu = menu
+    --     return vim_item
+    --   end
+    -- }),
   },
   mapping = {
     ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -124,16 +148,17 @@ cmp.setup {
     end
   },
   sources = {
+    { name = "cmp_tabnine" },
     { name = "buffer" },
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "nvim_lua" },
-    { name = "look" },
     { name = "path" },
-    { name = "calc" },
-    { name = "spell" },
+    { name = "nvim_lsp" },
     { name = "emoji" },
-    { name = "treesitter" } -- {name = 'cmp_tabnine'}
+    { name = "luasnip" },
+    { name = "calc" },
+    { name = "nvim_lua" },
+    -- { name = "spell" },
+    -- { name = "look" },
+    -- { name = "treesitter" }
   },
   completion = { completeopt = "menu,menuone,noinsert" }
 }
@@ -175,6 +200,20 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = 
 -- )
 
 -- TabNine
+local tabnine = require('cmp_tabnine.config')
+tabnine:setup({
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+  run_on_every_keystroke = true,
+  snippet_placeholder = '..',
+  ignored_file_types = {
+    -- default is not to ignore
+    -- uncomment to ignore in lua:
+    -- lua = true
+  },
+  show_prediction_strength = false
+})
 --   local tabnine = require("cmp_tabnine.config")
 --   tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
 --

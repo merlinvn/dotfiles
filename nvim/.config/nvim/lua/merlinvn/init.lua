@@ -5,10 +5,11 @@ require("merlinvn.telescope")
 -- require("merlinvn.neogit")
 
 local augroup = vim.api.nvim_create_augroup
-MerlinVnGroup = augroup('MerlinVn', {})
-
 local autocmd = vim.api.nvim_create_autocmd
+
+local MerlinVnGroup = augroup('MerlinVn', {})
 local yank_group = augroup('HighlightYank', {})
+
 
 autocmd('TextYankPost', {
   group = yank_group,
@@ -34,6 +35,7 @@ autocmd({ "BufWritePre" }, {
   pattern = "*",
   command = "%s/\\s\\+$//e",
 })
+
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0

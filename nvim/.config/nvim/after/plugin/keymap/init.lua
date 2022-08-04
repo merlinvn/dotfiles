@@ -72,6 +72,10 @@ nnoremap("<C-p>", '"*p')
 -- copy whole text in file
 nnoremap("yz", ":%y+<CR>")
 
+-- replace selected in visual mode, by yank current selection to register h, then
+-- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
+vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>')
+
 -- buffers navigation
 nnoremap("<Leader>bd", ":bd<CR>")
 

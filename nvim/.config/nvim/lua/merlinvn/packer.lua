@@ -26,8 +26,8 @@ return require("packer").startup(
 
     -- All the things
     use("neovim/nvim-lspconfig")
-    use("williamboman/nvim-lsp-installer")
     use("onsails/lspkind-nvim")
+    use("williamboman/nvim-lsp-installer")
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
@@ -49,17 +49,16 @@ return require("packer").startup(
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-calc",
         "hrsh7th/cmp-emoji",
-        "octaltree/cmp-look",
-        "f3fora/cmp-spell",
-        "ray-x/cmp-treesitter",
         "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip"
+        "saadparwaiz1/cmp_luasnip",
+        -- "ray-x/cmp-treesitter",
+        -- "f3fora/cmp-spell",
+        -- "octaltree/cmp-look",
       }
     }
 
     use "rafamadriz/friendly-snippets"
 
-    --use("tzachar/cmp-tabnine", {run = "./install.sh"})
 
     use(
       "nvim-treesitter/nvim-treesitter",
@@ -108,9 +107,9 @@ return require("packer").startup(
     -- use("romgrk/nvim-treesitter-context")
 
     -- Debug
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
-    use("theHamsta/nvim-dap-virtual-text")
+    -- use("mfussenegger/nvim-dap")
+    -- use("rcarriga/nvim-dap-ui")
+    -- use("theHamsta/nvim-dap-virtual-text")
 
     -- -- status line
     -- use {
@@ -128,7 +127,9 @@ return require("packer").startup(
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
-    --
-    use("github/copilot.vim")
+
+    -- AI assistant
+    use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+    -- use("github/copilot.vim")
   end
 )
