@@ -24,7 +24,7 @@ inoremap("<C-q>", "<Esc>:q<CR>")
 -- nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
 nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
-nnoremap("<Leader>lr", ":luafile %<CR>")
+nnoremap("<Leader>lr", ":w<cr>:luafile %<CR>")
 
 -- Yank from the current cursor to the end of line
 nnoremap("Y", "y$")
@@ -91,6 +91,28 @@ nmap("<leader>7", "7gt")
 nmap("<leader>8", "8gt")
 nmap("<leader>9", "9gt")
 nmap("<leader>0", ":tablast<cr>")
+
+nnoremap("t", "<nop>")
+nnoremap("tn", ":tabn<CR>")
+nnoremap("tp", ":tabp<CR>")
+-- c for create
+nnoremap("tc", ":tabnew<CR>")
+-- x for close
+nnoremap("tx", ":tabclose<CR>")
+nnoremap("tml", ":tabm-<cr>")
+nnoremap("tmr", ":tabm+<cr>")
+
+-- move to a specific tab number is not corect yet
+-- nmap("tm0", ":tabm 1<cr>")
+-- nmap("tm1", ":tabm 1<cr>")
+-- nmap("tm2", ":tabm 2<cr>")
+-- nmap("tm3", ":tabm 3<cr>")
+-- nmap("tm4", ":tabm 4<cr>")
+-- nmap("tm5", ":tabm 5<cr>")
+-- nmap("tm6", ":tabm 6<cr>")
+-- nmap("tm7", ":tabm 7<cr>")
+-- nmap("tm8", ":tabm 8<cr>")
+-- nmap("tm9", ":tabm 9<cr>")
 
 if vim.g.isColemakDH then
   -- move line up down

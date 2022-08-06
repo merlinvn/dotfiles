@@ -1,7 +1,7 @@
 local actions = require("telescope.actions")
 require("telescope").setup {
   defaults = {
-    file_sorter = require "telescope.sorters".get_fuzzy_sorter,
+    -- file_sorter = require "telescope.sorters".get_fuzzy_file(),
     prompt_prefix = " > ",
     color_devicons = true,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -30,7 +30,7 @@ require("telescope").setup {
   extensions = {
     fzf = {
       fuzzy = true,
-      override_generic_sorter = false,
+      override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = "smart_case" -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
@@ -47,6 +47,17 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
 -- require("telescope").load_extension("fzy_native")
 local M = {}
+
+function M.reload_modules()
+  -- from ThePrimeagen
+  -- Because TJ gave it to me.  Makes me happpy.  Put it next to his other
+  -- awesome things.
+  local lua_dirs = vim.fn.glob("./lua/*", 0, 1)
+  for _, dir in ipairs(lua_dirs) do
+    dir = string.gsub(dir, "./lua/", "")
+    require("plenary.reload").reload_module(dir)
+  end
+end
 
 local action_state = require "telescope.actions.state"
 local themes = require "telescope.themes"
@@ -66,70 +77,64 @@ if vim.fn.has("win32") == 1 then
   dotfiles_path = "~/.config"
 end
 
-M.edit_dotfiles = function()
-  require("telescope.builtin").find_files(
-    {
-      prompt_title = "< My dotfiles >",
-      cwd = dotfiles_path,
-      find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
-    }
-  )
-end
+local opts_with_preview, opts_without_preview
 
-M.project_files = function()
-  local opts = {
-    find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
-  } -- define here if you want to define something
-  local ok = pcall(require "telescope.builtin".git_files, opts)
-  if not ok then
-    require "telescope.builtin".find_files(opts)
-  end
-end
+opts_with_preview = {
+  prompt_title = "~ dotfiles ~",
+  shorten_path = false,
+  cwd = "~/.config/nvim",
 
-M.edit_neovim = function()
-  local opts_with_preview, opts_without_preview
+  layout_strategy = "flex",
+  layout_config = {
+    width = 0.9,
+    height = 0.8,
 
-  opts_with_preview = {
-    prompt_title = "~ dotfiles ~",
-    shorten_path = false,
-    cwd = "~/.config/nvim",
+    horizontal = {
+      width = { padding = 0.15 },
+    },
+    vertical = {
+      preview_height = 0.75,
+    },
+  },
 
-    layout_strategy = "flex",
-    -- layout_config = {
-    --   width = 0.9,
-    --   height = 0.8,
+  mappings = {
+    i = {
+      ["<C-y>"] = false,
+    },
+  },
 
-    --   horizontal = {
-    --     width = { padding = 0.15 },
-    --   },
-    --   vertical = {
-    --     preview_height = 0.75,
-    --   },
-    -- },
-
-    -- mappings = {
-    --   i = {
-    --     ["<C-y>"] = false,
-    --   },
-    -- },
-
-    attach_mappings = function(_, map)
-      map("i", "<c-y>", set_prompt_to_entry_value)
-      map("i", "<M-c>", function(prompt_bufnr)
-        actions.close(prompt_bufnr)
-        vim.schedule(function()
-          require("telescope.builtin").find_files(opts_without_preview)
-        end)
+  attach_mappings = function(_, map)
+    map("i", "<c-y>", set_prompt_to_entry_value)
+    map("i", "<M-c>", function(prompt_bufnr)
+      actions.close(prompt_bufnr)
+      vim.schedule(function()
+        require("telescope.builtin").find_files(opts_without_preview)
       end)
+    end)
 
-      return true
-    end,
+    return true
+  end,
+}
+
+opts_without_preview = vim.deepcopy(opts_with_preview)
+opts_without_preview.previewer = false
+
+M.edit_dotfiles = function()
+  local opts = vim.deepcopy(opts_without_preview)
+  local m = {
+    prompt_title = "< My dotfiles >",
+    cwd = dotfiles_path,
+    find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
   }
 
-  opts_without_preview = vim.deepcopy(opts_with_preview)
-  opts_without_preview.previewer = false
+  for k, v in pairs(m) do opts[k] = v end
 
-  require("telescope.builtin").find_files(opts_with_preview)
+  require("telescope.builtin").find_files(opts)
+end
+
+
+M.edit_neovim = function()
+  require("telescope.builtin").find_files(opts_without_preview)
 end
 
 function M.grep_string(opts)
@@ -231,16 +236,36 @@ function M.file_browser()
   require("telescope").extensions.file_browser.file_browser(opts)
 end
 
+-- find all files but respect the .gitignore
 function M.fd()
-  -- local opts = themes.get_ivy {
-  --   hidden = false,
-  --   sorting_strategy = "ascending",
-  --   layout_config = { height = 9 },
-  -- }
-  require("telescope.builtin").fd {
+  local opts = {
+    hidden = true,
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
-    layout_config = {}
+    layout_config = {
+      -- height = 9
+    },
+    find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
+  }
+  require("telescope.builtin").fd(opts)
+end
+
+-- use git_files as source, if not in git folder use the normal fd
+M.project_files = function()
+  local opts = {
+    -- find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
+  } -- define here if you want to define something
+  local ok = pcall(require "telescope.builtin".git_files, opts)
+  if not ok then
+    M.fd()
+  end
+end
+
+-- all hidden files include ignored files but not include the .git folder
+function M.search_all_files()
+  require("telescope.builtin").find_files {
+    hidden = true,
+    find_command = { "rg", "--no-ignore", "--files", "-g", "!.git/" }
   }
 end
 
@@ -277,9 +302,15 @@ function M.search_only_certain_files()
 end
 
 function M.buffers()
-  require("telescope.builtin").buffers {
-    shorten_path = false
+  local opts = themes.get_ivy {
+    shorten_path = false,
+    border = true,
+    layout_config = {
+      height = 9,
+    },
+    previewer = false
   }
+  require("telescope.builtin").buffers(opts)
 end
 
 function M.curbuf()
@@ -296,12 +327,6 @@ end
 function M.help_tags()
   require("telescope.builtin").help_tags {
     show_version = true
-  }
-end
-
-function M.search_all_files()
-  require("telescope.builtin").find_files {
-    find_command = { "rg", "--no-ignore", "--files" }
   }
 end
 

@@ -44,7 +44,7 @@ nnoremap("<leader>tn", "<cmd>lua require('merlinvn.telescope').edit_neovim()<cr>
 
 nnoremap("gd", ":lua require('telescope.builtin').lsp_definitions()<CR>")
 nnoremap("gi", ":lua require('telescope.builtin').lsp_implementations()<CR>")
-nnoremap("gt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>")
+-- nnoremap("gt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>")
 nnoremap("gr", ":lua require('telescope.builtin').lsp_references()<CR>")
 
 -- nnoremap ("gh", ":lua vim.lsp.buf.signature_help()<CR>")
