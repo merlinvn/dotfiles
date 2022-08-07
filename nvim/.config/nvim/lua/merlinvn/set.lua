@@ -1,6 +1,10 @@
 vim.g.isColemakDH = true
 vim.g.mapleader = " "
 
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
 if vim.fn.has("mac") == 1 then
   vim.opt.shell = "/bin/zsh"
 end
@@ -87,3 +91,4 @@ vim.opt.writebackup = false
 vim.opt.shortmess:append("c")
 
 vim.opt.colorcolumn = tostring(width) --Line length marker
+
