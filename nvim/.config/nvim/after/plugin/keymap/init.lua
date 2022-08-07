@@ -23,7 +23,7 @@ inoremap("<C-q>", "<Esc>:q<CR>")
 -- Edit vimr configuration file
 -- nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
-nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
+-- nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
 nnoremap("<Leader>lr", ":w<cr>:luafile %<CR>")
 
 -- Yank from the current cursor to the end of line
@@ -36,48 +36,29 @@ inoremap("!", "!<c-g>u")
 inoremap("[", "[<c-g>u")
 inoremap("?", "?<c-g>u")
 
+-- windows navigation
+nnoremap("<leader>h", ":wincmd h<CR>")
+nnoremap("<leader>j", ":wincmd j<CR>")
+nnoremap("<leader>k", ":wincmd k<CR>")
+nnoremap("<leader>l", ":wincmd l<CR>")
+
+-- windows navigation for colemak
+nnoremap("<leader>n", ":wincmd h<CR>")
+nnoremap("<leader>e", ":wincmd j<CR>")
+nnoremap("<leader>u", ":wincmd k<CR>")
+nnoremap("<leader>i", ":wincmd l<CR>")
+
 nnoremap("<leader><left>", ":wincmd h<CR>")
 nnoremap("<leader><down>", ":wincmd j<CR>")
 nnoremap("<leader><up>", ":wincmd k<CR>")
 nnoremap("<leader><right>", ":wincmd l<CR>")
 
-nnoremap("<C-down>", ":m .+1<CR>==")
-nnoremap("<C-up>", ":m .-2<CR>==")
-inoremap("<C-down>", "<Esc>:m .+1<CR>==gi")
-inoremap("<C-up>", "<Esc>:m .-2<CR>==gi")
-vnoremap("<C-down>", ":m '>+1<CR>gv=gv")
-vnoremap("<C-up>", ":m '<-2<CR>gv=gv")
-
--- Go to next / previous, center with zz, and zv to open fold
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
-
-nnoremap("<C-d>", "<C-d>zz")
-nnoremap("<C-u>", "<C-u>zz")
-
--- join and stay in the same line
-nnoremap("J", "mzJ`z")
--- jump list mutation
-nnoremap("<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'")
-nnoremap("<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
-
--- better p
--- nnoremap(",p", '"0p')
--- nnoremap(",P", '"0p')
-
--- paste from clipboard
-nnoremap("<C-p>", '"*p')
--- nnoremap( "<C-f>", '"*P' )
-
--- copy whole text in file
-nnoremap("yz", ":%y+<CR>")
-
--- replace selected in visual mode, by yank current selection to register h, then
--- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
-vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>')
-
+-- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-nnoremap("<Leader>bd", ":bd<CR>")
+nnoremap("<S-h>", ":bprevious<cr>")
+nnoremap("<S-l>", ":bnext<cr>")
+nnoremap("<S-left>", ":bprevious<cr>")
+nnoremap("<S-right>", ":bnext<cr>")
 
 -- tab navigation
 -- Go to tab by number
@@ -93,83 +74,71 @@ nmap("<leader>9", "9gt")
 nmap("<leader>0", ":tablast<cr>")
 
 nnoremap("t", "<nop>")
-nnoremap("tn", ":tabn<CR>")
-nnoremap("tp", ":tabp<CR>")
+nnoremap("<C-l>", ":tabn<CR>")
+nnoremap("<C-h>", ":tabp<CR>")
+nnoremap("<C-right>", ":tabn<CR>")
+nnoremap("<C-left>", ":tabp<CR>")
 -- c for create
 nnoremap("tc", ":tabnew<CR>")
 -- x for close
 nnoremap("tx", ":tabclose<CR>")
-nnoremap("tml", ":tabm-<cr>")
-nnoremap("tmr", ":tabm+<cr>")
 
--- move to a specific tab number is not corect yet
--- nmap("tm0", ":tabm 1<cr>")
--- nmap("tm1", ":tabm 1<cr>")
--- nmap("tm2", ":tabm 2<cr>")
--- nmap("tm3", ":tabm 3<cr>")
--- nmap("tm4", ":tabm 4<cr>")
--- nmap("tm5", ":tabm 5<cr>")
--- nmap("tm6", ":tabm 6<cr>")
--- nmap("tm7", ":tabm 7<cr>")
--- nmap("tm8", ":tabm 8<cr>")
--- nmap("tm9", ":tabm 9<cr>")
+--move tab left right
+nnoremap("<C-S-h>", ":tabm-<cr>")
+nnoremap("<C-S-l>", ":tabm+<cr>")
+nnoremap("<C-S-left>", ":tabm-<cr>")
+nnoremap("<C-S-right>", ":tabm+<cr>")
 
-if vim.g.isColemakDH then
-  -- move line up down
-  --   -- MNEI arrows.
-  --   nnoremap("m", "h")
-  --   nnoremap("n", "j")
-  --   nnoremap("e", "k")
-  --   nnoremap("i", "l")
-  --   nnoremap("gn", "gj")
-  --   nnoremap("gi", "gk")
-  --   -- In(s)ert. The default s/S is synonymous with cl/cc and is not very useful.
-  --   nnoremap("s", "i")
-  --   nnoremap("S", "I")
-  --
-  --   -- BOL/EOL/ Join line
-  --   nnoremap("l", "^")
-  --   nnoremap("L", "$")
-  --   -- join and stay in the same line
-  --   nnoremap("<C-l>", "mzJ`z")
-  --
-  --   -- remap bottom line
-  --   -- nnoremap("N", "L")
-  --
-  --   -- _r_ = inneR text objects
-  --   onoremap("r", "i")
-  --
-  --   -- end of word
-  --   nnoremap("j", "e")
-  --   nnoremap("J", "E")
-  --
-  --   -- Go to next / previous, center with zz, and zv to open fold
-  --   nnoremap("k", "nzzzv")
-  --   nnoremap("K", "Nzzzv")
-  -- nnoremap( "<C-e>", ":m .-2<CR>==" )
-  -- inoremap( "<C-n>", "<Esc>:m .+1<CR>==gi" )
-  -- inoremap( "<C-e>", "<Esc>:m .-2<CR>==gi" )
-  -- nnoremap( "<C-n>", ":m .+1<CR>==" )
-  -- vnoremap( "<C-n>", ":m '>+1<CR>gv=gv" )
-  -- vnoremap( "<C-e>", ":m '<-2<CR>gv=gv" )
-  --
-  nnoremap("<leader>n", ":wincmd h<CR>")
-  nnoremap("<leader>e", ":wincmd j<CR>")
-  nnoremap("<leader>u", ":wincmd k<CR>")
-  nnoremap("<leader>i", ":wincmd l<CR>")
-else
-  nnoremap("<C-j>", ":m .+1<CR>==")
-  nnoremap("<C-k>", ":m .-2<CR>==")
-  inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
-  inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
-  vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
-  vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
+-- move line up / down
+nnoremap("<C-j>", ":m .+1<CR>==")
+nnoremap("<C-k>", ":m .-2<CR>==")
+inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
+inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
+vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
+vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
 
-  nnoremap("<leader>h", ":wincmd h<CR>")
-  nnoremap("<leader>j", ":wincmd j<CR>")
-  nnoremap("<leader>k", ":wincmd k<CR>")
-  nnoremap("<leader>l", ":wincmd l<CR>")
-end
+nnoremap("<C-down>", ":m .+1<CR>==")
+nnoremap("<C-up>", ":m .-2<CR>==")
+inoremap("<C-down>", "<Esc>:m .+1<CR>==gi")
+inoremap("<C-up>", "<Esc>:m .-2<CR>==gi")
+vnoremap("<C-down>", ":m '>+1<CR>gv=gv")
+vnoremap("<C-up>", ":m '<-2<CR>gv=gv")
+
+-- Go to next / previous, center with zz, and zv to open fold
+nnoremap("n", "nzzzv")
+nnoremap("N", "Nzzzv")
+
+-- scroll and stay in center
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+
+-- join and stay in the same line
+nnoremap("J", "mzJ`z")
+-- jump list mutation
+nnoremap("<expr> k", "(v:count > 5 ? 'm'' . v:count : '') . 'k'")
+nnoremap("<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
+
+-- indent and stay in visual
+vnoremap(">", ">gv")
+vnoremap("<", "<gv")
+
+
+-- better p
+-- nnoremap(",p", '"0p')
+-- nnoremap(",P", '"0p')
+vnoremap("p", '"_dP')
+
+-- paste from clipboard
+nnoremap("<C-p>", '"*p')
+-- nnoremap( "<C-f>", '"*P' )
+
+-- copy whole text in file
+nnoremap("yz", ":%y+<CR>")
+
+-- replace selected in visual mode, by yank current selection to register h, then
+-- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
+vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>')
+
 
 if vim.fn.has('win32') then
   nnoremap("<C-z", "<nop>")

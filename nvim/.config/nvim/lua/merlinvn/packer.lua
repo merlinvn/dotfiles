@@ -69,7 +69,6 @@ return require("packer").startup(
 
     -- utilitis
     -- use "tpope/vim-surround" -- Surround text objects easily
-
     use {
       "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
