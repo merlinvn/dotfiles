@@ -14,6 +14,13 @@ return require("packer").startup(
     use { "nvim-telescope/telescope-ui-select.nvim" }
     use { "nvim-telescope/telescope-smart-history.nvim" }
 
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {}
+      end
+    }
     -- Simple plugins can be specified as strings
     use("TimUntersberger/neogit")
     -- use "airblade/vim-gitgutter"
