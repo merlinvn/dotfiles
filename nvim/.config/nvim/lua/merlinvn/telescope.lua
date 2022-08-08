@@ -12,7 +12,7 @@ require("telescope").setup {
     mappings = {
       i = {
         ["<C-q>"] = actions.send_to_qflist,
-        ["<c-t>"] = trouble.open_with_trouble
+        -- ["<c-t>"] = trouble.open_with_trouble
       },
       n = { ["<c-t>"] = trouble.open_with_trouble },
     },

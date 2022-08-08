@@ -78,7 +78,7 @@ nnoremap("<C-h>", ":tabp<CR>")
 nnoremap("<C-right>", ":tabn<CR>")
 nnoremap("<C-left>", ":tabp<CR>")
 -- c for create
-nnoremap("<C-t>", ":tabnew<CR>")
+nnoremap("<C-t>", "<C-w>s<C-w>T")
 -- x for close
 nnoremap("<C-x>", ":tabclose<CR>")
 
