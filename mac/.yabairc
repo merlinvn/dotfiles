@@ -46,9 +46,11 @@ yabai -m config right_padding                0
 yabai -m config window_gap                   06
 
 # status bar
-# add 20 padding to the top and 0 padding to the bottom of every space located on the main display
+# add 20 padding to the top and 0 padding to the bottom of every space located
+# on the main display
 # yabai -m config external_bar main:20:0
-# add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
+# add 20 padding to the top and bottom of all spaces regardless of the display
+# it belongs to
 # yabai -m config external_bar all:20:20
 
 
@@ -74,7 +76,7 @@ yabai -m space 6 --label chat
 # yabai -m space term --display 3
 
 # yabai -m rule --add app=kitty space=term
-# yabai -m rule --add app=Finder space=files
+yabai -m rule --add app=Finder space=files
 # yabai -m rule --add app=Code space=code
 # yabai -m rule --add app=Safari space=browser
 # yabai -m rule --add app="Brave Browser" space=browser
@@ -82,6 +84,7 @@ yabai -m space 6 --label chat
 # yabai -m rule --add app=Telegram space=chat
 
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add title="^Preferences" manage=off
 
 
 
