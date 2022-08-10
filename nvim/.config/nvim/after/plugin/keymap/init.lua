@@ -73,11 +73,12 @@ nmap("<leader>8", "8gt")
 nmap("<leader>9", "9gt")
 nmap("<leader>0", ":tablast<cr>")
 
-nnoremap("<C-l>", ":tabn<CR>")
-nnoremap("<C-h>", ":tabp<CR>")
-nnoremap("<C-right>", ":tabn<CR>")
-nnoremap("<C-left>", ":tabp<CR>")
--- c for create
+-- nnoremap("<C-l>", ":tabn<CR>")
+-- nnoremap("<C-h>", ":tabp<CR>")
+-- nnoremap("<C-right>", ":tabn<CR>")
+-- nnoremap("<C-left>", ":tabp<CR>")
+
+-- create new tab
 nnoremap("<C-t>", "<C-w>s<C-w>T")
 -- x for close
 nnoremap("<C-x>", ":tabclose<CR>")

@@ -1,19 +1,35 @@
+local status, nvim_lsp = pcall(require, "lspconfig")
+if (not status) then return end
+
+local protocol = require('vim.lsp.protocol')
+
 local nnoremap = require("merlinvn.keymap").nnoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Diagnostics symbols for display in the sign column.
-vim.cmd("sign define LspDiagnosticsSignError text=")
-vim.cmd("sign define LspDiagnosticsSignWarning text=")
-vim.cmd("sign define LspDiagnosticsSignInformation text=")
-vim.cmd("sign define LspDiagnosticsSignHint text=")
+-- Diagnostic symbols in the sign column (gutter)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●'
+  },
+  update_in_insert = true,
+  float = {
+    source = "always", -- Or "if_many"
+  },
+})
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 require("nvim-lsp-installer").setup {}
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
 nnoremap(
   "go",
   function()
@@ -21,17 +37,18 @@ nnoremap(
   end
 )
 
-nnoremap("gp", function()
-  vim.diagnostic.goto_prev()
-end)
-
-nnoremap("gn", function()
-  vim.diagnostic.goto_next()
-end)
-
+-- use lspsaga
+-- nnoremap("gp", function()
+--   vim.diagnostic.goto_prev()
+-- end)
+--
+-- nnoremap("gn", function()
+--   vim.diagnostic.goto_next()
+-- end)
+--
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(cient, bufnr)
+local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -40,25 +57,32 @@ local on_attach = function(cient, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting_seq_sync, bufopts)
   -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
+
+
+  -- format on save
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("Format", { clear = true }),
+      buffer = bufnr,
+      callback = function() vim.lsp.buf.formatting_seq_sync() end
+    })
+  end
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
   "pyright",
   "rust_analyzer",
-  "tsserver",
-  "hls",
-  "tsserver",
   "yamlls",
   "tailwindcss",
   "gopls",
@@ -76,8 +100,14 @@ for _, lsp in pairs(servers) do
     }
   }
 end
+-- TypeScript
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+}
 
-require "lspconfig".sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -127,7 +157,7 @@ require "lspconfig".sumneko_lua.setup {
   }
 }
 
-require "lspconfig".clangd.setup {
+nvim_lsp.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {
@@ -144,14 +174,14 @@ require "lspconfig".clangd.setup {
   }
 }
 
-require "lspconfig".cmake.setup{}
+nvim_lsp.cmake.setup {}
 
--- require "lspconfig".html.setup {
+-- nvim_lsp.html.setup {
 --   filetypes = { "html", "eruby" },
 --   capabilities = capabilities
 -- }
 
--- require "lspconfig".jsonls.setup {
+-- nvim_lsp.jsonls.setup {
 --   commands = {
 --     Format = {
 --       function()
@@ -160,3 +190,31 @@ require "lspconfig".cmake.setup{}
 --     }
 --   }
 -- }
+
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}

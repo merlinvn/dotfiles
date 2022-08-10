@@ -1,5 +1,13 @@
-return require("packer").startup(
-  function()
+local status, packer = pcall(require, "packer")
+if (not status) then
+  print("Packer is not installed")
+  return
+end
+
+vim.cmd [[packadd packer.nvim]]
+
+packer.startup(
+  function(use)
     use("wbthomason/packer.nvim")
     use("sbdchd/neoformat")
 
@@ -47,12 +55,19 @@ return require("packer").startup(
       end
     }
 
+    -- Null lsp
+    use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+    use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+
     use {
       "hrsh7th/nvim-cmp",
       requires = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-calc",
         "hrsh7th/cmp-emoji",
@@ -78,7 +93,15 @@ return require("packer").startup(
     -- use "tpope/vim-surround" -- Surround text objects easily
     use {
       "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
+      config = function() require("nvim-autopairs").setup {
+          disable_filetype = { "TelescopePromp", "vim" }
+        }
+      end
+    }
+
+    use {
+      "windwp/nvim-ts-autotag",
+      config = function() require("nvim-ts-autotag").setup() end
     }
 
     -- Navigation
@@ -117,14 +140,18 @@ return require("packer").startup(
     -- use("rcarriga/nvim-dap-ui")
     -- use("theHamsta/nvim-dap-virtual-text")
 
+    -- UI improvement
+    -- dashboard
+    use "mhinz/vim-startify"
+
+    -- bufferline for tab title
+    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+
     -- -- status line
-    -- use {
-    --   "hoob3rt/lualine.nvim",
-    --   requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    --   config = function()
-    --     require("lualine").setup { options = { theme = "onedark" } }
-    --   end
-    -- }
+    use {
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true }
+    }
     --
     -- GUI Keymaps
     use 'anuvyklack/hydra.nvim'
@@ -133,6 +160,7 @@ return require("packer").startup(
     -- Colorscheme section
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
+    use("tjdevries/colorbuddy.nvim")
 
     -- AI assistant
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }

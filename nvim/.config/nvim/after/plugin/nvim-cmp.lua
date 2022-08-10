@@ -2,8 +2,9 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+local status, cmp = pcall(require, "cmp")
+if (not status) then return end
 
-local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
@@ -24,6 +25,11 @@ local source_mapping = {
 }
 
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end
+  },
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = lspkind.presets.default[vim_item.kind]
@@ -61,9 +67,11 @@ cmp.setup {
     -- }),
   },
   mapping = {
-    ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-y>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<C-s>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-t>"] = cmp.mapping.scroll_docs(4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-o>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
     ["<CR>"] = cmp.mapping(
       {
@@ -103,8 +111,12 @@ cmp.setup {
       end,
       { "i", "s" }
     ),
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Select
+    }), { "i" }),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
+      behavior = cmp.SelectBehavior.Select
+    }), { "i" }),
     ["<C-e>"] = cmp.mapping(
       {
         c = function()
@@ -140,22 +152,55 @@ cmp.setup {
           end
         end
       }
+    ),
+    ["<C-j>"] = cmp.mapping(
+      {
+        c = function()
+          if cmp.visible() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+          end
+        end,
+        i = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end
+      }
+    ),
+    ["<C-k>"] = cmp.mapping(
+      {
+        c = function()
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+          end
+        end,
+        i = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end
+      }
     )
-  },
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end
   },
   sources = {
     { name = "cmp_tabnine" },
+    { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp_document_symbol" },
+    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "nvim_lsp" },
     { name = "emoji" },
-    { name = "luasnip" },
-    { name = "calc" },
     { name = "nvim_lua" },
+    -- { name = "calc" },
     -- { name = "spell" },
     -- { name = "look" },
     -- { name = "treesitter" }
@@ -163,6 +208,9 @@ cmp.setup {
   completion = { completeopt = "menu,menuone,noinsert" }
 }
 
+vim.cmd [[
+  highlight! default link CmpItemKind CmpItemMenuDefault
+]]
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(
   "/",
