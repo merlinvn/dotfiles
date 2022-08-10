@@ -129,6 +129,7 @@ vnoremap("p", '"_dP')
 
 -- paste from clipboard
 nnoremap("<C-p>", '"*p')
+inoremap("<C-p>", '<esc>"*pi')
 -- nnoremap( "<C-f>", '"*P' )
 
 -- copy whole text in file
