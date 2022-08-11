@@ -15,6 +15,8 @@ nnoremap("<leader>fe", ":Ex<CR>")
 nnoremap("<C-s>", ":up<CR>")
 inoremap("<C-s>", "<Esc>:w<CR>a")
 
+nnoremap("<D-s>", ":up<CR>")
+inoremap("<D-s>", "<Esc>:w<CR>a")
 -- remap quit
 nnoremap("<Leader>q", ":bd<CR>")
 nnoremap("<C-q>", ":q<CR>")

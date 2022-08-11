@@ -23,7 +23,7 @@ nnoremap("<leader>tz", "<cmd>lua require('merlinvn.telescope').search_only_certa
 
 
 -- SEARCH
-nnoremap("<leader>t/", "<cmd>lua require('merlinvn.telescope').curbuf()<cr>")
+-- nnoremap("<leader>t/", "<cmd>lua require('merlinvn.telescope').curbuf()<cr>")
 -- search word under cursor
 nnoremap("<leader>tw", "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>")
 
