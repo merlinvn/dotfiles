@@ -90,14 +90,22 @@ packer.startup(
     )
 
     -- utilitis
-    -- use "tpope/vim-surround" -- Surround text objects easily
-    use {
-      "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {
-          disable_filetype = { "TelescopePromp", "vim" }
-        }
+    use({
+      "kylechui/nvim-surround",
+      config = function()
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+        })
       end
-    }
+    })
+    -- use "tpope/vim-surround" -- Surround text objects easily
+    -- use {
+    --   "windwp/nvim-autopairs",
+    --   config = function() require("nvim-autopairs").setup {
+    --       disable_filetype = { "TelescopePromp", "vim" }
+    --     }
+    --   end
+    -- }
 
     use {
       "windwp/nvim-ts-autotag",
@@ -143,9 +151,6 @@ packer.startup(
     -- UI improvement
     -- dashboard
     use "mhinz/vim-startify"
-
-    -- bufferline for tab title
-    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
 
     -- -- status line
     use {

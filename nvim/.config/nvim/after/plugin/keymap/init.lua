@@ -7,16 +7,15 @@ local vnoremap = require("merlinvn.keymap").vnoremap
 local onoremap = require("merlinvn.keymap").onoremap
 
 -- turn off hightlight search
-nnoremap("<Leader><Esc>", ":nohlsearch<CR>")
-nnoremap("<leader>fe", ":Ex<CR>")
+nnoremap("<Leader><Esc>", ":nohlsearch<CR>", { desc = "Turn off search highlight" })
+nnoremap("<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
 nnoremap("<C-s>", ":up<CR>")
 inoremap("<C-s>", "<Esc>:w<CR>a")
+nnoremap("<leader>s", ":up<CR>")
 
-nnoremap("<D-s>", ":up<CR>")
-inoremap("<D-s>", "<Esc>:w<CR>a")
 -- remap quit
 nnoremap("<Leader>q", ":bd<CR>")
 nnoremap("<C-q>", ":q<CR>")
@@ -26,10 +25,11 @@ inoremap("<C-q>", "<Esc>:q<CR>")
 -- nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
 -- nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
-nnoremap("<Leader>lr", ":w<cr>:luafile %<CR>")
+nnoremap("<Leader>lr", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile" })
 
 -- Yank from the current cursor to the end of line
-nnoremap("Y", "y$")
+nnoremap("Y", "y$", { desc = "Yank from the current cursor to the end of line" })
+
 
 -- undo break points
 inoremap(",", ",<c-g>u")
@@ -75,15 +75,13 @@ nmap("<leader>8", "8gt")
 nmap("<leader>9", "9gt")
 nmap("<leader>0", ":tablast<cr>")
 
--- nnoremap("<C-l>", ":tabn<CR>")
--- nnoremap("<C-h>", ":tabp<CR>")
--- nnoremap("<C-right>", ":tabn<CR>")
--- nnoremap("<C-left>", ":tabp<CR>")
-
 -- create new tab
 nnoremap("<C-t>", "<C-w>s<C-w>T")
 -- x for close
 nnoremap("<C-x>", ":tabclose<CR>")
+
+nnoremap("<tab>", ":tabnext<cr>")
+nnoremap("<S-tab>", ":tabprevious<cr>")
 
 --move tab left right
 nnoremap("<C-S-h>", ":tabm-<cr>")
