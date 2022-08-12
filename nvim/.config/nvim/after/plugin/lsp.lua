@@ -83,7 +83,7 @@ end
 local servers = {
   "pyright",
   "rust_analyzer",
-  "yamlls",
+  -- "yamlls",
   "tailwindcss",
   "gopls",
   "dockerls",

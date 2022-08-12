@@ -123,6 +123,8 @@ packer.startup(
       end
     }
 
+    -- use 'ggandor/lightspeed.nvim'
+
     -- vim.g.any_jump_disable_default_keybindings = 1
     use { "pechorin/any-jump.vim" }
 
@@ -170,5 +172,8 @@ packer.startup(
     -- AI assistant
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     -- use("github/copilot.vim")
+
+    -- Note taking
+
   end
 )

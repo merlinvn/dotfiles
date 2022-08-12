@@ -134,7 +134,7 @@ inoremap("<C-p>", '<esc>"*pi')
 -- nnoremap( "<C-f>", '"*P' )
 
 -- copy whole text in file
-nnoremap("yz", ":%y+<CR>")
+nnoremap("ya", ":%y+<CR>", { desc = "yank All" })
 
 -- replace selected in visual mode, by yank current selection to register h, then
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
