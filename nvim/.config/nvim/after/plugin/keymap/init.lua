@@ -42,7 +42,7 @@ inoremap("?", "?<c-g>u")
 nnoremap("<leader>h", ":wincmd h<CR>")
 nnoremap("<leader>j", ":wincmd j<CR>")
 nnoremap("<leader>k", ":wincmd k<CR>")
-nnoremap("<leader>l", ":wincmd l<CR>")
+-- nnoremap("<leader>l", ":wincmd l<CR>")
 
 -- windows navigation for colemak
 nnoremap("<leader>n", ":wincmd h<CR>")

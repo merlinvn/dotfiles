@@ -139,8 +139,10 @@ packer.startup(
     -- use "machakann/vim-highlightedyank"
 
     -- commenter
-    use "terrortylor/nvim-comment"
-
+    -- use "terrortylor/nvim-comment"
+    use {
+      'numToStr/Comment.nvim',
+    }
     -- treesitter
     --use("nvim-treesitter/playground")
     -- use("romgrk/nvim-treesitter-context")
@@ -162,6 +164,9 @@ packer.startup(
     --
     -- GUI Keymaps
     use 'anuvyklack/hydra.nvim'
+    use {
+      "folke/which-key.nvim",
+    }
     --
     --
     -- Colorscheme section
