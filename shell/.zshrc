@@ -147,3 +147,6 @@ alias anaconda='source  ~/.conda.shellrc'
 # zprof
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+## this is the replacement for j with fzf support
+eval "$(zoxide init zsh)"
