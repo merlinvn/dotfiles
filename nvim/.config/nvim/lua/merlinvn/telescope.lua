@@ -32,9 +32,9 @@ if vim.fn.has("win32") == 1 then
   dotfiles_path = "~/.config"
 end
 
-local opts_with_preview, opts_without_preview
+local neovim_opts_with_preview, opts_without_preview
 
-opts_with_preview = {
+neovim_opts_with_preview = {
   prompt_title = "~ dotfiles ~",
   shorten_path = false,
   cwd = "~/.config/nvim",
@@ -71,7 +71,7 @@ opts_with_preview = {
   end,
 }
 
-opts_without_preview = vim.deepcopy(opts_with_preview)
+opts_without_preview = vim.deepcopy(neovim_opts_with_preview)
 opts_without_preview.previewer = false
 
 M.edit_dotfiles = function()
@@ -89,7 +89,14 @@ end
 
 
 M.edit_neovim = function()
-  require("telescope.builtin").find_files(opts_without_preview)
+  local opts = vim.deepcopy(opts_without_preview)
+  local m = {
+    prompt_title = "< Neovim Configurations >",
+    cwd = "~/.config/nvim",
+    find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
+  }
+  for k, v in pairs(m) do opts[k] = v end
+  require("telescope.builtin").find_files(opts)
 end
 
 function M.grep_string(opts)

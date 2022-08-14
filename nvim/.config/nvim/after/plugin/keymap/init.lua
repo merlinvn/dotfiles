@@ -57,9 +57,9 @@ nnoremap("<leader><right>", ":wincmd l<CR>")
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-nnoremap("<S-h>", ":bprevious<cr>")
+nnoremap("<S-h>", ":bprev<cr>")
 nnoremap("<S-l>", ":bnext<cr>")
-nnoremap("<S-left>", ":bprevious<cr>")
+nnoremap("<S-left>", ":bprev<cr>")
 nnoremap("<S-right>", ":bnext<cr>")
 
 -- tab navigation
@@ -132,9 +132,6 @@ vnoremap("p", '"_dP')
 nnoremap("<C-p>", '"*p')
 inoremap("<C-p>", '<esc>"*pi')
 -- nnoremap( "<C-f>", '"*P' )
-
--- copy whole text in file
-nnoremap("ya", ":%y+<CR>", { desc = "yank All" })
 
 -- replace selected in visual mode, by yank current selection to register h, then
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position

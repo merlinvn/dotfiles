@@ -4,7 +4,7 @@ local actions = require('telescope.actions')
 local trouble = require("trouble.providers.telescope")
 telescope.setup {
   defaults = {
-    file_sorter = require "telescope.sorters".get_fuzzy_file(),
+    -- file_sorter = require "telescope.sorters".get_fuzzy_file(),
     prompt_prefix = " > ",
     color_devicons = true,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,

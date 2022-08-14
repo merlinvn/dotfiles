@@ -9,10 +9,12 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(
   function(use)
     use("wbthomason/packer.nvim")
-    use("sbdchd/neoformat")
+
+    use 'lewis6991/impatient.nvim'
 
     -- TJ created lodash of neovim
     use("nvim-lua/plenary.nvim")
+
     use("nvim-lua/popup.nvim")
     use("nvim-telescope/telescope.nvim")
     -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
@@ -46,6 +48,9 @@ packer.startup(
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
+
+    -- third party code format
+    use("sbdchd/neoformat")
 
     -- Better LSP experience
     use {
@@ -154,8 +159,10 @@ packer.startup(
 
     -- UI improvement
     -- dashboard
-    use "mhinz/vim-startify"
-
+    -- use "mhinz/vim-startify"
+    use {
+      'goolord/alpha-nvim',
+    }
     -- -- status line
     use {
       "nvim-lualine/lualine.nvim",
