@@ -145,9 +145,7 @@ packer.startup(
 
     -- commenter
     -- use "terrortylor/nvim-comment"
-    use {
-      'numToStr/Comment.nvim',
-    }
+    use("numToStr/Comment.nvim")
     -- treesitter
     --use("nvim-treesitter/playground")
     -- use("romgrk/nvim-treesitter-context")
@@ -160,9 +158,8 @@ packer.startup(
     -- UI improvement
     -- dashboard
     -- use "mhinz/vim-startify"
-    use {
-      'goolord/alpha-nvim',
-    }
+    use("goolord/alpha-nvim")
+
     -- -- status line
     use {
       "nvim-lualine/lualine.nvim",
@@ -170,7 +167,7 @@ packer.startup(
     }
     --
     -- GUI Keymaps
-    use 'anuvyklack/hydra.nvim'
+    use("anuvyklack/hydra.nvim")
     use {
       "folke/which-key.nvim",
     }
