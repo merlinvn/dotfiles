@@ -151,9 +151,9 @@ packer.startup(
     -- use("romgrk/nvim-treesitter-context")
 
     -- Debug
-    -- use("mfussenegger/nvim-dap")
-    -- use("rcarriga/nvim-dap-ui")
-    -- use("theHamsta/nvim-dap-virtual-text")
+    use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
 
     -- UI improvement
     -- dashboard
@@ -187,5 +187,11 @@ packer.startup(
 
     -- Training & games
     -- use("tjdevries/train.nvim")
+
+
+    -- Langague specific
+    -- Rust:
+
+    use("simrat39/rust-tools.nvim")
   end
 )
