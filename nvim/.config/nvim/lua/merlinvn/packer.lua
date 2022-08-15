@@ -177,12 +177,15 @@ packer.startup(
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
     use("tjdevries/colorbuddy.nvim")
-
+    use("rebelot/kanagawa.nvim")
     -- AI assistant
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     -- use("github/copilot.vim")
 
     -- Note taking
 
+
+    -- Training & games
+    -- use("tjdevries/train.nvim")
   end
 )

@@ -200,10 +200,10 @@ cmp.setup {
     { name = "path" },
     { name = "emoji" },
     { name = "nvim_lua" },
+    -- { name = "treesitter" },
     -- { name = "calc" },
     -- { name = "spell" },
     -- { name = "look" },
-    -- { name = "treesitter" }
   },
   completion = { completeopt = "menu,menuone,noinsert" }
 }
