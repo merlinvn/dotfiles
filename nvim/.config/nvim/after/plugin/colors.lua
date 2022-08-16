@@ -34,7 +34,7 @@
 }
 require('onedark').load() ]]
 
-require('kanagawa').setup({
+--[[ require('kanagawa').setup({
   undercurl = true, -- enable undercurls
   commentStyle = { italic = true },
   functionStyle = {},
@@ -53,17 +53,23 @@ require('kanagawa').setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme kanagawa") ]]
 
--- vim.g.my_colorscheme = "tokyonight"
+-- vim.cmd("colorscheme oxocarbon")
+vim.g.my_colorscheme = "tokyonight"
+-- vim.g.my_colorscheme = "gruvbox"
 -- vim.g.my_colorscheme = "kanagawa"
+-- vim.g.my_colorscheme = "oxocarbon-lua"
 
 function ColorMyPencils()
   vim.g.gruvbox_contrast_dark = 'hard'
-  vim.g.tokyonight_transparent_sidebar = true
-  vim.g.tokyonight_transparent = true
   vim.g.gruvbox_invert_selection = '0'
-  vim.opt.background = "dark"
+  vim.g.oxocarbon_lua_transparent = false
+  vim.g.oxocarbon_lua_keep_terminal = false
+  vim.g.tokyonight_transparent_sidebar = false
+  vim.g.tokyonight_transparent = false
+  vim.g.tokyonight_style = "night"
+  vim.g.background = "dark"
 
   vim.cmd("colorscheme " .. vim.g.my_colorscheme)
 
@@ -77,7 +83,7 @@ function ColorMyPencils()
 
   hl("ColorColumn", {
     ctermbg = 0,
-    bg = "#555555",
+    bg = "#333333",
   })
 
   hl("CursorLineNR", {
@@ -85,7 +91,8 @@ function ColorMyPencils()
   })
 
   hl("Normal", {
-    bg = "none"
+    -- bg = "#0d0e14"
+    bg = "" -- transparent background
   })
 
   hl("LineNr", {
@@ -98,4 +105,4 @@ function ColorMyPencils()
 
 end
 
--- ColorMyPencils()
+ColorMyPencils()

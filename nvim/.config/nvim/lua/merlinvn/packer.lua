@@ -172,12 +172,15 @@ packer.startup(
       "folke/which-key.nvim",
     }
     --
-    --
+
     -- Colorscheme section
+    use("tjdevries/colorbuddy.nvim")
     use("gruvbox-community/gruvbox")
     use("folke/tokyonight.nvim")
-    use("tjdevries/colorbuddy.nvim")
     use("rebelot/kanagawa.nvim")
+    use("B4mbus/oxocarbon-lua.nvim")
+    -- use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
+
     -- AI assistant
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     -- use("github/copilot.vim")

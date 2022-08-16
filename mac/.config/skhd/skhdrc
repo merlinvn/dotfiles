@@ -103,6 +103,7 @@ alt - i : yabai -m window --focus east
 # cycle all windows on space backwards by coordinate
 shift + alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
 alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+alt - z : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
 
 
 # swap managed window
@@ -234,54 +235,54 @@ shift + alt - p : yabai -m window --toggle sticky;\
 
 
 
-# the following hotkeys are used with external keyboard with "meh" and "hyper" keys.
-meh - n  : index="$(yabai -m query --spaces --display 1 | jq '.[0].index')" &&\
+# the lowing hotkeys are used with external keyboard with "meh" and "hyper" keys.
+alt - f5  : index="$(yabai -m query --spaces --display 1 | jq '.[0].index')" &&\
                   yabai -m space --focus "${index}"
-meh - e  : index="$(yabai -m query --spaces --display 1 | jq '.[1].index')" &&\
+alt - f6  : index="$(yabai -m query --spaces --display 1 | jq '.[1].index')" &&\
                   yabai -m space --focus "${index}"
-meh - i  : index="$(yabai -m query --spaces --display 1 | jq '.[2].index')" &&\
+alt - f7  : index="$(yabai -m query --spaces --display 1 | jq '.[2].index')" &&\
                   yabai -m space --focus "${index}"
-meh - o  : index="$(yabai -m query --spaces --display 1 | jq '.[3].index')" &&\
+alt - f8  : index="$(yabai -m query --spaces --display 1 | jq '.[3].index')" &&\
                   yabai -m space --focus "${index}"
-meh - h  : index="$(yabai -m query --spaces --display 2 | jq '.[0].index')" &&\
+alt - f1  : index="$(yabai -m query --spaces --display 2 | jq '.[0].index')" &&\
                   yabai -m space --focus "${index}"
-meh - 0x2B  : index="$(yabai -m query --spaces --display 2 | jq '.[1].index')" &&\
+alt - f2  : index="$(yabai -m query --spaces --display 2 | jq '.[1].index')" &&\
                   yabai -m space --focus "${index}"
-meh - 0x2F  : index="$(yabai -m query --spaces --display 2 | jq '.[2].index')" &&\
+alt - f3  : index="$(yabai -m query --spaces --display 2 | jq '.[2].index')" &&\
                   yabai -m space --focus "${index}"
-meh - 0x2C  : index="$(yabai -m query --spaces --display 2 | jq '.[3].index')" &&\
+alt - f4  : index="$(yabai -m query --spaces --display 2 | jq '.[3].index')" &&\
                   yabai -m space --focus "${index}"
-meh - l  : index="$(yabai -m query --spaces --display 3 | jq '.[0].index')" &&\
+alt - f9  : index="$(yabai -m query --spaces --display 3 | jq '.[0].index')" &&\
                   yabai -m space --focus "${index}"
-meh - u  : index="$(yabai -m query --spaces --display 3 | jq '.[1].index')" &&\
+alt - f10  : index="$(yabai -m query --spaces --display 3 | jq '.[1].index')" &&\
                   yabai -m space --focus "${index}"
-meh - y  : index="$(yabai -m query --spaces --display 3 | jq '.[2].index')" &&\
+alt - f11  : index="$(yabai -m query --spaces --display 3 | jq '.[2].index')" &&\
                   yabai -m space --focus "${index}"
-meh - 0x33  : index="$(yabai -m query --spaces --display 3 | jq '.[3].index')" &&\
+alt - f12 : index="$(yabai -m query --spaces --)": index="$(yabai -m query --spaces --display 3 | jq '.[3].index')" &&\
                   yabai -m space --focus "${index}"
 
-hyper - n  : index="$(yabai -m query --spaces --display 1 | jq '.[0].index')";\
+shift + alt - f5  : index="$(yabai -m query --spaces --display 1 | jq '.[0].index')";\
                   yabai -m window --space "${index}"; yabai -m space --focus "${index}"
-hyper - e  : index="$(yabai -m query --spaces --display 1 | jq '.[1].index')";\
+shift + alt - f6  : index="$(yabai -m query --spaces --display 1 | jq '.[1].index')";\
                   yabai -m window --space "${index}"; yabai -m space --focus "${index}"
-hyper - i  : index="$(yabai -m query --spaces --display 1 | jq '.[2].index')" &&\
+shift + alt - f7  : index="$(yabai -m query --spaces --display 1 | jq '.[2].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - o  : index="$(yabai -m query --spaces --display 1 | jq '.[3].index')" &&\
+shift + alt - f8  : index="$(yabai -m query --spaces --display 1 | jq '.[3].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - h  : index="$(yabai -m query --spaces --display 2 | jq '.[0].index')" &&\
+shift + alt - f1  : index="$(yabai -m query --spaces --display 2 | jq '.[0].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - 0x2B  : index="$(yabai -m query --spaces --display 2 | jq '.[1].index')" &&\
+shift + alt - f2  : index="$(yabai -m query --spaces --display 2 | jq '.[1].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - 0x2F  : index="$(yabai -m query --spaces --display 2 | jq '.[2].index')" &&\
+shift + alt - f3  : index="$(yabai -m query --spaces --display 2 | jq '.[2].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - 0x2C  : index="$(yabai -m query --spaces --display 2 | jq '.[3].index')" &&\
+shift + alt - f4  : index="$(yabai -m query --spaces --display 2 | jq '.[3].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - l  : index="$(yabai -m query --spaces --display 3 | jq '.[0].index')" &&\
+shift + alt - f9  : index="$(yabai -m query --spaces --display 3 | jq '.[0].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - u  : index="$(yabai -m query --spaces --display 3 | jq '.[1].index')" &&\
+shift + alt - f10  : index="$(yabai -m query --spaces --display 3 | jq '.[1].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - y  : index="$(yabai -m query --spaces --display 3 | jq '.[2].index')" &&\
+shift + alt - f11  : index="$(yabai -m query --spaces --display 3 | jq '.[2].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
-hyper - 0x33  : index="$(yabai -m query --spaces --display 3 | jq '.[3].index')" &&\
+shift + alt - f12  : index="$(yabai -m query --spaces --display 3 | jq '.[3].index')" &&\
                   yabai -m window --space "${index}" && yabai -m space --focus "${index}"
 
