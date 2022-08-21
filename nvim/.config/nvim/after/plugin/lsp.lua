@@ -82,7 +82,8 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = {
   "pyright",
-  "rust_analyzer",
+  -- rust-analyzer will be managed by rust-tools
+  -- "rust_analyzer",
   -- "yamlls",
   "tailwindcss",
   "gopls",
@@ -95,8 +96,6 @@ for _, lsp in pairs(servers) do
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150
     }
   }
 end
@@ -218,3 +217,10 @@ protocol.CompletionItemKind = {
   'ﬦ', -- Operator
   '', -- TypeParameter
 }
+
+require("rust-tools").setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  },
+})

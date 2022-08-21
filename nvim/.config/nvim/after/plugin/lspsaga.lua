@@ -1,6 +1,5 @@
 local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
-local action = require("lspsaga.codeaction")
 
 saga.init_lsp_saga {
   server_filetype_map = {
@@ -26,9 +25,23 @@ vim.keymap.set('i', '<C-h>', '<Cmd>Lspsaga signature_help<CR>', opts)
 vim.keymap.set('n', 'gv', '<Cmd>Lspsaga preview_definition<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 
--- code action
-vim.keymap.set("n", "<leader>.", action.code_action, { silent = true })
-vim.keymap.set("v", "<leader>.", function()
-  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
-  action.range_code_action()
+-- Code action
+vim.keymap.set("n", "<leader>.", "<cmd>Lspsaga code_action<CR>", { silent = true })
+vim.keymap.set("v", "<leader>.", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
+
+-- scroll in hover doc or  definition preview window
+local action = require("lspsaga.action")
+vim.keymap.set("n", "<C-f>", function()
+  action.smart_scroll_with_saga(1)
 end, { silent = true })
+-- scroll in hover doc or  definition preview window
+vim.keymap.set("n", "<C-b>", function()
+  action.smart_scroll_with_saga(-1)
+end, { silent = true })
+
+-- code action
+-- vim.keymap.set("n", "<leader>.", action.code_action, { silent = true })
+-- vim.keymap.set("v", "<leader>.", function()
+--   vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
+--   action.range_code_action()
+-- end, { silent = true })

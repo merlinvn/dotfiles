@@ -9,10 +9,6 @@ export SHELL=/usr/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Add exports from your profile
-if [ -e ~/.profile ]; then
-  source ~/.profile
-fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -150,3 +146,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 ## this is the replacement for j with fzf support
 eval "$(zoxide init zsh)"
+
+# Add exports from your profile
+if [ -e ~/.profile ]; then
+  source ~/.profile
+fi

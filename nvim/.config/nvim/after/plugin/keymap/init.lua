@@ -8,7 +8,7 @@ local onoremap = require("merlinvn.keymap").onoremap
 
 -- turn off hightlight search
 nnoremap("<Leader><Esc>", ":nohlsearch<CR>", { desc = "Turn off search highlight" })
-nnoremap("<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
+-- nnoremap("<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
@@ -25,7 +25,7 @@ inoremap("<C-q>", "<Esc>:q<CR>")
 -- nnoremap("<Leader>ve", ":e $MYVIMRC<CR>")
 -- Reload vims configuration file
 -- nnoremap("<Leader>vr", ":source $MYVIMRC<CR>")
-nnoremap("<Leader>lr", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile" })
+nnoremap("<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile" })
 
 -- Yank from the current cursor to the end of line
 nnoremap("Y", "y$", { desc = "Yank from the current cursor to the end of line" })
@@ -42,7 +42,7 @@ inoremap("?", "?<c-g>u")
 nnoremap("<leader>h", ":wincmd h<CR>")
 nnoremap("<leader>j", ":wincmd j<CR>")
 nnoremap("<leader>k", ":wincmd k<CR>")
--- nnoremap("<leader>l", ":wincmd l<CR>")
+nnoremap("<leader>l", ":wincmd l<CR>")
 
 -- windows navigation for colemak
 nnoremap("<leader>n", ":wincmd h<CR>")
@@ -130,7 +130,7 @@ vnoremap("p", '"_dP')
 
 -- paste from clipboard
 nnoremap("<C-p>", '"*p')
-inoremap("<C-p>", '<esc>"*pi')
+inoremap("<C-p>", '<esc>"*pa')
 -- nnoremap( "<C-f>", '"*P' )
 
 -- replace selected in visual mode, by yank current selection to register h, then

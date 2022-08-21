@@ -74,3 +74,9 @@ export LANGUAGE=en_US.UTF-8
 [[ -f "/usr/bin/vcgencmd" ]] && alias temp="/usr/bin/vcgencmd measure_temp"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias python=python3
+  alias pip=pip3
+fi

@@ -166,7 +166,11 @@ packer.startup(
       requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
     --
+    -- rainbow
+    use "lukas-reineke/indent-blankline.nvim"
+    use "p00f/nvim-ts-rainbow"
     -- GUI Keymaps
+    --
     use("anuvyklack/hydra.nvim")
     use {
       "folke/which-key.nvim",
