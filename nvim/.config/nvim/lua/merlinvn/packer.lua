@@ -165,10 +165,6 @@ packer.startup(
       "nvim-lualine/lualine.nvim",
       requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
-    --
-    -- rainbow
-    use "lukas-reineke/indent-blankline.nvim"
-    use "p00f/nvim-ts-rainbow"
     -- GUI Keymaps
     --
     use("anuvyklack/hydra.nvim")
@@ -184,6 +180,11 @@ packer.startup(
     use("rebelot/kanagawa.nvim")
     use("B4mbus/oxocarbon-lua.nvim")
     -- use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
+
+    --
+    -- indent matching line
+    use "lukas-reineke/indent-blankline.nvim"
+    -- use "p00f/nvim-ts-rainbow"
 
     -- AI assistant
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
