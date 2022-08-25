@@ -1,6 +1,6 @@
 -- https://github.com/pechorin/any-jump.vim
 
-vim.g.any_jump_disable_default_keybindings = 1
+-- vim.g.any_jump_disable_default_keybindings = 1
 
 
 -- " Normal mode: Jump to definition under cursor

@@ -24,13 +24,14 @@ packer.startup(
     use { "nvim-telescope/telescope-ui-select.nvim" }
     use { "nvim-telescope/telescope-smart-history.nvim" }
 
-    use {
-      "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = function()
-        require("trouble").setup {}
-      end
-    }
+    -- use {
+    --   "folke/trouble.nvim",
+    --   requires = "kyazdani42/nvim-web-devicons",
+    --   config = function()
+    --     require("trouble").setup {}
+    --   end
+    -- }
+
     -- Simple plugins can be specified as strings
     use("TimUntersberger/neogit")
     -- use "airblade/vim-gitgutter"
@@ -117,6 +118,9 @@ packer.startup(
       config = function() require("nvim-ts-autotag").setup() end
     }
 
+    -- file marker & navigation
+    use "ThePrimeagen/harpoon"
+
     -- Navigation
     use {
       "phaazon/hop.nvim",
@@ -129,9 +133,8 @@ packer.startup(
     }
 
     -- use 'ggandor/lightspeed.nvim'
-
     -- vim.g.any_jump_disable_default_keybindings = 1
-    use { "pechorin/any-jump.vim" }
+    -- use { "pechorin/any-jump.vim" }
 
     -- Color highlight
     use {

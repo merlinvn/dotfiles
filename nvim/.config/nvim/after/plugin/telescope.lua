@@ -1,7 +1,7 @@
 local status, telescope = pcall(require, "telescope")
 if (not status) then return end
 local actions = require('telescope.actions')
-local trouble = require("trouble.providers.telescope")
+-- local trouble = require("trouble.providers.telescope")
 telescope.setup {
   defaults = {
     -- file_sorter = require "telescope.sorters".get_fuzzy_file(),
@@ -16,7 +16,9 @@ telescope.setup {
         ["<C-q>"] = actions.send_to_qflist,
         -- ["<c-t>"] = trouble.open_with_trouble
       },
-      n = { ["<c-t>"] = trouble.open_with_trouble },
+      n = {
+        -- ["<c-t>"] = trouble.open_with_trouble
+      },
     },
     set_env = { ["COLORTERM"] = "truecolor" }
     -- file_ignore_patterns = { "ext/.*" } -- comment this line for non C++ project

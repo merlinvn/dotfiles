@@ -57,8 +57,8 @@ nnoremap("<leader><right>", ":wincmd l<CR>")
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-nnoremap("<S-h>", ":bprev<cr>")
-nnoremap("<S-l>", ":bnext<cr>")
+-- nnoremap("<S-h>", ":bprev<cr>")
+-- nnoremap("<S-l>", ":bnext<cr>")
 nnoremap("<S-left>", ":bprev<cr>")
 nnoremap("<S-right>", ":bnext<cr>")
 
