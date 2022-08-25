@@ -47,8 +47,8 @@ packer.startup(
     use("onsails/lspkind-nvim")
     use("williamboman/nvim-lsp-installer")
     use("nvim-lua/lsp_extensions.nvim")
-    use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
+    -- use("glepnir/lspsaga.nvim")
 
     -- third party code format
     use("sbdchd/neoformat")
