@@ -44,12 +44,6 @@ nnoremap("<leader>j", ":wincmd j<CR>")
 nnoremap("<leader>k", ":wincmd k<CR>")
 nnoremap("<leader>l", ":wincmd l<CR>")
 
--- windows navigation for colemak
-nnoremap("<leader>n", ":wincmd h<CR>")
-nnoremap("<leader>e", ":wincmd j<CR>")
-nnoremap("<leader>u", ":wincmd k<CR>")
-nnoremap("<leader>i", ":wincmd l<CR>")
-
 nnoremap("<leader><left>", ":wincmd h<CR>")
 nnoremap("<leader><down>", ":wincmd j<CR>")
 nnoremap("<leader><up>", ":wincmd k<CR>")

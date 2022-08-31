@@ -5,7 +5,6 @@ local silent = { silent = true }
 -- Terminal commands
 -- ueoa is first through fourth finger left hand home row.
 -- This just means I can crush, with opposite hand, the 4 terminal positions
---
 nnoremap("<leader>a", ":lua require('harpoon.mark').add_file() <cr>", { silent = true, desc = "Harpoon mark file" })
 nnoremap("<C-a>", function() require("harpoon.ui").toggle_quick_menu() end, silent)
 

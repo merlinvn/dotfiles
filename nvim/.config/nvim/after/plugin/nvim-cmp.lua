@@ -67,12 +67,10 @@ cmp.setup {
     -- }),
   },
   mapping = {
-    ["<C-s>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-t>"] = cmp.mapping.scroll_docs(4),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-o>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
     ["<CR>"] = cmp.mapping(
       {
         i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
@@ -117,42 +115,6 @@ cmp.setup {
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
       behavior = cmp.SelectBehavior.Select
     }), { "i" }),
-    ["<C-e>"] = cmp.mapping(
-      {
-        c = function()
-          if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            vim.api.nvim_feedkeys(t("<Down>"), "n", true)
-          end
-        end,
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end
-      }
-    ),
-    ["<C-u>"] = cmp.mapping(
-      {
-        c = function()
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-          end
-        end,
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end
-      }
-    ),
     ["<C-j>"] = cmp.mapping(
       {
         c = function()

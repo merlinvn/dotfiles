@@ -1,4 +1,3 @@
-vim.g.isColemakDH = true
 vim.g.mapleader = " "
 
 vim.g.netrw_browse_split = 0
@@ -91,4 +90,3 @@ vim.opt.writebackup = false
 vim.opt.shortmess:append("c")
 
 vim.opt.colorcolumn = tostring(width) --Line length marker
-
