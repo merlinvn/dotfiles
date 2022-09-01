@@ -131,14 +131,12 @@ fi
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env
-
-alias anaconda='source  ~/.conda.shellrc'
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # zprof
 export VOLTA_HOME="$HOME/.volta"
@@ -151,3 +149,4 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 if [ -e ~/.profile ]; then
   source ~/.profile
 fi
+

@@ -80,3 +80,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias python=python3
   alias pip=pip3
 fi
+
+alias anaconda='source  ~/.conda.shellrc'
+
