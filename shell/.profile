@@ -83,3 +83,4 @@ fi
 
 alias anaconda='source  ~/.conda.shellrc'
 
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"

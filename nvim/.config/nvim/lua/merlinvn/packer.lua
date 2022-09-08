@@ -178,10 +178,11 @@ packer.startup(
 
     -- Colorscheme section
     use("tjdevries/colorbuddy.nvim")
-    use("gruvbox-community/gruvbox")
-    use("folke/tokyonight.nvim")
-    use("rebelot/kanagawa.nvim")
-    use("B4mbus/oxocarbon-lua.nvim")
+    -- use("gruvbox-community/gruvbox")
+    -- use("folke/tokyonight.nvim")
+    -- use("rebelot/kanagawa.nvim")
+    -- use("B4mbus/oxocarbon-lua.nvim")
+    use { "catppuccin/nvim", as = "catppuccin" }
     -- use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
 
     --
