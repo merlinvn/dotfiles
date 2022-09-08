@@ -81,5 +81,5 @@ if [[ -x "$(command -v nvim)" ]]; then
 fi
 
 alias luamake=${HOME}/lua-language-server/3rd/luamake/luamake
-# alias tmux="TERM=xterm-256color tmux"
+alias tmux="TERM=screen-256color tmux"
 

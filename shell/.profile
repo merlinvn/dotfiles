@@ -85,6 +85,6 @@ fi
 
 alias anaconda='source  ~/.conda.shellrc'
 
-# [[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
 
-export TERM=xterm-256color
+# export TERM=xterm-256color
