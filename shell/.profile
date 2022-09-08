@@ -47,6 +47,9 @@ fi
 export GO111MODULE=on
 export GOPATH=$HOME/go
 
+[ -d "/usr/local/go/bin" ] && export PATH=$PATH:/usr/local/go/bin
+
+
 # GCC 10.2.0
 if [ -d "/usr/local/gcc-10.2.0" ]; then
   export PATH=/usr/local/gcc-10.2.0/bin:$PATH
@@ -84,4 +87,4 @@ alias anaconda='source  ~/.conda.shellrc'
 
 # [[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
 
-export TERM=xterm-color
+export TERM=xterm-256color
