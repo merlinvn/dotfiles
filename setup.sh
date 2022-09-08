@@ -11,7 +11,6 @@ stow shell
 # rm -rf ~/.config/alacritty
 # stow alacrity
 
-
 rm -f ~/.config/starship.toml
 stow starship
 
