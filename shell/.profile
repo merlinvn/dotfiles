@@ -46,7 +46,6 @@ fi
 
 export GO111MODULE=on
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin
 
 # GCC 10.2.0
 if [ -d "/usr/local/gcc-10.2.0" ]; then

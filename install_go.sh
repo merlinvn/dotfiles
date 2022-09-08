@@ -9,8 +9,7 @@ case $(uname -m) in
 esac
 
 #download first
-GO_VERSION=$(curl 'https://golang.org/VERSION?m=text')
-curl -o ${GO_VERSION}.linux-${architecture}.tar.gz -fSL https://golang.org/dl/${GO_VERSION}.linux-${architecture}.tar.gz
-
+GO_VERSION=$(curl 'https://go.dev/VERSION?m=text')
+curl -o ${GO_VERSION}.linux-${architecture}.tar.gz -fSL https://go.dev/dl/${GO_VERSION}.linux-${architecture}.tar.gz
 
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ${GO_VERSION}.linux-${architecture}.tar.gz
