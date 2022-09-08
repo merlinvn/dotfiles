@@ -8,8 +8,8 @@ rm -f ~/.bash_aliases
 #rm -rf ~/.xinitrc
 stow shell
 
-rm -rf ~/.config/alacritty
-stow alacrity
+# rm -rf ~/.config/alacritty
+# stow alacrity
 
 
 rm -f ~/.config/starship.toml
@@ -18,11 +18,11 @@ stow starship
 rm -rf ~/.gitconfig
 stow git
 
-rm -rf ~/.config/i3
-stow i3
+# rm -rf ~/.config/i3
+# stow i3
 
-rm -rf ~/.config/picom
-stow picom
+# rm -rf ~/.config/picom
+# stow picom
 
 rm -f ~/.vimrc
 rm -rf ~/.vim
