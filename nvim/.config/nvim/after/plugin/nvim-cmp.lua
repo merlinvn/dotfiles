@@ -153,7 +153,6 @@ cmp.setup {
     )
   },
   sources = {
-    { name = "cmp_tabnine" },
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
@@ -162,6 +161,8 @@ cmp.setup {
     { name = "path" },
     { name = "emoji" },
     { name = "nvim_lua" },
+    -- { name = 'copilot' },
+    -- { name = "cmp_tabnine" },
     -- { name = "treesitter" },
     -- { name = "calc" },
     -- { name = "spell" },
@@ -211,22 +212,20 @@ cmp.setup.cmdline(
 -- )
 
 -- TabNine
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = '..',
-  ignored_file_types = {
-    -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  },
-  show_prediction_strength = false
-})
---   local tabnine = require("cmp_tabnine.config")
---   tabnine:setup({max_lines = 1000, max_num_results = 20, sort = true})
+-- local tabnine = require('cmp_tabnine.config')
+-- tabnine:setup({
+--   max_lines = 1000,
+--   max_num_results = 20,
+--   sort = true,
+--   run_on_every_keystroke = true,
+--   snippet_placeholder = '..',
+--   ignored_file_types = {
+--     -- default is not to ignore
+--     -- uncomment to ignore in lua:
+--     -- lua = true
+--   },
+--   show_prediction_strength = false
+-- })
 --
 -- Database completion
 vim.api.nvim_exec(

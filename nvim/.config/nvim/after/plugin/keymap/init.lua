@@ -1,5 +1,3 @@
---print("Hello from keymap")
-
 local nmap = require("merlinvn.keymap").nmap
 local nnoremap = require("merlinvn.keymap").nnoremap
 local inoremap = require("merlinvn.keymap").inoremap

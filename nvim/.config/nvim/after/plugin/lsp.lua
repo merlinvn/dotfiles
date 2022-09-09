@@ -48,8 +48,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
@@ -57,8 +57,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting_seq_sync, bufopts)
   -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
-
-
   -- format on save
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -93,6 +91,7 @@ end
 -- TypeScript
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
+  -- capabilities = capabilities,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" }
 }

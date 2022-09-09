@@ -79,6 +79,7 @@ packer.startup(
         "hrsh7th/cmp-emoji",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
+        -- "hrsh7th/cmp-copilot",
         -- "ray-x/cmp-treesitter",
         -- "f3fora/cmp-spell",
         -- "octaltree/cmp-look",
@@ -191,8 +192,8 @@ packer.startup(
     -- use "p00f/nvim-ts-rainbow"
 
     -- AI assistant
-    use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
-    -- use("github/copilot.vim")
+    -- use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+    use("github/copilot.vim")
 
     -- Note taking
 

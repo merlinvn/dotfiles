@@ -7,8 +7,8 @@ vim.cmd [[highlight IndentBlanklineChar gui=nocombine guifg=#3b4261]]
 vim.cmd [[highlight IndentBlanklineSpaceChar gui=nocombine guifg=#3b4261]]
 vim.cmd [[highlight IndentBlanklineSpaceCharBlankLine gui=nocombine guifg=#3b4261]]
 
-vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#bb9af7]]
-vim.cmd [[highlight IndentBlanklineContextStart gui=nocombine guifg=#bb9af7]]
+-- vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#bb9af7]]
+-- vim.cmd [[highlight IndentBlanklineContextStart gui=nocombine guifg=#bb9af7]]
 
 
 
