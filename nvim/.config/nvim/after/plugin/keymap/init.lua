@@ -10,7 +10,7 @@ nnoremap("<Leader><Esc>", ":nohlsearch<CR>", { desc = "Turn off search highlight
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
-nnoremap("<C-s>", ":up<CR>")
+nnoremap("<C-s>", ":w<CR>")
 inoremap("<C-s>", "<Esc>:w<CR>a")
 nnoremap("<leader>s", ":up<CR>")
 
