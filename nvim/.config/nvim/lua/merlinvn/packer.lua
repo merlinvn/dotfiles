@@ -10,7 +10,7 @@ packer.startup(
   function(use)
     use("wbthomason/packer.nvim")
 
-    use 'lewis6991/impatient.nvim'
+    use "lewis6991/impatient.nvim"
 
     -- TJ created lodash of neovim
     use("nvim-lua/plenary.nvim")
@@ -36,9 +36,9 @@ packer.startup(
     use("TimUntersberger/neogit")
     -- use "airblade/vim-gitgutter"
     use {
-      'lewis6991/gitsigns.nvim',
+      "lewis6991/gitsigns.nvim",
       config = function()
-        require('gitsigns').setup()
+        require("gitsigns").setup()
       end
     }
 
@@ -62,8 +62,8 @@ packer.startup(
     }
 
     -- Null lsp
-    use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-    use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+    use "jose-elias-alvarez/null-ls.nvim" -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+    use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
 
     use {
       "hrsh7th/nvim-cmp",
@@ -184,7 +184,7 @@ packer.startup(
     -- use("rebelot/kanagawa.nvim")
     -- use("B4mbus/oxocarbon-lua.nvim")
     use { "catppuccin/nvim", as = "catppuccin" }
-    -- use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
+    -- use { "shaunsingh/oxocarbon.nvim", run = "./install.sh" }
 
     --
     -- indent matching line
@@ -192,7 +192,7 @@ packer.startup(
     -- use "p00f/nvim-ts-rainbow"
 
     -- AI assistant
-    -- use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+    -- use { "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" }
     use("github/copilot.vim")
 
     -- Note taking
