@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)"
 nnoremap("<leader>tt", "<cmd>Telescope<cr>")
 nnoremap("<leader>tf", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
 nnoremap("<leader>tp", "<cmd>lua require('merlinvn.telescope').project_files()<cr>", { desc = "Project files" })
-nnoremap("<leader>tj", "<cmd>lua require('merlinvn.telescope').project_files()<cr>", { desc = "pJoject files" })
+nnoremap("<C-j>", "<cmd>lua require('merlinvn.telescope').project_files()<cr>", { desc = "pJoject files" })
 nnoremap("<leader>to", "<cmd>Telescope oldfiles<cr>", { desc = "Old files" })
 nnoremap("<leader>tg", "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>", { desc = "Live Grep" })
 nnoremap("<leader>ta", "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>", { desc = "All files" })

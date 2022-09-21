@@ -51,8 +51,8 @@ nnoremap("<leader><right>", ":wincmd l<CR>")
 -- buffers navigation
 -- nnoremap("<S-h>", ":bprev<cr>")
 -- nnoremap("<S-l>", ":bnext<cr>")
-nnoremap("<S-left>", ":bprev<cr>")
-nnoremap("<S-right>", ":bnext<cr>")
+nnoremap("<tab>", ":bprev<cr>")
+nnoremap("<S-tab>", ":bnext<cr>")
 
 -- tab navigation
 -- Go to tab by number
@@ -72,8 +72,8 @@ nnoremap("<C-t>", "<C-w>s<C-w>T")
 -- x for close
 nnoremap("<C-x>", ":tabclose<CR>")
 
-nnoremap("<tab>", ":tabnext<cr>")
-nnoremap("<S-tab>", ":tabprevious<cr>")
+-- nnoremap("<tab>", ":tabnext<cr>")
+-- nnoremap("<S-tab>", ":tabprevious<cr>")
 
 --move tab left right
 nnoremap("<C-S-h>", ":tabm-<cr>")
@@ -82,12 +82,12 @@ nnoremap("<C-S-left>", ":tabm-<cr>")
 nnoremap("<C-S-right>", ":tabm+<cr>")
 
 -- move line up / down
-nnoremap("<C-j>", ":m .+1<CR>==")
-nnoremap("<C-k>", ":m .-2<CR>==")
-inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
-inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
-vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
-vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
+-- nnoremap("<C-j>", ":m .+1<CR>==")
+-- nnoremap("<C-k>", ":m .-2<CR>==")
+-- inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
+-- inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
+-- vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
+-- vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
 
 nnoremap("<C-down>", ":m .+1<CR>==")
 nnoremap("<C-up>", ":m .-2<CR>==")
