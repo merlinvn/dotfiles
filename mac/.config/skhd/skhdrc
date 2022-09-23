@@ -88,28 +88,28 @@ cmd + alt - a : skhd --reload
 
 # focus window
 # hjkl
-cmd + alt - h : yabai -m window --focus west
-cmd + alt - j : yabai -m window --focus south
-cmd + alt - k : yabai -m window --focus north
-cmd + alt - l : yabai -m window --focus east
-cmd + alt - 0x2F : yabai -m window --focus east
+# cmd + alt - h : yabai -m window --focus west
+# cmd + alt - j : yabai -m window --focus south
+# cmd + alt - k : yabai -m window --focus north
+# cmd + alt - l : yabai -m window --focus east
+# cmd + alt - 0x2F : yabai -m window --focus east
 
 
 # cycle all windows on space backwards by coordinate
-cmd + alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
 alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
-alt - z : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+# alt - z : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
 
 
-# swap managed window
+#swap managed window
 # cmd + alt - h : yabai -m window --swap north
 
 # move managed window
-cmd + alt - h : yabai -m window --warp west
-cmd + alt - j : yabai -m window --warp south
-cmd + alt - k : yabai -m window --warp north
-cmd + alt - l : yabai -m window --warp east
-cmd + alt - 0x2F : yabai -m window --warp east
+cmd + alt - tab : yabai -m window --swap next || yabai -m window --swap first
+# cmd + alt - h : yabai -m window --warp west
+# cmd + alt - j : yabai -m window --warp south
+# cmd + alt - k : yabai -m window --warp north
+# cmd + alt - l : yabai -m window --warp east
+# cmd + alt - 0x2F : yabai -m window --warp east
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 cmd + alt - c : yabai -m space --create && \

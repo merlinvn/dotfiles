@@ -89,6 +89,8 @@ done
 # yabai -m rule --add app=Telegram space=chat
 
 yabai -m rule --add app=".*" manage=off
+yabai -m rule --add app="^System Preferences$" sticky=on manage=off
+yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off
 # yabai -m rule --add title="^Preferences" manage=off
 # yabai -m rule --add title="^Finder" manage=off
