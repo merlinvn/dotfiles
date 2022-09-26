@@ -81,10 +81,16 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias python=python3
   alias pip=pip3
+  export PATH=$HOME/Library/Python/3.10/bin:$PATH
 fi
 
 alias anaconda='source  ~/.conda.shellrc'
 
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # export TERM=xterm-256color
+

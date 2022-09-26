@@ -1,12 +1,12 @@
-local nnoremap = require("merlinvn.keymap").nnoremap
-local vnoremap = require("merlinvn.keymap").vnoremap
-local onoremap = require("merlinvn.keymap").onoremap
-
-nnoremap("s", "<cmd>lua require'hop'.hint_char1({ multi_windows = true })<cr>")
-vnoremap("s", "<cmd>lua require'hop'.hint_char1({ multi_windows = true })<cr>")
-onoremap("z", "<cmd>lua require'hop'.hint_char1({ })<cr>")
-
-onoremap("l", "<cmd>lua require'hop'.hint_lines({ })<cr>")
+-- local nnoremap = require("merlinvn.keymap").nnoremap
+-- local vnoremap = require("merlinvn.keymap").vnoremap
+-- local onoremap = require("merlinvn.keymap").onoremap
+--
+-- nnoremap("s", "<cmd>lua require'hop'.hint_char1({ multi_windows = true })<cr>")
+-- vnoremap("s", "<cmd>lua require'hop'.hint_char1({ multi_windows = true })<cr>")
+-- onoremap("z", "<cmd>lua require'hop'.hint_char1({ })<cr>")
+--
+-- onoremap("l", "<cmd>lua require'hop'.hint_lines({ })<cr>")
 
 -- vim.api.nvim_set_keymap('', 'f',
 --   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
