@@ -11,15 +11,16 @@ local nnoremap = require("merlinvn.keymap").nnoremap
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- FILES
+nnoremap("<leader>f", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
+nnoremap("<leader>b", "<cmd>lua require('merlinvn.telescope').buffers()<cr>", { desc = "Buffers" })
+nnoremap("<leader>/", "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>", { desc = "Global search cwd" })
 nnoremap("<leader>tt", "<cmd>Telescope<cr>")
-nnoremap("<leader>tf", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
 nnoremap("<C-j>", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
 nnoremap("<leader>tp", "<cmd>lua require('merlinvn.telescope').project_files()<cr>", { desc = "Project files" })
 nnoremap("<leader>to", "<cmd>Telescope oldfiles<cr>", { desc = "Old files" })
 nnoremap("<leader>tg", "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>", { desc = "Live Grep" })
 nnoremap("<leader>ta", "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>", { desc = "All files" })
 nnoremap("<leader>te", "<cmd>lua require('merlinvn.telescope').file_browser()<cr>", { desc = "File browser" })
-nnoremap("<leader>tb", "<cmd>lua require('merlinvn.telescope').buffers()<cr>", { desc = "Buffers" })
 nnoremap("<leader>tz", "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
   { desc = "Search by file type" })
 
@@ -56,11 +57,11 @@ nnoremap("gi", ":lua require('telescope.builtin').lsp_implementations()<CR>", { 
 -- " nnoremap gs :lua vim.lsp.buf.document_symbol()<CR>
 -- " nnoremap <leader>cs :lua vim.lsp.buf.document_symbol()<CR>
 
--- nnoremap("gs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>")
--- nnoremap("gS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>")
-nnoremap("<leader>d", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
-  { desc = "Current buffer diagnostics" })
-nnoremap("<leader>D", ":lua require('telescope.builtin').diagnostics()<CR>", { desc = "Workspace diagnostics" })
+nnoremap("<leader>s", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", { desc = "Document symbols" })
+nnoremap("<leader>S", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", { desc = "Workspace symbols" })
+nnoremap("<leader>g", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
+  { desc = "Document diagnostics" })
+nnoremap("<leader>G", ":lua require('telescope.builtin').diagnostics()<CR>", { desc = "Workspace diagnostics" })
 
 -- treesitter
 nnoremap("<leader>ts", ":lua require('telescope.builtin').treesitter()<CR>", { desc = "Treesitter" })

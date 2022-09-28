@@ -37,7 +37,7 @@ Hydra({
       end,
    },
    mode = {'n','x'},
-   body = '<leader>g',
+   body = '<leader>yg',
    heads = {
       { 'J',
          function()

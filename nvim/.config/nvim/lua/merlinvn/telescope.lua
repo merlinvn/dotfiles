@@ -117,7 +117,7 @@ end
 function M.grep_prompt()
   require("telescope.builtin").grep_string {
     path_display = { "shorten" },
-    search = vim.fn.input "Grep String > "
+    search = vim.fn.input "Global search: "
   }
 end
 

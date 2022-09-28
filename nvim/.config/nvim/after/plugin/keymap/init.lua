@@ -5,7 +5,7 @@ local vnoremap = require("merlinvn.keymap").vnoremap
 local onoremap = require("merlinvn.keymap").onoremap
 
 -- turn off hightlight search
-nnoremap("<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>", { desc = "Toggle highlight search" })
+nnoremap("<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>", { silent = true, desc = "Toggle highlight search" })
 
 -- nnoremap("<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
 
@@ -25,7 +25,7 @@ nnoremap("<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload current
 -- Yank from the current cursor to the end of line
 nnoremap("Y", "y$", { desc = "Yank from the current cursor to the end of line" })
 
-nnoremap("<leader>s", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Find and replace current word" })
+nnoremap("<leader>*", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Find and replace current word" })
 
 -- undo break points
 inoremap(",", ",<c-g>u")

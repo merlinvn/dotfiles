@@ -6,7 +6,7 @@ local silent = { silent = true }
 -- ueoa is first through fourth finger left hand home row.
 -- This just means I can crush, with opposite hand, the 4 terminal positions
 nnoremap("<leader>a", ":lua require('harpoon.mark').add_file() <cr>", { silent = true, desc = "Harpoon mark file" })
-nnoremap("<leader>'", function() require("harpoon.ui").toggle_quick_menu() end, silent)
+nnoremap("<leader>'", function() require("harpoon.ui").toggle_quick_menu() end, { silent = true, desc = "Harpoon jump list" })
 
 nnoremap("<C-1>", function() require("harpoon.ui").nav_file(1) end, silent)
 nnoremap("<C-2>", function() require("harpoon.ui").nav_file(2) end, silent)
