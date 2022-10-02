@@ -112,7 +112,7 @@ cmd + alt - tab : yabai -m window --swap next || yabai -m window --swap first
 # cmd + alt - 0x2F : yabai -m window --warp east
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-cmd + alt - c : yabai -m space --create && \
+cmd + alt - n : yabai -m space --create && \
                   index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
                   yabai -m window --space "${index}" && \
                   yabai -m space --focus "${index}"
