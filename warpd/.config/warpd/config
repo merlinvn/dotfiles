@@ -1,0 +1,12 @@
+buttons: j k ,
+oneshot_buttons: / _ .
+left: n left
+right: i right
+up: u up
+down: h down
+start: ^
+scroll_up: p
+scroll_down: f
+grid_keys: u y h i
+grid_color: #212f5a
+screen_chars: n h i o a r s t g
