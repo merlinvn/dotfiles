@@ -83,3 +83,4 @@ fi
 alias luamake=${HOME}/lua-language-server/3rd/luamake/luamake
 alias tmux="TERM=screen-256color tmux"
 
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
