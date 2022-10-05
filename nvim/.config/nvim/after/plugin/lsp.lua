@@ -55,7 +55,7 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>wl', function()
   vim.keymap.set('n', 'gr', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>cf', vim.lsp.buf.formatting_seq_sync, bufopts)
+  vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, bufopts)
   -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and

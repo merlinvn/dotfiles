@@ -95,6 +95,7 @@ packer.startup(
         run = ":TSUpdate"
       }
     )
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- utilitis
     use({
@@ -124,14 +125,20 @@ packer.startup(
 
     -- Navigation
     use {
-      "phaazon/hop.nvim",
-      branch = 'v2',
-      as = "hop",
-      config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
-        require "hop".setup { keys = "arsgmeioqwfpbjluyzxcdvkhtn" }
-      end
+      "justinmk/vim-sneak",
+      requires = {
+        "tpope/vim-repeat"
+      }
     }
+    -- use {
+    --   "phaazon/hop.nvim",
+    --   branch = 'v2',
+    --   as = "hop",
+    --   config = function()
+    --     -- you can configure Hop the way you like here; see :h hop-config
+    --     require "hop".setup { keys = "arsgmeioqwfpbjluyzxcdvkhtn" }
+    --   end
+    -- }
 
     -- use 'ggandor/lightspeed.nvim'
     -- vim.g.any_jump_disable_default_keybindings = 1

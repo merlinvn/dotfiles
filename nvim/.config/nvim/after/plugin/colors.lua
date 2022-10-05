@@ -74,6 +74,15 @@ end
 
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
-require("catppuccin").setup()
+require("catppuccin").setup({
+  neogit = true,
+  harpoon = true,
+  treesitter = true,
+  treesitter_context = false,
+  telescope = true,
+  which_key = true,
+  cmp = true,
+  vim_sneak = true,
+})
 
 vim.cmd [[colorscheme catppuccin]]

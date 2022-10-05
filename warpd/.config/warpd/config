@@ -1,5 +1,5 @@
 buttons: j k ,
-screen_chars: n h i o a r s t g
+screen_chars: nhioarstg
 oneshot_buttons: m _ .
 left: n left
 right: i right
@@ -18,3 +18,4 @@ grid_left: r
 grid_right: t
 grid_up: f
 grid_down: s
+hint2_chars: luynhijk,

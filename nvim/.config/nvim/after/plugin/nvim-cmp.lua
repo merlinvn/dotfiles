@@ -109,13 +109,13 @@ cmp.setup {
       end,
       { "i", "s" }
     ),
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
-      behavior = cmp.SelectBehavior.Select
-    }), { "i" }),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
-      behavior = cmp.SelectBehavior.Select
-    }), { "i" }),
-    ["<C-j>"] = cmp.mapping(
+    -- ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
+    --   behavior = cmp.SelectBehavior.Select
+    -- }), { "i" }),
+    -- ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
+    --   behavior = cmp.SelectBehavior.Select
+    -- }), { "i" }),
+    ["<Down>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -133,7 +133,7 @@ cmp.setup {
         end
       }
     ),
-    ["<C-k>"] = cmp.mapping(
+    ["<Up>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
