@@ -24,6 +24,10 @@ local source_mapping = {
   treesitter = "[treesitter]"
 }
 
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -43,7 +47,7 @@ cmp.setup {
       vim_item.menu = menu
       return vim_item
     end
-    -- format = lspkind.cmp_format({
+    -- format = lspkind.cmp_format({cmp
     --   mode = 'symbol_text', -- show only symbol annotations
     --   maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
     --
@@ -71,12 +75,21 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+    ['<Esc>'] = cmp.mapping({
+      c = function()
+        if cmp.visible() then
+          cmp.close()
+        else
+          vim.api.nvim_feedkeys(t('<C-c>'), 'n', true)
+        end
+      end
+    }),
     ["<CR>"] = cmp.mapping(
       {
         i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         c = function(fallback)
           if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
           else
             fallback()
           end
@@ -121,7 +134,7 @@ cmp.setup {
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           else
-            vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+            vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
           end
         end,
         i = function(fallback)
@@ -178,8 +191,10 @@ vim.cmd [[
 cmp.setup.cmdline(
   "/",
   {
+    -- completion = { autocomplete = true },
     sources = {
       { name = "buffer" }
+      -- { name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] } }
     }
   }
 )
@@ -188,6 +203,7 @@ cmp.setup.cmdline(
 cmp.setup.cmdline(
   ":",
   {
+    completion = { autocomplete = true },
     sources = cmp.config.sources(
       {
         { name = "path" }
