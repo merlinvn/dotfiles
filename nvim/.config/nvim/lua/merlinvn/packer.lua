@@ -202,6 +202,12 @@ packer.startup(
     use "lukas-reineke/indent-blankline.nvim"
     -- use "p00f/nvim-ts-rainbow"
 
+    -- misc
+    -- use "echasnovski/mini.nvim"
+    -- use "axkirillov/easypick.nvim"
+    -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    -- use {'krady21/compiler-explorer.nvim'}
+
     -- AI assistant
     -- use { "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" }
     use("github/copilot.vim")
@@ -211,7 +217,7 @@ packer.startup(
 
     -- Training & games
     -- use("tjdevries/train.nvim")
-
+    use { "ja-ford/delaytrain.nvim", config = function() require("delaytrain").setup() end }
 
     -- Langague specific
     -- Rust:
