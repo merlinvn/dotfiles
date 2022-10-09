@@ -217,7 +217,13 @@ packer.startup(
 
     -- Training & games
     -- use("tjdevries/train.nvim")
-    use { "ja-ford/delaytrain.nvim", config = function() require("delaytrain").setup() end }
+    use { "ja-ford/delaytrain.nvim", config = function()
+      require("delaytrain").setup(
+        {
+          grace_period = 2,
+        }
+      )
+    end }
 
     -- Langague specific
     -- Rust:
