@@ -15,7 +15,6 @@ nnoremap("<leader>f", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc 
 nnoremap("<leader>b", "<cmd>lua require('merlinvn.telescope').buffers()<cr>", { desc = "Buffers" })
 nnoremap("<leader>/", "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>", { desc = "Global search cwd" })
 nnoremap("<leader>tt", "<cmd>Telescope<cr>")
-nnoremap("<C-j>", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
 nnoremap("<leader>tp", "<cmd>lua require('merlinvn.telescope').project_files()<cr>", { desc = "Project files" })
 nnoremap("<leader>to", "<cmd>Telescope oldfiles<cr>", { desc = "Old files" })
 nnoremap("<leader>tg", "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>", { desc = "Live Grep" })
