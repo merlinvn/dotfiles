@@ -11,7 +11,7 @@ local nnoremap = require("merlinvn.keymap").nnoremap
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- FILES
-nnoremap("<leader>f", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
+nnoremap("<leader>e", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
 nnoremap("<leader>b", "<cmd>lua require('merlinvn.telescope').buffers()<cr>", { desc = "Buffers" })
 nnoremap("<leader>/", "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>", { desc = "Global search cwd" })
 nnoremap("<leader>tt", "<cmd>Telescope<cr>")

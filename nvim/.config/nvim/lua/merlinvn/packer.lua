@@ -129,11 +129,17 @@ packer.startup(
 
     -- Navigation
     use {
-      "justinmk/vim-sneak",
+      "ggandor/leap.nvim",
       requires = {
         "tpope/vim-repeat"
       }
     }
+    -- use {
+    --   "justinmk/vim-sneak",
+    --   requires = {
+    --     "tpope/vim-repeat"
+    --   }
+    -- }
     -- use {
     --   "phaazon/hop.nvim",
     --   branch = 'v2',
