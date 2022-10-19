@@ -5,22 +5,23 @@ local vnoremap = require("merlinvn.keymap").vnoremap
 local onoremap = require("merlinvn.keymap").onoremap
 
 -- turn off hightlight search
-nnoremap("<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>", { silent = true, desc = "Toggle highlight search" })
+nnoremap("<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>",
+  { silent = true, desc = "Toggle highlight search" })
 
 -- nnoremap("<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
 
 -- remap save
 -- nnoremap("<Leader>a", ":up<CR>")
-nnoremap("<C-s>", ":w<CR>")
-inoremap("<C-s>", "<Esc>:w<CR>a")
+nnoremap("<C-s>", ":w<CR>", { silent = true })
+inoremap("<C-s>", "<Esc>:w<CR>a", { silent = true })
 
 -- remap quit
-nnoremap("<Leader>q", ":bd<CR>")
-nnoremap("<C-q>", ":q<CR>")
-inoremap("<C-q>", "<Esc>:q<CR>")
+nnoremap("<Leader>q", ":bd<CR>", { silent = true })
+nnoremap("<C-q>", ":q<CR>", { silent = true })
+inoremap("<C-q>", "<Esc>:q<CR>", { silent = true })
 
 -- Reload vims configuration file
-nnoremap("<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile" })
+nnoremap("<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile", silent = true })
 
 -- Yank from the current cursor to the end of line
 nnoremap("Y", "y$", { desc = "Yank from the current cursor to the end of line" })
@@ -35,15 +36,15 @@ inoremap("[", "[<c-g>u")
 inoremap("?", "?<c-g>u")
 
 -- windows navigation
-nnoremap("<leader>h", ":wincmd h<CR>")
-nnoremap("<leader>j", ":wincmd j<CR>")
-nnoremap("<leader>k", ":wincmd k<CR>")
-nnoremap("<leader>l", ":wincmd l<CR>")
+nnoremap("<leader>h", ":wincmd h<CR>", { silent = true })
+nnoremap("<leader>j", ":wincmd j<CR>", { silent = true })
+nnoremap("<leader>k", ":wincmd k<CR>", { silent = true })
+nnoremap("<leader>l", ":wincmd l<CR>", { silent = true })
 
-nnoremap("<C-left>", ":wincmd h<CR>")
-nnoremap("<C-down>", ":wincmd j<CR>")
-nnoremap("<C-up>", ":wincmd k<CR>")
-nnoremap("<C-right>", ":wincmd l<CR>")
+-- nnoremap("<C-left>", ":wincmd h<CR>", { silent = true })
+-- nnoremap("<C-down>", ":wincmd j<CR>", { silent = true })
+-- nnoremap("<C-up>", ":wincmd k<CR>", { silent = true })
+-- nnoremap("<C-right>", ":wincmd l<CR>", { silent = true })
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation

@@ -1,6 +1,10 @@
 local status, leap = pcall(require, "leap")
 if (not status) then return end
-leap.add_default_mappings()
+
+local nnoremap = require("merlinvn.keymap").nnoremap
+local vnoremap = require("merlinvn.keymap").vnoremap
+local onoremap = require("merlinvn.keymap").onoremap
+
 leap.setup {
   max_phase_one_targets = nil,
   highlight_unlabeled_phase_one_targets = false,
@@ -36,3 +40,16 @@ leap.setup {
     multi_revert = '<backspace>',
   },
 }
+
+-- leap.add_default_mappings()
+
+nnoremap('s', '<Plug>(leap-forward-to)', { silent = true })
+nnoremap('S', '<Plug>(leap-backward-to)', { silent = true })
+vnoremap('s', '<Plug>(leap-forward-to)', { silent = true })
+vnoremap('S', '<Plug>(leap-backward-to)', { silent = true })
+
+vnoremap('z', '<Plug>(leap-forward-till)', { silent = true })
+vnoremap('Z', '<Plug>(leap-backward-till)', { silent = true })
+onoremap('z', '<Plug>(leap-forward-till)', { silent = true })
+onoremap('Z', '<Plug>(leap-backward-till)', { silent = true })
+

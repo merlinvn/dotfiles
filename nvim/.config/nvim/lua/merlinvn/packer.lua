@@ -104,11 +104,6 @@ packer.startup(
     -- utilitis
     use({
       "kylechui/nvim-surround",
-      config = function()
-        require("nvim-surround").setup({
-          -- Configuration here, or leave empty to use defaults
-        })
-      end
     })
     -- use "tpope/vim-surround" -- Surround text objects easily
     -- use {
@@ -180,6 +175,21 @@ packer.startup(
     -- dashboard
     -- use "mhinz/vim-startify"
     use("goolord/alpha-nvim")
+    use({
+      "folke/noice.nvim",
+      event = "VimEnter",
+      config = function()
+        require("noice").setup()
+      end,
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+      }
+    })
 
     -- -- status line
     use {
@@ -216,7 +226,17 @@ packer.startup(
 
     -- AI assistant
     -- use { "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" }
-    use("github/copilot.vim")
+    -- use("github/copilot.vim")
+    use {
+      "zbirenbaum/copilot.lua",
+      -- event = "InsertEnter",
+      -- config = function()
+      --   vim.schedule(function()
+      --     require("copilot").setup()
+      --   end, 100)
+      -- end,
+    }
+
 
     -- Note taking
 
