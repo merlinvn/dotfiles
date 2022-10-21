@@ -21,7 +21,8 @@ local source_mapping = {
   spell = "[Spell]",
   calc = "[Calc]",
   emoji = "[Emoji]",
-  treesitter = "[treesitter]"
+  treesitter = "[treesitter]",
+  copilot = "[copilot]",
 }
 
 local t = function(str)
@@ -43,6 +44,9 @@ cmp.setup {
           menu = entry.completion_item.data.detail .. ' ' .. menu
         end
         vim_item.kind = ''
+      end
+      if entry.source.name == "copilot" then
+        vim_item.kind = ""
       end
       vim_item.menu = menu
       return vim_item
@@ -99,7 +103,7 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.SelectBehavior })
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         elseif has_words_before() then
@@ -113,7 +117,7 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
-          cmp.select_prev_item()
+          cmp.select_prev_item({behavior = cmp.SelectBehavior.SelectBehavior})
         elseif luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else
@@ -122,13 +126,13 @@ cmp.setup {
       end,
       { "i", "s" }
     ),
-    -- ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
-    --   behavior = cmp.SelectBehavior.Select
-    -- }), { "i" }),
-    -- ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
-    --   behavior = cmp.SelectBehavior.Select
-    -- }), { "i" }),
-    ["<Down>"] = cmp.mapping(
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Select
+    }), { "i" }),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
+      behavior = cmp.SelectBehavior.Select
+    }), { "i" }),
+    ["<C-n>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -146,7 +150,7 @@ cmp.setup {
         end
       }
     ),
-    ["<Up>"] = cmp.mapping(
+    ["<C-o>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -174,14 +178,33 @@ cmp.setup {
     { name = "path" },
     { name = "emoji" },
     { name = "nvim_lua" },
-    -- { name = 'copilot' },
+    { name = 'copilot', group_index = 2 },
     -- { name = "cmp_tabnine" },
     -- { name = "treesitter" },
     -- { name = "calc" },
     -- { name = "spell" },
     -- { name = "look" },
   },
-  completion = { completeopt = "menu,menuone,noinsert" }
+  completion = { completeopt = "menu,menuone,noinsert" },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+      require("copilot_cmp.comparators").score,
+
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 }
 
 vim.cmd [[
@@ -250,3 +273,11 @@ vim.api.nvim_exec(
     ]],
   false
 )
+
+cmp.event:on("menu_opened", function()
+  vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+  vim.b.copilot_suggestion_hidden = false
+end)

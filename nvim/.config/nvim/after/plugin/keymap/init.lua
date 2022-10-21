@@ -48,10 +48,10 @@ nnoremap("<leader>l", ":wincmd l<CR>", { silent = true })
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
--- nnoremap("<S-h>", ":bprev<cr>")
--- nnoremap("<S-l>", ":bnext<cr>")
-nnoremap("<tab>", ":bprev<cr>")
-nnoremap("<S-tab>", ":bnext<cr>")
+nnoremap("<C-B>", ":bprev<cr>")
+nnoremap("<C-b>", ":bnext<cr>")
+-- nnoremap("<tab>", ":bprev<cr>")
+-- nnoremap("<S-tab>", ":bnext<cr>")
 
 -- tab navigation
 -- Go to tab by number

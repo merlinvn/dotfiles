@@ -17,13 +17,13 @@ require('copilot').setup({
   },
   suggestion = {
     enabled = true,
-    auto_trigger = true,
+    auto_trigger = false,
     debounce = 75,
     keymap = {
-     accept = "<M-l>",
-     next = "<M-k>",
-     prev = "<M-j>",
-     dismiss = "<M-h>",
+      accept = "<M-l>",
+      next = "<M-k>",
+      prev = "<M-j>",
+      dismiss = "<M-h>",
     },
   },
   filetypes = {
@@ -41,3 +41,5 @@ require('copilot').setup({
   plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
   server_opts_overrides = {},
 })
+
+-- require("copilot_cmp").setup()

@@ -54,16 +54,16 @@ packer.startup(
     use("sbdchd/neoformat")
 
     -- Better LSP experience
-    use {
-      "j-hui/fidget.nvim",
-      config = function()
-        require "fidget".setup {
-          window = {
-            blend = 0,
-          },
-        }
-      end
-    }
+    -- use {
+    --   "j-hui/fidget.nvim",
+    --   config = function()
+    --     require "fidget".setup {
+    --       window = {
+    --         blend = 0,
+    --       },
+    --     }
+    --   end
+    -- }
 
     -- Null lsp
     use "jose-elias-alvarez/null-ls.nvim" -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
@@ -178,9 +178,6 @@ packer.startup(
     use({
       "folke/noice.nvim",
       event = "VimEnter",
-      config = function()
-        require("noice").setup()
-      end,
       requires = {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         "MunifTanjim/nui.nvim",
@@ -237,6 +234,13 @@ packer.startup(
       -- end,
     }
 
+    use {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end
+    }
 
     -- Note taking
 
