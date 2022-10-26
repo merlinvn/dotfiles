@@ -136,6 +136,7 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+<<<<<<< Updated upstream
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # zprof
@@ -153,3 +154,13 @@ fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+=======
+[ -f "/home/neo/.ghcup/env" ] && source "/home/neo/.ghcup/env" # ghcup-env
+
+# bun completions
+[ -s "/home/neo/.bun/_bun" ] && source "/home/neo/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/home/neo/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+>>>>>>> Stashed changes
