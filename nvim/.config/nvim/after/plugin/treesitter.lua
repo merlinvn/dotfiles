@@ -2,7 +2,8 @@ local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
 ts.setup {
-  ensure_installed = "all",
+  ensure_installed = { "c", "lua", "rust" },
+  auto_install = true,
   sync_install = false,
   autotag = {
     enable = true,

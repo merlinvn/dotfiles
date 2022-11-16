@@ -13,7 +13,6 @@ GTK_IM_MODULE=ibus
 QT_IM_MODULE=ibus
 XMODIFIERS=@im=ibus
 
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -36,9 +35,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# if xhost >& /dev/null ; then
-  # setxkbmap -option caps:swapescape
-# fi
+if xhost >& /dev/null ; then
+  setxkbmap -option caps:escape
+fi
 
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
@@ -73,20 +72,16 @@ export LANGUAGE=en_US.UTF-8
 
 [[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
 
-[[ -f "/usr/bin/vcgencmd" ]] && alias temp="/usr/bin/vcgencmd measure_temp"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias python=python3
   alias pip=pip3
   export PATH=$HOME/Library/Python/3.10/bin:$PATH
 fi
 
-alias anaconda='source  ~/.conda.shellrc'
-
-[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
+if [ -d "$HOME/.volta" ]; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

@@ -86,12 +86,6 @@ autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
-
-if [ -f ~/.bash_aliases ]
-then
-  source ~/.bash_aliases
-fi
-
 function mkcd {
   command mkdir $1 && cd $1
 }
@@ -102,8 +96,8 @@ function dipa(){
   docker rmi $(docker images -qf dangling=true);
 }
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-[ -f /usr/share/autojump/autojump.zsh ] &&  . /usr/share/autojump/autojump.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] &&  source /usr/share/autojump/autojump.zsh
 
 function _fix_cursor() {
   echo -ne '\e[6 q'
@@ -115,40 +109,28 @@ precmd_functions+=(_fix_cursor)
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
-# bindkey '^[[1;5C' forward-word
-# bindkey '^[[1;5D' backward-word
-
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 [ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
 
 unsetopt BEEP
 
-if [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ]; then
-      fortune | cowsay
-fi
-
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-alias luamake=/home/ubuntu/lua-language-server/3rd/luamake/luamake
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# zprof
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# Add exports from your profile
+[ -s "$HOME/.profile" ] && source "$HOME/.profile"
+
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 ## this is the replacement for j with fzf support
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
-# Add exports from your profile
-if [ -e ~/.profile ]; then
-  source ~/.profile
-fi
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
