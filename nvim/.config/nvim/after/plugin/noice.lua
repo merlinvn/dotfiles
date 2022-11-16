@@ -1,5 +1,6 @@
 local status, noice = pcall(require, "noice")
 if (not status) then return end
+
 noice.setup({
   cmdline = {
     enabled = true, -- enables the Noice cmdline UI

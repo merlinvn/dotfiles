@@ -2,7 +2,6 @@
 -- vim.g.copilot_node_command = "~/.volta/bin/node"
 -- vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
-
 require('copilot').setup({
   panel = {
     enabled = true,

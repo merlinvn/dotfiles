@@ -170,6 +170,7 @@ cmp.setup {
     )
   },
   sources = {
+    { name = 'copilot'},
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
@@ -178,7 +179,6 @@ cmp.setup {
     { name = "path" },
     { name = "emoji" },
     { name = "nvim_lua" },
-    { name = 'copilot', group_index = 2 },
     -- { name = "cmp_tabnine" },
     -- { name = "treesitter" },
     -- { name = "calc" },
