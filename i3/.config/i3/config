@@ -177,12 +177,18 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # move to workspace to the left/right monitor
-bindsym $mod+Ctrl+j move workspace to output left
-bindsym $mod+Ctrl+k move workspace to output right
+bindsym $mod+Shift+j move workspace to output left
+bindsym $mod+Shift+k move workspace to output right
 
 # navigate nxt / prev workspace
-bindsym $mod+Shift+j workspace prev
-bindsym $mod+Shift+k workspace next
+bindsym $mod+Ctrl+j workspace prev
+bindsym $mod+Ctrl+k workspace next
+
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+
+bindsym $mod+Ctrl+n workspace prev
+bindsym $mod+Ctrl+i workspace next
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
