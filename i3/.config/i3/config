@@ -278,7 +278,8 @@ assign [class="(?i)firefox"] $ws3
 assign [class="(?i)brave"] $ws3
 assign [class="(?i)alacritty"] $ws2
 assign [class="(?i)nautilus"] $ws5
-assign [class="(?i)Obsidian"] $ws7
+assign [class="(?i)obsidian"] $ws7
+assign [class="(?i)thunderbird"] $ws6
 
 
 
