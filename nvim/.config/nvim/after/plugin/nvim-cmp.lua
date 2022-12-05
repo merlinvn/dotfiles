@@ -132,7 +132,7 @@ cmp.setup {
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
       behavior = cmp.SelectBehavior.Select
     }), { "i" }),
-    ["<C-n>"] = cmp.mapping(
+    ["<C-Down>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -150,7 +150,7 @@ cmp.setup {
         end
       }
     ),
-    ["<C-o>"] = cmp.mapping(
+    ["<C-Up>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -189,8 +189,8 @@ cmp.setup {
   sorting = {
     priority_weight = 2,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
-      require("copilot_cmp.comparators").score,
+      -- require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").score,
 
       -- Below is the default comparitor list and order for nvim-cmp
       cmp.config.compare.offset,
@@ -274,10 +274,10 @@ vim.api.nvim_exec(
   false
 )
 
-cmp.event:on("menu_opened", function()
-  vim.b.copilot_suggestion_hidden = true
-end)
+-- cmp.event:on("menu_opened", function()
+--   vim.b.copilot_suggestion_hidden = true
+-- end)
+--
+-- cmp.event:on("menu_closed", function()
+--   vim.b.copilot_suggestion_hidden = false
 
-cmp.event:on("menu_closed", function()
-  vim.b.copilot_suggestion_hidden = false
-end)

@@ -48,7 +48,7 @@ mouse_warping output
 floating_modifier $mod
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+backslash exec --no-startup-id dmenu_run
@@ -63,7 +63,7 @@ bindsym $mod+Shift+Return exec --no-startup-id rofi -show combi
 # terminal
 bindsym $mod+Return workspace 2,exec alacritty
 # browser
-bindsym $mod+F1 workspace 3,exec brave-browser
+bindsym $mod+F1 workspace 3,exec brave
 # file manager
 bindsym $mod+F2 workspace 5,exec nautilus
 # screenshots
@@ -280,6 +280,7 @@ assign [class="(?i)alacritty"] $ws2
 assign [class="(?i)nautilus"] $ws5
 assign [class="(?i)obsidian"] $ws7
 assign [class="(?i)thunderbird"] $ws6
+assign [class="(?i)telegram"] $ws8
 
 
 

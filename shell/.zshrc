@@ -134,3 +134,4 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
 [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
