@@ -73,7 +73,7 @@ bindsym $mod+Shift+s --release exec --no-startup-id "scrot -s ~/Pictures/Screens
 # bindsym $mod+F2 exec obs
 # bindsym $mod+F3 exec kdenlive
 # bindsym $mod+F5 exec $myTerm -e 'mocp'
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
 # bindsym Print exec --no-startup-id i3-scrot
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Ctrl+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
@@ -301,7 +301,7 @@ client.unfocused         #16161d #16161d #c0caf5 #16161d #16161d
 
 # autostart applications
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
-exec --no-startup-id nitrogen --restore; sleep 1; picom --config ~/.config/picom/picom.conf
+exec --no-startup-id nitrogen --restore; sleep 1; picom --config ~/.config/picom/picom.conf &
 exec --no-startup-id dunst &
 
 # feh --bg-fill ~/Pictures/wallpapers/1.jpg &
