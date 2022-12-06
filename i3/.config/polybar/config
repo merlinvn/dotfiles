@@ -51,7 +51,7 @@ padding-right = 1
 
 module-margin = 1
 
-separator = |
+separator =
 separator-foreground = ${colors.disabled}
 
 font-0 = "JetBrains Mono Nerd Font:size=10;2"
@@ -75,7 +75,7 @@ enable-ipc = true
 
 [module/xworkspaces]
 type = internal/xworkspaces
-pin-workspaces = true
+pin-workspaces = false
 
 ;extra icons to choose from
 ;http://fontawesome.io/cheatsheet/
@@ -83,7 +83,7 @@ pin-workspaces = true
 ;       v     
 ;
 
-icon-0 = 1;
+icon-0 = 1;
 icon-1 = 2;
 icon-2 = 3;
 icon-3 = 4;
@@ -94,6 +94,12 @@ icon-7 = 8;
 ; icon-8 = 9;
 ; icon-9 = 10;
 icon-default = " "
+
+format = <label-monitor> <label-state>
+format-padding = 3
+; format = <label-monitor>
+label-monitor = " "
+label-monitor-foreground = ${colors.secondary}
 
 label-active = %icon% %name%
 label-active-background = ${colors.background}
@@ -114,7 +120,7 @@ label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:60:...%
+label =  %title:0:60:...%
 
 [module/filesystem]
 type = internal/fs
