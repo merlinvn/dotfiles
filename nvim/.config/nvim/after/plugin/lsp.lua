@@ -157,14 +157,14 @@ nvim_lsp.clangd.setup {
   cmd = {
     "clangd",
     "--background-index",
-    "--clang-tidy",
-    "--clang-tidy-checks=*",
-    "--all-scopes-completion",
-    "--cross-file-rename",
-    "--completion-style=detailed",
-    "--header-insertion-decorators",
-    "--header-insertion=iwyu",
-    "--pch-storage=memory",
+    -- "--clang-tidy",
+    -- "--clang-tidy-checks=*",
+    -- "--all-scopes-completion",
+    -- "--cross-file-rename",
+    -- "--completion-style=detailed",
+    -- "--header-insertion-decorators",
+    -- "--header-insertion=iwyu",
+    -- "--pch-storage=memory",
   }
 }
 

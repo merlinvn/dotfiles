@@ -34,6 +34,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# autostart applications
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+exec --no-startup-id $HOME/.config/i3/set-wallpapers.py
+exec --no-startup-id picom --config $HOME/.config/picom/picom.conf
+exec --no-startup-id dunst
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -281,6 +287,7 @@ assign [class="(?i)nautilus"] $ws5
 assign [class="(?i)obsidian"] $ws7
 assign [class="(?i)thunderbird"] $ws6
 assign [class="(?i)telegram"] $ws8
+assign [class="(?i)ranger"] $ws5
 
 
 
@@ -299,11 +306,6 @@ client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce #9aa5ce
 client.focused_inactive  #16161d #16161d #c0caf5 #16161d #16161d
 client.unfocused         #16161d #16161d #c0caf5 #16161d #16161d
 
-# autostart applications
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
-exec_always --no-startup-id $HOME/.config/i3/set-wallpapers.py &
-exec_always --no-startup-id killall picom,picom --config $HOME/.config/picom/picom.conf &
-exec_always --no-startup-id killall dunst,dunst &
 
 # feh --bg-fill ~/Pictures/wallpapers/1.jpg &
   # exec --no-startup-id picom --experimental-backends &

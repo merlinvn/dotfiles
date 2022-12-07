@@ -175,17 +175,17 @@ packer.startup(
     -- dashboard
     -- use "mhinz/vim-startify"
     use("goolord/alpha-nvim")
-    use({
-      "folke/noice.nvim",
-      requires = {
-        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-        "MunifTanjim/nui.nvim",
-        -- OPTIONAL:
-        --   `nvim-notify` is only needed, if you want to use the notification view.
-        --   If not available, we use `mini` as the fallback
-        "rcarriga/nvim-notify",
-      }
-    })
+    -- use({
+    --   "folke/noice.nvim",
+    --   requires = {
+    --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --     "MunifTanjim/nui.nvim",
+    --     -- OPTIONAL:
+    --     --   `nvim-notify` is only needed, if you want to use the notification view.
+    --     --   If not available, we use `mini` as the fallback
+    --     "rcarriga/nvim-notify",
+    --   }
+    -- })
 
     -- -- status line
     use {
@@ -258,5 +258,7 @@ packer.startup(
     -- Rust:
 
     use("simrat39/rust-tools.nvim")
+    -- C++:
+    use "cdelledonne/vim-cmake"
   end
 )

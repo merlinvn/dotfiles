@@ -48,8 +48,8 @@ nnoremap("<leader>l", ":wincmd l<CR>", { silent = true })
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-nnoremap("<C-B>", ":bprev<cr>")
-nnoremap("<C-b>", ":bnext<cr>")
+nnoremap("<C-B>", ":bprev<cr>", { silent = true })
+nnoremap("<C-b>", ":bnext<cr>", { silent = true })
 -- nnoremap("<tab>", ":bprev<cr>")
 -- nnoremap("<S-tab>", ":bnext<cr>")
 
@@ -64,7 +64,7 @@ nmap("<leader>6", "6gt")
 nmap("<leader>7", "7gt")
 nmap("<leader>8", "8gt")
 nmap("<leader>9", "9gt")
-nmap("<leader>0", ":tablast<cr>")
+nmap("<leader>0", ":tablast<cr>", { silent = true })
 
 -- create new tab
 nnoremap("<C-t>", "<C-w>s<C-w>T")
@@ -81,12 +81,12 @@ nnoremap("<C-x>", ":tabclose<CR>")
 -- nnoremap("<C-S-right>", ":tabm+<cr>")
 
 -- move line up / down
-nnoremap("<C-j>", ":m .+1<CR>==")
-nnoremap("<C-k>", ":m .-2<CR>==")
-inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
-inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
-vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
-vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
+nnoremap("<C-j>", ":m .+2<CR>==", { silent = true })
+nnoremap("<C-k>", ":m .-2<CR>==", { silent = true })
+inoremap("<C-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
+inoremap("<C-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+vnoremap("<C-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vnoremap("<C-k>", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- nnoremap("<C-down>", ":m .+1<CR>==")
 -- nnoremap("<C-up>", ":m .-2<CR>==")
