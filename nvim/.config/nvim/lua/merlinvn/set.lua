@@ -91,5 +91,5 @@ vim.opt.shortmess:append("c")
 
 vim.opt.colorcolumn = tostring(width) --Line length marker
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

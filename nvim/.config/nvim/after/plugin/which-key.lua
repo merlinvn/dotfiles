@@ -11,3 +11,22 @@ wk.register({
     -- g = { name = "Git" }
   }
 }, { prefix = "<leader>" })
+
+wk.register({
+  ["<leader>w"] = {
+    name = "+windows",
+    w = { ":wincmd n<CR>", "New window" },
+    n = { ":wincmd w<CR>", "Next window" },
+    p = { ":wincmd p<CR>", "Previous windows" },
+    h = { ":wincmd h<CR>", "Left window" },
+    j = { ":wincmd j<CR>", "Down window" },
+    k = { ":wincmd k<CR>", "Up window" },
+    l = { ":wincmd l<CR>", "Right window" },
+    ["-"] = { ":vertical resize -5<CR>", "Decrease width" },
+    ["+"] = { ":vertical resize +5<CR>", "Increase width" },
+    ["["] = {":horizontal resize -5 <CR>", "Decrease height"},
+    ["]"] = {":horizontal resize +5 <CR>", "Increase height"},
+    ["="] = {":wincmd =<CR>", "Increase height"},
+    -- reset size
+  },
+})

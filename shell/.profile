@@ -88,3 +88,8 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # export TERM=xterm-256color
+
+# root less podman
+[[ -f "/usr/bin/podman" ]] && export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
+
+

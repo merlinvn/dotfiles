@@ -16,7 +16,7 @@ nnoremap("<C-s>", ":w<CR>", { silent = true })
 inoremap("<C-s>", "<Esc>:w<CR>a", { silent = true })
 
 -- remap quit
-nnoremap("<Leader>q", ":bd<CR>", { silent = true })
+nnoremap("<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
 nnoremap("<C-q>", ":q<CR>", { silent = true })
 inoremap("<C-q>", "<Esc>:q<CR>", { silent = true })
 
@@ -36,10 +36,10 @@ inoremap("[", "[<c-g>u")
 inoremap("?", "?<c-g>u")
 
 -- windows navigation
-nnoremap("<leader>h", ":wincmd h<CR>", { silent = true })
-nnoremap("<leader>j", ":wincmd j<CR>", { silent = true })
-nnoremap("<leader>k", ":wincmd k<CR>", { silent = true })
-nnoremap("<leader>l", ":wincmd l<CR>", { silent = true })
+nnoremap("<leader>h", ":wincmd h<CR>", { silent = true, desc="win left" })
+nnoremap("<leader>j", ":wincmd j<CR>", { silent = true, desc="win right" })
+nnoremap("<leader>k", ":wincmd k<CR>", { silent = true, desc="win up" })
+nnoremap("<leader>l", ":wincmd l<CR>", { silent = true, desc="win down" })
 
 -- nnoremap("<C-left>", ":wincmd h<CR>", { silent = true })
 -- nnoremap("<C-down>", ":wincmd j<CR>", { silent = true })

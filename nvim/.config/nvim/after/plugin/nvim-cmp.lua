@@ -117,7 +117,7 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
-          cmp.select_prev_item({behavior = cmp.SelectBehavior.SelectBehavior})
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.SelectBehavior })
         elseif luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else
@@ -132,7 +132,7 @@ cmp.setup {
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
       behavior = cmp.SelectBehavior.Select
     }), { "i" }),
-    ["<C-Down>"] = cmp.mapping(
+    ["<C-j>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -150,7 +150,7 @@ cmp.setup {
         end
       }
     ),
-    ["<C-Up>"] = cmp.mapping(
+    ["<C-k>"] = cmp.mapping(
       {
         c = function()
           if cmp.visible() then
@@ -170,7 +170,7 @@ cmp.setup {
     )
   },
   sources = {
-    { name = 'copilot'},
+    { name = 'copilot' },
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
@@ -215,6 +215,8 @@ cmp.setup.cmdline(
   "/",
   {
     -- completion = { autocomplete = true },
+    mapping = cmp.mapping.preset.cmdline(),
+
     sources = {
       { name = "buffer" }
       -- { name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] } }
@@ -226,15 +228,17 @@ cmp.setup.cmdline(
 cmp.setup.cmdline(
   ":",
   {
-    completion = { autocomplete = true },
-    sources = cmp.config.sources(
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
       {
-        { name = "path" }
-      } ,
-      {
-        { name = "cmdline" }
+        name = 'cmdline',
+        option = {
+          ignore_cmds = { 'Man', '!' }
+        }
       }
-    )
+    })
   }
 )
 
@@ -280,4 +284,3 @@ vim.api.nvim_exec(
 --
 -- cmp.event:on("menu_closed", function()
 --   vim.b.copilot_suggestion_hidden = false
-

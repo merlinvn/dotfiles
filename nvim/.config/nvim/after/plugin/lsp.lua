@@ -54,7 +54,7 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
   vim.keymap.set('n', 'gr', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
 end
