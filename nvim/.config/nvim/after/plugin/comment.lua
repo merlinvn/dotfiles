@@ -1,8 +1,7 @@
-if not pcall(require, "Comment") then
-  return
-end
+local status, comment = pcall(require, "Comment")
+if (not status) then return end
 
-require("Comment").setup {
+comment.setup {
   ---Add a space b/w comment and the line
   ---@type boolean|fun():boolean
   padding = true,

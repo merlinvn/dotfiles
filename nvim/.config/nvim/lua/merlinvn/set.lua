@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
@@ -14,9 +15,6 @@ vim.opt.belloff = 'all'
 vim.opt.errorbells = false
 
 -- vim.opt.guicursor = ""
-
-vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' } -- Completion options
-
 vim.opt.cursorline = true -- Highlight cursor line
 local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
 local set_cursorline = function(event, value, pattern)
@@ -93,3 +91,12 @@ vim.opt.colorcolumn = tostring(width) --Line length marker
 
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Enable mouse mode
+vim.o.mouse = 'a'
+
+-- Enable break indent
+vim.o.breakindent = true
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'

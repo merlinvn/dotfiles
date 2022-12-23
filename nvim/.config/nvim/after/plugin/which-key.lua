@@ -4,15 +4,20 @@ require("which-key").setup {
   -- refer to the configuration section below
 }
 local wk = require("which-key")
-wk.register({
-  y = {
-    name = "hYdra",
-    -- w = { name = "Windows" },
-    -- g = { name = "Git" }
-  }
-}, { prefix = "<leader>" })
 
 wk.register({
+  ["<leader>r"] = {
+    name = "Reload",
+    l = "Reload current luafile",
+  },
+  ["<leader>t"] = {
+    name = "Telescope"
+  },
+  ["<leader>y"] = {
+    name = "hYdra",
+    w = "Windows",
+    g = "Git"
+  },
   ["<leader>w"] = {
     name = "+windows",
     w = { ":wincmd n<CR>", "New window" },
@@ -24,9 +29,12 @@ wk.register({
     l = { ":wincmd l<CR>", "Right window" },
     ["-"] = { ":vertical resize -5<CR>", "Decrease width" },
     ["+"] = { ":vertical resize +5<CR>", "Increase width" },
-    ["["] = {":horizontal resize -5 <CR>", "Decrease height"},
-    ["]"] = {":horizontal resize +5 <CR>", "Increase height"},
-    ["="] = {":wincmd =<CR>", "Increase height"},
-    -- reset size
+    ["["] = { ":horizontal resize -5 <CR>", "Decrease height" },
+    ["]"] = { ":horizontal resize +5 <CR>", "Increase height" },
+    ["="] = { ":wincmd =<CR>", "Reset size" },
   },
+  ["<leader>c"] = {
+    name = "+code",
+    a = "Code actions",
+  }
 })

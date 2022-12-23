@@ -1,9 +1,15 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
+-- Turn on lsp status information
+require('fidget').setup()
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
+
 local protocol = require('vim.lsp.protocol')
 
-local nnoremap = require("merlinvn.keymap").nnoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -26,8 +32,6 @@ vim.diagnostic.config({
 })
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
-require("nvim-lsp-installer").setup {}
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -39,151 +43,138 @@ vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  local nmap = function(keys, func, desc)
+    vim.keymap.set('n', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
+  end
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
+  nmap('H', vim.lsp.buf.hover, "Show hover")
+  nmap('<C-h>', vim.lsp.buf.signature_help, "Show signature help")
+  nmap('<leader>rn', vim.lsp.buf.rename, "[R]e[n]ame")
+  nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
+  nmap('<leader>f', function() vim.lsp.buf.format { async = true } end, "Format buffer")
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
+
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, '[W]orkspace [L]ist Folders')
+
+
+  -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementatasdion, bufopts)
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
-  vim.keymap.set('n', 'gr', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-  -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
+  -- vim.keymap.set('n','<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  "pyright",
-  -- rust-analyzer will be managed by rust-tools
-  -- "rust_analyzer",
-  -- "yamlls",
-  "tailwindcss",
-  "gopls",
-  "dockerls",
-  "cssls",
-  "hls"
-}
+  clangd = {
+    cmd = { "clangd", "--background-index", "--suggest-missing-includes", "--clang-tidy", "--header-insertion=iwyu" },
+  },
+  gopls = {},
+  pyright = {},
+  rust_analyzer = {},
+  tsserver = {
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" },
+  },
 
-for _, lsp in pairs(servers) do
-  require("lspconfig")[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-    }
-  }
-end
--- TypeScript
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  -- capabilities = capabilities,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" }
-}
-
-nvim_lsp.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-      diagnostics = {
-        globals = {
-          "vim", "use", "t",
-          -- vim = true,
-          -- nvim = true,
-          -- use = true,
-          -- lsp = true,
-          -- _G = true,
-          -- print = true,
-          -- ipairs = true,
-          -- pairs = true,
-          -- next = true,
-          -- type = true,
-          -- tonumber = true,
-          -- tostring = true,
-          -- unpack = true,
-          -- io = true,
-          -- coroutine = true,
-          -- table = true,
-          -- string = true,
-          -- math = true,
-          -- bit32 = true,
-          -- debug = true,
-          -- assert = true,
-          -- os = true,
-          -- package = true,
-          -- _VERSION = true,
-          -- xpcall = true,
-          -- module = true,
-          -- rawset = true,
-          -- rawget = true,
-          -- pcall = true,
-          -- error = true,
-          -- gcinfo = true,
-          -- collectgarbage = true,
-          -- getmetatable = true,
-          -- setmetatable = true,
-          -- getfenv = true,
-          -- setfenv = true,
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+        diagnostics = {
+          globals = {
+            "vim", "use", "t",
+            -- vim = true,
+            -- nvim = true,
+            -- use = true,
+            -- lsp = true,
+            -- _G = true,
+            -- print = true,
+            -- ipairs = true,
+            -- pairs = true,
+            -- next = true,
+            -- type = true,
+            -- tonumber = true,
+            -- tostring = true,
+            -- unpack = true,
+            -- io = true,
+            -- coroutine = true,
+            -- table = true,
+            -- string = true,
+            -- math = true,
+            -- bit32 = true,
+            -- debug = true,
+            -- assert = true,
+            -- os = true,
+            -- package = true,
+            -- _VERSION = true,
+            -- xpcall = true,
+            -- module = true,
+            -- rawset = true,
+            -- rawget = true,
+            -- pcall = true,
+            -- error = true,
+            -- gcinfo = true,
+            -- collectgarbage = true,
+            -- getmetatable = true,
+            -- setmetatable = true,
+            -- getfenv = true,
+            -- setfenv = true,
+          }
         }
       }
     }
-  }
+  },
+  tailwindcss = {},
+  dockerls = {},
+  cmake = {},
+  -- hsl = {},
 }
 
-nvim_lsp.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = {
-    "clangd",
-    "--background-index",
-    -- "--clang-tidy",
-    -- "--clang-tidy-checks=*",
-    -- "--all-scopes-completion",
-    -- "--cross-file-rename",
-    -- "--completion-style=detailed",
-    -- "--header-insertion-decorators",
-    -- "--header-insertion=iwyu",
-    -- "--pch-storage=memory",
-  }
+-- mason will install the language servers for you
+local mason_lspconfig = require 'mason-lspconfig'
+require('mason').setup()
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
 
-nvim_lsp.cmake.setup {}
-
--- nvim_lsp.html.setup {
---   filetypes = { "html", "eruby" },
---   capabilities = capabilities
--- }
-
--- nvim_lsp.jsonls.setup {
---   commands = {
---     Format = {
---       function()
---         vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
---       end
---     }
---   }
--- }
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    nvim_lsp[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name]["settings"],
+      cmd = servers[server_name]["cmd"],
+    }
+  end,
+}
 
 protocol.CompletionItemKind = {
   '', -- Text
@@ -212,10 +203,3 @@ protocol.CompletionItemKind = {
   'ﬦ', -- Operator
   '', -- TypeParameter
 }
-
-require("rust-tools").setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  },
-})

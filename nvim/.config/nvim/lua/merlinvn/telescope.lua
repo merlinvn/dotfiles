@@ -254,9 +254,9 @@ end
 
 function M.search_only_certain_files()
   require("telescope.builtin").find_files {
+    hidden = true,
     find_command = {
-      "rg",
-      "--files",
+      "rg", "--no-ignore", "--files", "-g", "!.git/",
       "--type",
       vim.fn.input "Type: "
     }
@@ -278,10 +278,14 @@ end
 function M.curbuf()
   local opts =
   themes.get_dropdown {
-    winblend = 10,
+    winblend = 5,
     border = true,
     previewer = false,
-    shorten_path = false
+    shorten_path = false,
+    layout_config = {
+      height = 19,
+      width = 0.8,
+    }
   }
   require("telescope.builtin").current_buffer_fuzzy_find(opts)
 end

@@ -1,33 +1,23 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
-local MerlinVnGroup = augroup('MerlinVn', {})
-local yank_group = augroup('HighlightYank', {})
-
-autocmd('TextYankPost', {
-  group = yank_group,
-  pattern = '*',
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank({
-      higroup = 'IncSearch',
-      timeout = 300,
+      -- higroup = 'IncSearch',
+      -- timeout = 300,
     })
   end,
+  group = highlight_group,
+  pattern = '*',
 })
 
---autocmd({"BufEnter", "BufWinEnter", "TabEnter"}, {
---    group = MerlinVnGroup,
---    pattern = "*.rs",
---    callback = function()
---        require("lsp_extensions").inlay_hints{}
---    end
---})
 
+-- [[ Fix file on save]]
 -- remove trailing spaces at the end of all lines
-autocmd({ "BufWritePre" }, {
+local MerlinVnGroup = vim.api.nvim_create_augroup('MerlinVn', {})
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = MerlinVnGroup,
   pattern = "*",
   command = "%s/\\s\\+$//e",
 })
-
-
