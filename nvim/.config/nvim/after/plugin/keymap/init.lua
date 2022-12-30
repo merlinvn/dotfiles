@@ -122,8 +122,8 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- replace selected in visual mode, by yank current selection to register h, then
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
-vim.keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>')
-vim.keymap.set("n", "<C-r>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<Leader>rr", '"hy:%s/<C-r>h//gc<left><left><left>')
+vim.keymap.set("n", "<Leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 

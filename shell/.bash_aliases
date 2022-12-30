@@ -25,10 +25,14 @@ alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
 
 # Git aliases.
-alias gd='git diff'
-alias gi='git init'
+if [[ -f "$HOME/forgit/forgit.plugin.zsh" ]] ; then
 
-alias ga='git add'
+else
+  alias gd='git diff'
+  alias ga='git add'
+fi
+
+alias gi='git init'
 alias gaa='git add .'
 alias gaaa='git add -A'
 alias gc='git commit'
