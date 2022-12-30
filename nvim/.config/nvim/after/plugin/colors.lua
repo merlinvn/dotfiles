@@ -21,54 +21,52 @@ vim.cmd("colorscheme kanagawa") ]]
 
 -- vim.cmd("colorscheme oxocarbon")
 -- vim.g.my_colorscheme = "tokyonight"
--- vim.g.my_colorscheme = "gruvbox"
+vim.g.my_colorscheme = "gruvbox"
 -- vim.g.my_colorscheme = "kanagawa"
 
--- function ColorMyPencils()
---   vim.g.gruvbox_contrast_dark = 'hard'
---   vim.g.gruvbox_invert_selection = '0'
---   vim.g.oxocarbon_lua_transparent = false
---   vim.g.oxocarbon_lua_keep_terminal = false
---   vim.g.tokyonight_transparent_sidebar = false
---   vim.g.tokyonight_transparent = false
---   vim.g.tokyonight_style = "night"
---   vim.g.background = "dark"
---
---   vim.cmd("colorscheme " .. vim.g.my_colorscheme)
---
---   local hl = function(thing, opts)
---     vim.api.nvim_set_hl(0, thing, opts)
---   end
---
---   hl("SignColumn", {
---     bg = "none",
---   })
---
---   hl("ColorColumn", {
---     ctermbg = 0,
---     bg = "#333333",
---   })
---
---   hl("CursorLineNR", {
---     bg = "None"
---   })
---
---   hl("Normal", {
---     -- bg = "#0d0e14"
---     bg = "" -- transparent background
---   })
---
---   hl("LineNr", {
---     fg = "#5eacd3"
---   })
---
---   hl("netrwDir", {
---     fg = "#5eacd3"
---   })
---
--- end
+function ColorMyPencils()
+  vim.g.gruvbox_contrast_dark = 'hard'
+  vim.g.gruvbox_italic = 1
+  vim.g.gruvbox_transparent_bg = 1
+  vim.g.gruvbox_termcolors = 256
 
--- ColorMyPencils()
+  vim.cmd("colorscheme " .. vim.g.my_colorscheme)
+
+  local hl = function(thing, opts)
+    vim.api.nvim_set_hl(0, thing, opts)
+  end
+
+  hl("SignColumn", {
+    bg = "none",
+  })
+
+  hl("ColorColumn", {
+    ctermbg = 0,
+    bg = "#333333",
+  })
+
+  hl("CursorLineNR", {
+    -- fg = "orange",
+    -- bg = "None"
+  })
+
+  hl("Normal", {
+    ctermbg = 0,
+    -- guibg = 0,
+    -- bg = "#282828"
+    -- bg = "" -- transparent background
+  })
+  --
+  hl("LineNr", {
+    fg ="gray"
+  })
+  --
+  -- hl("netrwDir", {
+  --   fg = "#5eacd3"
+  -- })
+end
+
+ColorMyPencils()
 
 
 -- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha

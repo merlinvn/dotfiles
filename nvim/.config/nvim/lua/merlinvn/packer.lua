@@ -243,19 +243,20 @@ packer.startup(function(use)
 
   -- Colorscheme section
   use("tjdevries/colorbuddy.nvim")
+  use "morhetz/gruvbox"
   -- use("gruvbox-community/gruvbox")
   -- use("folke/tokyonight.nvim")
   -- use("rebelot/kanagawa.nvim")
   -- use("B4mbus/oxocarbon-lua.nvim")
   -- use { "catppuccin/nvim", as = "catppuccin" }
   -- use 'navarasu/onedark.nvim'
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
-  })
+  -- use({
+  --   'rose-pine/neovim',
+  --   as = 'rose-pine',
+  --   config = function()
+  --     vim.cmd('colorscheme rose-pine')
+  --   end
+  -- })
   -- use { "shaunsingh/oxocarbon.nvim", run = "./install.sh" }
 
   --
