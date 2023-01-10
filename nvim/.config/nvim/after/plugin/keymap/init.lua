@@ -1,4 +1,4 @@
--- turn off hightlight search
+-- turn off hightlight searchkey
 -- vim.keymap.set("n", "<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>",
 --   { silent = true, desc = "Toggle highlight search" })
 
@@ -127,7 +127,7 @@ vim.keymap.set("n", "<Leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-if vim.fn.has('win32') then
-  vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>")
-  vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>", { remap = true })
-end
+-- if vim.fn.has('win32') then
+--   vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>")
+--   vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>", { remap = true })
+-- end

@@ -56,7 +56,7 @@ local on_attach = function(client, bufnr)
   nmap('<C-h>', vim.lsp.buf.signature_help, "Show signature help")
   nmap('<leader>rn', vim.lsp.buf.rename, "[R]e[n]ame")
   nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
-  nmap('<leader>f', function() vim.lsp.buf.format { async = true } end, "Format buffer")
+  nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()

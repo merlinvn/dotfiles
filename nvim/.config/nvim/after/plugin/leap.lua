@@ -1,10 +1,6 @@
 local status, leap = pcall(require, "leap")
 if (not status) then return end
 
-local nnoremap = require("merlinvn.keymap").nnoremap
-local vnoremap = require("merlinvn.keymap").vnoremap
-local onoremap = require("merlinvn.keymap").onoremap
-
 leap.setup {
   max_phase_one_targets = nil,
   highlight_unlabeled_phase_one_targets = false,
@@ -43,13 +39,14 @@ leap.setup {
 
 -- leap.add_default_mappings()
 
-nnoremap('s', '<Plug>(leap-forward-to)', { silent = true })
-nnoremap('S', '<Plug>(leap-backward-to)', { silent = true })
-vnoremap('s', '<Plug>(leap-forward-to)', { silent = true })
-vnoremap('S', '<Plug>(leap-backward-to)', { silent = true })
+local mapOptions = { noremap = true, silent = true }
 
-vnoremap('z', '<Plug>(leap-forward-till)', { silent = true })
-vnoremap('Z', '<Plug>(leap-backward-till)', { silent = true })
-onoremap('z', '<Plug>(leap-forward-till)', { silent = true })
-onoremap('Z', '<Plug>(leap-backward-till)', { silent = true })
+vim.keymap.set("n", "s", "<plug>(leap-forward-to)", mapOptions)
+vim.keymap.set("n", "S", "<Plug>(leap-backward-to)", mapOptions)
+vim.keymap.set("v", "s", "<Plug>(leap-forward-to)", mapOptions)
+vim.keymap.set("v", "S", "<Plug>(leap-backward-to)", mapOptions)
 
+vim.keymap.set("v", "z", "<Plug>(leap-forward-till)", mapOptions)
+vim.keymap.set("v", "Z", "<Plug>(leap-backward-till)", mapOptions)
+vim.keymap.set("o", "z", "<Plug>(leap-forward-till)", mapOptions)
+vim.keymap.set("o", "Z", "<Plug>(leap-backward-till)", mapOptions)
