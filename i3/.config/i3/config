@@ -62,6 +62,13 @@ bindsym $mod+backslash exec --no-startup-id dmenu_run
 bindsym $mod+Shift+Return exec --no-startup-id rofi -show combi
 # show all current opened windows
 bindsym $alt+Tab exec rofi -show window
+
+# warpd
+bindsym $mod+$alt+x exec warpd --hint2
+bindsym $mod+$alt+c exec warpd --normal
+bindsym $mod+$alt+g exec warpd --grid
+bindsym $mod+$alt+s exec warpd --screen --oneshot
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

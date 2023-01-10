@@ -79,7 +79,7 @@ fi
 
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
-  alias nv="nvim"
+  alias nv="neovide"
   #alias vi="nvim"
   # alias oldvim="\vim"
 fi

@@ -77,7 +77,7 @@ cmp.setup {
   mapping = {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-s>"] = cmp.mapping(cmp.mapping.complete({}), { 'i', 'c' }),
+    ["<C-o>"] = cmp.mapping(cmp.mapping.complete({}), { 'i', 'c' }),
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
     ['<Esc>'] = cmp.mapping({
       c = function()
