@@ -137,6 +137,13 @@ packer.startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter-context', after = 'nvim-treesitter' }
 
+  use {
+    "danymat/neogen",
+    requires = "nvim-treesitter/nvim-treesitter",
+    -- Uncomment next line if you want to follow only stable versions
+    -- tag = "*"
+  }
+
   -- utilitis
   use({
     "kylechui/nvim-surround",

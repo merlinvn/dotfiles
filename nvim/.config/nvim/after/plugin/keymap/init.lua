@@ -22,7 +22,6 @@ vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and rel
 -- Yank from the current cursor to the end of line
 vim.keymap.set("n", "Y", "y$", { desc = "Yank from the current cursor to the end of line" })
 
-vim.keymap.set("n", "<leader>*", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Find and replace current word" })
 
 -- undo break points
 vim.keymap.set("i", ",", ",<c-g>u")
