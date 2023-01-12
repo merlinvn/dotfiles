@@ -12,7 +12,7 @@ vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
-vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<Leader>q", ":bp|bd #<CR>", { silent = true, desc = "Close current buffer" })
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true })
 vim.keymap.set("i", "<C-q>", "<Esc>:q<CR>", { silent = true })
 
