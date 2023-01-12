@@ -77,7 +77,16 @@ cmp.setup {
   mapping = {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-o>"] = cmp.mapping(cmp.mapping.complete({}), { 'i', 'c' }),
+    ["<C-o>"] = cmp.mapping({
+      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+        else
+          fallback()
+        end
+      end
+    }),
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
     ['<Esc>'] = cmp.mapping({
       c = function()
