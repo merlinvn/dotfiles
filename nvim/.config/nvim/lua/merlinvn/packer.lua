@@ -208,7 +208,8 @@ return require('packer').startup(function(use)
 
   -- commenter
   -- use "terrortylor/nvim-comment"
-  use("numToStr/Comment.nvim")
+  -- use("numToStr/Comment.nvim")
+
   -- treesitter
   --use("nvim-treesitter/playground")
   -- use("romgrk/nvim-treesitter-context")
@@ -238,8 +239,12 @@ return require('packer').startup(function(use)
   -- -- status line
   use {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+    requires = { "nvim-tree/nvim-web-devicons", opt = true }
   }
+
+  -- tabline
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+
   -- GUI Keymaps
   --
   use("anuvyklack/hydra.nvim")
