@@ -14,8 +14,6 @@ vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 -- remap quit
 vim.keymap.set("n", "<Leader>q", ":q<CR>", { silent = true, desc = "Close current buffer" })
 vim.keymap.set("n", "<Leader>bd", ":bd<CR>", { silent = true, desc = "Delete current buffer" })
-vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true })
-vim.keymap.set("i", "<C-q>", "<Esc>:q<CR>", { silent = true })
 
 -- Reload vims configuration file
 vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload", silent = true })

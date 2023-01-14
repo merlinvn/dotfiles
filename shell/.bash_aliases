@@ -51,8 +51,6 @@ alias nr="npm run"
 alias ns="npm start"
 
 
-[ -x "$(command -v rg)" ] && alias grep='rg'
-
 [ -x "$(command -v bat)" ] && alias cat='bat'
 [ -x "$(command -v batcat)" ] && alias cat='batcat'
 
