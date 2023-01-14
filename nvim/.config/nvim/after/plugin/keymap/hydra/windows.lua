@@ -22,7 +22,7 @@ Hydra({
     }
   },
   mode = 'n',
-  body = '<leader>yw',
+  body = '<leader>zw',
   heads = {
     { 'h', '<C-w>h' },
     { 'j', '<C-w>j' },

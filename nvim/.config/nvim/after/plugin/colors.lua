@@ -58,12 +58,23 @@ function ColorMyPencils()
   })
   --
   hl("LineNr", {
-    fg ="gray"
+    fg = "gray"
   })
-  --
+
   -- hl("netrwDir", {
   --   fg = "#5eacd3"
   -- })
+
+  hl("IncSearch", {
+    bg = "orange",
+    fg = "black"
+  })
+
+  hl("CurSearch", {
+    bg = "orange",
+    fg = "#1d2021"
+  })
+
 end
 
 ColorMyPencils()

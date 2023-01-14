@@ -9,18 +9,18 @@
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 
-vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
+-- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
-vim.keymap.set("n", "<Leader>q", ":bp|bd #<CR>", { silent = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true })
 vim.keymap.set("i", "<C-q>", "<Esc>:q<CR>", { silent = true })
 
 -- Reload vims configuration file
-vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload current luafile", silent = true })
+vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload", silent = true })
 
 -- Yank from the current cursor to the end of line
-vim.keymap.set("n", "Y", "y$", { desc = "Yank from the current cursor to the end of line" })
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to eol" })
 
 
 -- undo break points
@@ -108,12 +108,11 @@ vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : yank to clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set({ "n", "v" }, "<C-y>", '[["+y]]')
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { silent = true, noremap = true, desc = "yank to clipboard" })
+vim.keymap.set({ "n", "v" }, "<C-y>", '[["+y]]', { silent = true, noremap = true, desc = "yank to clipboard" })
 
 -- delete to register _ (black hole)
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { silent = true, desc = "delete to black hole" })
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -122,8 +121,10 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- replace selected in visual mode, by yank current selection to register h, then
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
-vim.keymap.set("v", "<Leader>rr", '"hy:%s/<C-r>h//gc<left><left><left>')
-vim.keymap.set("n", "<Leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<Leader>s", '"hy:%s/<C-r>h//gc<Left><Left><Left>',
+  { noremap = true, desc = "[s]ubtitude selected" })
+vim.keymap.set("n", "<Leader>s",":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>",
+  { noremap = true, desc = "[s]ubtitude selected" })
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 

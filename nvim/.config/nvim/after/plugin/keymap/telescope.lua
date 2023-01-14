@@ -59,13 +59,13 @@ vim.keymap.set("n", "gi", ":lua require('telescope.builtin').lsp_implementations
 -- " nnoremap gs :lua vim.lsp.buf.document_symbol()<CR>
 -- " nnoremap <leader>cs :lua vim.lsp.buf.document_symbol()<CR>
 
-vim.keymap.set("n", "<leader>s", ":lua require('telescope.builtin').lsp_document_symbols()<CR>",
+vim.keymap.set("n", "<leader>cs", ":lua require('telescope.builtin').lsp_document_symbols()<CR>",
   { desc = "Document symbols" })
-vim.keymap.set("n", "<leader>S", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
+vim.keymap.set("n", "<leader>cS", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
   { desc = "Workspace symbols" })
-vim.keymap.set("n", "<leader>g", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
+vim.keymap.set("n", "<leader>cd", ":lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
   { desc = "Document diagnostics" })
-vim.keymap.set("n", "<leader>G", ":lua require('telescope.builtin').diagnostics()<CR>",
+vim.keymap.set("n", "<leader>cD", ":lua require('telescope.builtin').diagnostics()<CR>",
   { desc = "Workspace diagnostics" })
 
 -- treesitter

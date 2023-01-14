@@ -34,10 +34,11 @@ vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', 'go', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', 'go', vim.diagnostic.open_float,
+  { noremap = true, silent = true, desc = 'Open diagnostics float' })
+vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev,
+  { noremap = true, silent = true, desc = 'Go to previous diagnostic' })
+vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Go to next diagnostic" })
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
@@ -52,9 +53,9 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
-  nmap('H', vim.lsp.buf.hover, "Show hover")
+  nmap('K', vim.lsp.buf.hover, "Show hover")
   nmap('<C-h>', vim.lsp.buf.signature_help, "Show signature help")
-  nmap('<leader>rn', vim.lsp.buf.rename, "[R]e[n]ame")
+  nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
   nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
   nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer

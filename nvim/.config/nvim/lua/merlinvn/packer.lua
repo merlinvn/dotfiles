@@ -1,18 +1,16 @@
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd [[packadd packer.nvim]]
+-- Install packer if not installed
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
-local status, packer = pcall(require, "packer")
-if (not status) then
-  print("Packer is not installed")
-  return
-end
+local packer_bootstrap = ensure_packer()
 
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
@@ -22,7 +20,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'packer.lua',
 })
 
-packer.startup(function(use)
+return require('packer').startup(function(use)
   -- package manager
   use("wbthomason/packer.nvim")
 
@@ -31,23 +29,16 @@ packer.startup(function(use)
   -- TJ created lodash of neovim
   use("nvim-lua/plenary.nvim")
 
-  use("nvim-lua/popup.nvim")
+  use "echasnovski/mini.nvim"
 
   use("nvim-telescope/telescope.nvim")
-  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable 'make' == 1 }
+  -- switch to mini.fuzzy
+  -- use { "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable 'make' == 1 }
   use { "nvim-telescope/telescope-hop.nvim" }
   use { "nvim-telescope/telescope-file-browser.nvim" }
   use { "nvim-telescope/telescope-ui-select.nvim" }
   use { "nvim-telescope/telescope-smart-history.nvim" }
 
-  -- use {
-  --   "folke/trouble.nvim",
-  --   requires = "kyazdani42/nvim-web-devicons",
-  --   config = function()
-  --     require("trouble").setup {}
-  --   end
-  -- }
 
   -- Simple plugins can be specified as strings
   use "TimUntersberger/neogit"
@@ -153,6 +144,14 @@ packer.startup(function(use)
 
   use "tpope/vim-sleuth" -- Detect tabstop and shiftwidth automatically
 
+  use({
+    "asiryk/auto-hlsearch.nvim",
+    tag = "1.0.0",
+    config = function()
+      require("auto-hlsearch").setup()
+    end
+  })
+
   -- use "tpope/vim-surround" -- Surround text objects easily
   -- use {
   --   "windwp/nvim-autopairs",
@@ -221,8 +220,9 @@ packer.startup(function(use)
 
   -- UI improvement
   -- dashboard
+  -- use mini-stater for dashboard
   -- use "mhinz/vim-startify"
-  use("goolord/alpha-nvim")
+  -- use("goolord/alpha-nvim")
   -- use({
   --   "folke/noice.nvim",
   --   requires = {
@@ -317,5 +317,11 @@ packer.startup(function(use)
   use("simrat39/rust-tools.nvim")
   -- C++:
   use "cdelledonne/vim-cmake"
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end
 )

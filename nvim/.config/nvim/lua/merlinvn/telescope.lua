@@ -1,6 +1,5 @@
-require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
--- require("telescope").load_extension("fzy_native")
+
 local M = {}
 
 function M.reload_modules()

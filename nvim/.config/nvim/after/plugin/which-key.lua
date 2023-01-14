@@ -13,8 +13,8 @@ wk.register({
   ["<leader>t"] = {
     name = "Telescope"
   },
-  ["<leader>y"] = {
-    name = "hYdra",
+  ["<leader>z"] = {
+    name = "hydra",
     w = "Windows",
     g = "Git"
   },
@@ -35,6 +35,7 @@ wk.register({
   },
   ["<leader>c"] = {
     name = "+code",
-    a = "Code actions",
+    w = "swap next",
+    W = "swap previous",
   }
 })
