@@ -12,7 +12,8 @@ vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 -- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
-vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<Leader>q", ":q<CR>", { silent = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<Leader>bd", ":bd<CR>", { silent = true, desc = "Delete current buffer" })
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true })
 vim.keymap.set("i", "<C-q>", "<Esc>:q<CR>", { silent = true })
 
@@ -43,23 +44,23 @@ vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { silent = true, desc = "win d
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-vim.keymap.set("n", "<C-B>", ":bprev<cr>", { silent = true })
-vim.keymap.set("n", "<C-b>", ":bnext<cr>", { silent = true })
+vim.keymap.set("n", "<C-b>", ":bprev<cr>", { silent = true })
+vim.keymap.set("n", "<C-n>", ":bnext<cr>", { silent = true })
 -- vim.keymap.set("n", "<tab>", ":bprev<cr>")
 -- vim.keymap.set("n", "<S-tab>", ":bnext<cr>")
 
 -- tab navigation
 -- Go to tab by number
-vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
 
 -- create new tab
 vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
