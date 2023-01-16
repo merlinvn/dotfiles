@@ -7,13 +7,14 @@
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
+vim.keymap.set("n", "<C-S>", ":wa<CR>", { silent = true })
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 
 -- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
-vim.keymap.set("n", "<Leader>q", ":q<CR>", { silent = true, desc = "Close current buffer" })
-vim.keymap.set("n", "<Leader>bd", ":bd<CR>", { silent = true, desc = "Delete current buffer" })
+-- vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Quit window" })
 
 -- Reload vims configuration file
 vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and reload", silent = true })
@@ -31,9 +32,9 @@ vim.keymap.set("i", "?", "?<c-g>u")
 
 -- windows navigation
 vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", { silent = true, desc = "win left" })
-vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { silent = true, desc = "win right" })
+vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { silent = true, desc = "win down" })
 vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", { silent = true, desc = "win up" })
-vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { silent = true, desc = "win down" })
+vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { silent = true, desc = "win right" })
 
 -- vim.keymap.set("n", "<C-left>", ":wincmd h<CR>", { silent = true })
 -- vim.keymap.set("n", "<C-down>", ":wincmd j<CR>", { silent = true })
@@ -42,23 +43,23 @@ vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { silent = true, desc = "win d
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-vim.keymap.set("n", "<C-b>", ":bprev<cr>", { silent = true })
-vim.keymap.set("n", "<C-n>", ":bnext<cr>", { silent = true })
+vim.keymap.set("n", "gj", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+vim.keymap.set("n", "gk", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 -- vim.keymap.set("n", "<tab>", ":bprev<cr>")
 -- vim.keymap.set("n", "<S-tab>", ":bnext<cr>")
 
 -- tab navigation
 -- Go to tab by number
--- vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
--- vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
+vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
 
 -- create new tab
 vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
@@ -108,7 +109,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : yank to clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { silent = true, noremap = true, desc = "yank to clipboard" })
-vim.keymap.set({ "n", "v" }, "<C-y>", '[["+y]]', { silent = true, noremap = true, desc = "yank to clipboard" })
+vim.keymap.set({ "n", "v" }, "<C-y>", [["+y]], { silent = true, noremap = true, desc = "yank to clipboard" })
 
 -- delete to register _ (black hole)
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { silent = true, desc = "delete to black hole" })
@@ -122,7 +123,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
 vim.keymap.set("v", "<Leader>s", '"hy:%s/<C-r>h//gc<Left><Left><Left>',
   { noremap = true, desc = "[s]ubtitude selected" })
-vim.keymap.set("n", "<Leader>s",":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>",
+vim.keymap.set("n", "<Leader>s", ":%s/<C-r><C-w>//gI<Left><Left><Left>",
   { noremap = true, desc = "[s]ubtitude selected" })
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

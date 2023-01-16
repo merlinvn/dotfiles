@@ -160,7 +160,16 @@ return require('packer').startup(function(use)
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
-  -- use "tpope/vim-surround" -- Surround text objects easily
+  -- use({
+  --   "jackMort/ChatGPT.nvim",
+  --   requires = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim"
+  --   }
+  -- })
+  --
+  -- -- use "tpope/vim-surround" -- Surround text objects easily
   -- use {
   --   "windwp/nvim-autopairs",
   --   config = function() require("nvim-autopairs").setup {

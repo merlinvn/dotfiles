@@ -12,12 +12,11 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 
 
-vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Tree toggle" })
 vim.keymap.set("n", "<C-f>", ":NvimTreeFindFile<CR>", { noremap = true, silent = true, desc = "Tree find file" })
-vim.keymap.set("n", "<leader>n", ":NvimTreeFocus<CR>", { noremap = true, silent = true, desc = "Tree focus" })
-vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Tree toggle" })
+vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Tree focus" })
+vim.keymap.set("n", "<C-t>", ":NvimTreeFocus<CR>", { noremap = true, silent = true, desc = "Tree toggle" })

@@ -134,6 +134,7 @@ export FZF_DEFAULT_OPTS=" \
 [ -s "$HOME/.profile" ] && source "$HOME/.profile"
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/my_env ] && source ~/my_env
 
 ## this is the replacement for j with fzf support
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
