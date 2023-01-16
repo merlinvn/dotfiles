@@ -31,22 +31,20 @@ vim.keymap.set("i", "[", "[<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
 
 -- windows navigation
-vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", { silent = true, desc = "win left" })
-vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { silent = true, desc = "win down" })
-vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", { silent = true, desc = "win up" })
-vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { silent = true, desc = "win right" })
+vim.keymap.set("n", "gh", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
+vim.keymap.set("n", "gj", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
+vim.keymap.set("n", "gk", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
+vim.keymap.set("n", "gl", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
 
--- vim.keymap.set("n", "<C-left>", ":wincmd h<CR>", { silent = true })
--- vim.keymap.set("n", "<C-down>", ":wincmd j<CR>", { silent = true })
--- vim.keymap.set("n", "<C-up>", ":wincmd k<CR>", { silent = true })
--- vim.keymap.set("n", "<C-right>", ":wincmd l<CR>", { silent = true })
+vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
+vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })
+vim.keymap.set("n", "g<Up>", ":wincmd k<CR>", { silent = true, desc = "win up" })
+vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win right" })
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-vim.keymap.set("n", "gj", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
-vim.keymap.set("n", "gk", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
--- vim.keymap.set("n", "<tab>", ":bprev<cr>")
--- vim.keymap.set("n", "<S-tab>", ":bnext<cr>")
+vim.keymap.set("n", "<C-j>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+vim.keymap.set("n", "<C-k>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 
 -- tab navigation
 -- Go to tab by number
@@ -67,12 +65,12 @@ vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
 vim.keymap.set("n", "<C-x>", ":tabclose<CR>")
 
 -- move line up / down
-vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
-vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
-vim.keymap.set("i", "<C-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-vim.keymap.set("i", "<C-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { silent = true })
+vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
+vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
+vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Go to next / previous, center with zz, and zv to open fold
 vim.keymap.set("n", "n", "nzzzv")

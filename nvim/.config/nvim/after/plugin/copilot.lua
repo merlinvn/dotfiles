@@ -20,8 +20,8 @@ require('copilot').setup({
     debounce = 75,
     keymap = {
       accept = "<M-l>",
-      next = "<M-k>",
-      prev = "<M-j>",
+      next = "<M-n>",
+      prev = "<M-p>",
       dismiss = "<M-h>",
     },
   },

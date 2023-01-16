@@ -13,15 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 lua/merlinvn/init.lua
-badd +33 after/plugin/keymap/init.lua
-badd +23 after/plugin/nvim-tree.lua
-badd +25 after/plugin/nvim-cmp.lua
+badd +53 after/plugin/keymap/init.lua
+badd +1 lua/plugins/init.lua
+badd +2 lua/merlinvn/autocmd.lua
+badd +9 init.lua
+badd +23 after/plugin/copilot.lua
 argglobal
 %argdel
-edit after/plugin/nvim-tree.lua
+edit after/plugin/copilot.lua
 argglobal
-balt after/plugin/nvim-cmp.lua
+balt after/plugin/keymap/init.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -32,12 +33,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 23 - ((22 * winheight(0) + 20) / 41)
+let s:l = 25 - ((24 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 23
-normal! 049|
+keepjumps 25
+normal! 022|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -50,7 +51,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
