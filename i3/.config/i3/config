@@ -209,8 +209,11 @@ bindsym $mod+Shift+m move workspace to output right
 bindsym $mod+Ctrl+j workspace prev_on_output
 bindsym $mod+Ctrl+k workspace next_on_output
 
-bindsym $mod+Ctrl+Left workspace prev_on_output
-bindsym $mod+Ctrl+Right workspace next_on_output
+bindsym $mod+Next workspace prev_on_output
+bindsym $mod+Prior workspace next_on_output
+
+bindsym $mod+j workspace prev_on_output
+bindsym $mod+k workspace next_on_output
 
 # bindsym $mod+Next workspace prev_on_output
 # bindsym $mod+Prior workspace next_on_output
