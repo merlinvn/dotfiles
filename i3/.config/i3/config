@@ -59,10 +59,10 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+backslash exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+Return exec --no-startup-id rofi -show combi
 # show all current opened windows
-bindsym $alt+Tab exec rofi -show window
+bindsym $mod+Shift+w exec rofi -show window
 
 # warpd
 bindsym $mod+$alt+x exec warpd --hint2
@@ -212,8 +212,8 @@ bindsym $mod+Ctrl+k workspace next_on_output
 bindsym $mod+Ctrl+Left workspace prev_on_output
 bindsym $mod+Ctrl+Right workspace next_on_output
 
-bindsym $mod+Next workspace prev_on_output
-bindsym $mod+Prior workspace next_on_output
+# bindsym $mod+Next workspace prev_on_output
+# bindsym $mod+Prior workspace next_on_output
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload

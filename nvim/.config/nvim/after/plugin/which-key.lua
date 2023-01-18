@@ -10,6 +10,9 @@ wk.register({
     name = "Reload",
     l = "Reload current luafile",
   },
+  ["<leader>g"] = {
+    name = "Git",
+  },
   ["<leader>t"] = {
     name = "Telescope"
   },

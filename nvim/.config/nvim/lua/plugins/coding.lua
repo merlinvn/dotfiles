@@ -22,7 +22,10 @@ return {
   },
 
   "rafamadriz/friendly-snippets",
+  -- testting
+  "vim-test/vim-test",
 
+  -- generate docs
   {
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",

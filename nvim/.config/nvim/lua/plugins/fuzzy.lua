@@ -15,4 +15,5 @@ return {
   "nvim-telescope/telescope-file-browser.nvim",
   "nvim-telescope/telescope-ui-select.nvim",
   "nvim-telescope/telescope-smart-history.nvim",
+
 }

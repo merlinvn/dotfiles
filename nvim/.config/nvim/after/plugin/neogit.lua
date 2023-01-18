@@ -1,8 +1,8 @@
-local neogit = require('neogit')
-
-neogit.setup {
-  auto_refresh = false
-}
+-- local neogit = require('neogit')
+--
+-- neogit.setup {
+--   auto_refresh = false
+-- }
 
 -- nnoremap("<leader>gs", function()
 --   neogit.open({})
