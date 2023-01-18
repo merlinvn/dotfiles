@@ -43,6 +43,7 @@ alias gpsh='git push'
 alias gs='echo ""; echo "*********************************************"; echo -e "   DO NOT FORGET TO PULL BEFORE COMMITTING"; echo "*********************************************"; echo ""; git status'
 alias gss='git status -s'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+[ -x "$(command -v lazygit)" ] && alias lg='lazygit'
 
 
 # npm aliases

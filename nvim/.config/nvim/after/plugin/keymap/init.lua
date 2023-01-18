@@ -1,9 +1,3 @@
--- turn off hightlight searchkey
--- vim.keymap.set("n", "<Leader><space>", ":lua vim.o.hlsearch = not vim.o.hlsearch <cr>",
---   { silent = true, desc = "Toggle highlight search" })
-
--- vim.keymap.set("n", "<leader>fe", ":Ex<CR>", { desc = "Open built-in file explorer" })
-
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
@@ -43,8 +37,8 @@ vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win ri
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-vim.keymap.set("n", "<C-j>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
-vim.keymap.set("n", "<C-k>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
+vim.keymap.set("n", "<C-k>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+vim.keymap.set("n", "<C-j>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 
 -- tab navigation
 -- Go to tab by number
