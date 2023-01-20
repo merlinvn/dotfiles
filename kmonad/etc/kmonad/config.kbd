@@ -15,8 +15,8 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
-  lctl  lalt lmet           spc            rmet ralt left down rght
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lalt lmet           spc            rmet ralt left down up rght
 )
 
 ;; Below, I use `around' to compose `layer-toggle' with `fn' (instead
@@ -32,10 +32,10 @@
     ctl_d (tap-hold-next-release 200 d lctl)
     sft_f (tap-hold-next-release 200 f lsft)
 
-    sft_j (tap-hold-next-release 200 j rsft)
-    ctl_k (tap-hold-next-release 200 k rctl)
+    sft_j (tap-hold-next-release 180 j lsft)
+    ctl_k (tap-hold-next-release 200 k lctl)
     alt_l (tap-hold-next-release 200 l lalt)
-    met_; (tap-hold-next-release 200 ; rmet)
+    met_; (tap-hold-next-release 200 ; lmet)
 
     ctl_esc (tap-hold-next-release 200 esc lctl)
 
@@ -44,9 +44,11 @@
 
     syms (tap-hold 200 (layer-next symbols) (layer-toggle symbols))
     fns (tap-hold 200 (layer-next fn) (layer-toggle fn))
+    num (tap-hold 200 (layer-next numbers) (layer-toggle numbers))
 
     sft_z (tap-hold-next-release 200 z lsft)
     sft_- (tap-hold-next-release 200 - lsft)
+    sft_' (tap-hold-next-release 200 ' lsft)
 
 ;;    sl (sticky-key 300 lsft)
 ;;    sr (sticky-key 300 rsft))
@@ -60,38 +62,37 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  @esc_num  @met_a   @alt_s   @ctl_d   @sft_f  _    _    @sft_j   @ctl_k   @alt_l   @met_;    _   _
-  @sft_-   _    _    _    _    _    _    _    _    _    _    _    _
-;;  _    _    _    _    _   _    _    _    _    _    _    _    _
-  _  _    _               @snav              @syms    @fns    _    _    _
-)
-
-(deflayer numbers
-  _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    /    7    8    9    +    _    _    caps
-  _    lmet lalt lctl lsft _    *    4    5    6    -    =   _
-  _    _    _    _    _    _    0    1    2    3    .    ,   _
-  _    _    _              _              _    _    _    _    _
+  esc  @met_a   @alt_s   @ctl_d   @sft_f  _    _    @sft_j   @ctl_k   @alt_l   @met_;    bspc   _
+  @sft_'   _    _    _    _    _    _    _    _    _    _    _
+;;  _    _    _    _    _   _    _    _    _    _    _    _
+  _  @num    lmet        @snav              @syms    @fns    _   _   _    _
 )
 
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    home up    end    _   _    _    _
-  esc  lmet lalt lctl lsft _    _    left down right _    _   _
-  _    _    _    _    _    _    _    pgdn  pgup _   _    _    _
-  _    _    _              _              _    _    _    _    _
+  esc  lmet lalt lctl lsft _    _    left down right  _    _   _
+  _    _    _    _    _    _    _    pgdn  pgup _   _   _
+  _    _    _              _              _    _    _    _   _   _
 )
 
+(deflayer numbers
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    /    7    8    9    +    _    _    caps
+  lmet lalt lctl lsft _    _    *    4    5    6    -    =   _
+  _    _    _    _    _    _    0    1    2    3    .    ,
+  _    _    _              _              _    _    _    _  _   _
+)
 
 (deflayer symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    `    @    {    }    %    _    _    *    ^    &    $    _    _
-  _    ;    =    \(   \)    +    _    _    :    _    _    _    _
-  \_   \    [    ]   |     _    _   ?    <    >    #   ~     _
-  _    _    _              _              _    _    _    _    _
+  _    `    @    {    }    %    _    _    ^    &    $    _    _    _
+  _    ;    =    \(   \)   +    _    :    -    \_   #    *    _
+  "    \    [    ]   |     _    _    ?    <    >    !    ~
+  _    _    _              _              _    _    _    _   _  _
 )
 
 (deflayer fn
@@ -99,6 +100,6 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    f10    f7   f8   f9   _    _    _    _    _    _    _    _    _
   _    f11    f4   f5   f6   _    _   _    _ rsft rctl lalt rmet
-  f12    f1   f2   f3   _   _    _    _    _    _    _    _    _
-  _    _    _              _              _    _    _    _    _
+  f12    f1   f2   f3   _   _    _    _    _    _    _    _
+  _    _    _              _              _    _    _    _    _    _
 )
