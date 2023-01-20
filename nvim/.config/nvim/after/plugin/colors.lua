@@ -51,9 +51,9 @@ function ColorMyPencils()
   })
 
   hl("Normal", {
-    ctermbg = 0,
+    -- ctermbg = 0,
     -- guibg = 0,
-    -- bg = "#282828"
+    bg = "#282828"
     -- bg = "" -- transparent background
   })
   --
