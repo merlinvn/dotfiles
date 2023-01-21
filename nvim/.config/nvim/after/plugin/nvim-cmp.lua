@@ -11,16 +11,17 @@ local lspkind = require("lspkind")
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local source_mapping = {
-  buffer = "[Buffer]",
+  buffer = "[buf]",
   nvim_lsp = "[LSP]",
-  ultisnips = "[UltiSnips]",
-  nvim_lua = "[Lua]",
+  ultisnips = "[snip]",
+  luasnip = "[snip]",
+  nvim_lua = "[lua]",
   cmp_tabnine = "[T9]",
-  look = "[Look]",
-  path = "[Path]",
-  spell = "[Spell]",
-  calc = "[Calc]",
-  emoji = "[Emoji]",
+  look = "[look]",
+  path = "[path]",
+  spell = "[spell]",
+  calc = "[calc]",
+  emoji = "[emoji]",
   treesitter = "[treesitter]",
   copilot = "[copilot]",
 }
@@ -28,6 +29,182 @@ local source_mapping = {
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
+local my_mapping = {
+  ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+  ["<C-f>"] = cmp.mapping.scroll_docs(4),
+  ["<C-o>"] = cmp.mapping({
+    i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    c = function(fallback)
+      if cmp.visible() then
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+      else
+        fallback()
+      end
+    end
+  }),
+  ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+  ['<Esc>'] = cmp.mapping({
+    c = function()
+      if cmp.visible() then
+        cmp.close()
+      else
+        vim.api.nvim_feedkeys(t('<C-c>'), 'n', true)
+      end
+    end
+  }),
+  ["<CR>"] = cmp.mapping(
+    {
+      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+        else
+          fallback()
+        end
+      end
+    }
+  ),
+  ["<Tab>"] = cmp.mapping(
+    function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.SelectBehavior })
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end,
+    { "i", "s" }
+  ),
+  ["<S-Tab>"] = cmp.mapping(
+    function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.SelectBehavior })
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+    { "i", "s" }
+  ),
+  ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
+    behavior = cmp.SelectBehavior.Select
+  }), { "i" }),
+  ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
+    behavior = cmp.SelectBehavior.Select
+  }), { "i" }),
+  ["<C-j>"] = cmp.mapping(
+    {
+      c = function()
+        if cmp.visible() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          fallback()
+        end
+      end
+    }
+  ),
+  ["<C-k>"] = cmp.mapping(
+    {
+      c = function()
+        if cmp.visible() then
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          fallback()
+        end
+      end
+    }
+  )
+}
+
+local my_mapping2 = {
+  ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+  ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+  ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+  ["<C-f>"] = cmp.mapping.scroll_docs(4),
+  ["<C-e>"] = cmp.mapping.abort(),
+  ["<C-y>"] = cmp.mapping(
+    cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    },
+    { "i", "c" }
+  ),
+  ["<M-y>"] = cmp.mapping(
+    cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    { "i", "c" }
+  ),
+-- `complete` function show selection menu
+  ["<C-space>"] = cmp.mapping {
+    i = cmp.mapping.complete(),
+    c = function(
+        _ --[[fallback]]
+    )
+      if cmp.visible() then
+        if not cmp.confirm { select = true } then
+          return
+        end
+      else
+        cmp.complete()
+      end
+    end,
+  },
+
+  -- ["<tab>"] = false,
+  ["<tab>"] = cmp.config.disable,
+
+  -- ["<tab>"] = cmp.mapping {
+  --   i = cmp.config.disable,
+  --   c = function(fallback)
+  --     fallback()
+  --   end,
+  -- },
+
+  -- Testing
+  ["<c-q>"] = cmp.mapping.confirm {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  },
+
+  -- If you want tab completion :'(
+  --  First you have to just promise to read `:help ins-completion`.
+  --
+  -- ["<Tab>"] = function(fallback)
+  --   if cmp.visible() then
+  --     cmp.select_next_item()
+  --   else
+  --     fallback()
+  --   end
+  -- end,
+  -- ["<S-Tab>"] = function(fallback)
+  --   if cmp.visible() then
+  --     cmp.select_prev_item()
+  --   else
+  --     fallback()
+  --   end
+  -- end,
+}
 
 cmp.setup {
   snippet = {
@@ -74,110 +251,7 @@ cmp.setup {
     --   end
     -- }),
   },
-  mapping = {
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-o>"] = cmp.mapping({
-      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-      c = function(fallback)
-        if cmp.visible() then
-          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-        else
-          fallback()
-        end
-      end
-    }),
-    ["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
-    ['<Esc>'] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.close()
-        else
-          vim.api.nvim_feedkeys(t('<C-c>'), 'n', true)
-        end
-      end
-    }),
-    ["<CR>"] = cmp.mapping(
-      {
-        i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-          else
-            fallback()
-          end
-        end
-      }
-    ),
-    ["<Tab>"] = cmp.mapping(
-      function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.SelectBehavior })
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end,
-      { "i", "s" }
-    ),
-    ["<S-Tab>"] = cmp.mapping(
-      function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.SelectBehavior })
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end,
-      { "i", "s" }
-    ),
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({
-      behavior = cmp.SelectBehavior.Select
-    }), { "i" }),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({
-      behavior = cmp.SelectBehavior.Select
-    }), { "i" }),
-    ["<C-j>"] = cmp.mapping(
-      {
-        c = function()
-          if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
-          end
-        end,
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end
-      }
-    ),
-    ["<C-k>"] = cmp.mapping(
-      {
-        c = function()
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-          end
-        end,
-        i = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end
-      }
-    )
-  },
+  mapping = my_mapping2,
   sources = {
     { name = 'copilot' },
     { name = "nvim_lsp" },

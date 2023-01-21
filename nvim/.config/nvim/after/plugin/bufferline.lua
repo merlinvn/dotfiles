@@ -85,7 +85,7 @@ require("bufferline").setup {
   }
 }
 
-vim.keymap.set("n", "<leader>bp", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
+vim.keymap.set("n", "<leader>bb", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
 vim.keymap.set("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
 vim.keymap.set("n", "<leader>bw", ":BufferLinePickClose<CR>", { noremap = true, silent = true, desc = "Buffer close" })
 vim.keymap.set("n", "<leader>br", ":BufferLineCloseRight<CR>",

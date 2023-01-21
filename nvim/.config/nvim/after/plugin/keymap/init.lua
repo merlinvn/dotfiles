@@ -37,8 +37,11 @@ vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win ri
 
 -- for other windows moving and resizing, refer to hydra
 -- buffers navigation
-vim.keymap.set("n", "<C-k>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
-vim.keymap.set("n", "<C-j>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
+vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
+
+-- vim.keymap.set("n", "<C-k>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+-- vim.keymap.set("n", "<C-j>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 
 -- tab navigation
 -- Go to tab by number
