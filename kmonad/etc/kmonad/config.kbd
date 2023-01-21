@@ -42,6 +42,9 @@
     snav  (tap-hold 200  spc (layer-toggle navigation))
     esc_num  (tap-hold 200 esc (layer-toggle numbers))
 
+    c_syms  (tap-hold 200 c (layer-toggle symbols))
+    m_syms  (tap-hold 200 m (layer-toggle symbols))
+
     syms (tap-hold 200 (layer-next symbols) (layer-toggle symbols))
     fns (tap-hold 200 (layer-next fn) (layer-toggle fn))
     num (tap-hold 200 (layer-next numbers) (layer-toggle numbers))
@@ -63,9 +66,9 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   esc  @met_a   @alt_s   @ctl_d   @sft_f  _    _    @sft_j   @ctl_k   @alt_l   @met_;    bspc   _
-  @sft_'   _    _    _    _    _    _    _    _    _    _    _
+  @sft_'   _    _    @c_syms  _    _    _    @m_syms   _   _    _    _
 ;;  _    _    _    _    _   _    _    _    _    _    _    _
-  _  @num    lmet        @snav              @syms    @fns    _   _   _    _
+  _  _    lmet        @snav             @fns   _   _   _   _    _
 )
 
 (deflayer navigation
@@ -89,9 +92,9 @@
 (deflayer symbols
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  ~    `    @    {    }    %    _    ^    &    $    _    _    _    _
-  :    ;    =    \(   \)   +    :    -    \_   #    *    _    _
-  "    \    [    ]   |     _    _    !    <    >    ?    _
+  _    !    @    {    }    %    #    ^    &    $    *    _    _    _
+  _    ;    =    \(   \)   +    :    -    \_   '    "    _    _
+  "    \    [    ]   |     _    _    <    >    `    ~    _
   _    _    _              _              _    _    _    _   _  _
 )
 
@@ -99,7 +102,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    f10    f7   f8   f9   _    _    _    _    _    _    _    _    _
-  _    f11    f4   f5   f6   _    _   _    _ rsft rctl lalt rmet
+  _    f11    f4   f5   f6   _    _   rsft rctl lalt rmet  _   _
   f12    f1   f2   f3   _   _    _    _    _    _    _    _
   _    _    _              _              _    _    _    _    _    _
 )
