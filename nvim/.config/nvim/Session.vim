@@ -13,12 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +2 ~/.config/nvim/after/plugin/luasnip.lua
-badd +46 after/plugin/nvim-cmp.lua
+badd +101 ~/.config/nvim/after/plugin/bufferline.lua
+badd +146 ~/.config/nvim/after/plugin/keymap/init.lua
+badd +6 lua/merlinvn/lazy.lua
+badd +44 ~/.config/nvim/after/plugin/lsp.lua
+badd +1 lua/merlinvn/init.lua
 argglobal
 %argdel
-edit ~/.config/nvim/after/plugin/luasnip.lua
+edit ~/.config/nvim/after/plugin/bufferline.lua
 argglobal
+balt ~/.config/nvim/after/plugin/lsp.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -29,11 +33,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 19) / 39)
+let s:l = 101 - ((29 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
+keepjumps 101
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

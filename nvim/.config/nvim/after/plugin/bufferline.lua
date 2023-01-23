@@ -26,9 +26,10 @@ require("bufferline").setup {
     },
   },
   options = {
-    -- mode = "tabs",
-    mode = "buffers",
-    numbers = "none",
+    mode = "tabs",
+    numbers = "ordinal",
+    -- mode = "buffers",
+    -- numbers = "none",
     diagnostics = "nvim_lsp",
     indicator = {
       icon = '▎',
@@ -54,13 +55,14 @@ require("bufferline").setup {
     },
     color_icons = true,
     show_buffer_icons = false,
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     show_close_icon = false,
-    show_tab_indicators = true,
+    show_tab_indicators = false,
+    -- show_tab_indicators = true,
     separator_style = "thick",
     tab_size = 10,
     enforce_regular_tabs = false,
-    -- custom_areas l {
+    -- custom_areas = {
     --   left = function()
     --     local count = get_number_of_buffers();
     --     return {
@@ -69,7 +71,7 @@ require("bufferline").setup {
     --         guifg = "orange",
     --         guibg = "#1d2021",
     --       },
-    --       {
+    --      {
     --         text = "/",
     --         guifg = "#ebdbb2",
     --         guibg = "#1d2021",
@@ -95,14 +97,14 @@ vim.keymap.set("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft
   { noremap = true, silent = true, desc = "Close others" })
 vim.keymap.set("n", "<leader>ba", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
   { noremap = true, silent = true, desc = "Close all" })
-vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Close current" })
+-- vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Close current" })
 
--- for i = 1, 9 do
---   vim.keymap.set("n", "<leader>" .. i, function()
---     require("bufferline").go_to_buffer(i, true)
---   end, { noremap = true, silent = true, desc = "Go to tab " .. i })
--- end
---
--- vim.keymap.set("n", "<leader>0", function()
---   require("bufferline").go_to_buffer(-1, true)
--- end, { noremap = true, silent = true, desc = "Go to last tab" })
+for i = 1, 9 do
+  vim.keymap.set("n", "<leader>" .. i, function()
+    require("bufferline").go_to_buffer(i, true)
+  end, { noremap = true, silent = true, desc = "Go to tab " .. i })
+end
+
+vim.keymap.set("n", "<leader>0", function()
+  require("bufferline").go_to_buffer(-1, true)
+end, { noremap = true, silent = true, desc = "Go to last tab" })

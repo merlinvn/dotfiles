@@ -54,7 +54,7 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
   nmap('K', vim.lsp.buf.hover, "Show hover")
-  nmap('<C-h>', vim.lsp.buf.signature_help, "Show signature help")
+  nmap('<C-k>', vim.lsp.buf.signature_help, "Show signature help")
   nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
   nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
   nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")

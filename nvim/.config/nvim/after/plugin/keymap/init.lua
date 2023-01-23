@@ -7,7 +7,7 @@ vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
 -- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
-vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
+-- vim.keymap.set("n", "<Leader>q", ":bd<CR>", { silent = true, desc = "Close current buffer" })
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Quit window" })
 
 -- Reload vims configuration file
@@ -40,21 +40,36 @@ vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win ri
 vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 
--- vim.keymap.set("n", "<C-k>", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
--- vim.keymap.set("n", "<C-j>", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
+
+if require("merlinvn.lazy").has("nvim-bufferline.lua") then
+  vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
+  vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
+  vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
+  -- vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+  -- vim.keymap.set("n", "<leader>bp", ":BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
+else
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+end
+
+-- vim.keymap.set("n", "gb", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
+-- vim.keymap.set("n", "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" })
 
 -- tab navigation
 -- Go to tab by number
-vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
+-- vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
 
 -- create new tab
 vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
@@ -62,12 +77,12 @@ vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
 vim.keymap.set("n", "<C-x>", ":tabclose<CR>")
 
 -- move line up / down
-vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { silent = true })
-vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { silent = true })
-vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
-vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { silent = true, desc = "move line down" })
+vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "move line down" })
+vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", { silent = true, desc = "move line down" })
+vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { silent = true, desc = "move line up" })
+vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "move line up" })
+vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { silent = true, desc = "move line up" })
 
 -- Go to next / previous, center with zz, and zv to open fold
 vim.keymap.set("n", "n", "nzzzv")
@@ -127,3 +142,11 @@ vim.keymap.set("n", "<Leader>s", ":%s/<C-r><C-w>//gI<Left><Left><Left>",
 --   vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>")
 --   vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>", { remap = true })
 -- end
+
+if require("merlinvn.lazy").has("lazy.nvim") then
+  vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { silent = true })
+end
+
+if require("merlinvn.lazy").has("mason.nvim") then
+  vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { silent = true })
+end

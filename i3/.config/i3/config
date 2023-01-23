@@ -137,7 +137,8 @@ bindsym $mod+v split v;exec notify-send 'tile vertically'
 # bindsym $mod+x split toggle
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f focus parent; fullscreen toggle; focus child
+# bindsym $mod+f focus parent; fullscreen toggle; focus child
+bindsym $mod+f fullscreen toggle
 
 # change container layout (ktacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
