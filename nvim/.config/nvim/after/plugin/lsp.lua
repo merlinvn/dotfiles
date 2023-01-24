@@ -47,6 +47,9 @@ local on_attach = function(client, bufnr)
   local nmap = function(keys, func, desc)
     vim.keymap.set('n', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
   end
+  local imap = function(keys, func, desc)
+    vim.keymap.set('i', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
+  end
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -57,7 +60,11 @@ local on_attach = function(client, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, "Show signature help")
   nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
   nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
-  nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
+  nmap('<leader>cf', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
+  vim.keymap.set("v", '<leader>cF', function() vim.lsp.buf.rangeFormatting { async = true, timeout_ms = 5000 } end,
+    { buffer = bufnr, noremap = true, silent = true, desc = "Format range" })
+  nmap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
+  imap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()

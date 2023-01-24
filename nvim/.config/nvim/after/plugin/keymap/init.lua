@@ -1,4 +1,4 @@
-local Util = require("merlinvn.lazy")
+local Util = require("merlinvn.util")
 
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
@@ -52,7 +52,7 @@ vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true,
 vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
 
 
-if require("merlinvn.lazy").has("nvim-bufferline.lua") then
+if require("merlinvn.util").has("nvim-bufferline.lua") then
   vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
   vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
@@ -158,11 +158,11 @@ vim.keymap.set("n", "<Leader>s", ":%s/<C-r><C-w>//gI<Left><Left><Left>",
 --   vim.keymap.set({ "n", "i", "v", "o" }, "<C-z>", "<nop>", { remap = true })
 -- end
 
-if require("merlinvn.lazy").has("lazy.nvim") then
+if Util.has("lazy.nvim") then
   vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { silent = true })
 end
 
-if require("merlinvn.lazy").has("mason.nvim") then
+if Util.has("mason.nvim") then
   vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { silent = true })
 end
 
