@@ -87,16 +87,16 @@ require("bufferline").setup {
   }
 }
 
-vim.keymap.set("n", "<leader>bb", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
-vim.keymap.set("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
-vim.keymap.set("n", "<leader>bw", ":BufferLinePickClose<CR>", { noremap = true, silent = true, desc = "Buffer close" })
-vim.keymap.set("n", "<leader>br", ":BufferLineCloseRight<CR>",
-  { noremap = true, silent = true, desc = "Close all right" })
-vim.keymap.set("n", "<leader>bl", ":BufferLineCloseLeft<CR>", { noremap = true, silent = true, desc = "Close all left" })
-vim.keymap.set("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>",
-  { noremap = true, silent = true, desc = "Close others" })
-vim.keymap.set("n", "<leader>ba", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
-  { noremap = true, silent = true, desc = "Close all" })
+-- vim.keymap.set("n", "<leader>bb", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
+-- vim.keymap.set("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" })
+-- vim.keymap.set("n", "<leader>bw", ":BufferLinePickClose<CR>", { noremap = true, silent = true, desc = "Buffer close" })
+-- vim.keymap.set("n", "<leader>br", ":BufferLineCloseRight<CR>",
+--   { noremap = true, silent = true, desc = "Close all right" })
+-- vim.keymap.set("n", "<leader>bl", ":BufferLineCloseLeft<CR>", { noremap = true, silent = true, desc = "Close all left" })
+-- vim.keymap.set("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>",
+--   { noremap = true, silent = true, desc = "Close others" })
+-- vim.keymap.set("n", "<leader>ba", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
+--   { noremap = true, silent = true, desc = "Close all" })
 -- vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Close current" })
 
 for i = 1, 9 do

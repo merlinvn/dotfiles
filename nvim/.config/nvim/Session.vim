@@ -13,16 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +101 ~/.config/nvim/after/plugin/bufferline.lua
-badd +146 ~/.config/nvim/after/plugin/keymap/init.lua
-badd +6 lua/merlinvn/lazy.lua
 badd +44 ~/.config/nvim/after/plugin/lsp.lua
-badd +1 lua/merlinvn/init.lua
+badd +3 lua/merlinvn/init.lua
+badd +177 after/plugin/keymap/init.lua
+badd +100 after/plugin/bufferline.lua
+badd +63 lua/merlinvn/lazy.lua
+badd +1 ~/.config/nvim/lua/merlinvn/plugins/lsp/format.lua
 argglobal
 %argdel
-edit ~/.config/nvim/after/plugin/bufferline.lua
+edit ~/.config/nvim/lua/merlinvn/plugins/lsp/format.lua
 argglobal
-balt ~/.config/nvim/after/plugin/lsp.lua
+balt after/plugin/keymap/init.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -33,12 +34,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 101 - ((29 * winheight(0) + 19) / 39)
+let s:l = 16 - ((15 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 101
-normal! 0
+keepjumps 16
+normal! 019|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

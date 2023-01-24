@@ -1,3 +1,5 @@
+local Util = require("merlinvn.lazy")
+
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
@@ -36,6 +38,15 @@ vim.keymap.set("n", "g<Up>", ":wincmd k<CR>", { silent = true, desc = "win up" }
 vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win right" })
 
 -- for other windows moving and resizing, refer to hydra
+-- split windows
+vim.keymap.set("n", "<leader>ww", "<C-W>p", { noremap = true, silent = true, desc = "Other window" })
+vim.keymap.set("n", "<leader>wd", "<C-W>c", { noremap = true, silent = true, desc = "Delete window" })
+vim.keymap.set("n", "<leader>w-", "<C-W>s", { noremap = true, silent = true, desc = "Split window below" })
+vim.keymap.set("n", "<leader>w|", "<C-W>v", { noremap = true, silent = true, desc = "Split window right" })
+vim.keymap.set("n", "<leader>-", "<C-W>s", { noremap = true, silent = true, desc = "Split window below" })
+vim.keymap.set("n", "<leader>|", "<C-W>v", { noremap = true, silent = true, desc = "Split window right" })
+
+
 -- buffers navigation
 vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
@@ -72,9 +83,13 @@ end
 -- vim.keymap.set("n", "<leader>0", ":tablast<cr>", { silent = true, remap = true })
 
 -- create new tab
-vim.keymap.set("n", "<C-t>", "<C-w>s<C-w>T")
--- x for close
-vim.keymap.set("n", "<C-x>", ":tabclose<CR>")
+-- vim.keymap.set("n", "<leader><tab><tab>", "<C-w>s<C-w>T")
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- move line up / down
 vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { silent = true, desc = "move line down" })
@@ -150,3 +165,23 @@ end
 if require("merlinvn.lazy").has("mason.nvim") then
   vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { silent = true })
 end
+
+-- floating terminal
+-- o == open
+vim.keymap.set("n", "<leader>ot", function() Util.float_term(nil, { cwd = Util.get_root() }) end,
+  { desc = "Terminal (root dir)" })
+vim.keymap.set("n", "<leader>oT", function() Util.float_term() end, { desc = "Terminal (cwd)" })
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+
+-- toggle options
+-- o == option
+-- format not working yet
+vim.keymap.set("n", "<leader>of", require("merlinvn.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+vim.keymap.set("n", "<leader>os", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
+vim.keymap.set("n", "<leader>ow", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
+vim.keymap.set("n", "<leader>ol", function() Util.toggle("relativenumber", true) Util.toggle("number") end,
+  { desc = "Toggle Line Numbers" })
+vim.keymap.set("n", "<leader>od", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+vim.keymap.set("n", "<leader>oc", function() Util.toggle("conceallevel", false, { 0, conceallevel }) end,
+  { desc = "Toggle Conceal" })
