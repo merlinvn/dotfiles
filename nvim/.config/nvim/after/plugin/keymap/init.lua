@@ -1,5 +1,4 @@
 local Util = require("merlinvn.util")
-
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
