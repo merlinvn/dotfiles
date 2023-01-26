@@ -1,9 +1,8 @@
 local Util = require("merlinvn.util")
 -- remap save
 -- vim.keymap.set("n", "<Leader>a", ":up<CR>")
-vim.keymap.set("n", "<C-s>", ":w<CR>", { silent = true })
-vim.keymap.set("n", "<C-S>", ":wa<CR>", { silent = true })
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { silent = true })
+vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+vim.keymap.set({ "i", "v", "n", "s" }, "<C-S-s>", "<cmd>wa<CR><esc>", { silent = true })
 
 -- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
@@ -17,6 +16,9 @@ vim.keymap.set("n", "<Leader>rl", ":w<cr>:luafile %<CR>", { desc = "Save and rel
 -- Yank from the current cursor to the end of line
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to eol" })
 
+-- Clear search with <esc>
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>",
+  { noremap = true, silent = true, desc = "Escape and clear hlsearch" })
 
 -- undo break points
 vim.keymap.set("i", ",", ",<c-g>u")
@@ -26,49 +28,45 @@ vim.keymap.set("i", "[", "[<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
 
 -- windows navigation
-vim.keymap.set("n", "gh", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
-vim.keymap.set("n", "gj", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
-vim.keymap.set("n", "gk", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
-vim.keymap.set("n", "gl", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
+vim.keymap.set("n", "gw", ":wincmd w<CR>", { noremap = true, silent = true, desc = "Next win" })
+-- vim.keymap.set("n", "gh", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
+-- vim.keymap.set("n", "gj", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
+-- vim.keymap.set("n", "gk", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
+-- vim.keymap.set("n", "gl", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
-vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })
-vim.keymap.set("n", "g<Up>", ":wincmd k<CR>", { silent = true, desc = "win up" })
-vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win right" })
+
+-- vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
+-- vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })
+-- vim.keymap.set("n", "g<Up>", ":wincmd k<CR>", { silent = true, desc = "win up" })
+-- vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win right" })
 
 -- for other windows moving and resizing, refer to hydra
 -- split windows
-vim.keymap.set("n", "<leader>ww", "<C-W>p", { noremap = true, silent = true, desc = "Other window" })
+vim.keymap.set("n", "<leader>ww", "<C-W>w", { noremap = true, silent = true, desc = "Other window" })
 vim.keymap.set("n", "<leader>wd", "<C-W>c", { noremap = true, silent = true, desc = "Delete window" })
-vim.keymap.set("n", "<leader>w-", "<C-W>s", { noremap = true, silent = true, desc = "Split window below" })
-vim.keymap.set("n", "<leader>w|", "<C-W>v", { noremap = true, silent = true, desc = "Split window right" })
+vim.keymap.set("n", "<leader>wx", "<C-W>s", { noremap = true, silent = true, desc = "Split window below" })
+vim.keymap.set("n", "<leader>wv", "<C-W>v", { noremap = true, silent = true, desc = "Split window right" })
 vim.keymap.set("n", "<leader>-", "<C-W>s", { noremap = true, silent = true, desc = "Split window below" })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { noremap = true, silent = true, desc = "Split window right" })
 
-
 -- buffers navigation
-vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
-
-
-if require("merlinvn.util").has("nvim-bufferline.lua") then
-  vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
-  vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
-  vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
-  -- vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "next buffer" })
-  -- vim.keymap.set("n", "<leader>bp", ":BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "prev buffer" })
-else
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-  vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-end
-
+-- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
+-- vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+-- vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+-- vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
+-- vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
 -- vim.keymap.set("n", "gb", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
 -- vim.keymap.set("n", "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" })
 
 -- tab navigation
+-- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
 -- Go to tab by number
 -- vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
 -- vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
@@ -126,7 +124,8 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
-vim.keymap.set("n", "<C-p>", '"+p')
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -178,9 +177,19 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 vim.keymap.set("n", "<leader>of", require("merlinvn.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
 vim.keymap.set("n", "<leader>os", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
 vim.keymap.set("n", "<leader>ow", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-vim.keymap.set("n", "<leader>ol", function() Util.toggle("relativenumber", true) Util.toggle("number") end,
+vim.keymap.set("n", "<leader>on", function() Util.toggle("relativenumber", true) Util.toggle("number") end,
   { desc = "Toggle Line Numbers" })
 vim.keymap.set("n", "<leader>od", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 vim.keymap.set("n", "<leader>oc", function() Util.toggle("conceallevel", false, { 0, conceallevel }) end,
   { desc = "Toggle Conceal" })
+
+-- new file
+-- o == open
+vim.keymap.set("n", "<leader>oe", "<cmd>enew<cr>", { desc = "New File" })
+vim.keymap.set("n", "<leader>ol", "<cmd>lopen<cr>", { desc = "Open Location List" })
+vim.keymap.set("n", "<leader>oq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
+
+
+-- change word with <c-c>
+vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")

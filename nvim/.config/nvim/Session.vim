@@ -13,18 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +51 ~/.config/nvim/after/plugin/lsp.lua
-badd +3 lua/merlinvn/init.lua
-badd +177 after/plugin/keymap/init.lua
-badd +100 after/plugin/bufferline.lua
-badd +63 lua/merlinvn/lazy.lua
-badd +16 ~/.config/nvim/lua/merlinvn/plugins/lsp/format.lua
-badd +18 ~/.config/nvim/after/plugin/nvim-tree.lua
+badd +34 ~/.config/nvim/lua/merlinvn/autocmd.lua
 argglobal
 %argdel
-edit ~/.config/nvim/after/plugin/lsp.lua
+edit ~/.config/nvim/lua/merlinvn/autocmd.lua
 argglobal
-balt ~/.config/nvim/after/plugin/nvim-tree.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -35,7 +28,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 72 - ((34 * winheight(0) + 24) / 49)
+let s:l = 72 - ((47 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt

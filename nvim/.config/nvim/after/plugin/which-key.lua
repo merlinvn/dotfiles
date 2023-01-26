@@ -24,6 +24,18 @@ wk.register({
   ["<leader>w"] = {
     name = "+windows",
   },
+  ["<leader>o"] = {
+    name = "+options/open",
+  },
+  ["<leader>n"] = {
+    name = "+neotree",
+  },
+  ["<leader>b"] = {
+    name = "+buffer",
+  },
+  ["<leader><tab>"] = {
+    name = "+tab",
+  },
   ["<leader>c"] = {
     name = "+code",
     w = "swap next",
