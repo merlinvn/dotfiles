@@ -15,7 +15,7 @@ end
 ---@return string
 function M.get_root()
   ---@type string?
-  local path = vim.api.nvim_buf_get_name(0)
+  local path = vim.loop.cwd()
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
   ---@type string[]
   local roots = {}

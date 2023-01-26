@@ -1,4 +1,5 @@
 require("telescope").load_extension("ui-select")
+local Util = require("merlinvn.util")
 
 local M = {}
 
@@ -197,6 +198,22 @@ function M.file_browser()
   require("telescope").extensions.file_browser.file_browser(opts)
 end
 
+function M.find_files(opts)
+  local params = { builtin = "find_files", opts = opts }
+  return function()
+    local builtin = params.builtin
+    local myOpts = params.opts
+    myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
+    if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
+      myOpts.show_untracked = true
+      builtin = "git_files"
+    else
+      builtin = "find_files"
+    end
+    require("telescope.builtin")[builtin](myOpts)
+  end
+end
+
 -- find all files but respect the .gitignore
 function M.fd()
   local opts = {
@@ -226,7 +243,7 @@ end
 function M.search_all_files()
   require("telescope.builtin").find_files {
     hidden = true,
-    find_command = { "rg", "--no-ignore", "--files", "-g", "!.git/" }
+    find_command = { "rg", "--no-ignore", "--files", "-g", "!.git/", "--hidden" }
   }
 end
 

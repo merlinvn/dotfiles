@@ -9,18 +9,17 @@ end
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
 -- FILES
-vim.keymap.set("n", "<leader>e", "<cmd>lua require('merlinvn.telescope').fd()<cr>", { desc = "Files" })
-vim.keymap.set('n', '<leader>tf', require('telescope.builtin').find_files, { desc = '[F]iles' })
-vim.keymap.set("n", "<leader><space>", "<cmd>lua require('merlinvn.telescope').buffers()<cr>",
+vim.keymap.set("n", "<leader>e", require('merlinvn.telescope').find_files(), { desc = "Files / Project files" })
+vim.keymap.set("n", "<leader>tp", require('merlinvn.telescope').find_files(), { desc = "Files / Project files" })
+vim.keymap.set('n', '<leader>tf', require('merlinvn.telescope').search_all_files, { desc = 'all [F]iles' })
+vim.keymap.set("n", "<leader><space>", require('merlinvn.telescope').buffers,
   { desc = "Current buffers" })
 vim.keymap.set("n", "<leader>ts", "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>",
   { desc = "Global search cwd" })
 vim.keymap.set("n", "<leader>tt", "<cmd>Telescope<cr>")
-vim.keymap.set("n", "<leader>tp", "<cmd>lua require('merlinvn.telescope').project_files()<cr>",
-  { desc = "Project files" })
 vim.keymap.set("n", "<leader>to", require('telescope.builtin').oldfiles, { desc = "Find recently [o]pened files" })
 vim.keymap.set("n", "<leader>tg", "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>", { desc = "Live Grep" })
-vim.keymap.set("n", "<leader>ta", "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>", { desc = "All files" })
+vim.keymap.set("n", "<leader>ta", require('merlinvn.telescope').search_all_files, { desc = "All files" })
 vim.keymap.set("n", "<leader>te", "<cmd>lua require('merlinvn.telescope').file_browser()<cr>", { desc = "File browser" })
 vim.keymap.set("n", "<leader>tz", "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
   { desc = "Search by file type" })

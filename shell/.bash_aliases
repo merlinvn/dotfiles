@@ -53,13 +53,14 @@ alias ns="npm start"
 
 
 [ -x "$(command -v bat)" ] && alias cat='bat'
+[ -x "$(command -v bat)" ] && alias catr='bat -p'
 [ -x "$(command -v batcat)" ] && alias cat='batcat'
 
-[ -x "$(command -v fd)" ] && alias find='fd'
-[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
+# [ -x "$(command -v fd)" ] && alias find='fd'
+# [ -x "$(command -v fdfind)" ] && alias fd='fdfind'
 
-[ -x "$(command -v htop)" ] && alias top='htop'
-[ -x "$(command -v bpytop)" ] && alias top='bpytop'
+# [ -x "$(command -v htop)" ] && alias top='htop'
+# [ -x "$(command -v bpytop)" ] && alias top='bpytop'
 
 # kubernetes
 [ -x "$(command -v kubectl)" ] && alias k='kubectl'
@@ -91,3 +92,6 @@ alias tmux="TERM=screen-256color tmux"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 alias anaconda='source  ~/.conda.shellrc'
+
+[ -x "$(command -v go-task)" ] && alias task="go-task"
+[ -x "$(command -v go-task)" ] && alias t="go-task"

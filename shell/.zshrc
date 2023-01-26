@@ -82,7 +82,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump zsh-autosuggestions docker docker-compose kubectl zsh-syntax-highlighting npm zsh-completions)
 
-autoload -U compinit && compinit
+autoload -U compinit && compinit -i
 
 source $ZSH/oh-my-zsh.sh
 
