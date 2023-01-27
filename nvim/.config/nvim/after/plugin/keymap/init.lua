@@ -29,10 +29,21 @@ vim.keymap.set("i", "?", "?<c-g>u")
 
 -- windows navigation
 vim.keymap.set("n", "gw", ":wincmd w<CR>", { noremap = true, silent = true, desc = "Next win" })
-vim.keymap.set("n", "<C-Left>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
-vim.keymap.set("n", "<C-Down>", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
-vim.keymap.set("n", "<C-Up>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
-vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
+-- vim.keymap.set("n", "<C-Left>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
+-- vim.keymap.set("n", "<C-Down>", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
+-- vim.keymap.set("n", "<C-Up>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
+-- vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
+
+vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
+vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
+vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
+vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
+
+-- Resize with arrows
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true, desc = "- width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true, desc = "+ width" })
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { noremap = true, silent = true, desc = "- height" })
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { noremap = true, silent = true, desc = "+ height" })
 
 -- vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
 -- vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })

@@ -13,15 +13,23 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +3 ~/.config/nvim/lua/merlinvn/autocmd.lua
+badd +1 ~/.config/nvim/lua/merlinvn/autocmd.lua
 badd +21 after/plugin/keymap/hydra/git.lua
-badd +49 ~/.config/nvim/lua/plugins/ui.lua
+badd +98 ~/.config/nvim/lua/plugins/ui.lua
 badd +32 ~/.config/nvim/after/plugin/keymap/init.lua
+badd +60 ~/.config/nvim/after/plugin/bufferline.lua
 argglobal
 %argdel
-edit ~/.config/nvim/lua/plugins/ui.lua
+edit ~/.config/nvim/after/plugin/bufferline.lua
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
 argglobal
-balt ~/.config/nvim/after/plugin/keymap/init.lua
+balt ~/.config/nvim/lua/plugins/ui.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -32,12 +40,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 49 - ((19 * winheight(0) + 20) / 40)
+let s:l = 60 - ((21 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 49
-normal! 03|
+keepjumps 60
+normal! 030|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -45,6 +53,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

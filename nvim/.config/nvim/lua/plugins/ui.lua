@@ -1,11 +1,12 @@
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', '<C-Left>', [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set('t', '<C-Down>', [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set('t', '<C-Up>', [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set('t', '<C-Right>', [[<Cmd>wincmd l<CR>]], opts)
+  -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
 end
 
 return {
@@ -86,15 +87,10 @@ return {
             background = "Normal",
           },
         },
-        -- execs = {
-        --   { nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-        --   { nil, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-        --   { nil, "<M-3>", "Float Terminal", "float", nil },
-        -- },
       }
 
       -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-      vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+      vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
     end,
     keys = {
       -- { "n", "<leader>tt", "<cmd>ToggleTerm<cr>" },

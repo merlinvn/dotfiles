@@ -35,6 +35,20 @@ require("bufferline").setup {
       icon = '▎',
       style = 'icon',
     },
+    name_formatter = function(buf)
+      -- buf contains:
+      -- name                | str        | the basename of the active file
+      -- path                | str        | the full path of the active file
+      -- bufnr (buffer only) | int        | the number of the active buffer
+      -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
+      -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
+---@diagnostic disable-next-line: undefined-field
+      if string.find(buf.name, "#toggleterm#") then
+        return "Terminal"
+      end
+---@diagnostic disable-next-line: undefined-field
+     return buf.name
+    end,
     --- count is an integer representing total count of errors
     --- level is a string "error" | "warning"
     --- diagnostics_dict is a dictionary from error level ("error", "warning" or "info") to number of errors for each level.
