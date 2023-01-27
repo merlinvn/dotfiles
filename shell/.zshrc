@@ -131,18 +131,20 @@ export FZF_DEFAULT_OPTS=" \
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
+
+## this is the replacement for j with fzf support
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
+
+[ -f "$HOME/forgit/forgit.plugin.zsh" ] && source "$HOME/forgit/forgit.plugin.zsh"
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
 # Add exports from your profile
 [ -s "$HOME/.profile" ] && source "$HOME/.profile"
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 [ -f ~/my_env ] && source ~/my_env
 
-## this is the replacement for j with fzf support
-[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
-
 # [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
-
-
-[ -f "$HOME/forgit/forgit.plugin.zsh" ] && source "$HOME/forgit/forgit.plugin.zsh"
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# [ -x "$(command -v neofetch)" ] && neofetch
+[ -x "$(command -v cowsay)" ] && cowsay -f dragon-and-cow "Hello Neo\!"

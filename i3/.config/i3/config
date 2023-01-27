@@ -126,23 +126,19 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# workspace back and forth (with/without active container)
-workspace_auto_back_and_forth no
-bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
-
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+x split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-# bindsym $mod+x split toggle
+bindsym $mod+z split toggle
 
 # enter fullscreen mode for the focused container
 # bindsym $mod+f focus parent; fullscreen toggle; focus child
 bindsym $mod+f fullscreen toggle
 
 # change container layout (ktacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+t layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+g layout toggle split
 # switch between horizontally and vertically split containers
 bindsym $mod+Shift+t layout toggle all
 
@@ -175,7 +171,7 @@ set $ws8 8
 set $ws9 9
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
+bindsym $mod+1 workspace number $ws1; layout tabbed
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
@@ -209,6 +205,11 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 # move to workspace to the left/right monitor
 bindsym $mod+Shift+m move workspace to output right
 
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth no
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+
 # navigate nxt / prev workspace
 bindsym $mod+Ctrl+j workspace prev_on_output
 bindsym $mod+Ctrl+k workspace next_on_output
@@ -225,7 +226,6 @@ bindsym $mod+k workspace next_on_output
 workspace 1 output eDP-1
 workspace 2 output DP-1 eDP-1
 workspace 3 output DP-1 eDP-1
-
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload

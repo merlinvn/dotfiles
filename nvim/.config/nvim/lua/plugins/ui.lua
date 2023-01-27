@@ -61,7 +61,7 @@ return {
           end
           return 20
         end,
-        open_mapping = [[<c-t>]],
+        open_mapping = [[<C-t>]],
         hide_numbers = true,
         shade_filetypes = {},
         shade_terminals = true,
@@ -69,6 +69,7 @@ return {
         start_in_insert = true,
         insert_mappings = true,
         persist_size = true,
+        -- direction = "float",
         direction = "float",
         close_on_exit = true,
         shell = vim.o.shell,
@@ -94,9 +95,9 @@ return {
     end,
     keys = {
       -- { "n", "<leader>tt", "<cmd>ToggleTerm<cr>" },
-      { "<M-1>", "<cmd>ToggleTerm direction=horizontal<cr>" },
-      { "<M-2>", "<cmd>ToggleTerm direction=vertical<cr>" },
-      { "<M-3>", "<cmd>ToggleTerm direction=float<cr>" },
+      { "<M-1>", "<cmd>exe v:count1 . 'ToggleTerm direction=horizontal'<cr>" },
+      { "<M-2>", "<cmd>exe v:count1 . 'ToggleTerm direction=vertical<cr>'" },
+      { "<M-3>", "<cmd>exe v:count1 . 'ToggleTerm direction=float<cr>'" },
     }
   },
 
