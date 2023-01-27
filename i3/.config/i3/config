@@ -253,6 +253,8 @@ mode "resize" {
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
 
+  # bindsym f floating enable; resize set 1920 700; move position 0 0
+
   # back to normal: Enter or Escape or $mod+r
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -334,10 +336,10 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 # overwrite color
-client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce #9aa5ce
-client.focused_inactive  #16161d #16161d #c0caf5 #16161d #16161d
-client.unfocused         #16161d #16161d #c0caf5 #16161d #16161d
-
+client.focused           #9aa5ce #504945 #bdae93 #9aa5ce #9aa5ce
+client.focused_inactive  #16161d #504945 #a89984 #16161d #16161d
+client.unfocused         #16161d #282828 #a89984 #16161d #16161d
+client.urgent            #2f343a #d65d0e #a89984 #900000   #900000
 
 # feh --bg-fill ~/Pictures/wallpapers/1.jpg &
   # exec --no-startup-id picom --experimental-backends &

@@ -147,4 +147,4 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 
 # [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
 # [ -x "$(command -v neofetch)" ] && neofetch
-[ -x "$(command -v cowsay)" ] && cowsay -f dragon-and-cow "Hello Neo\!"
+[ -x "$(command -v cowsay)" ] && cowsay -f small "Hello Neo\!"
