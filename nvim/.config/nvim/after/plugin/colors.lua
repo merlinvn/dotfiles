@@ -51,12 +51,19 @@ function ColorMyPencils()
   })
 
   hl("Normal", {
-    -- ctermbg = 0,
+    -- ctermbg = "None",
     -- guibg = 0,
     bg = "#282828"
     -- bg = "" -- transparent background
   })
-  --
+
+  -- hl("NormalFloat", {
+  --   -- ctermbg = "None",
+  --   -- guibg = 0,
+  --   bg = "#1d2021"
+  --   -- bg = "" -- transparent background
+  -- })
+
   hl("LineNr", {
     fg = "gray"
   })

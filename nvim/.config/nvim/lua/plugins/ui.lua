@@ -1,3 +1,13 @@
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<C-Left>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-Down>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-Up>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-Right>', [[<Cmd>wincmd l<CR>]], opts)
+end
+
 return {
   -- Color highlight
   {
@@ -34,6 +44,66 @@ return {
 
   -- tabline
   { 'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'nvim-tree/nvim-web-devicons' },
+
+  -- toggle terminal
+  {
+    "akinsho/toggleterm.nvim",
+    event = "VeryLazy",
+    branch = "main",
+    config = function()
+      require("toggleterm").setup {
+        size = function(term)
+          if term.direction == "horizontal" then
+            return 10
+          elseif term.direction == "vertical" then
+            return vim.o.columns * 0.33
+          end
+          return 20
+        end,
+        open_mapping = [[<c-t>]],
+        hide_numbers = true,
+        shade_filetypes = {},
+        shade_terminals = true,
+        shading_factor = 2,
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = true,
+        direction = "float",
+        close_on_exit = true,
+        shell = vim.o.shell,
+        float_opts = {
+          -- The border key is *almost* the same as 'nvim_win_open'
+          -- see :h nvim_win_open for details on borders however
+          -- the 'curved' border is a custom border type
+          -- not natively supported but implemented in this plugin.
+          -- border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+          border = "curved",
+          -- width = <value>,
+          -- height = <value>,
+          winblend = 0,
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          },
+        },
+        -- execs = {
+        --   { nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
+        --   { nil, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
+        --   { nil, "<M-3>", "Float Terminal", "float", nil },
+        -- },
+      }
+
+      -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+      vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+    end,
+    keys = {
+      -- { "n", "<leader>tt", "<cmd>ToggleTerm<cr>" },
+      { "<M-1>", "<cmd>ToggleTerm direction=horizontal<cr>" },
+      { "<M-2>", "<cmd>ToggleTerm direction=vertical<cr>" },
+      { "<M-3>", "<cmd>ToggleTerm direction=float<cr>" },
+    }
+  },
+
 
   -- GUI Keymaps
   "anuvyklack/hydra.nvim",

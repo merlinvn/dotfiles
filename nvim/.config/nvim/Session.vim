@@ -13,11 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +34 ~/.config/nvim/lua/merlinvn/autocmd.lua
+badd +3 ~/.config/nvim/lua/merlinvn/autocmd.lua
+badd +21 after/plugin/keymap/hydra/git.lua
+badd +49 ~/.config/nvim/lua/plugins/ui.lua
+badd +32 ~/.config/nvim/after/plugin/keymap/init.lua
 argglobal
 %argdel
-edit ~/.config/nvim/lua/merlinvn/autocmd.lua
+edit ~/.config/nvim/lua/plugins/ui.lua
 argglobal
+balt ~/.config/nvim/after/plugin/keymap/init.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,12 +32,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 72 - ((47 * winheight(0) + 24) / 48)
+let s:l = 49 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 72
-normal! 0
+keepjumps 49
+normal! 03|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

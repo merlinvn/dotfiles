@@ -29,16 +29,10 @@ vim.keymap.set("i", "?", "?<c-g>u")
 
 -- windows navigation
 vim.keymap.set("n", "gw", ":wincmd w<CR>", { noremap = true, silent = true, desc = "Next win" })
--- vim.keymap.set("n", "gh", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
--- vim.keymap.set("n", "gj", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
--- vim.keymap.set("n", "gk", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
--- vim.keymap.set("n", "gl", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
--- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-
+vim.keymap.set("n", "<C-Left>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
+vim.keymap.set("n", "<C-Down>", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
+vim.keymap.set("n", "<C-Up>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
+vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
 
 -- vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
 -- vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })
@@ -124,7 +118,7 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
-vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("n", "<C-p>", '"+p')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 
@@ -163,13 +157,6 @@ end
 if Util.has("mason.nvim") then
   vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { silent = true })
 end
-
--- floating terminal
--- o == open
-vim.keymap.set("n", "<leader>ot", function() Util.float_term(nil, { cwd = Util.get_root() }) end,
-  { desc = "Terminal (root dir)" })
-vim.keymap.set("n", "<leader>oT", function() Util.float_term() end, { desc = "Terminal (cwd)" })
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- toggle options
 -- o == option

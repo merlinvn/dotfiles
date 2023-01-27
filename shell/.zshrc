@@ -109,8 +109,9 @@ precmd_functions+=(_fix_cursor)
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
 
@@ -139,7 +140,9 @@ export FZF_DEFAULT_OPTS=" \
 ## this is the replacement for j with fzf support
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
-[ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
+
 
 [ -f "$HOME/forgit/forgit.plugin.zsh" ] && source "$HOME/forgit/forgit.plugin.zsh"
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
