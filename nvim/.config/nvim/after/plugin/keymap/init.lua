@@ -176,11 +176,11 @@ vim.keymap.set("n", "<Leader>s", ":%s/<C-r><C-w>//gI<Left><Left><Left>",
 -- end
 
 if Util.has("lazy.nvim") then
-  vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { silent = true })
+  vim.keymap.set("n", "<leader>vl", "<cmd>Lazy<CR>", { silent = true })
 end
 
 if Util.has("mason.nvim") then
-  vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>", { silent = true })
+  vim.keymap.set("n", "<leader>vm", "<cmd>Mason<CR>", { silent = true })
 end
 
 -- toggle options
