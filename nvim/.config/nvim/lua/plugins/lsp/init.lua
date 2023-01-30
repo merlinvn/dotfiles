@@ -14,6 +14,7 @@ return {
       "folke/neodev.nvim",
     },
   },
+
   "onsails/lspkind-nvim",
   "nvim-lua/lsp_extensions.nvim",
   "simrat39/symbols-outline.nvim",

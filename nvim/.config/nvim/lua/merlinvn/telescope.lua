@@ -228,16 +228,16 @@ function M.fd()
   require("telescope.builtin").fd(opts)
 end
 
--- use git_files as source, if not in git folder use the normal fd
-M.project_files = function()
-  local opts = {
-    -- find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
-  } -- define here if you want to define something
-  local ok = pcall(require "telescope.builtin".git_files, opts)
-  if not ok then
-    M.fd()
-  end
-end
+-- -- use git_files as source, if not in git folder use the normal fd
+-- M.project_files = function()
+--   local opts = {
+--     -- find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" }
+--   } -- define here if you want to define something
+--   local ok = pcall(require "telescope.builtin".git_files, opts)
+--   if not ok then
+--     M.fd()
+--   end
+-- end
 
 -- all hidden files include ignored files but not include the .git folder
 function M.search_all_files()
@@ -247,14 +247,14 @@ function M.search_all_files()
   }
 end
 
-function M.fs()
-  local opts =
-  themes.get_ivy {
-    hidden = false,
-    sorting_strategy = "descending"
-  }
-  require("telescope.builtin").fd(opts)
-end
+-- function M.fs()
+--   local opts =
+--   themes.get_ivy {
+--     hidden = false,
+--     sorting_strategy = "descending"
+--   }
+--   require("telescope.builtin").fd(opts)
+-- end
 
 function M.multi_rg()
   require("telescope.builtin").live_grep {

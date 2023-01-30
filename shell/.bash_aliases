@@ -79,7 +79,8 @@ fi
 
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi="nvim"
-  alias nv="neovide"
+  alias nv="nvim"
+  # alias nv="neovide"
   #alias vi="nvim"
   # alias oldvim="\vim"
 fi
@@ -93,5 +94,5 @@ alias tmux="TERM=screen-256color tmux"
 
 alias anaconda='source  ~/.conda.shellrc'
 
-[ -x "$(command -v go-task)" ] && alias task="go-task"
+[ -x "$(command -v go-task)" ] && alias gt="go-task"
 [ -x "$(command -v go-task)" ] && alias t="go-task"

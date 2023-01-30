@@ -34,8 +34,8 @@ vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', 'go', vim.diagnostic.open_float,
-  { noremap = true, silent = true, desc = 'Open diagnostics float' })
+-- vim.keymap.set('n', 'go', vim.diagnostic.open_float,
+--   { noremap = true, silent = true, desc = 'Open diagnostics float' })
 vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev,
   { noremap = true, silent = true, desc = 'Go to previous diagnostic' })
 vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Go to next diagnostic" })
@@ -43,49 +43,8 @@ vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, { noremap = true, silent = t
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local nmap = function(keys, func, desc)
-    vim.keymap.set('n', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
-  end
-  local imap = function(keys, func, desc)
-    vim.keymap.set('i', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
-  end
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+local on_attach = require("merlinvn.util").lsp_on_attach
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
-  nmap('K', vim.lsp.buf.hover, "Show hover")
-  nmap('gs', vim.lsp.buf.signature_help, "Show signature help")
-  nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
-  nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
-  nmap('<leader>cf', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  vim.keymap.set("v", '<leader>cF', function() vim.lsp.buf.rangeFormatting { async = true, timeout_ms = 5000 } end,
-    { buffer = bufnr, noremap = true, silent = true, desc = "Format range" })
-  nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  nmap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  imap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-
-  -- for other mappings related to telescope, see the 'telescope/mappings.lua' file
-  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementatasdion, bufopts)
-  -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wl', function()
-  -- vim.keymap.set('n','<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
@@ -94,7 +53,8 @@ local servers = {
   },
   gopls = {},
   pyright = {},
-  rust_analyzer = {},
+  -- rust analyzer is managed by the rust-tools plugin
+  -- rust_analyzer = {},
   tsserver = {
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" },
@@ -176,6 +136,7 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
+    -- print("LSP server " .. server_name .. " attached")
     nvim_lsp[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
