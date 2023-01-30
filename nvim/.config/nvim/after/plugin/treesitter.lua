@@ -65,10 +65,10 @@ ts.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<M-w>',
-      node_incremental = '<M-w>',
-      scope_incremental = '<M-e>',
-      node_decremental = '<M-b>',
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<nop>',
+      node_decremental = '<bs>',
     },
   },
   context_commentstring = {
