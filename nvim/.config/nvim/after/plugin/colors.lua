@@ -21,71 +21,76 @@ vim.cmd("colorscheme kanagawa") ]]
 
 -- vim.cmd("colorscheme oxocarbon")
 -- vim.g.my_colorscheme = "tokyonight"
-vim.g.my_colorscheme = "gruvbox"
 -- vim.g.my_colorscheme = "kanagawa"
+-- vim.g.my_colorscheme = "gruvbox"
+-- vim.g.my_colorscheme = "nord"
+
+
+vim.o.background = "dark"
+local my_colorscheme = "gruvbox"
+-- local my_colorscheme = "gruvbuddy"
 
 function ColorMyPencils()
-  vim.g.gruvbox_contrast_dark = 'hard'
-  vim.g.gruvbox_italic = 1
-  vim.g.gruvbox_transparent_bg = 1
-  vim.g.gruvbox_termcolors = 256
+  -- vim.g.gruvbox_contrast_dark = 'hard'
+  -- vim.g.gruvbox_italic = 1
+  -- vim.g.gruvbox_transparent_bg = 1
+  -- vim.g.gruvbox_termcolors = 256
 
-  vim.cmd("colorscheme " .. vim.g.my_colorscheme)
+  vim.cmd("colorscheme " .. my_colorscheme)
 
-  local hl = function(thing, opts)
-    vim.api.nvim_set_hl(0, thing, opts)
-  end
+  -- local hl = function(thing, opts)
+  --   vim.api.nvim_set_hl(0, thing, opts)
+  -- end
 
-  hl("SignColumn", {
-    bg = "none",
-  })
-
-  hl("ColorColumn", {
-    ctermbg = 0,
-    bg = "#333333",
-  })
-
-  hl("CursorLineNR", {
-    -- fg = "orange",
-    -- bg = "None"
-  })
-
-  hl("Normal", {
-    -- ctermbg = "None",
-    -- guibg = 0,
-    bg = "#282828"
-    -- bg = "" -- transparent background
-  })
-
-  -- hl("NormalFloat", {
+  -- hl("SignColumn", {
+  --   bg = "none",
+  -- })
+  --
+  -- hl("ColorColumn", {
+  --   ctermbg = 0,
+  --   bg = "#333333",
+  -- })
+  --
+  -- hl("CursorLineNR", {
+  --   -- fg = "orange",
+  --   -- bg = "None"
+  -- })
+  --
+  -- hl("Normal", {
   --   -- ctermbg = "None",
   --   -- guibg = 0,
-  --   bg = "#1d2021"
+  --   bg = "#282828"
   --   -- bg = "" -- transparent background
   -- })
-
-  hl("LineNr", {
-    fg = "gray"
-  })
-
-  -- hl("netrwDir", {
-  --   fg = "#5eacd3"
+  --
+  -- -- hl("NormalFloat", {
+  -- --   -- ctermbg = "None",
+  -- --   -- guibg = 0,
+  -- --   bg = "#1d2021"
+  -- --   -- bg = "" -- transparent background
+  -- -- })
+  --
+  -- hl("LineNr", {
+  --   fg = "gray"
   -- })
-
-  hl("IncSearch", {
-    bg = "orange",
-    fg = "black"
-  })
-
-  hl("CurSearch", {
-    bg = "orange",
-    fg = "#1d2021"
-  })
+  --
+  -- -- hl("netrwDir", {
+  -- --   fg = "#5eacd3"
+  -- -- })
+  --
+  -- hl("IncSearch", {
+  --   bg = "orange",
+  --   fg = "black"
+  -- })
+  --
+  -- hl("CurSearch", {
+  --   bg = "orange",
+  --   fg = "#1d2021"
+  -- })
 
 end
 
 ColorMyPencils()
-
 
 -- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 --

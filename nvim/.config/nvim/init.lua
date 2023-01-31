@@ -20,4 +20,3 @@ require("merlinvn")
 
 require("lazy").setup("plugins")
 
--- local nnoremap = require("merlinvn.keymap").nnoremap

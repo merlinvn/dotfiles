@@ -109,7 +109,7 @@ return {
 
   -- Colorscheme section
   "tjdevries/colorbuddy.nvim",
-  "morhetz/gruvbox",
+  "ellisonleao/gruvbox.nvim",
   -- "gruvbox-community/gruvbox",
   -- "folke/tokyonight.nvim",
   -- "rebelot/kanagawa.nvim",

@@ -15,16 +15,18 @@ vim.opt.termguicolors = true
 -- end
 local mode = "tabs"
 require("bufferline").setup {
-  highlights = {
-    tab = {
-      fg = "#ebdbb2",
-      bg = "#1d2021",
-    },
-    tab_selected = {
-      fg = "orange",
-      bg = "#1d2021",
-    },
-  },
+  -- highlights = {
+  --   tab = {
+  --     fg = "#ebdbb2",
+  --     bg = "#1d2021",
+  --   },
+  --   tab_selected = {
+  --     fg = "orange",
+  --     bg = "#1d2021",
+  --   },
+  -- },
+
+  -- highlights = require("nord.plugins.bufferline").akinsho(),
   options = {
     mode = mode,
     numbers = "ordinal",
@@ -42,12 +44,12 @@ require("bufferline").setup {
       -- bufnr (buffer only) | int        | the number of the active buffer
       -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
       -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
----@diagnostic disable-next-line: undefined-field
+      ---@diagnostic disable-next-line: undefined-field
       if string.find(buf.name, "#toggleterm#") then
         return "Terminal"
       end
----@diagnostic disable-next-line: undefined-field
-     return buf.name
+      ---@diagnostic disable-next-line: undefined-field
+      return buf.name
     end,
     --- count is an integer representing total count of errors
     --- level is a string "error" | "warning"
@@ -73,7 +75,7 @@ require("bufferline").setup {
     show_close_icon = false,
     show_tab_indicators = false,
     -- show_tab_indicators = true,
-    separator_style = "thick",
+    separator_style = "thin",
     tab_size = 10,
     enforce_regular_tabs = false,
     -- custom_areas = {
