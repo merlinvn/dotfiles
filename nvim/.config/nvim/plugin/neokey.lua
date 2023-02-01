@@ -1,7 +1,15 @@
 -- Description: Neokey mode for Vim. This is a plugin that remaps the keys for navigation in Vim.
 -- function to toggle neokey mode
+-- currently not working yet, can't find a way to fully:: map key i to h
 
-local find_function = function(keymap, key)
+-- key_db is a table that stores the original keymaps
+local H = {}
+H.key_db = {}
+
+-- find the keymap in the keymap table
+-- return the keymap if found, otherwise return nil
+-- keymap is a table with fields lhs, rhs, expr, noremap, nowait, replace_keycodes, script, silent
+local find_keymaps = function(keymap, key)
   for _, v in ipairs(keymap) do
     if v.lhs == key then
       return v
@@ -10,56 +18,141 @@ local find_function = function(keymap, key)
   return nil
 end
 
-local H = {}
-H.key_db = {}
-
-local store_keys = function()
-  if vim.tbl_isempty(H.key_db) == false then
-    return
+-- store the keymap to key_db table for a keymap `k` in mode `mode`
+-- if the key is not mapped, then we need to create a keymap to itself
+-- otherwise, we need to store the original keymap
+-- if the key is a single character, then we can use it as a keymap to itself
+-- otherwise, we need to use the nil keymap
+-- is_nil is set to true to indicate that this keymap is nil and be used to unmap
+-- the key in the restore_key function
+local store1key = function(mode, k)
+  local v = find_keymaps(vim.api.nvim_get_keymap(mode), k)
+  if v == nil then
+    -- keymap is not found
+    if string.len(k) == 1 then
+      -- single character
+      v = { lhs = k, rhs = k, noremap = true, silent = true, is_nil = true }
+    else
+      -- multi-character
+      v = { lhs = k, rhs = nil, noremap = true, silent = true, is_nil = true }
+    end
   end
-  for _ , pairs in ipairs(H.keymaps) do
-    local k = pairs[1]
-    -- local v = pairs[2]
-    H.key_db[k] = {rhs=k}
-    local ctr_k = "<C-" .. string.upper(k) .. ">"
-    H.key_db[ctr_k] = find_function(vim.api.nvim_get_keymap("n"), ctr_k)
+  -- keymap is found
+  -- print("found " .. k .. " in mode " .. mode)
+  -- print(vim.inspect(v))
+  -- print(vim.inspect(H.key_db))
+  if H.key_db[mode] == nil then
+    H.key_db[mode] = { k = v }
+  else
+    H.key_db[mode][k] = v
+  end
+
+end
+
+-- store the all keymaps to key_db table
+--
+local store_keys = function()
+  H.key_db = {}
+  for _, tuples in ipairs(H.keymaps) do
+    local modes = tuples[3]
+    if modes == nil then
+      modes = { "n" }
+    end
+    for _, mode in ipairs(modes) do
+      local k_from = tuples[1]
+      store1key(mode, k_from)
+      local k_to = tuples[2]
+      store1key(mode, k_to)
+      -- print("stored " .. k_from .. " and " .. k_to .. " in mode " .. mode)
+    end
   end
   -- print(vim.inspect(H.key_db))
 end
 
-local map_key = function(from, to)
-  -- store the original keymap
-  vim.api.nvim_set_keymap("n", from, to, { noremap = true, silent = true })
+local map_key = function(from, to, mode)
+  local v = H.key_db[mode][to]
 
-  -- -- map <C-from> to <C-to>
-  if H.key_db["<C-" .. string.upper(from) .. ">"] ~= nil then
-    vim.api.nvim_set_keymap("n", "<C-" .. string.upper(from) .. ">", H.key_db["<C-" .. string.upper(from) .. ">"].rhs,
-      { noremap = true, silent = true })
+  if v == nil then
+    vim.api.nvim_command("nun " .. from)
+    return
   end
-  -- vim.api.nvim_set_keymap("n", "<C-" .. string.upper(from) .. ">", H.key_db["<C-" .. string.upper(to) .. ">"].rhs,
-  --   { noremap = true, silent = true })
-  -- -- map <S-from> to <S-to>
-  -- vim.api.nvim_set_keymap("n", string.upper(from), H.key_db[string.upper(to)].rhs, { noremap = true, silent = true })
-  -- -- map <A-from> to <A-to>
-  -- vim.api.nvim_set_keymap("n", "<M-" .. from .. ">", H.key_db["<M-" .. to .. ">"].rhs, { noremap = true, silent = true })
+
+  if v.rhs == nil then
+    return
+  end
+
+  vim.api.nvim_set_keymap(mode, from, v.rhs, {
+    expr = v.expr,
+    noremap = true,
+    nowait = v.nowait,
+    replace_keycodes = v.replace_keycodes,
+    script = v.script,
+    silent = v.silent
+  })
 end
+
+local map_all_keys = function()
+  for _, keymap in ipairs(H.keymaps) do
+    local modes = keymap[3]
+    if modes == nil then
+      modes = { "n" }
+    end
+    for _, mode in ipairs(modes) do
+      map_key(keymap[1], keymap[2], mode)
+    end
+    -- print(vim.inspect(vim.g.key_db["j"]))
+  end
+end
+
 
 local restore_key = function()
   -- print(vim.inspect(H.key_db))
-  for k, v in pairs(H.key_db) do
-      vim.api.nvim_set_keymap("n", k, v.rhs, { noremap = true, silent = true })
+  for mode, keymaps in pairs(H.key_db) do
+    for _, v in pairs(keymaps) do
+
+      if v.is_nil then
+        print("unmap " .. v.lhs .. " in mode " .. mode)
+        vim.api.nvim_command(mode .. "unmap " .. v.lhs)
+      else
+        vim.api.nvim_set_keymap(mode, v.lhs, v.rhs, {
+          expr = v.expr,
+          noremap = v.noremap,
+          nowait = v.nowait,
+          replace_keycodes = v.replace_keycodes,
+          script = v.script,
+          silent = v.silent
+        })
+      end
+    end
   end
 end
 
 H.keymaps = {
-  { "n", "h" },
-  { "h", "j" },
-  { "u", "k" },
-  { "i", "l" },
+  { "k", "j", { "n", "v", "o", "x" } },
+  { "j", "h", { "n", "v", "o", "x" } },
+  { "i", "k", { "n", "v", "o", "x" } },
+  { "l", "l", { "n", "v", "o", "x" } },
+  { "h", "i", { "n", "v", "o", "x" } },
 
-  { "j", "n" },
-  { "k", "u" },
-  { "l", "i" },
+  { "<C-K>", "<C-J>" },
+  { "<C-J>", "<C-H>" },
+  { "<C-I>", "<C-K>" },
+  { "<C-L>", "<C-L>" },
+  { "<C-H>", "<C-I>" },
+
+
+
+
+
+
+  -- { "n", "h" },
+  -- { "h", "j" },
+  -- { "u", "k" },
+  -- { "i", "l" },
+  --
+  -- { "j", "n" },
+  -- { "k", "u" },
+  -- { "l", "i" },
 }
 
 function _G.toggle_neokey()
@@ -72,10 +165,7 @@ function _G.toggle_neokey()
     vim.g.neokey = 1
     print("Neokey mode enabled")
     store_keys()
-    for _, keymap in ipairs(H.keymaps) do
-      map_key(keymap[1], keymap[2])
-      -- print(vim.inspect(vim.g.key_db["j"]))
-    end
+    map_all_keys()
     -- print(vim.inspect(H.key_db)
   end
 end
