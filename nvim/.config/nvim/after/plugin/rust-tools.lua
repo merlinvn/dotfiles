@@ -24,7 +24,7 @@ local opts = {
         },
       },
     },
-    on_attach = require("merlinvn.util").lsp_on_attach,
+    on_attach = require("merlinvn.lsp").lsp_on_attach_rust,
   },
 };
 

@@ -6,8 +6,9 @@ vim.keymap.set({ "i", "v", "n", "s" }, "<C-S-s>", "<cmd>wa<CR><esc>", { silent =
 
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
-vim.keymap.set({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
-vim.keymap.set({ "i", "x" }, "<C-s>", "<Esc><Cmd>silent! update | redraw<CR>", { desc = "Save and go to Normal mode" })
+-- vim.keymap.set({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
+vim.keymap.set({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! write | redraw<CR>", { desc = "Save" })
+vim.keymap.set({ "i", "x" }, "<C-s>", "<Esc><Cmd>silent! write | redraw<CR>", { desc = "Save and go to Normal mode" })
 -- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit

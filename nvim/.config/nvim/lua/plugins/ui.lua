@@ -110,12 +110,13 @@ return {
   -- Colorscheme section
   "tjdevries/colorbuddy.nvim",
   "ellisonleao/gruvbox.nvim",
+  "navarasu/onedark.nvim",
+  { "catppuccin/nvim", as = "catppuccin" },
+
   -- "gruvbox-community/gruvbox",
   -- "folke/tokyonight.nvim",
   -- "rebelot/kanagawa.nvim",
   -- "B4mbus/oxocarbon-lua.nvim",
-  -- { "catppuccin/nvim", as = "catppuccin" },
-  -- use 'navarasu/onedark.nvim'
   -- use({
   --   'rose-pine/neovim',
   --   as = 'rose-pine',

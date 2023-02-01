@@ -43,7 +43,7 @@ vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, { noremap = true, silent = t
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = require("merlinvn.util").lsp_on_attach
+local on_attach = require("merlinvn.lsp").lsp_on_attach
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
