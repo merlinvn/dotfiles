@@ -34,9 +34,10 @@ function M.lsp_on_attach(_, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
-  nmap('K', vim.lsp.buf.hover, "Show hover")
+  nmap('gk', vim.lsp.buf.hover, "Show hover")
   -- nmap('K', rt.hover_actions.hover_actions, "Show hover")
-  nmap('gs', vim.lsp.buf.signature_help, "Show signature help")
+  nmap('gK', vim.lsp.buf.signature_help, "Show signature help")
+  -- imap('<C-K>', vim.lsp.buf.signature_help, "Show signature help")
   nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
   nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
   -- nmap('<leader>ca', rt.code_action_group.code_action_group, "[C]ode [a]ction")

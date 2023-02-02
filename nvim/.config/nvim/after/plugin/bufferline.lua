@@ -105,8 +105,8 @@ require("bufferline").setup {
 
 
 if mode == "buffers" then
-  vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
+  -- vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
+  -- vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
   vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
   vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
   vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
@@ -127,8 +127,6 @@ if mode == "buffers" then
     { noremap = true, silent = true, desc = "Close all" })
   vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Close current" })
 else
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
@@ -137,12 +135,3 @@ else
   vim.keymap.set("n", "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" })
 end
 
-for i = 1, 9 do
-  vim.keymap.set("n", "<leader>" .. i, function()
-    require("bufferline").go_to_buffer(i, true)
-  end, { noremap = true, silent = true, desc = "Go to tab " .. i })
-end
-
-vim.keymap.set("n", "<leader>0", function()
-  require("bufferline").go_to_buffer(-1, true)
-end, { noremap = true, silent = true, desc = "Go to last tab" })

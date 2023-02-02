@@ -38,9 +38,6 @@ wk.register({
   ["<leader>b"] = {
     name = "+buffer",
   },
-  ["<leader><tab>"] = {
-    name = "+tab",
-  },
   ["<leader>c"] = {
     name = "+code",
     w = "swap next",
