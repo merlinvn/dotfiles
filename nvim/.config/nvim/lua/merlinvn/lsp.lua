@@ -18,7 +18,10 @@ function M.lsp_on_attach_rust(_, bufnr)
   end
 
   nmap("<F5>",
-    function() require 'toggleterm'.exec("cargo run") end,
+    function()
+      vim.cmd("w")
+      require('toggleterm').exec("cargo run")
+    end,
     "Run")
 end
 
