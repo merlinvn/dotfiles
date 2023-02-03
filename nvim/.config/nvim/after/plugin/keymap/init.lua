@@ -84,7 +84,7 @@ vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { silent = true, desc = "mov
 
 -- join and stay in the same line
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true, silent = true, desc = "Join line" })
-vim.keymap.set("n", "K", "a<CR><ESC>k$", { noremap = true, silent = true, desc = "Join line" })
+vim.keymap.set("n", "gs", "a<CR><ESC>k$", { noremap = true, silent = true, desc = "Split line" })
 
 -- change word with <c-c>
 vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")
