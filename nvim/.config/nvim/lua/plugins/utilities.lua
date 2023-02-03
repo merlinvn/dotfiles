@@ -20,15 +20,44 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
-    version = 'nightly' -- optional, updated every week. (see issue #1193)
+    version = 'nightly', -- optional, updated every week. (see issue #1193)
+    opts = {
+      sort_by = "case_sensitive",
+      view = {
+        adaptive_size = true,
+        mappings = {
+          list = {
+            { key = "u", action = "dir_up" },
+          },
+        },
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = false,
+      },
+    },
+    keys = {
+      { "<leader>ne", ":NvimTreeFindFile<CR>", { noremap = true, silent = true, desc = "Tree find file" } },
+      { "<leader>nn", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Tree toggle" } },
+      { "<leader>nf", ":NvimTreeFocus<CR>", { noremap = true, silent = true, desc = "Tree focus" } },
+    }
   },
 
   -- underline or highlight word at cursor
-  "echasnovski/mini.cursorword",
+  { "echasnovski/mini.cursorword",
+    config = function()
+      require("mini.cursorword").setup({})
+    end,
+  },
 
   -- manage session
-  "echasnovski/mini.sessions",
-
+  { "echasnovski/mini.sessions",
+    config = function()
+      require("mini.sessions").setup({})
+    end,
+  },
 
   -- remove buffers but reserver window layout
   {
@@ -41,6 +70,13 @@ return {
       { "<leader>Q", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },
+
+  {
+    "junegunn/vim-easy-align",
+    keys = {
+      { "ga", "<Plug>(EasyAlign)", desc = "Easy Align", mode = { "n", "x" } },
+    }
+  }
   -- {
   --   "jackMort/ChatGPT.nvim",
   --   dependencies = {

@@ -1,12 +1,6 @@
+
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
-
--- Turn on lsp status information
-require('fidget').setup()
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
 
 local protocol = require('vim.lsp.protocol')
 

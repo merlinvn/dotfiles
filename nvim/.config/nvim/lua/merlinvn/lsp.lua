@@ -48,8 +48,8 @@ function M.lsp_on_attach(_, bufnr)
   vim.keymap.set("v", '<leader>cf', function() vim.lsp.buf.rangeFormatting { async = true, timeout_ms = 5000 } end,
     { buffer = bufnr, noremap = true, silent = true, desc = "Format range" })
   -- nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  nmap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  imap('<C-f>', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
+  nmap('<C-f>', function() vim.lsp.buf.format() end, "Format buffer")
+  imap('<C-f>', function() vim.lsp.buf.format() end, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()

@@ -2,6 +2,7 @@ return {
   -- Lsp Config
   {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       "williamboman/mason.nvim",
@@ -13,6 +14,17 @@ return {
       -- Additional lua configuration, makes nvim stuff amazing
       "folke/neodev.nvim",
     },
+    config = function()
+      require("plugins.lsp.config")
+    end
+  },
+  {
+    "j-hui/fidget.nvim",
+    config = true
+  },
+  {
+    "folke/neodev.nvim",
+    config = true
   },
 
   "onsails/lspkind-nvim",
@@ -36,7 +48,10 @@ return {
   -- },
 
   -- Null lsp
-  "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-  "MunifTanjim/prettier.nvim", -- Prettier plugin for Neovim's built-in LSP client
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPre",
 
+  }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  "MunifTanjim/prettier.nvim", -- Prettier plugin for Neovim's built-in LSP client
 }
