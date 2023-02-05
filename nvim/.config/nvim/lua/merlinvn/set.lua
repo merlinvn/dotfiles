@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.keymap.set({"n", "v"}, "K", "5gk")
+vim.keymap.set({ "n", "v" }, "K", "5gk")
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
@@ -101,3 +101,17 @@ vim.o.breakindent = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+
+--- Neovide setting
+-- vim.o.guifont = "JetbrainsMono Nerd Font:h11"
+-- vim.g.neovide_scale_factor = 1.0
+-- local change_scale_factor = function(delta)
+--   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+-- end
+-- vim.keymap.set("n", "<C-=>", function()
+--   change_scale_factor(1.25)
+-- end)
+-- vim.keymap.set("n", "<C-->", function()
+--   change_scale_factor(1 / 1.25)
+-- end)

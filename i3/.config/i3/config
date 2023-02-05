@@ -36,6 +36,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # autostart applications
+exec --no-startup-id brightnessctl set 70%
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 exec --no-startup-id $HOME/.config/i3/set-wallpapers.py
 exec --no-startup-id picom --config $HOME/.config/picom/picom.conf
@@ -73,6 +74,11 @@ bindsym $mod+$alt+s exec warpd --screen --oneshot
 
 # toggle polybar
 bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd toggle
+
+
+# change screen brightness
+bindsym $mod+bracketleft exec --no-startup-id ~/dotfiles/scripts/change_brightness.sh -1
+bindsym $mod+bracketright exec --no-startup-id ~/dotfiles/scripts/change_brightness.sh 1
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -244,6 +250,10 @@ bindsym $mod+Shift+r exec "xrandr --auto",restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+floating_minimum_size 400 x 400
+floating_maximum_size -1 x -1
+
+# set $screen_resolution (xrandr | awk '/\*/ {print $1}' | sed -r 's/x/ /g' | awk '{for (i=1; i<=NF; i++) $i*=0.75}1' )
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
@@ -263,7 +273,10 @@ mode "resize" {
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
 
-  # bindsym f floating enable; resize set 1920 700; move position 0 0
+  bindsym n floating enable; resize set 400 400; move position center; mode "default"
+  bindsym m floating enable; resize set 1224  765; move position center; mode "default"
+
+  # bindsym r floating resize set $screen_resolution; move position center; mode "default"
 
   # back to normal: Enter or Escape or $mod+r
   bindsym Return mode "default"
@@ -276,16 +289,16 @@ for_window [all] title_window_icon yes
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Clipgrab"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
@@ -302,6 +315,19 @@ for_window [class="(?i)virtualbox"] fullscreen enable
 for_window [class="Xfburn"] floating enable
 for_window [class="feh"] floating enable, border none, move position absolute center
 for_window [class="vlc"] floating enable, border none, move position absolute center
+for_window [class="vlc"] move to workspace $ws1
+
+for_window [title="Bluetooth Devices"] floating enable
+
+for_window [title="antiX Control Centre"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [instance="desktop-session-exit"] floating enable
+for_window [instance="st"] floating enable
 
 # hide windows title bar
 default_border pixel 1

@@ -14,7 +14,7 @@ return {
   "nvim-telescope/telescope-smart-history.nvim",
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "echasnovski/mini.fuzzy" },
+    dependencies = { "echasnovski/mini.fuzzy", },
     opts = function()
 
       local actions = require('telescope.actions')

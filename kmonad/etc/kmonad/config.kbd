@@ -76,7 +76,7 @@
 (deflayer navigation
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    home up    end    _   _    _    _
+  _    _    _    _    _    _    caps home up    end    _   _    _    _
   esc  lmet lalt lctl lsft _    _    left down right  _    _   _
   _    _    _    _    _    _    _    pgdn  pgup _   _   _
   _    _    _              _              _    _    _    _   _   _

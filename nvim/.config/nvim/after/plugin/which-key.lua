@@ -4,7 +4,7 @@ require("which-key").setup {
   -- refer to the configuration section below
   plugins = {
     presets = {
-      text_objects = false ,
+      text_objects = true ,
     }
   }
 }
