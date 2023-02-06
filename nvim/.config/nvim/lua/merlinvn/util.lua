@@ -104,6 +104,4 @@ function M.toggle_diagnostic()
   return new_buf_state and '  diagnostic' or 'nodiagnostic'
 end
 
-
-
 return M;

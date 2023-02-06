@@ -119,5 +119,18 @@ return {
       },
     },
     keys = keys,
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+      for i = 1, 9 do
+        vim.keymap.set("n", "<leader>" .. i, function()
+          require("bufferline").go_to_buffer(i, true)
+        end, { noremap = true, silent = true, desc = "Go to tab " .. i })
+      end
+
+      vim.keymap.set("n", "<leader>0", function()
+        require("bufferline").go_to_buffer(-1, true)
+      end, { noremap = true, silent = true, desc = "Go to last tab" })
+
+    end
   }
 }

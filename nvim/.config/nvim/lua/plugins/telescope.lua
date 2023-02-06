@@ -76,8 +76,8 @@ return {
 
       local telescope_prefix = "<leader>f"
 
-      local map_telescope = function(lhs, rhs, opts)
-        vim.keymap.set("n", telescope_prefix .. lhs, rhs, opts)
+      local map_telescope = function(lhs, rhs, opts_in)
+        vim.keymap.set("n", telescope_prefix .. lhs, rhs, opts_in)
       end
       -- local sorters = require "telescope.sorters"
 
@@ -126,26 +126,11 @@ return {
 
       -- search word from input
 
-      vim.keymap.set("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", { desc = "Definitions" })
-      vim.keymap.set("n", "gI", "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>",
-        { desc = "Implementations" })
-      vim.keymap.set("n", "gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", { desc = "References" })
-      -- vim.keymap.set("n", "gt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>")
-
       -- nnoremap ("gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
       -- nnoremap ("<leader>ch", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
       --
       -- " nnoremap gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
       -- " nnoremap <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-
-      vim.keymap.set("n", "<leader>cs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-        { desc = "Document symbols" })
-      vim.keymap.set("n", "<leader>cS", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
-        { desc = "Workspace symbols" })
-      vim.keymap.set("n", "<leader>cd", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
-        { desc = "Document diagnostics" })
-      vim.keymap.set("n", "<leader>cD", "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-        { desc = "Workspace diagnostics" })
 
       -- treesitter
       map_telescope("s", "<cmd>lua require('telescope.builtin').treesitter()<CR>", { desc = "Treesitter" })

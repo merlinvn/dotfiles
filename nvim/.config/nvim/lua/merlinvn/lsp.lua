@@ -1,3 +1,4 @@
+local Util = require('merlinvn.util')
 local M = {}
 
 local nmap_buf = function(keys, func, desc, bufnr)
@@ -13,9 +14,10 @@ function M.lsp_on_attach_rust(_, bufnr)
   local nmap = function(keys, func, desc)
     nmap_buf(keys, func, desc, bufnr)
   end
-  local imap = function(keys, func, desc)
-    imap_buf(keys, func, desc, bufnr)
-  end
+
+  -- local imap = function(keys, func, desc)
+  --   imap_buf(keys, func, desc, bufnr)
+  -- end
 
   nmap("<F5>",
     function()
@@ -35,15 +37,64 @@ function M.lsp_on_attach(_, bufnr)
     imap_buf(keys, func, desc, bufnr)
   end
   -- Mappings.
+
+  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+  -- vim.keymap.set('n', 'go', vim.diagnostic.open_float,
+  --   { noremap = true, silent = true, desc = 'Open diagnostics float' }
+  if Util.has("lspsaga.nvim") then
+    -- Go to definition
+    -- nmap("gd", "<cmd>Lspsaga goto_definition<CR>", "Definitions")
+    -- Diagnostics
+    nmap('[d', "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Go to previous diagnostic")
+    nmap(']d', "<cmd>Lspsaga diagnostic_jump_next<CR>", "Go to next diagnostic")
+    -- Show buffer diagnostics
+    -- nmap("<leader>cd", "<cmd>Lspsaga show_buf_diagnostics<CR>", "Show buffer diagnostics")
+
+
+    -- Code actions
+    nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>")
+    nmap('<leader>cr', "<cmd>Lspsaga rename<CR>", "[C]ode [R]ename")
+    -- Rename all occurrences of the hovered word for the selected files
+    -- currently has bugs cannot exit rename mode
+    nmap("<leader>cR", "<cmd>Lspsaga rename ++project<CR>", "[C]ode [R]ename all")
+    -- Toggle outline
+    nmap("<leader>ct", "<cmd>Lspsaga outline<CR>", "Toggle outline")
+    nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Show hover")
+
+    -- Call hierarchy
+    nmap("<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+    nmap("<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+  else
+    -- nmap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions")
+
+    nmap('[d', vim.diagnostic.goto_prev, "Go to previous diagnostic")
+    nmap(']d', vim.diagnostic.goto_next, "Go to next diagnostic")
+
+    nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
+    nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
+
+    nmap('K', vim.lsp.buf.hover, "Show hover")
+    nmap('gk', vim.lsp.buf.signature_help, "Show signature help")
+    imap('<C-K>', vim.lsp.buf.signature_help, "Show signature help")
+  end
+
+  nmap("<leader>cd", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document diagnostics")
+
+  nmap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions")
+  nmap("gI", "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "Implementations")
+  nmap("gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "References")
+  -- nmap("gt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>")
+
+  nmap("<leader>cs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document symbols")
+  nmap("<leader>cS", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols")
+  nmap("<leader>cD", "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Workspace diagnostics")
+
+  -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap('gD', vim.lsp.buf.declaration, "Go to declaration")
-  nmap('K', vim.lsp.buf.hover, "Show hover")
-  -- nmap('K', rt.hover_actions.hover_actions, "Show hover")
-  nmap('gk', vim.lsp.buf.signature_help, "Show signature help")
-  imap('<C-K>', vim.lsp.buf.signature_help, "Show signature help")
-  nmap('<leader>cr', vim.lsp.buf.rename, "[C]ode [R]ename")
-  nmap('<leader>ca', vim.lsp.buf.code_action, "[C]ode [a]ction")
-  -- nmap('<leader>ca', rt.code_action_group.code_action_group, "[C]ode [a]ction")
+
+
   nmap('<leader>cf', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   vim.keymap.set("v", '<leader>cf', function() vim.lsp.buf.rangeFormatting { async = true, timeout_ms = 5000 } end,
     { buffer = bufnr, noremap = true, silent = true, desc = "Format range" })

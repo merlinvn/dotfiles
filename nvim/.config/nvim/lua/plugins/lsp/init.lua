@@ -24,14 +24,31 @@ return {
   },
   {
     "folke/neodev.nvim",
-    event="BufReadPre",
+    event = "BufReadPre",
     config = true
   },
 
   "onsails/lspkind-nvim",
   "nvim-lua/lsp_extensions.nvim",
   "simrat39/symbols-outline.nvim",
-  -- "glepnir/lspsaga.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
+    opts = {
+      rename= {
+        quit = "<esc>",
+      },
+      scroll_preview = {
+        scroll_down = "<C-d>",
+        scroll_up = "<C-u>",
+      },
+      beacon = {
+        enable = false,
+        frequency = 7,
+      },
+    },
+    dependencies = { { "nvim-tree/nvim-web-devicons" } }
+  }
 
   -- Better LSP experience
   -- {
