@@ -3,7 +3,7 @@ return {
   {
     "ThePrimeagen/harpoon",
     keys = {
-      { "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>", mode = { "n", "v" }, noremap = true,
+      { "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<cr>", mode = { "n", "v" }, noremap = true,
         silent = true, desc = "Add file to harpoon" },
       { "<leader>'", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", mode = { "n", "v" }, noremap = true,
         silent = true, desc = "Toggle harpoon quick menu" },
