@@ -1,6 +1,7 @@
 return {
   {
     "kdheepak/lazygit.nvim",
+    event="VeryLazy",
     keys = {
       {
         "<leader>gg",

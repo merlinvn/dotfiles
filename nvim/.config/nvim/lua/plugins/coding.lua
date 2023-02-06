@@ -2,6 +2,7 @@ return {
   -- auto completion
   {
     "hrsh7th/nvim-cmp",
+    event="VeryLazy",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -223,6 +224,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
+    event="InsertEnter",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -262,14 +264,6 @@ return {
   -- testting
   "vim-test/vim-test",
 
-  -- generate docs
-  {
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*"
-  },
-
   -- Debug
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
@@ -278,13 +272,16 @@ return {
   -- commenter
   -- "terrortylor/nvim-comment",
   -- "numToStr/Comment.nvim",
-  { "echasnovski/mini.comment",
+  {
+    "echasnovski/mini.comment",
+    event = "BufReadPre",
     config = function()
-      require('mini.comment').setup()
+      require('mini.comment').setup({})
     end
   },
   {
     "folke/todo-comments.nvim",
+    event = "BufReadPre",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup {
@@ -301,7 +298,7 @@ return {
   -- "github/copilot.vim",
   {
     "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
+    event = "VeryLazy",
     opts = {
       panel = {
         enabled = true,
@@ -356,9 +353,12 @@ return {
   --   end
   -- },
 
-  -- Langague specific
-  -- Rust:
-  "simrat39/rust-tools.nvim",
   -- C++:
-  "cdelledonne/vim-cmake",
+  {
+    "cdelledonne/vim-cmake",
+    event = "VeryLazy",
+    config = function()
+      vim.g.cmake_link_compile_commands = 1
+    end
+  }
 }

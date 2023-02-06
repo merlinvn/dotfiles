@@ -4,10 +4,6 @@ return {
   -- TJ created lodash of neovim
   "nvim-lua/plenary.nvim",
 
-  -- indent matching line
-  "lukas-reineke/indent-blankline.nvim",
-  -- "p00f/nvim-ts-rainbow",
-
   -- misc
   -- "axkirillov/easypick.nvim",
   -- { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },

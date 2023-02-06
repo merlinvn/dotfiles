@@ -1,9 +1,31 @@
 return {
 
   -- utilities
-  "kylechui/nvim-surround",
+  {
+    "kylechui/nvim-surround",
+    opts = {
+      -- Configuration here, or leave empty to use defaults
+      keymaps = {
+        insert = "<C-g>s",
+        insert_line = "<C-g>S",
+        normal = "ys",
+        normal_cur = "yss",
+        normal_line = "yS",
+        normal_cur_line = "ySS",
+        visual = "<C-s>",
+        visual_line = "gS",
+        delete = "ds",
+        change = "cs",
+      },
+    }
+  },
 
-  "mbbill/undotree",
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>u", ":UndotreeToggle<CR>", noremap = true, silent = true, desc = "Toggle undotree" },
+    }
+  },
 
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 

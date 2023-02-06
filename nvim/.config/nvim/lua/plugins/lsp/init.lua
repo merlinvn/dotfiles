@@ -24,6 +24,7 @@ return {
   },
   {
     "folke/neodev.nvim",
+    event="BufReadPre",
     config = true
   },
 
@@ -31,9 +32,6 @@ return {
   "nvim-lua/lsp_extensions.nvim",
   "simrat39/symbols-outline.nvim",
   -- "glepnir/lspsaga.nvim",
-
-  -- third party code format
-  "sbdchd/neoformat",
 
   -- Better LSP experience
   -- {
@@ -48,10 +46,4 @@ return {
   -- },
 
   -- Null lsp
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "BufReadPre",
-
-  }, -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-  "MunifTanjim/prettier.nvim", -- Prettier plugin for Neovim's built-in LSP client
 }

@@ -1,16 +1,3 @@
--- function _G.set_terminal_keymaps()
---   local opts = { noremap=true, buffer = 0 }
---   vim.keymap.set('t', '<c-esc>', '<esc>', opts)
---   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
---   vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
---
---   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
---   vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
---   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
---   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
--- end
---
-
 local colorMyPencils = function(colorscheme)
   -- vim.g.gruvbox_contrast_dark = 'hard'
   -- vim.g.gruvbox_italic = 1
@@ -70,9 +57,6 @@ local colorMyPencils = function(colorscheme)
   -- })
 
 end
-
-
-
 
 return {
   -- Color highlight
@@ -211,11 +195,7 @@ return {
 
 
   -- GUI Keymaps
-  "anuvyklack/hydra.nvim",
-  {
-    "folke/which-key.nvim",
-    lazy = true,
-  },
+
   -- Colorscheme section
   "tjdevries/colorbuddy.nvim",
   {

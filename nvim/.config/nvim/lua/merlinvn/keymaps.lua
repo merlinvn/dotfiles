@@ -211,13 +211,9 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-if Util.has("lazy.nvim") then
-  vim.keymap.set("n", "<leader>vl", "<cmd>Lazy<CR>", { silent = true })
-end
+vim.keymap.set("n", "<leader>vl", "<cmd>Lazy<CR>", { silent = true })
 
-if Util.has("mason.nvim") then
-  vim.keymap.set("n", "<leader>vm", "<cmd>Mason<CR>", { silent = true })
-end
+vim.keymap.set("n", "<leader>vm", "<cmd>Mason<CR>", { silent = true })
 
 -- TOGGLE OPTIONS
 -- o == option
