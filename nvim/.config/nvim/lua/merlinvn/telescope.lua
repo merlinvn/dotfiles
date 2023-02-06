@@ -75,7 +75,7 @@ opts_without_preview = vim.deepcopy(neovim_opts_with_preview)
 opts_without_preview.previewer = false
 
 M.edit_dotfiles = function()
-  local opts = vim.deepcopy(opts_without_preview)
+  local opts = vim.deepcopy(neovim_opts_with_preview)
   local m = {
     prompt_title = "< My dotfiles >",
     cwd = dotfiles_path,
@@ -89,7 +89,7 @@ end
 
 
 M.edit_neovim = function()
-  local opts = vim.deepcopy(opts_without_preview)
+  local opts = vim.deepcopy(neovim_opts_with_preview)
   local m = {
     prompt_title = "< Neovim Configurations >",
     cwd = "~/.config/nvim",
@@ -202,8 +202,8 @@ function M.find_files(opts)
   local params = { builtin = "find_files", opts = opts }
   return function()
     local builtin = params.builtin
-    local myOpts = params.opts
-    myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
+    local myOpts = params.opts or {}
+    -- myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
     if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
       myOpts.show_untracked = true
       builtin = "git_files"
