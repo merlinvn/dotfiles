@@ -1,4 +1,3 @@
-
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
@@ -30,7 +29,12 @@ vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = require("merlinvn.lsp").lsp_on_attach
+local on_attach = function(client, buffer)
+  require("plugins.lsp.format").on_attach(client, buffer)
+  require("plugins.lsp.keymaps").lsp_on_attach(client, buffer)
+end
+
+
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches

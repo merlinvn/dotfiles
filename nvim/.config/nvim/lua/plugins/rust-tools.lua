@@ -1,7 +1,7 @@
 return {
   {
     "simrat39/rust-tools.nvim",
-    event="VeryLazy",
+    event = "VeryLazy",
     opts = {
       server = {
         settings = {
@@ -25,7 +25,7 @@ return {
             },
           },
         },
-        on_attach = require("merlinvn.lsp").lsp_on_attach_rust,
+        on_attach = require("plugins.lsp.keymaps").lsp_on_attach_rust,
       },
 
     }

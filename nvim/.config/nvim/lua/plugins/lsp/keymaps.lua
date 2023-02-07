@@ -8,8 +8,8 @@ local imap_buf = function(keys, func, desc, bufnr)
   vim.keymap.set('i', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
 end
 
-function M.lsp_on_attach_rust(_, bufnr)
-  M.lsp_on_attach(_, bufnr)
+function M.lsp_on_attach_rust(client, bufnr)
+  M.lsp_on_attach(client, bufnr)
 
   local nmap = function(keys, func, desc)
     nmap_buf(keys, func, desc, bufnr)
@@ -27,7 +27,7 @@ function M.lsp_on_attach_rust(_, bufnr)
     "Run")
 end
 
-function M.lsp_on_attach(_, bufnr)
+function M.lsp_on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   local nmap = function(keys, func, desc)
@@ -98,8 +98,7 @@ function M.lsp_on_attach(_, bufnr)
   nmap('<leader>cf', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   vim.keymap.set("v", '<leader>cf', function() vim.lsp.buf.rangeFormatting { async = true, timeout_ms = 5000 } end,
     { buffer = bufnr, noremap = true, silent = true, desc = "Format range" })
-  -- nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
-  nmap('<C-f>', function() vim.lsp.buf.format() end, "Format buffer")
+  nmap('<leader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, "Format buffer")
   imap('<C-f>', function() vim.lsp.buf.format() end, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -115,3 +114,4 @@ function M.lsp_on_attach(_, bufnr)
 end
 
 return M;
+

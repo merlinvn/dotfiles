@@ -74,7 +74,7 @@ return {
     config = function(_, opts)
       require("telescope").setup(opts)
 
-      local telescope_prefix = "<leader>f"
+      local telescope_prefix = "<leader>t"
 
       local map_telescope = function(lhs, rhs, opts_in)
         vim.keymap.set("n", telescope_prefix .. lhs, rhs, opts_in)
