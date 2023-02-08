@@ -2,7 +2,7 @@ return {
   -- auto completion
   {
     "hrsh7th/nvim-cmp",
-    event="VeryLazy",
+    event = "VeryLazy",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -224,7 +224,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
-    event="InsertEnter",
+    event = "InsertEnter",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -333,7 +333,7 @@ return {
         cvs = false,
         ["."] = false,
       },
-      copilot_node_command = 'node', -- Node version must be < 18
+      copilot_node_command = "node", -- Node version must be < 18
       plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
       server_opts_overrides = {},
 
