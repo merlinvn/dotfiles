@@ -20,11 +20,11 @@ vim.opt.cursorline = true -- Highlight cursor line
 local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
 local set_cursorline = function(event, value, pattern)
   vim.api.nvim_create_autocmd(event, {
-    group = group,
-    pattern = pattern,
-    callback = function()
-      vim.opt_local.cursorline = value
-    end,
+      group = group,
+      pattern = pattern,
+      callback = function()
+        vim.opt_local.cursorline = value
+      end,
   })
 end
 
@@ -115,3 +115,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- vim.keymap.set("n", "<C-->", function()
 --   change_scale_factor(1 / 1.25)
 -- end)
+
+
+-- winbar
+vim.o.winbar = "%=%m %f"
