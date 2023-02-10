@@ -31,9 +31,9 @@ function M.config(opts)
 
   local function setup(server)
     local server_opts = vim.tbl_deep_extend("force", {
-      capabilities = vim.deepcopy(capabilities),
-      on_attach = servers[server].on_attach or on_attach,
-    }, servers[server] or {})
+            capabilities = vim.deepcopy(capabilities),
+            on_attach = servers[server].on_attach or on_attach,
+        }, servers[server] or {})
 
     if opts.setup[server] then
       if opts.setup[server](server, server_opts) then
@@ -68,31 +68,31 @@ function M.config(opts)
 
   local protocol = require('vim.lsp.protocol')
   protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
+      '', -- Text
+      '', -- Method
+      '', -- Function
+      '', -- Constructor
+      '', -- Field
+      '', -- Variable
+      '', -- Class
+      'ﰮ', -- Interface
+      '', -- Module
+      '', -- Property
+      '', -- Unit
+      '', -- Value
+      '', -- Enum
+      '', -- Keyword
+      '﬌', -- Snippet
+      '', -- Color
+      '', -- File
+      '', -- Reference
+      '', -- Folder
+      '', -- EnumMember
+      '', -- Constant
+      '', -- Struct
+      '', -- Event
+      'ﬦ', -- Operator
+      '', -- TypeParameter
   }
 end
 

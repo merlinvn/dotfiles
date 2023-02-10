@@ -25,9 +25,12 @@ function M.get_root()
   if path then
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
-      local paths = workspace and vim.tbl_map(function(ws)
-        return vim.uri_to_fname(ws.uri)
-      end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
+      local paths = workspace
+          and vim.tbl_map(function(ws)
+            return vim.uri_to_fname(ws.uri)
+          end, workspace)
+        or client.config.root_dir and { client.config.root_dir }
+        or {}
       for _, p in ipairs(paths) do
         local r = vim.loop.fs_realpath(p)
         if path:find(r, 1, true) then
@@ -60,7 +63,10 @@ function M.toggle(option, silent, values)
     else
       vim.opt_local[option] = values[1]
     end
-    return Util.info("Set " .. option .. " to " .. vim.opt_local[option]:get(), { title = "Option" })
+    return Util.info(
+      "Set " .. option .. " to " .. vim.opt_local[option]:get(),
+      { title = "Option" }
+    )
   end
   vim.opt_local[option] = not vim.opt_local[option]:get()
   if not silent then
@@ -90,7 +96,9 @@ H.buffer_diagnostic_state = {}
 function M.toggle_diagnostic()
   local buf_id = vim.api.nvim_get_current_buf()
   local buf_state = H.buffer_diagnostic_state[buf_id]
-  if buf_state == nil then buf_state = true end
+  if buf_state == nil then
+    buf_state = true
+  end
 
   if buf_state then
     vim.diagnostic.disable(buf_id)
@@ -101,7 +109,7 @@ function M.toggle_diagnostic()
   local new_buf_state = not buf_state
   H.buffer_diagnostic_state[buf_id] = new_buf_state
 
-  return new_buf_state and '  diagnostic' or 'nodiagnostic'
+  return new_buf_state and "  diagnostic" or "nodiagnostic"
 end
 
-return M;
+return M

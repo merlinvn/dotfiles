@@ -41,6 +41,9 @@
 
     c_syms  (tap-hold 200 c (layer-toggle symbols))
     m_syms  (tap-hold 200 m (layer-toggle symbols))
+    v_num  (tap-hold 200 v (layer-toggle numbers))
+    n_fn  (tap-hold 200 n (layer-toggle fn))
+
     fns (tap-hold 200 (layer-next fn) (layer-toggle fn))
     vspc (tap-hold 200 v spc)
 
@@ -68,7 +71,7 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   esc  @met_a   @alt_s   @ctl_d   @sft_f  _    _    @sft_j   @ctl_k   @alt_l   @met_;    _   _
-  @sft_'   _    _    @c_syms  @vspc    _    _    @m_syms   _   _    _    _
+  @sft_'   _    _    @c_syms  @v_num    _    @n_fn    @m_syms   _   _    _    _
 ;;  _    _    _    _    _   _    _    _    _    _    _    _
   _  _    lmet        @snav             @fns   _   _   _   _    _
 )
@@ -85,10 +88,10 @@
 (deflayer numbers
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    /    7    8    9    +    _    _    caps
-  lmet lalt lctl lsft _    _    *    4    5    6    -    =   _
-  _    _    _    _    _    _    0    1    2    3    .    ,
-  _    _    _              _              _    _    _    _  _   _
+  _    _    _    _    _    _    *    7    8    9    =    _    _    _
+  _   lmet lalt lctl lsft  _    +    4    5    6    -    _   _
+  _    _    _    _    _    _    /    1    2    3    .    ,
+  _    _    _              0              _    _    _    _  _   _
 )
 
 (deflayer symbols
