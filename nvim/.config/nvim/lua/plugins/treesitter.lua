@@ -22,9 +22,17 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPost",
-    opts =
-    {
-      ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+    opts = {
+      ensure_installed = {
+        "c",
+        "cpp",
+        "go",
+        "lua",
+        "python",
+        "rust",
+        "typescript",
+        "help",
+      },
       auto_install = true,
       sync_install = false,
       autotag = {
@@ -37,7 +45,7 @@ return {
       },
       indent = {
         enable = true,
-        disable = { 'python' }
+        disable = { "python" },
       },
       refactor = {
         highlight_definitions = { enable = true },
@@ -62,10 +70,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<nop>',
-          node_decremental = '<bs>',
+          init_selection = "<c-space>",
+          node_incremental = "<c-space>",
+          scope_incremental = "<nop>",
+          node_decremental = "<bs>",
         },
       },
       context_commentstring = {
@@ -86,14 +94,14 @@ return {
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['ap'] = '@parameter.outer',
-            ['ip'] = '@parameter.inner',
+            ["ap"] = "@parameter.outer",
+            ["ip"] = "@parameter.inner",
 
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
 
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
 
             -- ['ab'] = '@block.outer',
             -- ['ib'] = '@block.inner',
@@ -110,21 +118,21 @@ return {
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
             ["]p"] = "@parameter.inner",
-            ["]m"] = '@function.outer',
-            ["]]"] = '@class.outer',
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
           },
           goto_next_end = {
-            ["]M"] = '@function.outer',
-            ["]["] = '@class.outer',
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
           },
           goto_previous_start = {
             ["[p"] = "@parameter.inner",
-            ["[m"] = '@function.outer',
-            ["[["] = '@class.outer',
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
           },
           goto_previous_end = {
-            ["[M"] = '@function.outer',
-            ["[]"] = '@class.outer',
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
           },
         },
         swap = {
@@ -159,7 +167,7 @@ return {
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
         -- colors = {}, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
-      }
+      },
     },
     ---@param opts TSConfig
     config = function(_, opts)
@@ -168,15 +176,20 @@ return {
   },
 
   { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = 'nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter",
   },
 
-  { 'nvim-treesitter/nvim-treesitter-context', dependencies = 'nvim-treesitter' },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = "nvim-treesitter",
+  },
 
   {
     "windwp/nvim-ts-autotag",
-    config = function() require("nvim-ts-autotag").setup() end
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
   },
 
   "nvim-treesitter/playground",

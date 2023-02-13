@@ -90,63 +90,14 @@ return {
     },
   },
 
-  -- underline or highlight word at cursor
-  {
-    "echasnovski/mini.cursorword",
-    config = function()
-      require("mini.cursorword").setup({})
-    end,
-  },
-
-  -- manage session
-  {
-    "echasnovski/mini.sessions",
-    config = function()
-      require("mini.sessions").setup({})
-    end,
-  },
-
-  -- remove buffers but reserver window layout
-  {
-    "echasnovski/mini.bufremove",
-    version = false,
-    keys = {
-      {
-        "<leader>bd",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>bD",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force)",
-      },
-      {
-        "<leader>q",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>Q",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force)",
-      },
-    },
-  },
-
   {
     "junegunn/vim-easy-align",
     keys = {
       { "ga", "<Plug>(EasyAlign)", desc = "Easy Align", mode = { "n", "x" } },
     },
+  },
+  {
+    "godlygeek/tabular",
   },
   {
     "folke/trouble.nvim",

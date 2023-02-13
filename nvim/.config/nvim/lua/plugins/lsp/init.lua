@@ -61,7 +61,7 @@ return {
           },
           cmd = { "typescript-language-server", "--stdio" },
         },
-        sumneko_lua = {
+        lua_ls = {
           settings = {
             Lua = {
               format = {
@@ -149,6 +149,13 @@ return {
     config = function(_, opts)
       require("plugins.lsp.config").config(opts)
     end,
+    keys = {
+      {
+        "<leader>f",
+        "<cmd>lua require('plugins.lsp.format').format()<CR>",
+        desc = "Format",
+      },
+    },
   },
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   {
@@ -164,6 +171,7 @@ return {
           }),
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.diagnostics.flake8,
+          null_ls.builtins.formatting.prettierd,
           -- null_ls.builtins.diagnostics.fish
           -- null_ls.builtins.formatting.clang_format
           -- null_ls.builtins.formatting.cmake_format

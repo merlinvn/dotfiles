@@ -1,11 +1,4 @@
 return {
-  {
-    "echasnovski/mini.fuzzy",
-    config = function(_, opts)
-      require("mini.fuzzy").setup(opts)
-    end,
-  },
-
   -- switch to mini.fuzzy
   -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable 'make' == 1 },
   "nvim-telescope/telescope-hop.nvim",
@@ -14,14 +7,13 @@ return {
   "nvim-telescope/telescope-smart-history.nvim",
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "echasnovski/mini.fuzzy", },
+    dependencies = { "echasnovski/mini.fuzzy" },
     opts = function()
-
-      local actions = require('telescope.actions')
+      local actions = require("telescope.actions")
       return {
         defaults = {
           -- file_sorter = require "telescope.sorters".get_fuzzy_file(),
-          generic_sorter = require('mini.fuzzy').get_telescope_sorter,
+          generic_sorter = require("mini.fuzzy").get_telescope_sorter,
           prompt_prefix = " > ",
           color_devicons = true,
           grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -37,7 +29,7 @@ return {
               -- ["<c-t>"] = trouble.open_with_trouble
             },
           },
-          set_env = { ["COLORTERM"] = "truecolor" }
+          set_env = { ["COLORTERM"] = "truecolor" },
           -- file_ignore_patterns = { "ext/.*" } -- comment this line for non C++ project
         },
         pickers = {
@@ -64,11 +56,11 @@ return {
           --   -- the default case_mode is "smart_case"
           -- },
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
+            require("telescope.themes").get_dropdown({
               -- even more opts
-            }
-          }
-        }
+            }),
+          },
+        },
       }
     end,
     config = function(_, opts)
@@ -83,46 +75,128 @@ return {
 
       -- Press Ctrl-R twice after ':' to fuzzy search command history, b/c single Ctrl-R is already mapped to register
       -- paste.
-      vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)",
-        { noremap = false, nowait = true })
+      vim.api.nvim_set_keymap(
+        "c",
+        "<c-r><c-r>",
+        "<Plug>(TelescopeFuzzyCommandSearch)",
+        { noremap = false, nowait = true }
+      )
       -- vim.keymap.set("n", "<leader><space>", require('merlinvn.telescope').buffers,  { desc = "Current buffers" })
-      vim.keymap.set("n", "<leader><space>", require('telescope.builtin').buffers, { desc = "Current buffers" })
+      vim.keymap.set(
+        "n",
+        "<leader><space>",
+        require("telescope.builtin").buffers,
+        { desc = "Current buffers" }
+      )
 
       -- FILES
-      vim.keymap.set("n", "<leader>e", require('merlinvn.telescope').find_files(), { desc = "Files / Project files" })
+      vim.keymap.set(
+        "n",
+        "<leader>e",
+        require("merlinvn.telescope").find_files(),
+        { desc = "Files / Project files" }
+      )
 
-      map_telescope("f", require('merlinvn.telescope').find_files(), { desc = "Files / Project files" })
-      map_telescope("s", "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>",
-        { desc = "Global search cwd" })
+      map_telescope(
+        "f",
+        require("merlinvn.telescope").find_files(),
+        { desc = "Files / Project files" }
+      )
+      map_telescope(
+        "s",
+        "<cmd>lua require('merlinvn.telescope').grep_prompt()<cr>",
+        { desc = "Global search cwd" }
+      )
       map_telescope("t", "<cmd>Telescope<cr>")
-      map_telescope("b", require('telescope.builtin').buffers, { desc = "[B]uffers" })
-      map_telescope("o", require('telescope.builtin').oldfiles, { desc = "[O]ld files" })
-      map_telescope("g", "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>", { desc = "Live [G]rep" })
-      map_telescope("a", require('merlinvn.telescope').search_all_files, { desc = "[A]ll files" })
-      map_telescope("e", "<cmd>lua require('merlinvn.telescope').file_browser()<cr>", { desc = "Fil[e] browser" })
-      map_telescope("z", "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
-        { desc = "Search by file type" })
-
+      map_telescope(
+        "b",
+        require("telescope.builtin").buffers,
+        { desc = "[B]uffers" }
+      )
+      map_telescope(
+        "o",
+        require("telescope.builtin").oldfiles,
+        { desc = "[O]ld files" }
+      )
+      map_telescope(
+        "g",
+        "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
+        { desc = "Live [G]rep" }
+      )
+      map_telescope(
+        "a",
+        require("merlinvn.telescope").search_all_files,
+        { desc = "[A]ll files" }
+      )
+      map_telescope(
+        "e",
+        "<cmd>lua require('merlinvn.telescope').file_browser()<cr>",
+        { desc = "Fil[e] browser" }
+      )
+      map_telescope(
+        "z",
+        "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
+        { desc = "Search by file type" }
+      )
 
       -- SEARCH
-      vim.keymap.set("n", "<leader>/", "<cmd>lua require('merlinvn.telescope').curbuf()<cr>",
-        { desc = "Search current buffer" })
+      vim.keymap.set(
+        "n",
+        "<leader>/",
+        "<cmd>lua require('merlinvn.telescope').curbuf()<cr>",
+        { desc = "Search current buffer" }
+      )
       -- search word under cursor
-      map_telescope("w", "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>",
-        { desc = "Search word under cursor" })
+      map_telescope(
+        "w",
+        "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>",
+        { desc = "Search word under cursor" }
+      )
 
       -- VIM
-      map_telescope("r", "<cmd>lua require('telescope.builtin').registers()<cr>", { desc = "[R]egisters" })
+      map_telescope(
+        "r",
+        "<cmd>lua require('telescope.builtin').registers()<cr>",
+        { desc = "[R]egisters" }
+      )
       map_telescope("c", "<cmd>Telescope commands<cr>", { desc = "Commands" })
-      map_telescope("h", "<cmd>lua require('merlinvn.telescope').help_tags()<cr>", { desc = "[H]elp tags" })
-      map_telescope("k", "<cmd>lua require('telescope.builtin').keymaps()<cr>", { desc = "[K]eymaps" })
-      map_telescope("O", "<cmd>lua require('merlinvn.telescope').vim_options()<cr>", { desc = "Vim Options" })
+      map_telescope(
+        "h",
+        "<cmd>lua require('merlinvn.telescope').help_tags()<cr>",
+        { desc = "[H]elp tags" }
+      )
+      map_telescope(
+        "k",
+        "<cmd>lua require('telescope.builtin').keymaps()<cr>",
+        { desc = "[K]eymaps" }
+      )
+      map_telescope(
+        "O",
+        "<cmd>lua require('merlinvn.telescope').vim_options()<cr>",
+        { desc = "Vim Options" }
+      )
       -- map_telescope("m", "<cmd>Telescope marks<cr>", { desc = "Marks" })
-      map_telescope(";", "<cmd>Telescope command_history<cr>", { desc = "Command history" })
-      map_telescope("?", "<cmd>Telescope search_history<cr>", { desc = "Search history" })
+      map_telescope(
+        ";",
+        "<cmd>Telescope command_history<cr>",
+        { desc = "Command history" }
+      )
+      map_telescope(
+        "?",
+        "<cmd>Telescope search_history<cr>",
+        { desc = "Search history" }
+      )
 
-      map_telescope("d", "<cmd>lua require('merlinvn.telescope').edit_dotfiles()<cr>", { desc = "Dotfiles" })
-      map_telescope("n", "<cmd>lua require('merlinvn.telescope').edit_neovim()<cr>", { desc = "Neovim config" })
+      map_telescope(
+        "d",
+        "<cmd>lua require('merlinvn.telescope').edit_dotfiles()<cr>",
+        { desc = "Dotfiles" }
+      )
+      map_telescope(
+        "n",
+        "<cmd>lua require('merlinvn.telescope').edit_neovim()<cr>",
+        { desc = "Neovim config" }
+      )
 
       -- search word from input
 
@@ -133,7 +207,11 @@ return {
       -- " nnoremap <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
       -- treesitter
-      map_telescope("s", "<cmd>lua require('telescope.builtin').treesitter()<CR>", { desc = "Treesitter" })
+      map_telescope(
+        "s",
+        "<cmd>lua require('telescope.builtin').treesitter()<CR>",
+        { desc = "Treesitter" }
+      )
     end,
   },
 }

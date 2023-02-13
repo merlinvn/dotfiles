@@ -54,8 +54,12 @@ return {
       }
 
       local my_mapping = {
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-n>"] = cmp.mapping.select_next_item({
+          behavior = cmp.SelectBehavior.Insert,
+        }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({
+          behavior = cmp.SelectBehavior.Insert,
+        }),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -131,7 +135,10 @@ return {
             vim_item.kind = lspkind.presets.default[vim_item.kind]
             local menu = source_mapping[entry.source.name]
             if entry.source.name == "cmp_tabnine" then
-              if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+              if
+                entry.completion_item.data ~= nil
+                and entry.completion_item.data.detail ~= nil
+              then
                 menu = entry.completion_item.data.detail .. " " .. menu
               end
               vim_item.kind = ""
@@ -234,7 +241,11 @@ return {
 
       ls.filetype_extend("javascript", { "javascriptreact" })
 
-      for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/merlinvn/snips/ft/*.lua", true)) do
+      for _, ft_path in
+        ipairs(
+          vim.api.nvim_get_runtime_file("lua/merlinvn/snips/ft/*.lua", true)
+        )
+      do
         loadfile(ft_path)()
       end
     end,
@@ -257,21 +268,16 @@ return {
   -- testting
   "vim-test/vim-test",
 
+  -- commenter
+  -- "terrortylor/nvim-comment",
+  -- "numToStr/Comment.nvim",
+  -- currently use mini.comment
+
   -- Debug
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
 
-  -- commenter
-  -- "terrortylor/nvim-comment",
-  -- "numToStr/Comment.nvim",
-  {
-    "echasnovski/mini.comment",
-    event = "BufReadPre",
-    config = function()
-      require("mini.comment").setup({})
-    end,
-  },
   {
     "folke/todo-comments.nvim",
     event = "BufReadPre",
