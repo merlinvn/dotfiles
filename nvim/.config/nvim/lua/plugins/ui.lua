@@ -98,7 +98,8 @@ return {
       options = {
         icons_enabled = true,
         -- theme = 'ayu_dark',
-        theme = "auto",
+        -- theme = "auto",
+        theme = "gruvbox_dark",
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
         disabled_filetypes = {},
@@ -217,9 +218,54 @@ return {
       -- vim.cmd([[colorscheme gruvbox]])
       colorMyPencils("gruvbox")
     end,
+    enabled = false,
+  },
+
+  {
+    "arturgoms/moonbow.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      -- vim.cmd([[colorscheme gruvbox]])
+      colorMyPencils("moonbow")
+    end,
+    enabled = true,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("catppuccin").setup({
+        flavor = "mocha",
+        term_colors = true,
+        -- color_overrides = {
+        --   mocha = {
+        --     base = "#000000",
+        --     mantle = "#000000",
+        --     crust = "#000000",
+        --   },
+        -- },
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          telescope = true,
+          notify = false,
+          mini = true,
+          bufferline = true,
+          harpoon = true,
+          leap = true,
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+      })
+      colorMyPencils("catppuccin")
+    end,
+    enabled = false,
   },
   -- "navarasu/onedark.nvim",
-  -- { "catppuccin/nvim", as = "catppuccin" },
 
   -- "gruvbox-community/gruvbox",
   -- "folke/tokyonight.nvim",

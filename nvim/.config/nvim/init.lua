@@ -19,4 +19,3 @@ vim.g.loaded_netrwPlugin = 1
 require("merlinvn")
 
 require("lazy").setup("plugins")
-

@@ -47,7 +47,7 @@
     fns  (tap-hold 200 (layer-next fn) (layer-toggle fn))
     vspc (tap-hold 200 v           spc)
 
-    ctl_esc (tap-hold-next-release 200 esc lctl)
+    c_esc (tap-hold-next-release 200 esc lctl)
 
     syms (tap-hold 200 (layer-next symbols) (layer-toggle symbols))
     num  (tap-hold 200 (layer-next numbers) (layer-toggle numbers))
@@ -70,7 +70,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
-  esc    @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
+  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _         _
   _    _       _             @snav                         _    _  _      _        _       _
 )
@@ -78,9 +78,9 @@
 (deflayer navigation
   _      _       _       _       _       _    _       _       _       _        _    _    _
   _      _       _       _       _       _    _       _       _       _        _    _    _    _
-  _      _       _       _       _       _    caps    home    up      end      _    _    _    _
+  _      tab     _       _       _       _    caps    home    up      end      _    _    _    _
   esc    lmet    lalt    lctl    lsft    _    bspc    left    down    right    ret  _    _
-  _      _       _       _       _       _    _       pgdn    pgup    _        _    _
+  _      _       _       _       _       _    del     pgdn    pgup    _        _    _
   _      _       _                       _                     _    _    _    _   _   _
 )
 
@@ -97,8 +97,8 @@
   _    _    _    _     _     _    _    _    _    _    _     _    _
   _    _    _    _     _     _    _    _    _    _    _     _    _    _
   _    !    @    {     }     %    #    ^    &    $    *     _    _    _
-  _    ;    =    \(    \)    +    :    '    "    -    \_    _    _
-  _    \    [    ]     |     _    ?    <    >    `    ~     _
+  _    ;    =    \(    \)    +    |    '    "    \_   :     _    _
+  _    \    [    ]     -     _    ?    <    >    `    ~     _
   _    _    _              _              _    _    _    _   _  _
 )
 
