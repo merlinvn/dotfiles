@@ -6,7 +6,7 @@ return {
       plugins = { spelling = true },
       presets = {
         text_objects = true,
-      }
+      },
     },
     config = function(_, opts)
       local wk = require("which-key")
@@ -17,10 +17,7 @@ return {
           l = "Reload current luafile",
         },
         ["<leader>g"] = {
-          name = "Git",
-        },
-        ["<leader>f"] = {
-          name = "find"
+          name = "+git",
         },
         ["<leader>w"] = {
           name = "+windows",
@@ -29,7 +26,16 @@ return {
           name = "+options/open",
         },
         ["<leader>n"] = {
-          name = "+neotree",
+          name = "+neoorg",
+        },
+        ["<leader>t"] = {
+          name = "+telescope",
+        },
+        ["<leader>v"] = {
+          name = "+vim",
+        },
+        ["<leader>x"] = {
+          name = "+diagnotics",
         },
         ["<leader>b"] = {
           name = "+buffers",
@@ -38,9 +44,8 @@ return {
           name = "+code",
           w = "swap next",
           W = "swap previous",
-        }
+        },
       })
     end,
   },
-
 }

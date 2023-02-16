@@ -36,6 +36,7 @@
     ctl_k (tap-hold-next-release 200 k lctl)
     alt_l (tap-hold-next-release 200 l lalt)
     met_; (tap-hold-next-release 200 ; lmet)
+    met_: (tap-hold-next-release 200 : lmet)
 
     snav  (tap-hold 200  spc (layer-toggle navigation))
 
@@ -70,7 +71,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
-  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
+  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_:    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _         _
   _    _       _             @snav                         _    _  _      _        _       _
 )
@@ -97,7 +98,7 @@
   _    _    _    _     _     _    _    _    _    _    _     _    _
   _    _    _    _     _     _    _    _    _    _    _     _    _    _
   _    !    @    {     }     %    #    ^    &    $    *     _    _    _
-  _    ;    =    \(    \)    +    |    '    "    \_   :     _    _
+  _    ;    =    \(    \)    +    |    '    "    \_   /     _    _
   _    \    [    ]     -     _    ?    <    >    `    ~     _
   _    _    _              _              _    _    _    _   _  _
 )

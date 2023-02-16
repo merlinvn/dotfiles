@@ -67,21 +67,21 @@ return {
     },
     keys = {
       {
-        "<leader>ne",
+        "<leader>of",
         ":NvimTreeFindFile<CR>",
         noremap = true,
         silent = true,
         desc = "Tree find file",
       },
       {
-        "<leader>nn",
+        "<leader>ot",
         ":NvimTreeToggle<CR>",
         noremap = true,
         silent = true,
         desc = "Tree toggle",
       },
       {
-        "<leader>nf",
+        "<leader>op",
         ":NvimTreeFocus<CR>",
         noremap = true,
         silent = true,
