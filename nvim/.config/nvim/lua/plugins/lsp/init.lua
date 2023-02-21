@@ -40,6 +40,7 @@ return {
       -- LSP Server Settings
       servers = {
         clangd = {
+          mason = false,
           cmd = {
             "clangd",
             "--background-index",

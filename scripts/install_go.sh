@@ -6,6 +6,7 @@ case $(uname -m) in
     x86_64) architecture="amd64" ;;
     armv7l) architecture="armv6l" ;;
     arm)    dpkg --print-architecture | grep -q "arm64" && architecture="arm64" || architecture="arm" ;;
+    aarch64)    dpkg --print-architecture | grep -q "arm64" && architecture="arm64" || architecture="arm" ;;
 esac
 
 #download first
