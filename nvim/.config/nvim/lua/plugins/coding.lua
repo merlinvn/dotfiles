@@ -2,7 +2,8 @@ return {
   -- auto completion
   {
     "hrsh7th/nvim-cmp",
-    event = "VeryLazy",
+    version = false,
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -266,7 +267,10 @@ return {
         },
   },
   -- testting
-  "vim-test/vim-test",
+  {
+    "vim-test/vim-test",
+    event = "BufReadPre",
+  },
 
   -- commenter
   -- "terrortylor/nvim-comment",
@@ -274,9 +278,83 @@ return {
   -- currently use mini.comment
 
   -- Debug
-  "mfussenegger/nvim-dap",
-  "rcarriga/nvim-dap-ui",
-  "theHamsta/nvim-dap-virtual-text",
+  {
+    "mfussenegger/nvim-dap",
+    event = "BufReadPre",
+    ft = { "rb", "rs" },
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "BufReadPre",
+    ft = { "rb", "rs" },
+    keys = "<leader>dU",
+    opts = {
+      expand_lines = true,
+
+      icons = {
+        expanded = "",
+        collapsed = "",
+        circular = "",
+      },
+
+      mappings = {
+        expand = { "<CR>", "<2-LeftMouse>" },
+        open = "o",
+        remove = "d",
+        edit = "e",
+        repl = "r",
+        toggle = "t",
+      },
+
+      layouts = {
+        {
+          elements = {
+            { id = "scopes", size = 0.33 },
+            { id = "breakpoints", size = 0.17 },
+            { id = "stacks", size = 0.25 },
+            { id = "watches", size = 0.25 },
+          },
+          size = 0.33,
+          position = "right",
+        },
+        {
+          elements = {
+            { id = "repl", size = 0.50 },
+            { id = "console", size = 0.50 },
+          },
+          size = 0.25,
+          position = "bottom",
+        },
+      },
+
+      floating = {
+        max_height = 0.9,
+        max_width = 0.5,
+        border = vim.g.border_chars,
+        mappings = {
+          close = { "q", "<Esc>" },
+        },
+      },
+    },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    event = "BufReadPre",
+    opts = {
+      enabled = true,
+      enabled_commands = false,
+      highlight_changed_variables = true,
+      highlight_new_as_changed = true,
+      commented = false,
+      show_stop_reason = true,
+      virt_text_pos = "eol",
+      all_frames = false,
+    },
+  },
 
   {
     "folke/todo-comments.nvim",
@@ -296,7 +374,7 @@ return {
   -- "github/copilot.vim",
   {
     "zbirenbaum/copilot.lua",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
       panel = {
         enabled = true,

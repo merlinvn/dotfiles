@@ -2,6 +2,7 @@ return {
   -- indent matching line
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
     opts = {
       char = "┊",
       show_end_of_line = false,

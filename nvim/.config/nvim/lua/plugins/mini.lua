@@ -1,6 +1,7 @@
 return {
   {
     "echasnovski/mini.fuzzy",
+    event = "BufEnter",
     config = function(_, opts)
       require("mini.fuzzy").setup(opts)
     end,
@@ -8,6 +9,7 @@ return {
   -- manage session
   {
     "echasnovski/mini.sessions",
+    event = "BufReadPre",
     config = function()
       require("mini.sessions").setup({})
     end,
@@ -15,7 +17,7 @@ return {
   -- underline or highlight word at cursor
   {
     "echasnovski/mini.cursorword",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = function()
       require("mini.cursorword").setup({})
     end,
@@ -23,7 +25,7 @@ return {
 
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = function()
       require("mini.comment").setup({})
     end,
@@ -31,7 +33,7 @@ return {
   -- remove buffers but reserver window layout
   {
     "echasnovski/mini.bufremove",
-    event = "VeryLazy",
+    event = "BufReadPre",
     version = false,
     keys = {
       {

@@ -2,6 +2,7 @@ return {
   -- utilities
   {
     "kylechui/nvim-surround",
+    event = "InsertEnter",
     opts = {
       -- Configuration here, or leave empty to use defaults
       keymaps = {
@@ -21,6 +22,7 @@ return {
 
   {
     "mbbill/undotree",
+    event = "BufReadPre",
     keys = {
       {
         "<leader>u",
@@ -32,10 +34,12 @@ return {
     },
   },
 
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth", event = "BufReadPre" },
 
   {
     "asiryk/auto-hlsearch.nvim",
+    event = "BufReadPre",
     version = "1.0.0",
     config = function()
       require("auto-hlsearch").setup()
@@ -44,6 +48,7 @@ return {
 
   {
     "nvim-tree/nvim-tree.lua",
+    event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
@@ -92,15 +97,18 @@ return {
 
   {
     "junegunn/vim-easy-align",
+    event = "BufEnter",
     keys = {
       { "ga", "<Plug>(EasyAlign)", desc = "Easy Align", mode = { "n", "x" } },
     },
   },
   {
     "godlygeek/tabular",
+    event = "BufEnter",
   },
   {
     "folke/trouble.nvim",
+    event = "BufReadPre",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = true,
     keys = {

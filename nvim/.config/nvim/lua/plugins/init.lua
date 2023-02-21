@@ -1,5 +1,5 @@
 return {
-  "lewis6991/impatient.nvim",
+  -- "lewis6991/impatient.nvim",
 
   -- TJ created lodash of neovim
   "nvim-lua/plenary.nvim",
@@ -20,5 +20,4 @@ return {
   --     }
   --   )
   -- end },
-
 }

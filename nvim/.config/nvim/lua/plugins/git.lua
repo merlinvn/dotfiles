@@ -1,29 +1,27 @@
 return {
   {
     "kdheepak/lazygit.nvim",
-    event="VeryLazy",
+    event = "VeryLazy",
     keys = {
       {
         "<leader>gg",
         function()
           require("lazygit").lazygit()
         end,
-        desc = "Lazygit"
-
-      }
+        desc = "Lazygit",
+      },
     },
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
       },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns

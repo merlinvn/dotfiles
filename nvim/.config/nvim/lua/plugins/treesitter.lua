@@ -178,19 +178,25 @@ return {
   { -- Additional text objects via treesitter
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = "nvim-treesitter",
+    event = "BufReadPost",
   },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter",
+    event = "BufReadPost",
   },
 
   {
     "windwp/nvim-ts-autotag",
+    event = "BufReadPost",
     config = function()
       require("nvim-ts-autotag").setup()
     end,
   },
 
-  "nvim-treesitter/playground",
+  {
+    "nvim-treesitter/playground",
+    event = "BufReadPre",
+  },
 }

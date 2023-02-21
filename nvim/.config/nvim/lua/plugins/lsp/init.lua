@@ -184,6 +184,7 @@ return {
   -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     cmd = "Mason",
     keys = { { "<leader>vm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
@@ -216,9 +217,18 @@ return {
     config = true,
   },
 
-  "onsails/lspkind-nvim",
-  "nvim-lua/lsp_extensions.nvim",
-  "simrat39/symbols-outline.nvim",
+  {
+    "onsails/lspkind-nvim",
+    event = "BufReadPre",
+  },
+  {
+    "nvim-lua/lsp_extensions.nvim",
+    event = "BufReadPre",
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    event = "BufReadPre",
+  },
   -- lspsaga is still buggy
   -- {
   --   "glepnir/lspsaga.nvim",
