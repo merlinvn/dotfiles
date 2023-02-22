@@ -281,7 +281,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     event = "BufReadPre",
-    ft = { "rb", "rs" },
+    ft = { "rb", "rs", "cpp", "h" },
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
@@ -290,7 +290,7 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     event = "BufReadPre",
-    ft = { "rb", "rs" },
+    ft = { "rb", "rs", "cpp", "h" },
     keys = "<leader>dU",
     opts = {
       expand_lines = true,
@@ -399,8 +399,8 @@ return {
         },
       },
       filetypes = {
-        yaml = false,
-        markdown = false,
+        yaml = true,
+        markdown = true,
         help = false,
         gitcommit = false,
         gitrebase = false,

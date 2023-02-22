@@ -1,7 +1,8 @@
 return {
   {
     "preservim/vim-markdown",
-    event = "VeryLazy",
+    ft = "markdown",
+    event = "BufRead *.md",
     dependencies = {
       "godlygeek/tabular",
     },
