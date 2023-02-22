@@ -97,14 +97,14 @@ return {
 
   {
     "junegunn/vim-easy-align",
-    event = "BufEnter",
+    event = "BufReadPre",
     keys = {
       { "ga", "<Plug>(EasyAlign)", desc = "Easy Align", mode = { "n", "x" } },
     },
   },
   {
     "godlygeek/tabular",
-    event = "BufEnter",
+    event = "BufReadPre",
   },
   {
     "folke/trouble.nvim",
