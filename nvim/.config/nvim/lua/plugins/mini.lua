@@ -9,7 +9,6 @@ return {
   -- manage session
   {
     "echasnovski/mini.sessions",
-    event = "BufReadPre",
     config = function()
       require("mini.sessions").setup({})
     end,
