@@ -1,0 +1,70 @@
+;; Copyright 2021 Manna Harbour
+;; github.com/manna-harbour/miryoku
+
+(defcfg
+  input (device-file "/dev/input/by-id/usb-Apple_Inc._Apple_Internal_Keyboard___Trackpad_FM7631204TBG6LMA273-if01-event-kbd")
+  output (uinput-sink "My KMonad Keyboard")
+  fallthrough false
+)
+(defsrc
+  grv 1 2 3 4 7 8 9 0 -
+  tab q w e r u i o p [ ]
+  caps a s d f j k l ; '
+                x c v n m ,
+)
+(deflayer U_BASE
+q	w	f	p	b	z	l	u	y	del
+(tap-hold-next-release 200 a met)	(tap-hold-next-release 200 r alt)	(tap-hold-next-release 200 s ctl)	(tap-hold-next-release 200 t sft)	g	m	(tap-hold-next-release 200 n sft)	(tap-hold-next-release 200 h ctl)	(tap-hold-next-release 200 i alt)	(tap-hold-next-release 200 o met) ent
+'	(tap-hold-next-release 200 x ralt)	c	d	v	/	j	k	(tap-hold-next-release 200 , ralt)	.
+		(tap-hold-next-release 200 esc (layer-toggle U_NUM))	(tap-hold-next-release 200 spc (layer-toggle U_NAV))	(tap-hold-next-release 200 tab (layer-toggle U_NAV))	(tap-hold-next-release 200 ent (layer-toggle U_SYM)) (tap-hold-next-release 200 e (layer-toggle U_SYM))	(tap-hold-next-release 200 bspc (layer-toggle U_NUM))
+)
+(deflayer U_TAP
+q	w	f	p	b	j	l	u	y	'
+a	r	s	t	g	m	n	e	i	o ent
+z	x	c	d	v	k	h	,	.	/
+		esc	spc	tab	ent	bspc	del
+)
+(deflayer U_BUTTON
+undo	cut	copy	paste	again	again	paste	copy	cut	undo
+met	alt	ctl	sft	XX	XX	sft	ctl	alt	met ent
+undo	cut	copy	paste	again	again	paste	copy	cut	undo
+		#(kp* kp5)	#(kp/ kp5)	#(kp- kp5)	#(kp- kp5)	#(kp/ kp5)	#(kp* kp5)
+)
+(deflayer U_NAV
+XX	XX XX XX	XX	ins	home	up	end	pgup
+met	alt	ctl	sft	XX	caps	left	down	right	pgdn ent
+XX	ralt	(multi-tap 200 XX (layer-switch U_NUM))	(multi-tap 200 XX (layer-switch U_NAV))	XX	again	paste	copy	cut	undo
+		XX	XX	XX	ent	bspc	del
+)
+(deflayer U_SYM
+!	@	{	}	%	XX ^ & $ ent
+(tap-hold-next-release 200 ; met)	(tap-hold-next-release 200 = alt)	(tap-hold-next-release 200 \( ctl)	(tap-hold-next-release 200 \) sft)	+ |	(tap-hold-next-release 200 < sft)	(tap-hold-next-release 200 > ctl)	(tap-hold-next-release 200 \_ alt)	(tap-hold-next-release 200 : met) ent
+"	\	[	]	-	? # * ` ~
+		esc	spc	tab XX	XX	XX
+)
+(deflayer U_NUM
+XX  XX   XX  XX  XX * 7 8 9 /
+met alt  ctl sft XX + 4 5 6 . ent
+XX  ralt XX  XX  XX - 1 2 3 ,
+ 		XX	XX	XX	0	bspc	del
+)
+(deflayer U_FUN
+f12	f7	f8	f9	sysrq XX XX XX XX XX
+f11	f4	f5	f6	slck	XX	sft	ctl	alt	met ent
+f10	f1	f2	f3	pause	XX	XX XX	ralt	XX
+		comp	spc	tab	XX	XX	XX
+)
+
+;; (deflayer U_MOUSE
+;; XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_BASE))	XX	XX	XX	kp8	XX	XX
+;; met	alt	ctl	sft	XX	XX	kp4	kp2	kp6	XX ent
+;; XX	ralt	(multi-tap 200 XX (layer-switch U_SYM))	(multi-tap 200 XX (layer-switch U_MOUSE))	XX	again	paste	copy	cut	undo
+;; 		XX	XX	XX	#(kp- kp5)	#(kp/ kp5)	#(kp* kp5)
+;; )
+;; (deflayer U_MEDIA
+;; XX	(multi-tap 200 XX (layer-switch U_TAP))	(multi-tap 200 XX (layer-switch U_EXTRA))	(multi-tap 200 XX (layer-switch U_BASE))	XX	XX	XX	volu	XX	XX
+;; met	alt	ctl	sft	XX	XX	previoussong	vold	nextsong	XX ent
+;; XX	ralt	(multi-tap 200 XX (layer-switch U_FUN))	(multi-tap 200 XX (layer-switch U_MEDIA))	XX	XX	XX	XX	XX	XX
+;; 		XX	XX	XX	stopcd	playpause	mute
+;; )
+
