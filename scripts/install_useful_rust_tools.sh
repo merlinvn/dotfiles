@@ -4,33 +4,35 @@ cargo install cargo-binstall
 
 #using apt
 # sudo apt install exa ripgrep bat fd-find fortune cowsay
-cargo binstall sccache
+cargo install sccache
 
 
 ### cli tools
-cargo binstall exa
-cargo binstall ripgrep
-cargo binstall bat
-cargo binstall fd-find
-cargo binstall tokei
-cargo binstall zellij
-cargo binstall du-dust
-cargo binstall mprocs
-cargo binstall bob-nvim
-cargo binstall gitui
-cargo binstall procs
-
+cargo install exa
+cargo install ripgrep
+cargo install bat
+cargo install fd-find
+cargo install tokei
+cargo install zellij
+cargo install du-dust
+cargo install mprocs
+cargo install bob-nvim
+cargo install gitui
+cargo install procs
+cargo install cargo-update
+cargo install rusty-rain
 
 ### dev tools
-cargo binstall irust
-cargo binstall evcxr_jupyter
-cargo binstall bacon
-cargo binstall cargo-info
+cargo install irust
+cargo install evcxr_jupyter
+cargo install bacon
+cargo install cargo-info
+cargo install cargo-watch
 
 ### apps
-cargo binstall speedtest-rs
-cargo binstall broot
-cargo binstall zoxide
-cargo binstall wiki-tui
-cargo binstall tldr
-cargo binstall rtx-cli
+cargo install speedtest-rs
+cargo install broot
+cargo install zoxide
+cargo install wiki-tui
+cargo install tldr
+cargo install rtx-cli

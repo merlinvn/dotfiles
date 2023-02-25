@@ -68,7 +68,7 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -76,11 +76,11 @@ export LANGUAGE=en_US.UTF-8
 
 [[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias python=python3
-  alias pip=pip3
-  export PATH=$HOME/Library/Python/3.10/bin:$PATH
-fi
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+#   alias python=python3
+#   alias pip=pip3
+#   export PATH=$HOME/Library/Python/3.10/bin:$PATH
+# fi
 
 if [ -d "$HOME/.volta" ]; then
   export VOLTA_HOME="$HOME/.volta"
@@ -89,9 +89,13 @@ fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[[ -d $BUN_INSTALL ]] && export PATH="$BUN_INSTALL/bin:$PATH"
 
 # root less podman
 [[ -f "/usr/bin/podman" ]] && export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 
 export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
+export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
+
+# [[ -d "$HOME/.local/share/bob/nvim-bin" ]] && export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+

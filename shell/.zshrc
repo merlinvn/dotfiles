@@ -82,7 +82,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump zsh-autosuggestions docker docker-compose kubectl zsh-syntax-highlighting npm zsh-completions)
 
-autoload -U compinit && compinit -i
+autoload -Uz compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,10 +109,6 @@ precmd_functions+=(_fix_cursor)
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [ -x "$(command -v yarn)" ] && export PATH="$(yarn global bin):$PATH"
 
 unsetopt BEEP
@@ -137,8 +133,6 @@ export FZF_DEFAULT_OPTS=" \
 
 [ -f "$HOME/forgit/forgit.plugin.zsh" ] && source "$HOME/forgit/forgit.plugin.zsh"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
 # Add exports from your profile
 [ -s "$HOME/.profile" ] && source "$HOME/.profile"
 
@@ -147,6 +141,11 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 
 # [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
 # [ -x "$(command -v neofetch)" ] && neofetch
-[ -x "$(command -v cowsay)" ] && cowsay -f small "Hello Neo\!"
+# [ -x "$(command -v cowsay)" ] && cowsay -f small "Hello Neo\!"
 
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
+eval "$(~/.cargo/bin/rtx activate zsh)"
+
+
+
+# zprof
