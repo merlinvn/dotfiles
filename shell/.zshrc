@@ -148,3 +148,5 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 # [ -x "$(command -v cowsay)" -a -x "$(command -v fortune)" ] && fortune | cowsay
 # [ -x "$(command -v neofetch)" ] && neofetch
 [ -x "$(command -v cowsay)" ] && cowsay -f small "Hello Neo\!"
+
+[ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"

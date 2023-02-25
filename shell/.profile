@@ -94,4 +94,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # root less podman
 [[ -f "/usr/bin/podman" ]] && export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 
-
+export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
