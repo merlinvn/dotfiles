@@ -144,7 +144,7 @@ export FZF_DEFAULT_OPTS=" \
 # [ -x "$(command -v cowsay)" ] && cowsay -f small "Hello Neo\!"
 
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
-eval "$(~/.cargo/bin/rtx activate zsh)"
+[ -x "$(command -v rtx)" ] && eval "$(rtx activate zsh)"
 
 
 
