@@ -94,7 +94,7 @@ export BUN_INSTALL="$HOME/.bun"
 # root less podman
 [[ -f "/usr/bin/podman" ]] && export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 
-export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
+export RUSTC_WRAPPER="sccache"
 export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 
 # [[ -d "$HOME/.local/share/bob/nvim-bin" ]] && export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"

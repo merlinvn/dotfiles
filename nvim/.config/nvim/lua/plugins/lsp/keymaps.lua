@@ -82,8 +82,8 @@ function M.lsp_on_attach(client, bufnr)
   else
     -- nmap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions")
 
-    nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-    nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
+    nmap("gp", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+    nmap("gn", vim.diagnostic.goto_next, "Go to next diagnostic")
 
     nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [a]ction")
     nmap("<leader>cr", vim.lsp.buf.rename, "[C]ode [R]ename")

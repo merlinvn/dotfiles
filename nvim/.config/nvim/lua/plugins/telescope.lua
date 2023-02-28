@@ -6,9 +6,23 @@ return {
   {
     "nvim-telescope/telescope-hop.nvim",
     event = "VeryLazy",
+    enable = false,
+  },
+  {
+    "nvim-telescope/telescope-smart-history.nvim",
+    event = "VeryLazy",
+    enable = false,
+  },
+  {
+    "nvim-telescope/telescope-symbols.nvim",
+    event = "BufReadPre",
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
     event = "VeryLazy",
   },
   {
@@ -16,19 +30,15 @@ return {
     event = "VeryLazy",
   },
   {
-    "nvim-telescope/telescope-smart-history.nvim",
-    event = "VeryLazy",
-  },
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "echasnovski/mini.fuzzy",
-
-      "nvim-telescope/telescope-ui-select.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
-      "nvim-telescope/telescope-smart-history.nvim",
-      "nvim-telescope/telescope-hop.nvim",
     },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension("ui-select")
+      require("telescope").load_extension("file_browser")
+    end,
     opts = function()
       local actions = require("telescope.actions")
       return {
@@ -80,6 +90,19 @@ return {
             require("telescope.themes").get_dropdown({
               -- even more opts
             }),
+          },
+          file_browser = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+              ["i"] = {
+                -- your custom insert mode mappings
+              },
+              ["n"] = {
+                -- your custom normal mode mappings
+              },
+            },
           },
         },
       }
@@ -147,7 +170,11 @@ return {
         "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
         desc = "Search by file type",
       },
-
+      {
+        telescope_prefix .. "y",
+        "<cmd>Telescope symbols<cr>",
+        desc = "[O]ld files",
+      },
       -- SEARCH
       {
         "<leader>/",

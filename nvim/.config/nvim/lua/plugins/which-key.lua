@@ -25,9 +25,6 @@ return {
         ["<leader>o"] = {
           name = "+options/open",
         },
-        ["<leader>n"] = {
-          name = "+neoorg",
-        },
         ["<leader>t"] = {
           name = "+telescope",
         },

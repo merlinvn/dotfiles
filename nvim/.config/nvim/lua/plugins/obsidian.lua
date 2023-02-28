@@ -1,6 +1,7 @@
 return {
   {
     "epwalsh/obsidian.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "godlygeek/tabular",

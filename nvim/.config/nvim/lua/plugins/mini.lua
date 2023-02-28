@@ -65,6 +65,13 @@ return {
       },
     },
   },
+  {
+    "echasnovski/mini.bracketed",
+    event = "BufReadPre",
+    config = function()
+      require("mini.bracketed").setup({})
+    end,
+  },
   -- {
   --   "echasnovski/mini.align",
   --   event = "VeryLazy",
