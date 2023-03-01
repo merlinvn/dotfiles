@@ -2,7 +2,6 @@ return {
   -- file marker & navigation
   {
     "ThePrimeagen/harpoon",
-    event = "VeryLazy",
     keys = {
       {
         "<leader>m",
@@ -57,11 +56,20 @@ return {
 
   -- Navigation
   {
+    "ggandor/flit.nvim",
+    dependencies = {
+      "ggandor/leap.nvim",
+    },
+    config = function()
+      require("flit").setup()
+    end,
+    enabled = false,
+  },
+  {
     "ggandor/leap.nvim",
     event = "BufReadPre",
     dependencies = {
       "tpope/vim-repeat",
-      { "ggandor/flit.nvim", opts = { labeled_modes = "nv" } },
     },
     opts = {
       max_phase_one_targets = nil,

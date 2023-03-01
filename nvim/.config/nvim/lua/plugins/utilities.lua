@@ -22,7 +22,6 @@ return {
 
   {
     "mbbill/undotree",
-    event = "BufReadPre",
     keys = {
       {
         "<leader>u",
@@ -48,7 +47,6 @@ return {
 
   {
     "nvim-tree/nvim-tree.lua",
-    event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },

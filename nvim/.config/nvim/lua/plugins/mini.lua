@@ -1,7 +1,15 @@
 return {
   {
+    "echasnovski/mini.starter",
+    lazy = false,
+    config = function()
+      require("mini.starter").setup()
+    end,
+  },
+  {
     "echasnovski/mini.fuzzy",
-    event = "BufEnter",
+    event = { "BufReadPost", "BufNewFile" },
+    -- event = "BufEnter",
     config = function(_, opts)
       require("mini.fuzzy").setup(opts)
     end,

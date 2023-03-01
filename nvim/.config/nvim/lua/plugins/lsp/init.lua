@@ -210,6 +210,7 @@ return {
     "j-hui/fidget.nvim",
     event = "BufReadPre",
     config = true,
+    enabled = false,
   },
   {
     "folke/neodev.nvim",

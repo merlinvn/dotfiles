@@ -3,7 +3,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false,
-    event = "BufReadPre",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -269,9 +269,14 @@ return {
   -- testting
   {
     "vim-test/vim-test",
-    event = "BufReadPre",
+    keys={
+      { "<leader>ctt", "<cmd>TestNearest<cr>" },
+      { "<leader>ctf", "<cmd>TestFile<cr>" },
+      { "<leader>cts", "<cmd>TestSuite<cr>" },
+      { "<leader>ctl", "<cmd>TestLast<cr>" },
+      { "<leader>ctv", "<cmd>TestVisit<cr>" },
+    }
   },
-
   -- commenter
   -- "terrortylor/nvim-comment",
   -- "numToStr/Comment.nvim",
@@ -280,7 +285,6 @@ return {
   -- Debug
   {
     "mfussenegger/nvim-dap",
-    event = "BufReadPre",
     ft = { "rb", "rs", "cpp", "h" },
     dependencies = {
       "rcarriga/nvim-dap-ui",
@@ -289,7 +293,6 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
-    event = "BufReadPre",
     ft = { "rb", "rs", "cpp", "h" },
     keys = "<leader>dU",
     opts = {
@@ -431,9 +434,9 @@ return {
   -- C++:
   {
     "cdelledonne/vim-cmake",
-    event = "VeryLazy",
     config = function()
       vim.g.cmake_link_compile_commands = 1
     end,
+    enabled = false,
   },
 }

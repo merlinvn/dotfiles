@@ -6,33 +6,21 @@ return {
   {
     "nvim-telescope/telescope-hop.nvim",
     event = "VeryLazy",
-    enable = false,
+    enabled = false,
   },
   {
     "nvim-telescope/telescope-smart-history.nvim",
     event = "VeryLazy",
-    enable = false,
-  },
-  {
-    "nvim-telescope/telescope-symbols.nvim",
-    event = "BufReadPre",
-  },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    event = "VeryLazy",
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    event = "VeryLazy",
+    enabled = false,
   },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "echasnovski/mini.fuzzy",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-symbols.nvim",
     },
     config = function(_, opts)
       require("telescope").setup(opts)

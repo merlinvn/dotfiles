@@ -1,48 +1,114 @@
 local mode = "tabs"
 local keys = {}
 
-
 if mode == "buffers" then
   keys = {
-    { "[b", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" } },
-    { "]b", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" } },
-    { "<leader>bn", ":BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "Next buffer" } },
-    { "<leader>bp", ":BufferLineCyclePrev<cr>", { noremap = true, silent = true, desc = "Prev buffer" } },
-    { "gb", ":BufferLineCycleNext<cr>", { noremap = true, silent = true, desc = "next buffer" } },
-    { "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" } },
+    {
+      "[b",
+      "<cmd>BufferLineCyclePrev<cr>",
+      { noremap = true, silent = true, desc = "Prev buffer" },
+    },
+    {
+      "]b",
+      "<cmd>BufferLineCycleNext<cr>",
+      { noremap = true, silent = true, desc = "Next buffer" },
+    },
+    {
+      "<leader>bn",
+      ":BufferLineCycleNext<cr>",
+      { noremap = true, silent = true, desc = "Next buffer" },
+    },
+    {
+      "<leader>bp",
+      ":BufferLineCyclePrev<cr>",
+      { noremap = true, silent = true, desc = "Prev buffer" },
+    },
+    {
+      "gb",
+      ":BufferLineCycleNext<cr>",
+      { noremap = true, silent = true, desc = "next buffer" },
+    },
+    {
+      "gB",
+      ":bprev<cr>",
+      { noremap = true, silent = true, desc = "next buffer" },
+    },
 
-    { "<leader>bb", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" } },
-    { "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true, desc = "Buffer pick" } },
-    { "<leader>bw", ":BufferLinePickClose<CR>", { noremap = true, silent = true, desc = "Buffer close" } },
-    { "<leader>br", ":BufferLineCloseRight<CR>",
-      { noremap = true, silent = true, desc = "Close all right" } },
-    { "<leader>bl", ":BufferLineCloseLeft<CR>",
-      { noremap = true, silent = true, desc = "Close all left" } },
-    { "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>",
-      { noremap = true, silent = true, desc = "Close others" } },
-    { "<leader>ba", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
-      { noremap = true, silent = true, desc = "Close all" } },
-    { "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Close current" } },
+    {
+      "<leader>bb",
+      ":BufferLinePick<CR>",
+      { noremap = true, silent = true, desc = "Buffer pick" },
+    },
+    {
+      "<C-b>",
+      ":BufferLinePick<CR>",
+      { noremap = true, silent = true, desc = "Buffer pick" },
+    },
+    {
+      "<leader>bw",
+      ":BufferLinePickClose<CR>",
+      { noremap = true, silent = true, desc = "Buffer close" },
+    },
+    {
+      "<leader>br",
+      ":BufferLineCloseRight<CR>",
+      { noremap = true, silent = true, desc = "Close all right" },
+    },
+    {
+      "<leader>bl",
+      ":BufferLineCloseLeft<CR>",
+      { noremap = true, silent = true, desc = "Close all left" },
+    },
+    {
+      "<leader>bo",
+      ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>",
+      { noremap = true, silent = true, desc = "Close others" },
+    },
+    {
+      "<leader>ba",
+      ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
+      { noremap = true, silent = true, desc = "Close all" },
+    },
+    {
+      "<leader>bd",
+      ":bdelete<CR>",
+      { noremap = true, silent = true, desc = "Close current" },
+    },
   }
 else
   keys = {
     { "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" } },
     { "]b", "<cmd>bnext<cr>", { desc = "Next buffer" } },
-    { "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "Next buffer" } },
-    { "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "Prev buffer" } },
-    { "gb", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" } },
-    { "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" } },
+    {
+      "<leader>bn",
+      ":bnext<cr>",
+      { noremap = true, silent = true, desc = "Next buffer" },
+    },
+    {
+      "<leader>bp",
+      ":bprev<cr>",
+      { noremap = true, silent = true, desc = "Prev buffer" },
+    },
+    {
+      "gb",
+      ":bnext<cr>",
+      { noremap = true, silent = true, desc = "next buffer" },
+    },
+    {
+      "gB",
+      ":bprev<cr>",
+      { noremap = true, silent = true, desc = "next buffer" },
+    },
   }
 end
 
 return {
   {
-    'akinsho/bufferline.nvim',
+    "akinsho/bufferline.nvim",
     version = "v3.*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    event = "VeryLazy",
-    opts =
-    {
+    dependencies = "nvim-tree/nvim-web-devicons",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
       options = {
         numbers = "ordinal",
         mode = mode,
@@ -50,8 +116,8 @@ return {
         -- numbers = "none",
         diagnostics = "nvim_lsp",
         indicator = {
-          icon = '▎',
-          style = 'icon',
+          icon = "▎",
+          style = "icon",
         },
         name_formatter = function(buf)
           -- buf contains:
@@ -73,7 +139,12 @@ return {
         --- this should return a string
         --- Don't get too fancy as this function will be executed a lot
         ---@diagnostic disable-next-line: unused-local
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        diagnostics_indicator = function(
+          count,
+          level,
+          diagnostics_dict,
+          context
+        )
           local icon = level:match("error") and " " or " "
           return " " .. icon .. count
         end,
@@ -82,8 +153,8 @@ return {
             filetype = "NvimTree",
             text = "File Explorer",
             text_align = "center",
-            separator = true
-          }
+            separator = true,
+          },
         },
         color_icons = true,
         show_buffer_icons = false,
@@ -130,7 +201,6 @@ return {
       vim.keymap.set("n", "<leader>0", function()
         require("bufferline").go_to_buffer(-1, true)
       end, { noremap = true, silent = true, desc = "Go to last tab" })
-
-    end
-  }
+    end,
+  },
 }
