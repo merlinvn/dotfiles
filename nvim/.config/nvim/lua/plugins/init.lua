@@ -21,16 +21,17 @@ return {
     end,
   },
 
-  { -- Additional text objects via treesitter
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = "nvim-treesitter",
-    event = "BufReadPost",
-  },
+  -- { -- Additional text objects via treesitter
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  --   dependencies = "nvim-treesitter",
+  --   event = "BufReadPost",
+  -- },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter",
     event = "BufReadPost",
+    config = true,
   },
 
   {
@@ -307,6 +308,14 @@ return {
     "kylechui/nvim-surround",
     event = "InsertEnter",
     opts = require("plugins.config.nvim-surround").opts,
+  },
+  {
+    "echasnovski/mini.ai",
+    event = "BufReadPre",
+    version = false,
+    config = function()
+      require("mini.ai").setup({})
+    end,
   },
   -- underline or highlight word at cursor
   {
