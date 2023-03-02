@@ -198,6 +198,16 @@ return {
     opts = require("plugins.config.leap").opts,
     keys = require("plugins.config.leap").keys,
   },
+
+  {
+    "echasnovski/mini.jump",
+    event = "BufReadPre",
+    version = false,
+    opts = {},
+    config = function(_, opts)
+      require("mini.jump").setup(opts)
+    end,
+  },
   -- }}} end of navigation
 
   --{{{ UI

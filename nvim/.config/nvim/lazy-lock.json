@@ -32,6 +32,7 @@
   "mini.comment": { "branch": "main", "commit": "5e8c7f75c48d958ef84ed75772b0263284c8621d" },
   "mini.cursorword": { "branch": "main", "commit": "823946b30e0c521152df5f02edcc3a65b3c40649" },
   "mini.fuzzy": { "branch": "main", "commit": "e8faf897330eadb1b1b76da67eeff04be85cbd8b" },
+  "mini.jump": { "branch": "main", "commit": "534552990149fff923e672add3e89dc6aee813df" },
   "mini.sessions": { "branch": "main", "commit": "fef5b6ae3493b9bca6be33b2c8aa30f555c0a88e" },
   "mini.starter": { "branch": "main", "commit": "1aa4c1e944f86a590a9ef07740c9102dae9f1100" },
   "moonbow.nvim": { "branch": "master", "commit": "f0528da2d3456f04bbb9e8ecb8301579a0fb3c31" },
