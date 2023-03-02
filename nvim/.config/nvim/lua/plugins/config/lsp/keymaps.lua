@@ -160,19 +160,19 @@ function M.lsp_on_attach(client, bufnr)
     vim.lsp.buf.format()
   end, { desc = "Format current buffer with LSP" })
 
-  nmap(
-    "<leader>wa",
-    vim.lsp.buf.add_workspace_folder,
-    "[W]orkspace [A]dd Folder"
-  )
-  nmap(
-    "<leader>wr",
-    vim.lsp.buf.remove_workspace_folder,
-    "[W]orkspace [R]emove Folder"
-  )
-  nmap("<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, "[W]orkspace [L]ist Folders")
+  -- nmap(
+  --   "<leader>wa",
+  --   vim.lsp.buf.add_workspace_folder,
+  --   "[W]orkspace [A]dd Folder"
+  -- )
+  -- nmap(
+  --   "<leader>wr",
+  --   vim.lsp.buf.remove_workspace_folder,
+  --   "[W]orkspace [R]emove Folder"
+  -- )
+  -- nmap("<leader>wf", function()
+  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  -- end, "[W]orkspace list [F]olders")
 end
 
 return M

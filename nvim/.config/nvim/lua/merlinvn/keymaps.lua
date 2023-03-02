@@ -1,5 +1,3 @@
-local Util = require("merlinvn.util")
-
 -- OPERATIONS
 
 -- remap save
@@ -197,41 +195,31 @@ vim.keymap.set(
 
 -- NAVIGATION
 -- windows navigation
-vim.keymap.set(
-  "n",
-  "gw",
-  ":wincmd w<CR>",
-  { noremap = true, silent = true, desc = "Next win" }
-)
--- vim.keymap.set("n", "<C-Left>", ":wincmd h<CR>", { noremap = true, silent = true, desc = "win left" })
--- vim.keymap.set("n", "<C-Down>", ":wincmd j<CR>", { noremap = true, silent = true, desc = "win down" })
--- vim.keymap.set("n", "<C-Up>", ":wincmd k<CR>", { noremap = true, silent = true, desc = "win up" })
--- vim.keymap.set("n", "<C-Right>", ":wincmd l<CR>", { noremap = true, silent = true, desc = "win right" })
 
-vim.keymap.set(
-  "n",
-  "<C-h>",
-  "<C-w>h",
-  { noremap = true, silent = true, desc = "win left" }
-)
-vim.keymap.set(
-  "n",
-  "<C-j>",
-  "<C-w>j",
-  { noremap = true, silent = true, desc = "win down" }
-)
-vim.keymap.set(
-  "n",
-  "<C-k>",
-  "<C-w>k",
-  { noremap = true, silent = true, desc = "win up" }
-)
-vim.keymap.set(
-  "n",
-  "<C-l>",
-  "<C-w>l",
-  { noremap = true, silent = true, desc = "win right" }
-)
+-- vim.keymap.set(
+--   "n",
+--   "<C-h>",
+--   "<C-w>h",
+--   { noremap = true, silent = true, desc = "win left" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "<C-j>",
+--   "<C-w>j",
+--   { noremap = true, silent = true, desc = "win down" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "<C-k>",
+--   "<C-w>k",
+--   { noremap = true, silent = true, desc = "win up" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "<C-l>",
+--   "<C-w>l",
+--   { noremap = true, silent = true, desc = "win right" }
+-- )
 
 vim.keymap.set(
   "t",
@@ -264,38 +252,7 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "win right" }
 )
 
--- Resize with arrows
-vim.keymap.set(
-  "n",
-  "<C-Left>",
-  "<cmd>vertical resize -2<CR>",
-  { noremap = true, silent = true, desc = "- width" }
-)
-vim.keymap.set(
-  "n",
-  "<C-Right>",
-  "<cmd>vertical resize +2<CR>",
-  { noremap = true, silent = true, desc = "+ width" }
-)
-vim.keymap.set(
-  "n",
-  "<C-Up>",
-  "<cmd>resize -2<CR>",
-  { noremap = true, silent = true, desc = "- height" }
-)
-vim.keymap.set(
-  "n",
-  "<C-Down>",
-  "<cmd>resize +2<CR>",
-  { noremap = true, silent = true, desc = "+ height" }
-)
-
--- vim.keymap.set("n", "g<Left>", ":wincmd h<CR>", { silent = true, desc = "win left" })
--- vim.keymap.set("n", "g<Down>", ":wincmd j<CR>", { silent = true, desc = "win down" })
--- vim.keymap.set("n", "g<Up>", ":wincmd k<CR>", { silent = true, desc = "win up" })
--- vim.keymap.set("n", "g<Right>", ":wincmd l<CR>", { silent = true, desc = "win right" })
-
--- for other windows moving and resizing, refer to hydra
+-- for other windows moving and resizing, refer to smart-plit
 -- split windows
 vim.keymap.set(
   "n",

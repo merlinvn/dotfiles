@@ -8,6 +8,7 @@ return {
   },
 
   -- }}}
+
   -- {{{ Treesitter
 
   --  hilight, edit, navigation
@@ -273,6 +274,12 @@ return {
     opts = require("plugins.config.toggleterm").opts,
     keys = require("plugins.config.toggleterm").keys,
   },
+  {
+    "mrjones2014/smart-splits.nvim",
+    opts = require("plugins.config.smart-splits").opts,
+    keys = require("plugins.config.smart-splits").keys,
+  },
+
   -- {{{2 Colors
   -- Colorscheme section
   -- Color highlight
