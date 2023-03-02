@@ -257,6 +257,15 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
     opts = require("plugins.config.lualine").opts,
+    enabled = false,
+  },
+
+  {
+    "echasnovski/mini.statusline",
+    version = false,
+    config = function()
+      require("mini.statusline").setup()
+    end,
   },
   {
     "akinsho/toggleterm.nvim",
