@@ -1,33 +1,19 @@
-return {
-  {
-    "kdheepak/lazygit.nvim",
-    keys = {
-      {
-        "<leader>gg",
-        function()
-          require("lazygit").lazygit()
-        end,
-        desc = "Lazygit",
-      },
-    },
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      },
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
+local M = {}
 
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
+M.opts = {
+  signs = {
+    add = { text = "+" },
+    change = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+  },
+  on_attach = function(buffer)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, desc)
+      vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+    end
 
         -- stylua: ignore start
         map("n", "]h", gs.next_hunk, "Next Hunk")
@@ -42,11 +28,6 @@ return {
         map("n", "<leader>ghd", gs.diffthis, "Diff This")
         map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-      end,
-    },
-  },
-  -- "airblade/vim-gitgutter",
-  -- "TimUntersberger/neogit",
-  -- "tpope/vim-fugitive",
-  -- "tpope/vim-rhubarb",
+  end,
 }
+return M
