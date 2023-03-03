@@ -37,7 +37,7 @@ M.keys = {
 }
 M.config = function()
   local ls = require("luasnip")
-
+  ls.config.setup(M.opts)
   ls.filetype_extend("javascript", { "javascriptreact" })
 
   for _, ft_path in

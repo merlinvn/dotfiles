@@ -1,14 +1,16 @@
 local M = {}
-M.opts = {
-  plugins = { spelling = true },
-  presets = {
-    text_objects = true,
-  },
-}
 
-M.config = function(_, opts)
+M.config = function()
+  vim.o.timeout = true
+  vim.o.timeoutlen = 300
+
   local wk = require("which-key")
-  wk.setup(opts)
+  wk.setup({
+    plugins = { spelling = true },
+    presets = {
+      text_objects = true,
+    },
+  })
   wk.register({
     ["<leader>r"] = {
       name = "reload",

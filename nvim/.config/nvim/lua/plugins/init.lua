@@ -1,3 +1,4 @@
+local i = 5
 return {
   -- "lewis6991/impatient.nvim",
   -- {{{ Must-have
@@ -54,8 +55,8 @@ return {
     "echasnovski/mini.fuzzy",
     event = { "BufReadPost", "BufNewFile" },
     -- event = "BufEnter",
-    config = function(_, opts)
-      require("mini.fuzzy").setup(opts)
+    config = function()
+      require("mini.fuzzy").setup({})
     end,
   },
   {
@@ -105,9 +106,7 @@ return {
     },
 
     opts = require("plugins.config.lsp").opts,
-    config = function(_, opts)
-      require("plugins.config.lsp").config(opts)
-    end,
+    config = require("plugins.config.lsp").config,
     keys = require("plugins.config.lsp").keys,
   },
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
@@ -241,7 +240,6 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
-    opts = require("plugins.config.indent-blankline").opts,
     config = require("plugins.config.indent-blankline").config,
   },
   {
@@ -430,8 +428,7 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    opts = require("plugins.config.luasnip").opts,
-
+    -- opts = require("plugins.config.luasnip").opts,
     config = require("plugins.config.luasnip").config,
     keys = require("plugins.config.luasnip").keys,
   },
@@ -536,7 +533,6 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = require("plugins.config.which-key").opts,
     config = require("plugins.config.which-key").config,
   },
 

@@ -1,23 +1,22 @@
 local M = {}
 
-M.opts = {
-  char = "┊",
-  show_end_of_line = false,
-  space_char_blankline = " ",
-  show_current_context = true,
-  show_current_context_start = true,
-  show_trailing_blankline_indent = false,
-  char_highlight_list = {
-    "IndentBlanklineIndent1",
-    "IndentBlanklineIndent2",
-    "IndentBlanklineIndent3",
-    "IndentBlanklineIndent4",
-    "IndentBlanklineIndent5",
-    "IndentBlanklineIndent6",
-  },
-}
-
-M.config = function(_, opts)
+M.config = function()
+  local opts = {
+    char = "┊",
+    show_end_of_line = false,
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+    show_trailing_blankline_indent = false,
+    char_highlight_list = {
+      "IndentBlanklineIndent1",
+      "IndentBlanklineIndent2",
+      "IndentBlanklineIndent3",
+      "IndentBlanklineIndent4",
+      "IndentBlanklineIndent5",
+      "IndentBlanklineIndent6",
+    },
+  }
   vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
   vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
   vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])

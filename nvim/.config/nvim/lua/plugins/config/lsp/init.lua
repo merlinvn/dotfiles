@@ -1,8 +1,8 @@
 local M = {}
 
-function M.config(opts)
+function M.config(_, opts)
   -- setup autoformat
-    require("plugins.config.lsp.format").autoformat = opts.autoformat
+  require("plugins.config.lsp.format").autoformat = opts.autoformat
   -- Mappings.
 
   -- Use an on_attach function to only map the following keys
