@@ -59,6 +59,10 @@
     sft_- (tap-hold-next-release 200 - lsft)
     sft_' (tap-hold-next-release 200 ' lsft)
 
+    sft_sqt (tap-hold-next-release 180 ' lsft)
+    ctl_dqt (tap-hold-next-release 200 " lctl)
+    alt_under (tap-hold-next-release 200 \_ lalt)
+
 ;;    sl (sticky-key 500 lsft)
 ;;    sr (sticky-key 500 rsft))
 ;;    slc (sticky-key 500 lctl)
@@ -71,7 +75,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
-  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_:    _    _
+  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _         _
   _    _       _             @snav                         _    _  _      _        _       _
 )
@@ -95,11 +99,11 @@
 )
 
 (deflayer symbols
-  _    _    _    _     _     _    _    _    _    _    _     _    _
-  _    _    _    _     _     _    _    _    _    _    _     _    _    _
-  _    !    @    {     }     %    #    ^    &    $    *     _    _    _
-  _    ;    =    \(    \)    +    |    '    "    \_   /     _    _
-  _    \    [    ]     -     _    ?    <    >    `    ~     _
+  _    _    _    _     _     _    _    _    _    _    _      _    _
+  _    _    _    _     _     _    _    _    _    _    _      _    _    _
+  _    !    @    {     }     %    #    ^    &    $    *      _    _    _
+  _    ;    =    \(    \)    +    |    '    "    \_   @met_: _    _
+  _    \    [    ]     -     _    ?    <    >    `    ~      _
   _    _    _              _              _    _    _    _   _  _
 )
 
