@@ -38,10 +38,10 @@ exec --no-startup-id nm-applet
 # autostart applications
 exec --no-startup-id brightnessctl set 70%
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
-exec --no-startup-id $HOME/.config/i3/set-wallpapers.py
+exec --no-startup-id feh --bg-scale --randomize $HOME/wallpapers/*
 exec --no-startup-id picom --config $HOME/.config/picom/picom.conf
 exec --no-startup-id dunst
-exec_always --no-startup-id /usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers
+# exec_always --no-startup-id /usr/bin/nitrogen --set-zoom-fill --random /home/neo/wallpapers
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

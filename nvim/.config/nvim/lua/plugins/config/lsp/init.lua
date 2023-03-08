@@ -131,6 +131,7 @@ M.opts = { -- options for vim.diagnostic.config()
     },
     gopls = {},
     pyright = {},
+    astro = {},
     tsserver = {
       filetypes = {
         "javascript",
