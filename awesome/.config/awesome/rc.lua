@@ -371,7 +371,16 @@ end
 
 local function focus_bydirection(dir)
   return function()
-    awful.client.focus.global_bydirection(dir)
+    -- if current layout is tile, then use the default focus_bydirection
+    if awful.screen.focused().selected_tag.layout.name == "tile" then
+      awful.client.focus.global_bydirection(dir)
+    else
+      if dir == "up" or dir == "left" then
+        awful.client.focus.byidx(-1)
+      elseif dir == "down" or dir == "right" then
+        awful.client.focus.byidx(1)
+      end
+    end
     if client.focus then
       client.focus:raise()
     end
@@ -379,12 +388,17 @@ local function focus_bydirection(dir)
 end
 
 local function swap_bydirection(dir)
-  return function()
-    local c = client.focus
-    if not c then
-      return
-    end
+  if not client.focus then
+    return
+  end
+  if awful.screen.focused().selected_tag.layout.name == "tile" then
     awful.client.swap.global_bydirection(dir)
+  else
+    if dir == "up" or dir == "left" then
+      awful.client.swap.byidx(-1)
+    elseif dir == "down" or dir == "right" then
+      awful.client.swap.byidx(1)
+    end
   end
 end
 
@@ -586,32 +600,6 @@ globalkeys = gears.table.join(
     { description = "focus right", group = "client" }
   ),
 
-  -- move client within tag
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "Down",
-  --   swap_bydirection("down"),
-  --   { description = "swap with down", group = "client" }
-  -- ),
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "Up",
-  --   swap_bydirection("up"),
-  --   { description = "swap with up", group = "client" }
-  -- ),
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "Left",
-  --   swap_bydirection("left"),
-  --   { description = "swap with left", group = "client" }
-  -- ),
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "Right",
-  --   swap_bydirection("right"),
-  --   { description = "swap with right", group = "client" }
-  -- ),
-
   -- screen navigation
   awful.key({ modkey }, "l", function()
     awful.screen.focus_relative(1)
@@ -619,13 +607,6 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "h", function()
     awful.screen.focus_relative(-1)
   end, { description = "focus the previous screen", group = "screen" }),
-
-  awful.key({ modkey, "Shift" }, "l", function()
-    awful.client.move_to_screen()
-  end, { description = "move to next screen", group = "client" }),
-  awful.key({ modkey, "Shift" }, "h", function()
-    awful.client.move_to_screen(client.screen.index - 1)
-  end, { description = "move to previous screen", group = "client" }),
 
   -- urgent client
   awful.key(
@@ -635,34 +616,6 @@ globalkeys = gears.table.join(
     { description = "jump to urgent client", group = "client" }
   ),
 
-  -- awful.key({ modkey }, "l", function()
-  --   awful.tag.incmwfact(0.05)
-  -- end, { description = "increase master width factor", group = "layout" }),
-  -- awful.key({ modkey }, "h", function()
-  --   awful.tag.incmwfact(-0.05)
-  -- end, { description = "decrease master width factor", group = "layout" }),
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "h",
-  --   function()
-  --     awful.tag.incnmaster(1, nil, true)
-  --   end,
-  --   { description = "increase the number of master clients", group = "layout" }
-  -- ),
-  -- awful.key(
-  --   { modkey, "Shift" },
-  --   "l",
-  --   function()
-  --     awful.tag.incnmaster(-1, nil, true)
-  --   end,
-  --   { description = "decrease the number of master clients", group = "layout" }
-  -- ),
-  -- awful.key({ modkey, "Control" }, "h", function()
-  --   awful.tag.incncol(1, nil, true)
-  -- end, { description = "increase the number of columns", group = "layout" }),
-  -- awful.key({ modkey, "Control" }, "l", function()
-  --   awful.tag.incncol(-1, nil, true)
-  -- end, { description = "decrease the number of columns", group = "layout" }),
   --
 
   awful.key({ modkey }, "space", function()
@@ -705,30 +658,40 @@ clientkeys = gears.table.join(
     if c.floating then
       c:relative_move(0, move_speed, 0, 0)
     else
-      awful.client.swap.global_bydirection("down")
+      swap_bydirection("down")
     end
   end, { description = "move down", group = "client" }),
   awful.key({ modkey, "Shift" }, "Up", function(c)
     if c.floating then
       c:relative_move(0, -move_speed, 0, 0)
     else
-      awful.client.swap.global_bydirection("up")
+      swap_bydirection("up")
     end
   end, { description = "move up", group = "client" }),
   awful.key({ modkey, "Shift" }, "Left", function(c)
     if c.floating then
       c:relative_move(-move_speed, 0, 0, 0)
     else
-      awful.client.swap.global_bydirection("left")
+      swap_bydirection("left")
+      -- awful.client.swap.global_bydirection("left")
     end
   end, { description = "move left", group = "client" }),
   awful.key({ modkey, "Shift" }, "Right", function(c)
     if c.floating then
       c:relative_move(move_speed, 0, 0, 0)
     else
-      awful.client.swap.global_bydirection("right")
+      swap_bydirection("right")
+      -- awful.client.swap.global_bydirection("right")
     end
   end, { description = "move right", group = "client" }),
+
+  awful.key({ modkey, "Shift" }, "l", function(c)
+    c:move_to_screen()
+  end, { description = "move to next screen", group = "client" }),
+  awful.key({ modkey, "Shift" }, "h", function(c)
+    c:move_to_screen(c.screen.index - 1)
+  end, { description = "move to previous screen", group = "client" }),
+
   -- resize
   awful.key({ modkey, "Control" }, "Down", function(c)
     if c.floating then
