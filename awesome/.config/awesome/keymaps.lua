@@ -1,8 +1,12 @@
 local awful = require("awful")
 local gears = require("gears")
+local lain = require("lain")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local gmath = require("gears.math")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local brightness_widget =
+  require("awesome-wm-widgets.brightness-widget.brightness")
 
 local move_speed = 15
 local M = {}

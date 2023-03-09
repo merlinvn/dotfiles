@@ -5,22 +5,13 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local gmath = require("gears.math")
 require("awful.autofocus")
-local lain = require("lain")
-local theme = require("default.theme")
 
--- Widget and layout library
-local wibox = require("wibox")
-local brightness_widget =
-  require("awesome-wm-widgets.brightness-widget.brightness")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")

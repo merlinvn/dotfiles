@@ -87,11 +87,18 @@ M.setup = function()
     end
   end
 
+  -- trigger when client is changed to floating or tiled
   client.connect_signal("property::floating", function(c)
     setTitlebar(
       c,
       c.floating or c.first_tag and c.first_tag.layout.name == "floating"
     )
+    if c.floating then
+      local screen = awful.screen.focused()
+      c.width = screen.geometry.width * 0.7
+      c.height = screen.geometry.height * 0.8
+      awful.placement.centered(c)
+    end
   end)
 end
 
