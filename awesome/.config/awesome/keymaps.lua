@@ -7,14 +7,46 @@ local gmath = require("gears.math")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local brightness_widget =
   require("awesome-wm-widgets.brightness-widget.brightness")
+local menus = require("menus")
+local naughty = require("naughty")
 
 local move_speed = 15
 local M = {}
 
 local function focus_bydirection(dir)
   return function()
-    -- if current layout is tile, then use the default focus_bydirection
-    if awful.screen.focused().selected_tag.layout.name == "tile" then
+    local floating_count = 0
+    local maximized_count = 0
+    -- Get the current tag
+    local current_tag = awful.screen.focused().selected_tag
+    local current_layout = current_tag.layout.name
+
+    -- Get all clients in the current tag
+    local clients = current_tag:clients()
+
+    for _, c in ipairs(clients) do
+      if c.floating then
+        floating_count = floating_count + 1
+      end
+      if c.maximized then
+        maximized_count = maximized_count + 1
+      end
+    end
+
+    -- naughty.notify({
+    --   text = "floating_count: "
+    --     .. floating_count
+    --     .. " maximized_count: "
+    --     .. maximized_count
+    --     .. " layout: "
+    --     .. current_layout,
+    -- })
+
+    if
+      floating_count == 0
+      and maximized_count == 0
+      and current_layout == "tile"
+    then
       awful.client.focus.global_bydirection(dir)
     else
       if dir == "up" or dir == "left" then
@@ -23,6 +55,7 @@ local function focus_bydirection(dir)
         awful.client.focus.byidx(1)
       end
     end
+
     if client.focus then
       client.focus:raise()
     end
@@ -186,7 +219,7 @@ M.awesome = gears.table.join(
     { description = "show help", group = "awesome" }
   ),
   awful.key({ modkey }, "w", function()
-    mymainmenu:show()
+    menus.mymainmenu:show()
   end, { description = "show main menu", group = "awesome" })
 )
 

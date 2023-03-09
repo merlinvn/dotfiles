@@ -5,6 +5,65 @@ local beautiful = require("beautiful")
 
 local M = {}
 
+-- No border for maximized clients
+local border_adjust = function(c)
+  if c.maximized then -- no borders if only 1 client visible
+    c.border_width = 0
+  elseif #awful.screen.focused().clients > 1 then
+    c.border_width = beautiful.border_width
+    c.border_color = beautiful.border_focus
+  end
+end
+local create_titlebar = function(c)
+  -- buttons for the titlebar
+  local buttons = gears.table.join(
+    awful.button({}, 1, function()
+      c:emit_signal("request::activate", "titlebar", { raise = true })
+      awful.mouse.client.move(c)
+    end),
+    awful.button({}, 3, function()
+      c:emit_signal("request::activate", "titlebar", { raise = true })
+      awful.mouse.client.resize(c)
+    end)
+  )
+
+  awful.titlebar(c):setup({
+    { -- Left
+      awful.titlebar.widget.iconwidget(c),
+      buttons = buttons,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    { -- Middle
+      { -- Title
+        align = "center",
+        widget = awful.titlebar.widget.titlewidget(c),
+      },
+      buttons = buttons,
+      layout = wibox.layout.flex.horizontal,
+    },
+    { -- Right
+      awful.titlebar.widget.floatingbutton(c),
+      awful.titlebar.widget.maximizedbutton(c),
+      awful.titlebar.widget.stickybutton(c),
+      awful.titlebar.widget.ontopbutton(c),
+      awful.titlebar.widget.closebutton(c),
+      layout = wibox.layout.fixed.horizontal(),
+    },
+    layout = wibox.layout.align.horizontal,
+  })
+end
+
+-- Toggle titlebar on or off depending on show_title is true of false. Creates titlebar if it doesn't exist
+local setTitlebar = function(client, show_title)
+  if show_title then
+    if client.titlebar == nil then
+      client:emit_signal("request::titlebars", "rules", {})
+    end
+    awful.titlebar.show(client)
+  else
+    awful.titlebar.hide(client)
+  end
+end
 M.setup = function()
   -- Signal function to execute when a new client appears.
   client.connect_signal("manage", function(c)
@@ -23,69 +82,18 @@ M.setup = function()
   end)
 
   -- Add a titlebar if titlebars_enabled is set to true in the rules.
-  client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-      awful.button({}, 1, function()
-        c:emit_signal("request::activate", "titlebar", { raise = true })
-        awful.mouse.client.move(c)
-      end),
-      awful.button({}, 3, function()
-        c:emit_signal("request::activate", "titlebar", { raise = true })
-        awful.mouse.client.resize(c)
-      end)
-    )
+  client.connect_signal("request::titlebars", create_titlebar)
 
-    awful.titlebar(c):setup({
-      { -- Left
-        awful.titlebar.widget.iconwidget(c),
-        buttons = buttons,
-        layout = wibox.layout.fixed.horizontal,
-      },
-      { -- Middle
-        { -- Title
-          align = "center",
-          widget = awful.titlebar.widget.titlewidget(c),
-        },
-        buttons = buttons,
-        layout = wibox.layout.flex.horizontal,
-      },
-      { -- Right
-        awful.titlebar.widget.floatingbutton(c),
-        awful.titlebar.widget.maximizedbutton(c),
-        awful.titlebar.widget.stickybutton(c),
-        awful.titlebar.widget.ontopbutton(c),
-        awful.titlebar.widget.closebutton(c),
-        layout = wibox.layout.fixed.horizontal(),
-      },
-      layout = wibox.layout.align.horizontal,
-    })
-  end)
-
-  -- Enable sloppy focus, so that focus follows mouse.
+  -- Enable sloppy focus, so that focus follows mouse, commented out to disable
   client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", { raise = false })
+    -- c:emit_signal("request::activate", "mouse_enter", { raise = true })
   end)
 
-  client.connect_signal("focus", function(c)
-    c.border_color = beautiful.border_focus
-  end)
-
+  client.connect_signal("focus", border_adjust)
+  client.connect_signal("property::maximized", border_adjust)
   client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
   end)
-
-  -- Toggle titlebar on or off depending on show_title is true of false. Creates titlebar if it doesn't exist
-  local function setTitlebar(client, show_title)
-    if show_title then
-      if client.titlebar == nil then
-        client:emit_signal("request::titlebars", "rules", {})
-      end
-      awful.titlebar.show(client)
-    else
-      awful.titlebar.hide(client)
-    end
-  end
 
   -- trigger when client is changed to floating or tiled
   client.connect_signal("property::floating", function(c)

@@ -50,7 +50,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(HOME .. "/.config/awesome/default/theme.lua")
+beautiful.init(HOME .. "/.config/awesome/neo/theme.lua")
 -- beautiful.init(HOME .. "/.config/awesome/themes/copland/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -88,6 +88,9 @@ awful.layout.layouts = {
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
 }
+
+-- Set the notification timeout to 2 seconds
+naughty.config.defaults.timeout = 2
 -- }}}
 
 -- {{{ Menu
@@ -149,7 +152,7 @@ do
     "nm-applet",
     "blueman-applet",
     "flameshot",
-    "killall picom && picom --config " .. HOME .. "/.config/picom/picom.conf",
+    "picom --config " .. HOME .. "/.config/picom/picom.conf",
     "feh --bg-scale --randomize " .. HOME .. "/wallpapers/*",
   }
   for _, cmd in ipairs(cmds) do
