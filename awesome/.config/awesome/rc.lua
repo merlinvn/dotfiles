@@ -466,7 +466,8 @@ globalkeys = gears.table.join(
   end, { description = "brightness +", group = "system" }),
 
   awful.key({}, "XF86AudioMute", function()
-    awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    volume_widget:toggle()
+    -- awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle")
   end, { description = "mute / unmute", group = "system" }),
 
   awful.key({}, "XF86AudioRaiseVolume", function()
@@ -480,7 +481,7 @@ globalkeys = gears.table.join(
   end, { description = "volume down", group = "system" }),
 
   awful.key({}, "XF86AudioMicMute", function()
-    volume_widget:toggle()
+    -- volume_widget:toggle()
     -- awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
   end, { description = "mute / unmute", group = "system" }),
 
