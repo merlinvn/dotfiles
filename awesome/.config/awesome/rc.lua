@@ -50,7 +50,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(HOME .. "/.config/awesome/neo/theme.lua")
+beautiful.init(HOME .. "/.config/awesome/themes/neo/theme.lua")
 -- beautiful.init(HOME .. "/.config/awesome/themes/copland/theme.lua")
 
 -- This is used later as the default terminal and editor to run.

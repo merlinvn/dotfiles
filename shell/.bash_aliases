@@ -100,3 +100,8 @@ alias anaconda='source  ~/.conda.shellrc'
 
 alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
 alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+
+[ -x "$(command -v zellij)" ] && alias jr="zellij r --"
+[ -x "$(command -v zellij)" ] && alias je="zellij edit "
+[ -x "$(command -v zellij)" ] && alias jl="zellij"
+

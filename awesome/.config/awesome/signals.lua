@@ -99,7 +99,8 @@ M.setup = function()
   client.connect_signal("property::floating", function(c)
     setTitlebar(
       c,
-      c.floating or c.first_tag and c.first_tag.layout.name == "floating"
+      (c.floating and not c.maximized and not c.fullscreen)
+        or (c.first_tag and c.first_tag.layout.name == "floating")
     )
     if c.floating then
       local screen = awful.screen.focused()

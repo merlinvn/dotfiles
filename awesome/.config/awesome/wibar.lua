@@ -93,17 +93,20 @@ M.setup = function()
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag(
+    local tags = awful.tag(
       { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
       s,
-      awful.layout.layouts[1]
+      { awful.layout.layouts[1] }
     )
+
+    tags[8].layout = awful.layout.suit.max
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
+
     s.mylayoutbox:buttons(gears.table.join(
       awful.button({}, 1, function()
         awful.layout.inc(1)
@@ -136,12 +139,50 @@ M.setup = function()
       screen = s,
       filter = awful.widget.tasklist.filter.currenttags,
       buttons = tasklist_buttons,
+      style = {
+        -- shape_border_width = 1,
+        -- shape_border_color = "#777777",
+        -- shape = gears.shape.rounded_rect,
+      },
+      layout = {
+        spacing = 5,
+        max_widget_size = awful.screen.focused().workarea.width * 0.10,
+        layout = wibox.layout.flex.horizontal,
+      },
+      widget_template = {
+        {
+          {
+            {
+              {
+                id = "icon_role",
+                widget = wibox.widget.imagebox,
+              },
+              margins = 2,
+              widget = wibox.container.margin,
+            },
+            {
+              {
+                id = "text_role",
+                widget = wibox.widget.textbox,
+              },
+              left = 3,
+              widget = wibox.container.margin,
+            },
+            layout = wibox.layout.fixed.horizontal,
+          },
+          left = 10,
+          right = 10,
+          widget = wibox.container.margin,
+        },
+        id = "background_role",
+        widget = wibox.container.background,
+      },
     })
 
     -- Create the wibox
     local sys_tray = wibox.widget.systray({})
-    sys_tray:set_base_size(18)
-    -- beautiful.systray_icon_spacing = 5
+    sys_tray:set_base_size(20)
+    -- beautiful.systray_icon_spacing = 1
 
     s.my_statusbar = awful.wibar({ position = "top", screen = s, height = 24 })
 
@@ -149,6 +190,7 @@ M.setup = function()
       -- shape = gears.shape["circle"],
       orientation = "vertical",
       widget = wibox.widget.separator,
+      color = beautiful.colors.dark4,
       forced_width = 10,
     })
 
@@ -172,10 +214,14 @@ M.setup = function()
           width = 50,
           step_width = 2,
           step_spacing = 0,
-          color = "#434c5e",
+          color = beautiful.colors.neutral_blue,
         }),
         seperator,
-        ram_widget({}),
+        ram_widget({
+          color_free = beautiful.colors.light2,
+          color_used = beautiful.colors.neutral_orange,
+          color_buf = beautiful.colors.neutral_yellow,
+        }),
         seperator,
         brightness_widget({
           type = "icon_and_text",
@@ -187,13 +233,29 @@ M.setup = function()
         volume_widget({
           step = 5,
           device = "default",
+          widget_type = "icon",
+        }),
+        volume_widget({
+          step = 5,
+          device = "default",
+          widget_type = "vertical_bar",
+          shape = "rounded_bar",
+          main_color = beautiful.colors.light2,
+          mute_color = beautiful.colors.neutral_red,
+          bg_color = beautiful.colors.dark3,
         }),
         seperator,
         sys_tray,
         seperator,
         batteryarc_widget({
+          font = "JetBrains Mono Nerd Font 6",
           show_current_level = true,
-          arc_thickness = 1,
+          arc_thickness = 2,
+          charging_color = beautiful.colors.neutral_green,
+          low_level_color = beautiful.colors.neutral_red,
+          medium_level_color = beautiful.colors.neutral_yellow,
+          bg_color = beautiful.colors.dark0,
+          main_color = beautiful.colors.light2,
         }),
         seperator,
         mytextclock,
