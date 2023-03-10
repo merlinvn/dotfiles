@@ -392,6 +392,15 @@ return {
       require("mini.bracketed").setup({})
     end,
   },
+
+  {
+    "echasnovski/mini.splitjoin",
+    event = "BufReadPre",
+    version = false,
+    config = function()
+      require("mini.splitjoin").setup({})
+    end,
+  },
   -- }}}
 
   -- {{{ Coding

@@ -101,8 +101,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 
-local wibar = require("wibar")
-wibar.setup()
+local status_bar = require("status-bar")
+status_bar.setup()
 
 -- }}}
 

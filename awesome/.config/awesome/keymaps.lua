@@ -4,11 +4,14 @@ local lain = require("lain")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local gmath = require("gears.math")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local volume_widget = require("awesome-wm-widgets.pactl-widget.volume")
 local brightness_widget =
   require("awesome-wm-widgets.brightness-widget.brightness")
 local menus = require("menus")
-local naughty = require("naughty")
+local logout_popup =
+  require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+
+-- local naughty = require("naughty")
 
 local move_speed = 15
 local M = {}
@@ -138,13 +141,27 @@ M.launcher = gears.table.join(
   -- Menubar
   awful.key({ modkey }, "p", function()
     menubar.show()
-  end, { description = "show the menubar", group = "launcher" })
+  end, { description = "show the menubar", group = "launcher" }),
 
   -- awful.key({ modkey }, "d", function()
   --   awful.spawn("dmenu_run")
   -- end, { description = "run prompt", group = "launcher" }),
+
+  -- usefull apps
+  awful.key({ modkey }, "F1", function()
+    awful.spawn.with_shell("brave")
+  end, { description = "show the menubar", group = "launcher" }),
+  awful.key({ modkey }, "F2", function()
+    awful.spawn.with_shell("pcmanfm")
+  end, { description = "show the menubar", group = "launcher" }),
+  awful.key({ modkey }, "F5", function()
+    awful.spawn.with_shell(
+      "flameshot gui -r -c -p ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H:%M:%S).png"
+    )
+  end, { description = "show the menubar", group = "launcher" })
 )
 M.system = gears.table.join(
+
   awful.key({ modkey, altkey }, "x", function()
     awful.spawn.with_shell("warpd --hint2")
   end, { description = "mouse hint2", group = "system" }),
@@ -168,6 +185,21 @@ M.system = gears.table.join(
   awful.key({ modkey }, "bracketright", function()
     brightness_widget:inc()
   end, { description = "brightness +", group = "system" }),
+
+  awful.key({ modkey }, "0", function()
+    volume_widget:toggle()
+    -- awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+  end, { description = "mute / unmute", group = "system" }),
+
+  awful.key({ modkey }, "equal", function()
+    volume_widget:inc()
+    -- awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +10%")
+  end, { description = "volume up", group = "system" }),
+
+  awful.key({ modkey }, "minus", function()
+    volume_widget:dec()
+    -- awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +10%")
+  end, { description = "volume down", group = "system" }),
 
   awful.key({}, "XF86AudioMute", function()
     volume_widget:toggle()
@@ -197,12 +229,19 @@ M.awesome = gears.table.join(
     awesome.restart,
     { description = "reload awesome", group = "awesome" }
   ),
-  awful.key(
-    { modkey, "Shift" },
-    "x",
-    awesome.quit,
-    { description = "quit awesome", group = "awesome" }
-  ),
+
+  -- logout popup
+  awful.key({ modkey, "Shift" }, "x", function()
+    logout_popup.launch({
+      phrases = {
+        "Time to say goodbye?",
+      },
+      logout = "Logout",
+      restart = "Restart",
+      shutdown = "Shutdown",
+    })
+  end, { description = "show logout screen", group = "awesome" }),
+
   awful.key({ modkey }, "x", function()
     awful.prompt.run({
       prompt = "Run Lua code: ",

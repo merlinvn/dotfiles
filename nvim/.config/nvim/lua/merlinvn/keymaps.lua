@@ -165,7 +165,7 @@ vim.keymap.set(
 -- join and stay in the same line
 vim.keymap.set(
   "n",
-  "J",
+  "gj",
   "mzJ`z",
   { noremap = true, silent = true, desc = "Join line" }
 )
