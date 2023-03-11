@@ -7,10 +7,10 @@
   fallthrough false
 )
 (defsrc
-  grv 1 2 3 4 7 8 9 0 -
-  tab q w e r u i o p [ ]
-  caps a s d f j k l ; '
-                x c v n m ,
+  grv 1 2 3 4    8 9 0 - =
+  tab q w e r    i o p [ ] \
+  caps a s d f   k l ; ' ent
+         x c v   m , .
 )
 (deflayer U_BASE
 q	w	f	p	b	z	l	u	y	del

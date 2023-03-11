@@ -3,6 +3,13 @@ local M = {}
 M.opts = function()
   local null_ls = require("null-ls")
   return {
+
+    root_dir = require("null-ls.utils").root_pattern(
+      ".null-ls-root",
+      ".neoconf.json",
+      "Makefile",
+      ".git"
+    ),
     sources = {
       -- null_ls.builtins.diagnostics.eslint_d.with({
       --   diagnostics_format = "[eslint] #{m}\n(#{c})",

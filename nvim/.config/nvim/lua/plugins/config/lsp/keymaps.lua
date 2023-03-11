@@ -18,8 +18,8 @@ local imap_buf = function(keys, func, desc, bufnr)
   )
 end
 
-function M.lsp_on_attach_rust(client, bufnr)
-  M.lsp_on_attach(client, bufnr)
+function M.on_attach_rust(client, bufnr)
+  M.on_attach(client, bufnr)
 
   local nmap = function(keys, func, desc)
     nmap_buf(keys, func, desc, bufnr)
@@ -35,7 +35,7 @@ function M.lsp_on_attach_rust(client, bufnr)
   end, "Run")
 end
 
-function M.lsp_on_attach(client, bufnr)
+function M.on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   local nmap = function(keys, func, desc)

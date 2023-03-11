@@ -3,13 +3,12 @@ local M = {}
 function M.config(_, opts)
   -- setup autoformat
   require("plugins.config.lsp.format").autoformat = opts.autoformat
-  -- Mappings.
 
-  -- Use an on_attach function to only map the following keys
+  -- Use an default on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, buffer)
     require("plugins.config.lsp.format").on_attach(client, buffer)
-    require("plugins.config.lsp.keymaps").lsp_on_attach(client, buffer)
+    require("plugins.config.lsp.keymaps").on_attach(client, buffer)
   end
 
   -- Diagnostic symbols in the sign column (gutter)
@@ -18,20 +17,20 @@ function M.config(_, opts)
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
-
   vim.diagnostic.config(opts.diagnostics)
 
-  vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
+  -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
   local servers = opts.servers
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  local capabilities = require("cmp_nvim_lsp").default_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+  )
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-  local function setup(server)
+  local setup = function(server)
     local server_opts = vim.tbl_deep_extend("force", {
       capabilities = vim.deepcopy(capabilities),
+      -- if there is custom on_attach, use it, otherwise use default
       on_attach = servers[server].on_attach or on_attach,
     }, servers[server] or {})
 
@@ -44,7 +43,16 @@ function M.config(_, opts)
         return
       end
     end
+    -- default setup
     require("lspconfig")[server].setup(server_opts)
+  end
+
+  -- temp fix for lspconfig rename
+  -- https://github.com/neovim/nvim-lspconfig/pull/2439
+  local mappings = require("mason-lspconfig.mappings.server")
+  if not mappings.lspconfig_to_package.lua_ls then
+    mappings.lspconfig_to_package.lua_ls = "lua-language-server"
+    mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
   end
 
   local mlsp = require("mason-lspconfig")
@@ -159,7 +167,7 @@ M.opts = { -- options for vim.diagnostic.config()
           },
           workspace = {
             -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
+            -- library = vim.api.nvim_get_runtime_file("", true),
             checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
           },
           completion = {
@@ -206,14 +214,14 @@ M.opts = { -- options for vim.diagnostic.config()
         },
       },
       on_attach = function(client, buffer)
-        require("plugins.config.lsp.format").lsp_on_attach(client, buffer)
-        require("plugins.config.lsp.keymaps").lsp_on_attach_rust(client, buffer)
+        require("plugins.config.lsp.format").on_attach(client, buffer)
+        require("plugins.config.lsp.keymaps").on_attach_rust(client, buffer)
       end,
     },
     -- hsl = {},
   },
-  -- you can do any additional lsp server setup here
-  -- return true if you don't want this server to be setup with lspconfig
+  -- you can do any additional / custom lsp server setup here
+  -- return true if you don't want additional default setup with lspconfig
   setup = {
     rust_analyzer = function(_, opts)
       require("rust-tools").setup({ server = opts })

@@ -109,6 +109,10 @@ return {
     config = require("plugins.config.lsp").config,
     keys = require("plugins.config.lsp").keys,
   },
+  {
+    "simrat39/rust-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   {
     "jose-elias-alvarez/null-ls.nvim",
