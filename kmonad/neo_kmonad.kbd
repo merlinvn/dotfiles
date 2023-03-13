@@ -7,8 +7,9 @@
   fallthrough false
 )
 (defsrc
-  grv 1 2 3 4    8 9 0 - =
-  tab q w e r    i o p [ ] \
+  ;;grv
+  1 2 3 4 5    8 9 0 - =
+  q w e r t   i o p [ ] \
   caps a s d f   k l ; ' ent
          x c v   m , .
 )
@@ -31,10 +32,10 @@ undo	cut	copy	paste	again	again	paste	copy	cut	undo
 		#(kp* kp5)	#(kp/ kp5)	#(kp- kp5)	#(kp- kp5)	#(kp/ kp5)	#(kp* kp5)
 )
 (deflayer U_NAV
-XX	XX XX XX	XX	ins	home	up	end	pgup
-met	alt	ctl	sft	XX	caps	left	down	right	pgdn ent
-XX	ralt	(multi-tap 200 XX (layer-switch U_NUM))	(multi-tap 200 XX (layer-switch U_NAV))	XX	again	paste	copy	cut	undo
-		XX	XX	XX	ent	bspc	del
+M-tab	A-tab C-S-tab C-tab	XX	ins	home	up	end	pgup
+lmet	lalt	lctl	lsft	XX	caps	left	down	right	pgdn ent
+XX	ralt	(multi-tap 200 XX (layer-switch U_NUM))	(multi-tap 200 XX (layer-switch U_NAV))	XX XX	pgdn	pgup	cut	undo
+		XX	XX	XX	ent	del	bspc
 )
 (deflayer U_SYM
 !	@	{	}	%	XX ^ & $ ent
@@ -46,7 +47,7 @@ XX	ralt	(multi-tap 200 XX (layer-switch U_NUM))	(multi-tap 200 XX (layer-switch 
 XX  XX   XX  XX  XX * 7 8 9 /
 met alt  ctl sft XX + 4 5 6 . ent
 XX  ralt XX  XX  XX - 1 2 3 ,
- 		XX	XX	XX	0	bspc	del
+ 		XX	XX	XX	del	0	bspc
 )
 (deflayer U_FUN
 f12	f7	f8	f9	sysrq XX XX XX XX XX

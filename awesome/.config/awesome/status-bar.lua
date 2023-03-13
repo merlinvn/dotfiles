@@ -14,13 +14,15 @@ local logout_menu_widget =
   require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
-local menus = require("menus")
+local focused_screen_widget = require("focus-screen-widget")
+
+-- local naughty = require("naughty")
 
 local M = {}
 
 M.setup = function()
   -- Keyboard map indicator and switcher
-  local mykeyboardlayout = awful.widget.keyboardlayout()
+  -- local mykeyboardlayout = awful.widget.keyboardlayout()
   -- Create a textclock widget
   local mytextclock = wibox.widget.textclock()
 
@@ -212,6 +214,8 @@ M.setup = function()
       { -- Left widgets
         layout = wibox.layout.fixed.horizontal,
         logout_menu_widget(),
+        seperator,
+        focused_screen_widget,
         seperator,
         -- menus.mylauncher,
         s.mytaglist,

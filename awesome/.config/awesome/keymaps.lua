@@ -346,9 +346,14 @@ M.navigation = gears.table.join(
     focus_bydirection("right"),
     { description = "focus right", group = "client" }
   ),
-
+  -- unminimize
+  awful.key({ modkey, "Shift" }, "n", function()
+    awful.client.restore()
+  end),
   -- screen navigation
   awful.key({ modkey }, "l", function()
+    -- unfocus client
+    client.focus = nil
     awful.screen.focus_relative(1)
   end, { description = "focus the next screen", group = "screen" }),
 
@@ -490,6 +495,7 @@ M.clientkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "l", function(c)
     c:move_to_screen()
   end, { description = "move to next screen", group = "client" }),
+
   awful.key({ modkey, "Shift" }, "h", function(c)
     c:move_to_screen(c.screen.index - 1)
   end, { description = "move to previous screen", group = "client" }),
