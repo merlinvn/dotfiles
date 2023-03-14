@@ -1,6 +1,9 @@
 local M = {}
-M.config = function(_, opts)
-  require("telescope").setup(opts)
+M.config = function()
+  if require("telescope") == nil then
+    return
+  end
+  require("telescope").setup(M.opts)
   require("telescope").load_extension("ui-select")
   require("telescope").load_extension("file_browser")
 end
@@ -75,6 +78,9 @@ M.opts = function()
 end
 
 M.keys = function()
+  if require("telescope") == nil then
+    return
+  end
   local telescope_prefix = "<leader>t"
   local MyTelescope = require("merlinvn.telescope")
 

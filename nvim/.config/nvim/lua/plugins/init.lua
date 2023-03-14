@@ -1,4 +1,3 @@
-local i = 5
 return {
   -- "lewis6991/impatient.nvim",
   -- {{{ Must-have
@@ -79,7 +78,6 @@ return {
       "nvim-telescope/telescope-symbols.nvim",
     },
     config = require("plugins.config.telescope").config,
-    opts = require("plugins.config.telescope").opts,
     keys = require("plugins.config.telescope").keys,
   },
   -- }}}
