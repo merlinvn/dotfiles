@@ -1,12 +1,4 @@
 local M = {}
-M.config = function()
-  if require("telescope") == nil then
-    return
-  end
-  require("telescope").setup(M.opts)
-  require("telescope").load_extension("ui-select")
-  require("telescope").load_extension("file_browser")
-end
 
 M.opts = function()
   local actions = require("telescope.actions")
@@ -77,8 +69,18 @@ M.opts = function()
   }
 end
 
-M.keys = function()
+M.config = function()
   if require("telescope") == nil then
+    return
+  end
+  require("telescope").setup(M.opts())
+  require("telescope").load_extension("ui-select")
+  require("telescope").load_extension("file_browser")
+end
+
+M.keys = function()
+  local status, telescope = pcall(require, "telescope")
+  if not status then
     return
   end
   local telescope_prefix = "<leader>t"

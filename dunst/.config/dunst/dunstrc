@@ -43,16 +43,16 @@
     background = "#434C5E"
     foreground = "#E5E9F0"
     frame_color = "#A3BE8C"
-    timeout = 5
+    timeout = 3
 
 [urgency_normal]
     background = "#434C5E"
     foreground = "#E5E9F0"
     frame_color = "#88C0D0"
-    timeout = 5
+    timeout = 3
 
 [urgency_critical]
     background = "#434C5E"
     foreground = "#E5E9F0"
     frame_color = "#BF616A"
-    timeout = 10
+    timeout = 5

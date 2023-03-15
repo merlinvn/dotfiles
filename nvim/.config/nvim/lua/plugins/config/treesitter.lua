@@ -37,7 +37,7 @@ M.opts = {
   highlight = {
     enable = true,
     -- additional_vim_regex_highlighting = false,
-    -- disable = {},
+    disable = { "conf" },
   },
   indent = {
     enable = true,
