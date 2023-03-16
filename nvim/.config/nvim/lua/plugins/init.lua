@@ -69,13 +69,16 @@ return {
     enabled = false,
   },
   {
+    "nvim-telescope/telescope-symbols.nvim",
+  },
+  {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     dependencies = {
       "echasnovski/mini.fuzzy",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
     },
     config = require("plugins.config.telescope").config,
     keys = require("plugins.config.telescope").keys,
@@ -411,7 +414,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",

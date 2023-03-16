@@ -118,7 +118,11 @@ M.keys = function()
       MyTelescope.grep_prompt,
       desc = "Global search cwd",
     },
-    { "t", "<cmd>Telescope<cr>" },
+    {
+      telescope_prefix .. "t",
+      "<cmd>Telescope<cr>",
+      desc = "Telescope",
+    },
     {
       telescope_prefix .. "b",
       "<cmd>Telescope buffers show_all_buffers=true<cr>",
@@ -152,7 +156,7 @@ M.keys = function()
     {
       telescope_prefix .. "y",
       "<cmd>Telescope symbols<cr>",
-      desc = "[O]ld files",
+      desc = "Symbols",
     },
     -- SEARCH
     {
@@ -233,4 +237,5 @@ M.keys = function()
     },
   }
 end
+
 return M

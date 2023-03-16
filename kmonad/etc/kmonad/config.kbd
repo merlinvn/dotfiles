@@ -75,12 +75,14 @@
     ctl_dqt (tap-hold-next-release 200 " lctl)
     alt_under (tap-hold-next-release 200 \_ lalt)
 
-;;    sl (sticky-key 500 lsft)
-;;    sr (sticky-key 500 rsft))
+    sl (sticky-key 500 lsft)
+    sr (sticky-key 500 rsft)
 ;;    slc (sticky-key 500 lctl)
 ;;    sla (sticky-key 500 lalt)
 ;;    slm (sticky-key 500 lmet)
 ;;    srm (sticky-key 500 rmet)
+
+  osl (sticky-key 1500 (layer-toggle symbols))
 
   qwe (layer-switch default) ;; Set qwerty as the base layer
   neo (layer-switch neo34) ;; Set colemak as the base layer
@@ -91,7 +93,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
-  _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _         _
+  _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
   _    _       _             @snav                         _    _  _      _        _       _
 )
 
