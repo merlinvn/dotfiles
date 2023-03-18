@@ -186,6 +186,17 @@ label:focus {
   background-color: #000000;
 }
 
+#idle_inhibitor {
+  background-color: #b8bb26;
+  color: #3c3836;
+  margin-bottom: 3px;
+  min-width: 16px;
+}
+#idle_inhibitor.activated {
+  background-color: #d65d0e;
+  color: #9d0006;
+}
+
 #pulseaudio {
   background-color: #fadb2f;
   color: #3c3836;
@@ -279,9 +290,6 @@ label:focus {
   /* background-color: #eb4d4b; */
 }
 
-#idle_inhibitor {
-  /* background-color: #2d3436; */
-}
 
 #idle_inhibitor.activated {
   /* background-color: #ecf0f1; */

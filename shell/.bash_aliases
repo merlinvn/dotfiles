@@ -103,5 +103,5 @@ alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo p
 
 [ -x "$(command -v zellij)" ] && alias jr="zellij r --"
 [ -x "$(command -v zellij)" ] && alias je="zellij edit "
-[ -x "$(command -v zellij)" ] && alias jl="zellij"
+[ -x "$(command -v zellij)" ] && alias jj="zellij"
 
