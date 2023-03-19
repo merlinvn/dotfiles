@@ -40,6 +40,7 @@
 
 
     m_a (tap-hold-next-release 200 a lmet)
+    m_i (tap-hold-next-release 200 i lmet)
     a_r (tap-hold-next-release 200 r lalt)
     c_s (tap-hold-next-release 200 s lctl)
     s_t (tap-hold-next-release 200 t lsft)
@@ -47,6 +48,7 @@
     s_n (tap-hold-next-release 180 n lsft)
     c_h (tap-hold-next-release 200 h lctl)
     a_i (tap-hold-next-release 200 i lalt)
+    a_a (tap-hold-next-release 200 a lalt)
     m_o (tap-hold-next-release 200 o lmet)
 
     snav  (tap-hold 200  spc (layer-toggle navigation))
@@ -75,8 +77,8 @@
     ctl_dqt (tap-hold-next-release 200 " lctl)
     alt_under (tap-hold-next-release 200 \_ lalt)
 
-    sl (sticky-key 500 lsft)
-    sr (sticky-key 500 rsft)
+;;    sl (sticky-key 500 lsft)
+;;    sr (sticky-key 500 rsft)
 ;;    slc (sticky-key 500 lctl)
 ;;    sla (sticky-key 500 lalt)
 ;;    slm (sticky-key 500 lmet)
@@ -86,6 +88,7 @@
 
   qwe (layer-switch default) ;; Set qwerty as the base layer
   neo (layer-switch neo34) ;; Set colemak as the base layer
+  e_syms (tap-hold 200 e (layer-toggle neo34_sym))
 )
 
 (deflayer default
@@ -133,6 +136,14 @@
   _      _      _                  _                _     _    _    _       _       _
 )
 
+(deflayer neo34_bak
+  _       _       _       _            _       _       _     _    _       _       _       _       _
+  _       _       _       _            _       _       _     _    _       _       _       _       _    _
+ tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
+@c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
+   '      x       c       d            v       XX      XX    /    j       k       ,       .
+  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
+)
 
 (deflayer neo34
   _       _       _       _            _       _       _     _    _       _       _       _       _
@@ -140,7 +151,7 @@
  tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
 @c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
    '      x       c       d            v       XX      XX    /    j       k       ,       .
-  _       _       _       @snav_neo    e       bspc    _     _    _       _
+  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
 )
 
 (deflayer neo34_nav
@@ -149,5 +160,24 @@
  tab      M-tab    A-tab    C-S-tab    C-tab    XX      XX    caps    home    up      end      XX    XX    XX
 @c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    XX    ret
 @qwe      @neo     XX       XX         XX       XX      XX    XX      pgdn    pgup    XX       XX
-  _       _        _        spc        e        bspc    _     _       _       _
+  _       _        _        spc        bspc     bspc    _     _       _       _
 )
+
+(deflayer neo34_sym
+  _       _    _    _      _     _       _     _    _    _    _     _         _
+  _       _    _    _      _     _       _     _    _    _    _     _         _     _
+ tab      !    @    {      }     %       XX    #    ^    &    $     *         XX    XX
+@c_esc    ;    =    \(     \)    +       XX    |    <    >    \_    @met_:    ret
+"         \    [    ]      -     XX      XX    ?    [    ]    `     ~
+_         _    _    spc    _     bspc    _     _    _    _
+)
+
+(deflayer neo34_num
+  _       _       _       _       _       _       _     _    _    _    _    _    _
+  _       _       _       _       _       _       _     _    _    _    _    _    _     _
+ tab      XX      XX      XX      XX      XX      XX    *    7    8    9    /    XX    XX
+@c_esc    lmet    lalt    lctl    lsft    XX      XX    +    4    5    6    .    ret
+XX        XX      XX      XX      XX      XX      XX    -    1    2    3    ,
+  _       _       _       spc     0       bspc    _     _    _    _
+)
+
