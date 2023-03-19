@@ -75,9 +75,9 @@ vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
 vim.keymap.set("n", "<C-p>", '"+p')
--- vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
 vim.keymap.set("i", "<C-p>", '<esc>"+pa')
-
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- select what just pasted
@@ -93,6 +93,13 @@ vim.keymap.set(
 vim.keymap.set(
   { "n", "x", "v" },
   "<C-y>",
+  [["+y]],
+  { silent = true, noremap = true, desc = "yank to clipboard" }
+)
+
+vim.keymap.set(
+  { "n", "x", "v" },
+  "<leader>y",
   [["+y]],
   { silent = true, noremap = true, desc = "yank to clipboard" }
 )
