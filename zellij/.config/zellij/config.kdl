@@ -1,23 +1,26 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
     normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+        bind "Alt ," { GoToPreviousTab; }
+        bind "Alt ." { GoToNextTab; }
+        bind "Alt Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "Alt Right" { MoveFocus "Right";SwitchToMode "Normal"; }
+        bind "Alt Down" { MoveFocus "Down";SwitchToMode "Normal"; }
+        bind "Alt Up" { MoveFocus "Up";SwitchToMode "Normal"; }
     }
 
-    locked {
+    tmux {
         bind "Esc" "Enter" { SwitchToMode "Normal";}
         bind "Ctrl g" { Write 7; SwitchToMode "Normal"; }
-        bind "d" { Detach; }
-        bind "q" { Quit; }
+        bind "d" "Ctrl d" { Detach; }
+        bind "q" "Ctrl q" { Quit; }
 
         bind "p" "Ctrl p" { SwitchToMode "Pane"; }
         bind "r" "Ctrl r" { SwitchToMode "Resize"; }
         bind "m" "Ctrl m" { SwitchToMode "Move"; }
         bind "t" "Ctrl t" { SwitchToMode "Tab"; }
-        bind "s" "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "/" "Ctrl /" { SwitchToMode "Scroll"; }
         bind "o" "Ctrl o" { SwitchToMode "Session"; }
-        bind "b" "Ctrl b" { SwitchToMode "Tmux"; }
 
         bind "Tab" { ToggleTab; SwitchToMode "Normal";}
         bind "1" { GoToTab 1; SwitchToMode "Normal"; }
@@ -35,14 +38,43 @@ keybinds clear-defaults=true {
         bind "j" "Down" { MoveFocus "Down";SwitchToMode "Normal"; }
         bind "k" "Up" { MoveFocus "Up";SwitchToMode "Normal"; }
 
-        bind "=" "+" { Resize "Increase"; }
-        bind "-" { Resize "Decrease"; }
-
         bind "[" { PreviousSwapLayout; }
         bind "]" { NextSwapLayout; }
+        bind "Space" { NextSwapLayout; }
 
-        bind "n" { SwitchFocus; SwitchToMode "Normal"; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
 
+        bind "s" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "v" { NewPane "Right"; SwitchToMode "Normal"; }
+
+        bind "c" { NewTab; SwitchToMode "Normal"; }
+
+        /* bind "n" { SwitchFocus; SwitchToMode "Normal"; } */
+        /* bind "[" { SwitchToMode "Scroll"; } */
+        /* bind "Ctrl b" { Write 2; SwitchToMode "Normal"; } */
+        /* bind "\"" { NewPane "Down"; SwitchToMode "Normal"; } */
+        /* bind "%" { NewPane "Right"; SwitchToMode "Normal"; } */
+        /* bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; } */
+        /* bind "c" { NewTab; SwitchToMode "Normal"; } */
+        /* bind "," { SwitchToMode "RenameTab"; } */
+        /* bind "p" { GoToPreviousTab; SwitchToMode "Normal"; } */
+        /* bind "n" { GoToNextTab; SwitchToMode "Normal"; } */
+        /* bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; } */
+        /* bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; } */
+        /* bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; } */
+        /* bind "Up" { MoveFocus "Up"; SwitchToMode "Normal"; } */
+        /* bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; } */
+        /* bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; } */
+        /* bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; } */
+        /* bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; } */
+        /* bind "o" { FocusNextPane; } */
+        /* bind "d" { Detach; } */
+        /* bind "Space" { NextSwapLayout; } */
+        /* bind "x" { CloseFocus; SwitchToMode "Normal"; } */
+    }
+
+    locked {
+        bind "Ctrl g" { SwitchToMode "Normal"; }
     }
 
     pane {
@@ -153,35 +185,17 @@ keybinds clear-defaults=true {
         bind "d" { Detach; }
     }
 
-    tmux {
-        bind "[" { SwitchToMode "Scroll"; }
-        bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
-        bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "c" { NewTab; SwitchToMode "Normal"; }
-        bind "," { SwitchToMode "RenameTab"; }
-        bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
-        bind "n" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "o" { FocusNextPane; }
-        bind "d" { Detach; }
-        bind "Space" { NextSwapLayout; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
-    }
 
-    shared_except "normal" "locked" {
+    shared_except "normal" "locked" "tmux" {
         bind "Enter" "Esc" "q" { SwitchToMode "Normal"; }
     }
+    shared_except "tmux" {
+        bind "Ctrl g" { SwitchToMode "Tmux"; }
+    }
+
     shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Ctrl t" { ToggleFloatingPanes; SwitchToMode "Normal";  }
+        /* bind "Ctrl g" { SwitchToMode "Locked"; } */
     }
 }
 
@@ -270,6 +284,61 @@ plugins {
             white 251 241 199
             orange 214 93 14
         }
+        catppuccin-latte {
+            bg "#acb0be" // Surface2
+            fg "#acb0be" // Surface2
+            red "#d20f39"
+            green "#40a02b"
+            blue "#1e66f5"
+            yellow "#df8e1d"
+            magenta "#ea76cb" // Pink
+            orange "#fe640b" // Peach
+            cyan "#04a5e5" // Sky
+            black "#dce0e8" // Crust
+            white "#4c4f69" // Text
+        }
+
+        catppuccin-frappe {
+            bg "#626880" // Surface2
+            fg "#c6d0f5"
+            red "#e78284"
+            green "#a6d189"
+            blue "#8caaee"
+            yellow "#e5c890"
+            magenta "#f4b8e4" // Pink
+            orange "#ef9f76" // Peach
+            cyan "#99d1db" // Sky
+            black "#292c3c" // Mantle
+            white "#c6d0f5"
+        }
+
+        catppuccin-macchiato {
+            bg "#5b6078" // Surface2
+            fg "#cad3f5"
+            red "#ed8796"
+            green "#a6da95"
+            blue "#8aadf4"
+            yellow "#eed49f"
+            magenta "#f5bde6" // Pink
+            orange "#f5a97f" // Peach
+            cyan "#91d7e3" // Sky
+            black "#1e2030" // Mantle
+            white "#cad3f5"
+        }
+
+        catppuccin-mocha {
+            bg "#585b70" // Surface2
+            fg "#cdd6f4"
+            red "#f38ba8"
+            green "#a6e3a1"
+            blue "#89b4fa"
+            yellow "#f9e2af"
+            magenta "#f5c2e7" // Pink
+            orange "#fab387" // Peach
+            cyan "#89dceb" // Sky
+            black "#181825" // Mantle
+            white "#cdd6f4"
+        }
     }
 
 // Choose the theme that is specified in the themes section.
@@ -280,7 +349,7 @@ plugins {
 // The name of the default layout to load on startup
 // Default: "default"
 //
-//   default_layout "compact"
+   default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
