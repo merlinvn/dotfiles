@@ -117,6 +117,6 @@ vim.o.completeopt = "menuone,noselect"
 -- end)
 
 -- winbar
-vim.o.winbar = "%=%m %f"
+-- vim.o.winbar = "%=%m %f"
 
 vim.o.foldmethod = "marker"

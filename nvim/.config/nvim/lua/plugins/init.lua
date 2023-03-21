@@ -323,11 +323,17 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("plugins.config.catppuccin").config()
     end,
+    enabled = false,
+  },
+
+  {
+    "echasnovski/mini.base16",
+    version = "*",
+    config = require("plugins.config.mini.base16").config,
     enabled = false,
   },
   -- }}}

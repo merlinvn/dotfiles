@@ -4,12 +4,10 @@ function M.config(_, opts)
   -- setup autoformat
   require("plugins.config.lsp.format").autoformat = opts.autoformat
 
-  -- Use an default on_attach function to only map the following keys
-  -- after the language server attaches to the current buffer
-  local on_attach = function(client, buffer)
+  require("merlinvn.util").on_attach(function(client, buffer)
     require("plugins.config.lsp.format").on_attach(client, buffer)
     require("plugins.config.lsp.keymaps").on_attach(client, buffer)
-  end
+  end)
 
   -- Diagnostic symbols in the sign column (gutter)
   local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -20,7 +18,6 @@ function M.config(_, opts)
   vim.diagnostic.config(opts.diagnostics)
 
   -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
-
   local servers = opts.servers
   local capabilities = require("cmp_nvim_lsp").default_capabilities(
     vim.lsp.protocol.make_client_capabilities()
@@ -30,8 +27,6 @@ function M.config(_, opts)
   local setup = function(server)
     local server_opts = vim.tbl_deep_extend("force", {
       capabilities = vim.deepcopy(capabilities),
-      -- if there is custom on_attach, use it, otherwise use default
-      on_attach = servers[server].on_attach or on_attach,
     }, servers[server] or {})
 
     if opts.setup[server] then
@@ -213,10 +208,6 @@ M.opts = { -- options for vim.diagnostic.config()
           },
         },
       },
-      on_attach = function(client, buffer)
-        require("plugins.config.lsp.format").on_attach(client, buffer)
-        require("plugins.config.lsp.keymaps").on_attach_rust(client, buffer)
-      end,
     },
     -- hsl = {},
   },

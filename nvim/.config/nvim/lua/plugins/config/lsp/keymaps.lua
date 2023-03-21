@@ -18,6 +18,7 @@ local imap_buf = function(keys, func, desc, bufnr)
   )
 end
 
+-- TODO: add addition keymaps for rust lsp later
 function M.on_attach_rust(client, bufnr)
   M.on_attach(client, bufnr)
 
