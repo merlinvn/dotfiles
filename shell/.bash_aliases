@@ -53,12 +53,12 @@ alias nr="npm run"
 alias ns="npm start"
 
 
-# [ -x "$(command -v bat)" ] && alias cat='bat'
-# [ -x "$(command -v bat)" ] && alias catr='bat -p'
-# [ -x "$(command -v batcat)" ] && alias cat='batcat'
+[ -x "$(command -v bat)" ] && alias cat='bat'
+[ -x "$(command -v bat)" ] && alias catr='bat -p'
+[ -x "$(command -v batcat)" ] && alias cat='batcat'
 
-# [ -x "$(command -v fd)" ] && alias find='fd'
-# [ -x "$(command -v fdfind)" ] && alias fd='fdfind'
+[ -x "$(command -v fd)" ] && alias find='fd'
+[ -x "$(command -v fdfind)" ] && alias fd='fdfind'
 
 # [ -x "$(command -v htop)" ] && alias top='htop'
 # [ -x "$(command -v bpytop)" ] && alias top='bpytop'
