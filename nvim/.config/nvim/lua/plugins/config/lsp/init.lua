@@ -216,6 +216,10 @@ M.opts = { -- options for vim.diagnostic.config()
   setup = {
     rust_analyzer = function(_, opts)
       require("rust-tools").setup({ server = opts })
+      -- additional keymaps
+      require("merlinvn.util").on_attach(function(client, buf)
+        require("plugins.config.lsp.keymaps").on_attach_rust(client, buf)
+      end)
       return true
     end,
     -- example to setup with typescript.nvim

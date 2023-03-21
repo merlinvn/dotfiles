@@ -3,6 +3,14 @@ local M = {}
 M.config = function()
   local opts = {
     char = "┊",
+    filetype_exclude = {
+      "help",
+      "alpha",
+      "dashboard",
+      "neo-tree",
+      "Trouble",
+      "lazy",
+    },
     show_end_of_line = false,
     space_char_blankline = " ",
     show_current_context = true,

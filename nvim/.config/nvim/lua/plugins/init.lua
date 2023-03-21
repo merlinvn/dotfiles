@@ -258,6 +258,15 @@ return {
     keys = require("plugins.config.bufferline").keys,
     config = require("plugins.config.bufferline").config,
   },
+
+  -- lsp symbol navigation for lualine
+  {
+    "SmiteshP/nvim-navic",
+    lazy = true,
+    init = require("plugins.config.nvim-navic").init,
+    opts = require("plugins.config.nvim-navic").opts,
+    -- config = require("plugins.config.nvim-navic").config,
+  },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -268,10 +277,12 @@ return {
 
   {
     "echasnovski/mini.statusline",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "lewis6991/gitsigns.nvim",
+    },
     version = false,
-    config = function()
-      require("mini.statusline").setup()
-    end,
+    config = require("plugins.config.mini.statusline").config,
   },
   {
     "akinsho/toggleterm.nvim",

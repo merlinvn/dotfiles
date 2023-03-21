@@ -118,5 +118,6 @@ vim.o.completeopt = "menuone,noselect"
 
 -- winbar
 -- vim.o.winbar = "%=%m %f"
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 vim.o.foldmethod = "marker"
