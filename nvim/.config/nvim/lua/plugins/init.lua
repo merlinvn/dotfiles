@@ -232,6 +232,7 @@ return {
   },
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
@@ -241,6 +242,7 @@ return {
       -- "rcarriga/nvim-notify",
     },
     opts = require("plugins.config.noice").opts,
+    -- keys = require("plugins.config.noice").keys,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -424,7 +426,7 @@ return {
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-emoji",
+      -- "hrsh7th/cmp-emoji",
       "saadparwaiz1/cmp_luasnip",
       -- "hrsh7th/cmp-copilot",
       -- "ray-x/cmp-treesitter",

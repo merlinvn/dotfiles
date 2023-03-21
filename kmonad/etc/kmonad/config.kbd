@@ -147,7 +147,7 @@
 
 (deflayer neo34
   _       _       _       _            _       _       _     _    _       _       _       _       _
-  _       _       _       _            _       _       _     _    _       _       _       _       _    _
+  _       _       _       _            _       _       _     _    _       _       _       _       _    \
  tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
 @c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
    '      x       c       d            v       XX      XX    /    j       k       ,       .
@@ -160,7 +160,7 @@
  tab      M-tab    A-tab    C-S-tab    C-tab    XX      XX    caps    home    up      end      XX    XX    XX
 @c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    XX    ret
 @qwe      @neo     XX       XX         XX       XX      XX    XX      pgdn    pgup    XX       XX
-  _       _        _        spc        bspc     bspc    _     _       _       _
+  _       _        _        spc        bspc     del     _     _       _       _
 )
 
 (deflayer neo34_sym
