@@ -29,13 +29,13 @@ vim.keymap.set(
 
 -- remap quit
 -- close current buffer && quit window
-vim.keymap.set(
-  "n",
-  "Q",
-  ":bd<CR>",
-  { noremap = true, silent = true, desc = "Close current buffer" }
-)
-vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Quit window" })
+-- vim.keymap.set(
+--   "n",
+--   "Q",
+--   ":bd<CR>",
+--   { noremap = true, silent = true, desc = "Close current buffer" }
+-- )
+vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Close window" })
 
 vim.keymap.set(
   "n",

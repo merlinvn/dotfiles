@@ -344,9 +344,11 @@ return {
     "echasnovski/mini.ai",
     event = "BufReadPre",
     version = false,
-    config = function()
-      require("mini.ai").setup({})
-    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    opts = require("plugins.config.mini.ai").opts,
+    config = require("plugins.config.mini.ai").config,
   },
   -- underline or highlight word at cursor
   {
@@ -361,36 +363,7 @@ return {
     "echasnovski/mini.bufremove",
     event = "BufReadPre",
     version = false,
-    keys = {
-      {
-        "<leader>bd",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>bD",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force)",
-      },
-      {
-        "<leader>q",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>Q",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force)",
-      },
-    },
+    keys = require("plugins.config.mini.bufremove").keys,
   },
   {
     "echasnovski/mini.bracketed",
