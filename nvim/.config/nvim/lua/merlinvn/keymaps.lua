@@ -29,20 +29,19 @@ vim.keymap.set(
 
 -- remap quit
 -- close current buffer && quit window
--- vim.keymap.set(
---   "n",
---   "Q",
---   ":bd<CR>",
---   { noremap = true, silent = true, desc = "Close current buffer" }
--- )
+vim.keymap.set(
+  "n",
+  "Q",
+  ":bd<CR>",
+  { noremap = true, silent = true, desc = "Close current buffer" }
+)
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Quit window" })
 
--- Reload vims configuration file
 vim.keymap.set(
   "n",
   "<Leader>rl",
   ":w<cr>:luafile %<CR>",
-  { desc = "Save and reload", silent = true }
+  { desc = "Reload current lua file", silent = true }
 )
 
 -- Yank from the current cursor to the end of line
@@ -75,8 +74,18 @@ vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
 vim.keymap.set("n", "<C-p>", '"+p')
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>p",
+  '"+p',
+  { desc = "paste from clipboard after" }
+)
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>P",
+  '"+P',
+  { desc = "paste from clipboard before" }
+)
 vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 vim.keymap.set("x", "<leader>p", [["_dP]])
 

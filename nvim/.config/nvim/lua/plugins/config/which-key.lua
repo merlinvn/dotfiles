@@ -11,10 +11,13 @@ M.config = function()
       text_objects = true,
     },
   })
+
+  require("plugins.config.legendary").setup()
+
   wk.register({
     ["<leader>r"] = {
       name = "reload",
-      l = "Reload current luafile",
+      -- l = "Reload current luafile",
     },
     ["<leader>g"] = {
       name = "+git",

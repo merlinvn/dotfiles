@@ -33,6 +33,7 @@ M.keys = {
   {
     "<leader>rs",
     "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>",
+    desc = "Reload luasnip",
   },
 }
 M.config = function()

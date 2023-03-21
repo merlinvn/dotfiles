@@ -548,10 +548,12 @@ return {
   -- {{{ Utils
   {
     "folke/which-key.nvim",
+    dependencies = {
+      "mrjones2014/legendary.nvim",
+    },
     event = "VeryLazy",
     config = require("plugins.config.which-key").config,
   },
-
   {
     "mbbill/undotree",
     keys = require("plugins.config.undotree").keys,
