@@ -9,6 +9,8 @@ cargo install sccache
 
 ### cli tools
 cargo install exa
+cargo install sd
+cargo install bottom
 cargo install ripgrep
 cargo install bat
 cargo install fd-find
@@ -21,6 +23,7 @@ cargo install gitui
 cargo install procs
 cargo install cargo-update
 cargo install rusty-rain
+cargo install names
 
 ### dev tools
 cargo install irust

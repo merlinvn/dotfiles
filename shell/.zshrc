@@ -147,5 +147,3 @@ export FZF_DEFAULT_OPTS=" \
 [ -x "$(command -v rtx)" ] && eval "$(rtx activate zsh)"
 
 
-
-# zprof
