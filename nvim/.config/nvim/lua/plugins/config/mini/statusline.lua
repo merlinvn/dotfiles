@@ -15,7 +15,7 @@ M.config = function()
       if vim.bo.buftype == "terminal" then
         return "%t"
       else
-        return vim.fn.pathshorten(vim.fn.expand("%:p:~:."), 3)
+        return vim.fn.pathshorten(vim.fn.expand("%:p:~:."), 3) .. "%m"
       end
     end
 

@@ -156,10 +156,10 @@
 
 (deflayer neo34_nav
   _       _        _        _          _        _       _     _       _       _       _        _     _
-  _       _        _        _          _        _       _     _       _       _       _        _     _     _
+  _       M-1      M-2      M-3        M-4      M-5     M-6   M-7     M-8     M-9     _        _     _     _
  tab      M-tab    A-tab    C-S-tab    C-tab    XX      XX    caps    home    up      end      XX    XX    XX
-@c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    XX    ret
-@qwe      @neo     XX       XX         XX       XX      XX    XX      pgdn    pgup    XX       XX
+@c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    ret   ret
+@qwe      @neo     XX       XX         XX       XX      XX    del     pgdn    pgup    XX       XX
   _       _        _        spc        bspc     del     _     _       _       _
 )
 
