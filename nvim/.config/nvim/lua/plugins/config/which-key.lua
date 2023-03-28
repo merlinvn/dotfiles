@@ -37,9 +37,6 @@ M.config = function()
     ["<leader>x"] = {
       name = "+diagnotics",
     },
-    ["<leader>b"] = {
-      name = "+buffers",
-    },
     ["<leader>c"] = {
       name = "+code",
       w = "swap next",

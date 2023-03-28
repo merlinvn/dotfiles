@@ -89,6 +89,7 @@
   qwe (layer-switch default) ;; Set qwerty as the base layer
   neo (layer-switch neo34) ;; Set colemak as the base layer
   e_syms (tap-hold 200 e (layer-toggle neo34_sym))
+  d_num (tap-hold 200 d (layer-toggle neo34_num))
 )
 
 (deflayer default
@@ -121,9 +122,9 @@
 (deflayer symbols
   _    _    _    _     _     _    _    _    _    _    _      _    _
   _    _    _    _     _     _    _    _    _    _    _      _    _    _
-  _    !    @    {     }     %    #    ^    &    $    *      _    _    _
-  _    ;    =    \(    \)    +    |    '    "    \_   @met_: _    _
-  _    \    [    ]     -     _    ?    <    >    `    ~      _
+  _    !    @    {     }     %    XX   ^    &    $    ret    _    _    _
+  _    ;    :    \(    \)    =    |    <    >    -    \_      "    _
+  `    \    [    ]     +     _    ?    #    *    "    ~      _
   _    _    _              _              _    _    _    _   _  _
 )
 
@@ -150,7 +151,7 @@
   _       _       _       _            _       _       _     _    _       _       _       _       _    \
  tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
 @c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
-   '      x       c       d            v       XX      XX    /    j       k       ,       .
+   '      x       c       @d_num       v       XX      XX    /    j       k       ,       .
   _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
 )
 
@@ -166,9 +167,9 @@
 (deflayer neo34_sym
   _       _    _    _      _     _       _     _    _    _    _     _         _
   _       _    _    _      _     _       _     _    _    _    _     _         _     _
- tab      !    @    {      }     %       XX    #    ^    &    $     *         XX    XX
-@c_esc    ;    =    \(     \)    +       XX    |    <    >    \_    @met_:    ret
-"         \    [    ]      -     XX      XX    ?    [    ]    `     ~
+ tab      !    @    {      }     %       XX    XX   ^    &    $     ret       XX    XX
+@c_esc    ;    :    \(     \)    =       XX    |    <    >    -    \_   ret
+"         \    [    ]      +     XX      XX    ?    #    *    `     ~
 _         _    _    spc    _     bspc    _     _    _    _
 )
 

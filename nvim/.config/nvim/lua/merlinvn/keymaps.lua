@@ -1,3 +1,10 @@
+-- colemak remap
+-- vim.keymap.set({ "n", "x", "o" }, "j", "h", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "x", "o" }, "h", "i", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "x", "o" }, "k", "j", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "x", "o" }, "i", "k", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "x", "o" }, "l", "l", { noremap = true, silent = true })
+
 -- OPERATIONS
 
 -- remap save
@@ -13,29 +20,24 @@ vim.keymap.set(
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
 -- vim.keymap.set({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
+
 vim.keymap.set(
   { "n", "v", "s" },
   "<C-s>",
   "<Cmd>silent! update<CR>",
   { desc = "Save" }
 )
+
 vim.keymap.set(
   { "i", "x" },
   "<C-s>",
   "<Esc><Cmd>silent! update<CR>",
   { desc = "Save and go to Normal mode" }
 )
--- vim.keymap.set("n", "<Leader>x", vim.cmd.Ex)
 
 -- remap quit
--- close current buffer && quit window
--- vim.keymap.set(
---   "n",
---   "Q",
---   ":bd<CR>",
---   { noremap = true, silent = true, desc = "Close current buffer" }
--- )
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Close window" })
+-- vim.keymap.set("n", "Q", ":q<CR>", { silent = true, desc = "Close window" })
 
 vim.keymap.set(
   "n",
@@ -314,15 +316,6 @@ vim.keymap.set(
   "<C-^>",
   { noremap = true, silent = true, desc = "<-> buffer" }
 )
--- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
--- vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
--- vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
--- vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
--- vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
--- vim.keymap.set("n", "<leader>bn", ":bnext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
--- vim.keymap.set("n", "<leader>bp", ":bprev<cr>", { noremap = true, silent = true, desc = "Prev buffer" })
--- vim.keymap.set("n", "gb", ":bnext<cr>", { noremap = true, silent = true, desc = "next buffer" })
--- vim.keymap.set("n", "gB", ":bprev<cr>", { noremap = true, silent = true, desc = "next buffer" })
 
 -- tab navigation
 -- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
@@ -343,15 +336,6 @@ vim.keymap.set(
   { silent = true, remap = true }
 )
 
--- create new tab
--- vim.keymap.set("n", "<leader><tab><tab>", "<C-w>s<C-w>T")
--- vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
--- vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
--- vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
--- vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
--- vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
--- vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
 -- Go to next / previous, center with zz, and zv to open fold
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -359,6 +343,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- scroll and stay in center
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- move to the end of the line in insert mode
+vim.keymap.set("i", "<C-a>", "<End>")
 
 -- good ideas but since I use kmonad I don't need them
 -- vim.keymap.set("n", "H", "^")
@@ -375,12 +362,14 @@ vim.keymap.set("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
 -- - Don't map in Operator-pending mode because it severely changes behavior:
 --   like `dj` on non-wrapped line will not delete it.
 -- - Condition on `v:count == 0` to allow easier use of relative line numbers.
+
 vim.keymap.set(
   "n",
   "k",
   "v:count == 0 ? 'gk' : 'k'",
   { expr = true, silent = true }
 )
+
 vim.keymap.set(
   "n",
   "j",

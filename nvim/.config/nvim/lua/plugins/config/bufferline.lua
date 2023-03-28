@@ -78,28 +78,28 @@ M.keys = function()
     }
   end
   return {
-    { "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" } },
-    { "]b", "<cmd>bnext<cr>", { desc = "Next buffer" } },
-    {
-      "<leader>bn",
-      ":bnext<cr>",
-      { noremap = true, silent = true, desc = "Next buffer" },
-    },
-    {
-      "<leader>bp",
-      ":bprev<cr>",
-      { noremap = true, silent = true, desc = "Prev buffer" },
-    },
-    {
-      "gb",
-      ":bnext<cr>",
-      { noremap = true, silent = true, desc = "next buffer" },
-    },
-    {
-      "gB",
-      ":bprev<cr>",
-      { noremap = true, silent = true, desc = "next buffer" },
-    },
+    -- { "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" } },
+    -- { "]b", "<cmd>bnext<cr>", { desc = "Next buffer" } },
+    -- {
+    --   "<leader>bn",
+    --   ":bnext<cr>",
+    --   { noremap = true, silent = true, desc = "Next buffer" },
+    -- },
+    -- {
+    --   "<leader>bp",
+    --   ":bprev<cr>",
+    --   { noremap = true, silent = true, desc = "Prev buffer" },
+    -- },
+    -- {
+    --   "gb",
+    --   ":bnext<cr>",
+    --   { noremap = true, silent = true, desc = "next buffer" },
+    -- },
+    -- {
+    --   "gB",
+    --   ":bprev<cr>",
+    --   { noremap = true, silent = true, desc = "next buffer" },
+    -- },
   }
 end
 M.opts = {
