@@ -1,0 +1,34 @@
+- clean: ['~']
+
+- defaults:
+    link:
+      create: true
+      force: true
+      relink: true
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.gitconfig: ../git/.gitconfig
+    ~/.vimrc: ../vim/.vimrc
+    ~/.config/spacebar: ../mac/.config/spacebar
+    ~/.config/yabai: ../mac/.config/yabai
+    ~/.config/skhd: ../mac/.config/skhd
+    ~/.zshrc: ../shell/.zshrc
+    ~/.profile: ../shell/.profile
+    ~/.bash_aliases: ../shell/.bash_aliases
+    ~/.config/starship.toml: ../starship/.config/starship.toml
+    ~/.config/kitty: ../kitty/.config/kitty
+    ~/Brewfile: brew/Brewfile
+    ~/brewup.sh: brew/brewup.sh
+
+- shell:
+    - command: bash brew/brew.sh
+      stdout: true
+      stderr: true
+      description: Running brew/brew.sh setup script
+    - command: bash macos/macos.sh
+      stdout: true
+      stderr: true
+      description: Running macos/macos.sh configurations script
+      quiet: true

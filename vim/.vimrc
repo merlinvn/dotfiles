@@ -247,8 +247,6 @@ vnoremap <C-p> "+p
 inoremap <C-p> "+p
 noremap <Leader>p "+p
 vnoremap <Leader>p "+p
-inoremap <leader>p "+p
-
 
 " copy whole text in file
 "noremap yz :%y+<CR>

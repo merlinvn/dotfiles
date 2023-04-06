@@ -1,0 +1,112 @@
+#!/usr/bin/env sh
+
+# the scripting-addition must be loaded manually if
+# you are running yabai on macOS Big Sur. Uncomment
+# the following line to have the injection performed
+# when the config is executed during startup.
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
+#
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# global settings
+yabai -m config                                 \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          off            \
+    window_origin_display        default        \
+    window_zoom_persist          on             \
+    window_topmost               off            \
+    window_shadow                off            \
+    window_animation_duration    0.0            \
+    window_animation_frame_rate  10             \
+    window_opacity               off            \
+    window_border_width          3              \
+    window_border_radius         0              \
+    window_border_blur           off            \
+    window_border_hidpi          on             \
+    window_border                on
+    #active_window_border_color   0xffF3F99D     \
+    #normal_window_border_color   0xff2E313D     \
+
+# global settings
+yabai -m config window_placement             second_child
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.9
+yabai -m config active_window_border_color   0xff168aad
+yabai -m config normal_window_border_color   0xff555555
+yabai -m config insert_feedback_color        0xffd75f5f
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 on
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  12
+yabai -m config bottom_padding               12
+yabai -m config left_padding                 12
+yabai -m config right_padding                12
+yabai -m config window_gap                   12
+
+# status bar
+# add 20 padding to the top and 0 padding to the bottom of every space located
+# on the main display
+yabai -m config external_bar main:26:0
+# add 20 padding to the top and bottom of all spaces regardless of the display
+# it belongs to
+yabai -m config external_bar all:26:0
+
+
+## Spaces Management
+totalSpaces=9
+nSpaces=$(yabai -m query --spaces | jq '.|length')
+while [ $nSpaces -lt $totalSpaces ]
+do
+  yabai -m space --create
+  nSpaces=`expr $nSpaces + 1`
+done
+
+
+# yabai -m space 2 --label code
+# yabai -m space 4 --label files
+# yabai -m space 3 --label news
+# yabai -m space 5 --label chat
+# yabai -m space 6 --label free1
+# yabai -m space 7 --label free2
+# yabai -m space 8 --label free3
+#
+# yabai -m space main --display 1
+# yabai -m space chat --display 2
+# yabai -m space code --display 3
+# yabai -m space term --display 3
+
+# yabai -m rule --add app=kitty space=term
+# yabai -m rule --add app=Finder space=files
+# yabai -m rule --add app=Code space=code
+# yabai -m rule --add app=Safari space=browser
+# yabai -m rule --add app="Brave Browser" space=browser
+# yabai -m rule --add app=Reeder space=news
+# yabai -m rule --add app=Telegram space=chat
+
+#yabai -m rule --add app=".*" manage=off
+yabai -m rule --add app="^System Preferences$" sticky=on manage=off
+#yabai -m rule --add app=kitty grid=1:1:0:0:1:1
+# yabai -m rule --add app="^System Preferences$" manage=off
+# yabai -m rule --add title="^Preferences" manage=off
+# yabai -m rule --add title="^Finder" manage=off
+
+# focus window after active space changes
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# focus window after active display changes
+yabai -m signal --add event=display_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+echo "yabai configuration loaded.."

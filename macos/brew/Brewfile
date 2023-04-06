@@ -1,0 +1,115 @@
+###############################################################
+# Taps (Homebrew & Third-party Repositories)                  #
+###############################################################
+# Homebrew
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-drivers"
+tap "homebrew/autoupdate"
+# Third-party
+tap "cmacrae/formulae" # spacebar
+tap "koekeishiya/formulae" # yabai
+tap "jesseduffield/lazygit" #lazygit
+#tap "spicetify/homebrew-tap" # Spicetify
+
+###############################################################
+# Brews (Packages)                                            #
+###############################################################
+# Terminal
+brew "stow"
+brew "starship"
+brew "autojump"
+brew "neofetch"
+brew "bat"
+brew "exa"
+brew "ripgrep"
+brew "tree"
+brew "wget"
+brew "jq"
+# Tools/Utilities
+brew "defaultbrowser"
+brew "wallpaper"
+brew "mas"
+brew "bitwarden-cli"
+brew "lazygit"
+brew "tldr"
+# Development
+brew "git"
+brew "python3"
+brew "openjdk"
+brew "java"
+brew "mdv"
+brew "gcc"
+brew "yarn"
+brew "npm"
+brew "ruff"
+brew "ghcup"
+brew "ffmpeg"
+# Appearance
+brew "spacebar"
+brew "yabai"
+brew "skhd"
+
+###############################################################
+# Casks (Applications)                                        #
+###############################################################
+# Tools/Utilities
+cask "raycast", args: { no_quarantine: true }
+cask "numi", args: { no_quarantine: true }
+cask "balenaetcher", args: { no_quarantine: true }
+# Productivity
+cask "notion", args: { no_quarantine: true }
+cask "karabiner-elements", args: { no_quarantine: true }
+# Development
+cask "kitty", args: { no_quarantine: true }
+cask "alacritty", args: { no_quarantine: true }
+cask "visual-studio-code", args: { no_quarantine: true }
+# Art/Design
+cask "adobe-creative-cloud", args: { no_quarantine: true }
+#cask "figma", args: { no_quarantine: true }
+#cask "processing", args: { no_quarantine: true }
+# Internet
+cask "firefox", args: { no_quarantine: true }
+cask "brave-browser", args: { no_quarantine: true }
+cask "google-chrome", args: { no_quarantine: true }
+cask "microsoft-edge", args: { no_quarantine: true }
+#cask "tor-browser", args: { no_quarantine: true }
+# Gaming
+# Work/School
+# cask "microsoft-teams", args: { no_quarantine: true }
+#cask "discord", args: { no_quarantine: true }
+cask "zoom", args: { no_quarantine: true }
+cask "slack", args: { no_quarantine: true }
+cask "telegram", args: { no_quarantine: true }
+# Media
+#cask "spotify", args: { no_quarantine: true }
+#cask "webtorrent", args: { no_quarantine: true }
+cask "vlc", args: { no_quarantine: true }
+
+###############################################################
+# Mac App Store                                               #
+###############################################################
+# Tools/Utilities
+#mas "bitwarden", id: 1352778147
+#mas "Parcel - Delivery Tracking", id: 639968404
+# Productivity
+#mas "iA Writer", id: 775737590
+#mas "Microsoft Excel", id: 462058435
+#mas "Microsoft Word", id: 462054704
+#mas "Microsoft PowerPoint", id: 462062816
+#mas "Microsoft OneNote", id: 784801555
+#mas "Microsoft Outlook", id: 985367838
+# Development
+#mas "Xcode", id: 497799835
+
+###############################################################
+# System Fonts                                                #
+###############################################################
+# Used in: .spaceebarrc, kitty.conf & .vscode (remote)
+cask "font-mononoki-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-caskaydia-cove-nerd-font"

@@ -1,0 +1,184 @@
+;; See keymap/tutorial.kbd for a more complete tutorial
+
+(defcfg
+  input (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+
+;;  cmp-seq ralt
+;;  cmp-seq-delay 5
+  fallthrough true
+  allow-cmd true
+)
+
+(defsrc
+  esc     f1      f2      f3     f4      f5      f6      f7      f8    f9    f10    f11    f12
+  grv     1       2       3      4       5       6       7       8     9     0      -      =    bspc
+  tab     q       w       e      r       t       y       u       i     o     p      [      ]    \
+  caps    a       s       d      f       g       h       j       k     l     ;      '      ret
+  lsft    z       x       c      v       b       n       m       ,     .     /      rsft
+  lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
+)
+
+;; Below, I use `around' to compose `layer-toggle' with `fn' (instead
+;; of using `layer-toggle' directly) so that the `fn' keypress
+;; actually gets emitted. This matters when using an application that
+;; can use `fn' as a modifier (like Emacs).
+
+;; (defalias fn (around (layer-toggle function) fn))
+
+(defalias
+    met_a (tap-hold-next-release 200 a lmet)
+    alt_s (tap-hold-next-release 200 s lalt)
+    ctl_d (tap-hold-next-release 200 d lctl)
+    sft_f (tap-hold-next-release 200 f lsft)
+
+    sft_j (tap-hold-next-release 180 j lsft)
+    ctl_k (tap-hold-next-release 200 k lctl)
+    alt_l (tap-hold-next-release 200 l lalt)
+    met_; (tap-hold-next-release 200 ; lmet)
+    met_: (tap-hold-next-release 200 : lmet)
+
+
+    m_a (tap-hold-next-release 200 a lmet)
+    m_i (tap-hold-next-release 200 i lmet)
+    a_r (tap-hold-next-release 200 r lalt)
+    c_s (tap-hold-next-release 200 s lctl)
+    s_t (tap-hold-next-release 200 t lsft)
+
+    s_n (tap-hold-next-release 180 n lsft)
+    c_h (tap-hold-next-release 200 h lctl)
+    a_i (tap-hold-next-release 200 i lalt)
+    a_a (tap-hold-next-release 200 a lalt)
+    m_o (tap-hold-next-release 200 o lmet)
+
+    snav  (tap-hold 200  spc (layer-toggle navigation))
+    snav_neo  (tap-hold 200  spc (layer-toggle neo34_nav))
+
+    c_syms (tap-hold 200 c (layer-toggle symbols))
+    m_syms (tap-hold 200 m (layer-toggle symbols))
+    v_num  (tap-hold 200 v (layer-toggle numbers))
+    n_fn   (tap-hold 200 n (layer-toggle fn))
+
+    fns  (tap-hold 200 (layer-next fn) (layer-toggle fn))
+    vspc (tap-hold 200 v           spc)
+
+    c_esc (tap-hold-next-release 200 esc lctl)
+
+    syms (tap-hold 200 (layer-next symbols) (layer-toggle symbols))
+    num  (tap-hold 200 (layer-next numbers) (layer-toggle numbers))
+
+    esc_num (tap-hold 200 esc (layer-toggle numbers))
+
+    sft_z (tap-hold-next-release 200 z lsft)
+    sft_- (tap-hold-next-release 200 - lsft)
+    sft_' (tap-hold-next-release 200 ' lsft)
+
+    sft_sqt (tap-hold-next-release 180 ' lsft)
+    ctl_dqt (tap-hold-next-release 200 " lctl)
+    alt_under (tap-hold-next-release 200 \_ lalt)
+
+;;    sl (sticky-key 500 lsft)
+;;    sr (sticky-key 500 rsft)
+;;    slc (sticky-key 500 lctl)
+;;    sla (sticky-key 500 lalt)
+;;    slm (sticky-key 500 lmet)
+;;    srm (sticky-key 500 rmet)
+
+;;  osl (sticky-key 1500 (layer-toggle symbols))
+
+  qwe (layer-switch default) ;; Set qwerty as the base layer
+  neo (layer-switch neo34) ;; Set colemak as the base layer
+  e_syms (tap-hold 200 e (layer-toggle neo34_sym))
+  d_num (tap-hold 200 d (layer-toggle neo34_num))
+)
+
+(deflayer default
+  _      _         _         _          _         _    _        _          _         _         _         _    _
+  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
+  _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
+  _    _       _             @snav                         _    _  _      _        _       _
+)
+
+(deflayer navigation
+  _      _       _       _       _      _    _       _       _       _        _    _    _
+  _      M-1     M-2     M-3     M-4    M-5   M-6     M-7     M-8     M-9      _    _    _    _
+  _      M-tab   A-tab   C-S-tab C-tab  _    caps    home    up      end      _    _    _    _
+  esc    lmet    lalt    lctl    lsft    _    bspc    left    down    right    ret  _    _
+  _      @qwe    @neo    _       _       _    del     pgdn    pgup    _        _    _
+  _      _       _                       _                     _    _    _    _   _   _
+)
+
+(deflayer numbers
+  _    _       _       _       _       _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    *    7    8    9    =    _    _    _
+  _    lmet    lalt    lctl    lsft    _    +    4    5    6    -    _    _
+  _    _       _       _       _       _    /    1    2    3    .    ,
+  _    _       _                0                     _    _    _    _  _   _
+)
+
+(deflayer symbols
+  _    _    _    _     _     _    _    _    _    _    _      _    _
+  _    _    _    _     _     _    _    _    _    _    _      _    _    _
+  _    !    @    {     }     %    XX   ^    &    $    ret    _    _    _
+  _    ;    :    \(    \)    =    |    <    >    -    \_      "    _
+  `    \    [    ]     +     _    ?    #    *    "    ~      _
+  _    _    _              _              _    _    _    _   _  _
+)
+
+(deflayer fn
+  _      _      _     _     _     _    _    _       _       _       _       _    _
+  _      _      _     _     _     _    _    _       _       _       _       _    _    _
+  _      f10    f7    f8    f9    _    _    _       _       _       _       _    _    _
+  _      f11    f4    f5    f6    _    _    rsft    rctl    lalt    rmet    _    _
+  f12    f1     f2    f3    _     _    _    _       _       _       _       _
+  _      _      _                  _                _     _    _    _       _       _
+)
+
+(deflayer neo34_bak
+  _       _       _       _            _       _       _     _    _       _       _       _       _
+  _       _       _       _            _       _       _     _    _       _       _       _       _    _
+ tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
+@c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
+   '      x       c       d            v       XX      XX    /    j       k       ,       .
+  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
+)
+
+(deflayer neo34
+  _       _       _       _            _       _       _     _    _       _       _       _       _
+  _       _       _       _            _       _       _     _    _       _       _       _       _    \
+ tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
+@c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
+   '      x       c       @d_num       v       XX      XX    /    j       k       ,       .
+  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
+)
+
+(deflayer neo34_nav
+  _       _        _        _          _        _       _     _       _       _       _        _     _
+  _       M-1      M-2      M-3        M-4      M-5     M-6   M-7     M-8     M-9     _        _     _     _
+ tab      M-tab    A-tab    C-S-tab    C-tab    XX      XX    caps    home    up      end      XX    XX    XX
+@c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    ret   ret
+@qwe      @neo     XX       XX         XX       XX      XX    del     pgdn    pgup    XX       XX
+  _       _        _        spc        bspc     del     _     _       _       _
+)
+
+(deflayer neo34_sym
+  _       _    _    _      _     _       _     _    _    _    _     _         _
+  _       _    _    _      _     _       _     _    _    _    _     _         _     _
+ tab      !    @    {      }     %       XX    XX   ^    &    $     ret       XX    XX
+@c_esc    ;    :    \(     \)    =       XX    |    <    >    -    \_   ret
+"         \    [    ]      +     XX      XX    ?    #    *    `     ~
+_         _    _    spc    _     bspc    _     _    _    _
+)
+
+(deflayer neo34_num
+  _       _       _       _       _       _       _     _    _    _    _    _    _
+  _       _       _       _       _       _       _     _    _    _    _    _    _     _
+ tab      XX      XX      XX      XX      XX      XX    *    7    8    9    /    XX    XX
+@c_esc    lmet    lalt    lctl    lsft    XX      XX    +    4    5    6    .    ret
+XX        XX      XX      XX      XX      XX      XX    -    1    2    3    ,
+  _       _       _       spc     0       bspc    _     _    _    _
+)
+
