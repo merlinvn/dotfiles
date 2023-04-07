@@ -59,6 +59,7 @@ brew "skhd"
 cask "raycast", args: { no_quarantine: true }
 cask "numi", args: { no_quarantine: true }
 cask "balenaetcher", args: { no_quarantine: true }
+cask "audacity", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "karabiner-elements", args: { no_quarantine: true }
