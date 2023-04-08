@@ -18,9 +18,9 @@ M.opts = {
     debounce = 75,
     keymap = {
       accept = "<M-l>",
-      next = "<M-n>",
-      prev = "<M-p>",
-      dismiss = "<M-h>",
+      next = "<M-]>",
+      prev = "<M-[>",
+      dismiss = "<C-]>",
     },
   },
   filetypes = {

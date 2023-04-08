@@ -187,6 +187,7 @@ vim.keymap.set(
   "mzJ`z",
   { noremap = true, silent = true, desc = "Join line" }
 )
+
 vim.keymap.set(
   "n",
   "gs",

@@ -83,32 +83,23 @@ cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d
 # cmd + shift - return : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
 
 # reload
-shift + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-shift + alt - a : skhd --reload
+alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+alt + cmd - a : skhd --reload
 
 # focus window
 alt - left : yabai -m window --focus west
 alt - down : yabai -m window --focus south
 alt - up : yabai -m window --focus north
 alt - right : yabai -m window --focus east
-# cmd + alt - 0x2F : yabai -m window --focus east
 
-
-# cycle all windows on space backwards by coordinate
-alt - tab : yabai -m window --focus next || yabai -m window --focus first
-shift + alt - tab : yabai -m window --swap next || yabai -m window --swap first
-# alt - z : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
-
-
-#swap managed window
-# cmd + alt - h : yabai -m window --swap north
+# cycle all windows on space by coordinates -> space index -> display index
+alt - tab : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .space, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 
 # move managed window
-# cmd + alt - h : yabai -m window --warp west
-# cmd + alt - j : yabai -m window --warp south
-# cmd + alt - k : yabai -m window --warp north
-# cmd + alt - l : yabai -m window --warp east
-# cmd + alt - 0x2F : yabai -m window --warp east
+alt + shift - left : yabai -m window --warp west
+alt + shift - down : yabai -m window --warp south
+alt + shift - up : yabai -m window --warp north
+alt + shift - right : yabai -m window --warp east
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 #cmd + alt - n : yabai -m space --create && \
@@ -117,11 +108,28 @@ shift + alt - tab : yabai -m window --swap next || yabai -m window --swap first
                   #yabai -m space --focus "${index}"
 
 # fast focus desktop / splace
-alt - j : yabai -m space --focus prev || yabai -m space --focus last
-alt - k : yabai -m space --focus next || yabai -m space --focus first
+alt + ctrl - j : yabai -m space --focus prev || yabai -m space --focus last
+alt + ctrl - k : yabai -m space --focus next || yabai -m space --focus first
 alt + shift - j :  yabai -m window --space prev || yabai -m window --space last && yabai -m space --focus prev || yabai -m space --focus last
 alt + shift - k :  yabai -m window --space next || yabai -m window --space first && yabai -m space --focus next || yabai -m space --focus first
-#cmd + alt - down : yabai -m space --focus recent
+# send window to desktop and follow focus
+#alt + shift - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+                        #yabai -m window --space "${index}" &&\
+                        #yabai -m space --focus "${index}"
+#alt + shift - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+                        #yabai -m window --space "${index}" &&\
+                        #yabai -m space --focus "${index}"
+
+# focus monitor
+# alt - h  : yabai -m display --focus prev || yabai -m display --focus last
+# alt - l  : yabai -m display --focus next || yabai -m display --focus first
+#ctrl + alt - down  : yabai -m display --focus recent
+
+# send window to monitor and follow focus
+# alt + shift - h  : yabai -m window --display prev; yabai -m display --focus prev
+# alt + shift - l : yabai -m window --display next; yabai -m display --focus next
+#alt + ctrl - down  : yabai -m window --display recent; yabai -m display --focus recent
+
 
 # relative space/desktop on the current display
 #alt - 1 : si="$(yabai -m query --displays --space | jq '.spaces[0]')" && yabai -m space --focus "${si}"
@@ -146,13 +154,6 @@ alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 
 
-# send window to desktop and follow focus
-#alt + shift - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
-                        #yabai -m window --space "${index}" &&\
-                        #yabai -m space --focus "${index}"
-#alt + shift - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
-                        #yabai -m window --space "${index}" &&\
-                        #yabai -m space --focus "${index}"
 #ctrl + cmd - down : yabai -m window --space recent | yabai -m space --focus recent
 
 #alt + shift - 1 : si="$(yabai -m query --displays --space | jq '.spaces[0]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
@@ -176,30 +177,16 @@ shift + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
 shift + alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
 shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
 
-# focus monitor
-alt - h  : yabai -m display --focus prev || yabai -m display --focus last
-alt - l  : yabai -m display --focus next || yabai -m display --focus first
-#ctrl + alt - down  : yabai -m display --focus recent
-
-# send window to monitor and follow focus
-alt + shift - h  : yabai -m window --display prev; yabai -m display --focus prev
-alt + shift - l : yabai -m window --display next; yabai -m display --focus next
-#alt + ctrl - down  : yabai -m window --display recent; yabai -m display --focus recent
-
-#ctrl + alt - 1  : yabai -m display --focus 1
-#ctrl + alt - 2  : yabai -m display --focus 2
-#ctrl + alt - 3  : yabai -m display --focus 3
-#ctrl + alt - 4  : yabai -m display --focus 4
-
 # toggle space layout mode
-cmd + alt - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+# todo combine with fill screen below for all floating windows
+alt + shift - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
 # balance size of windows
-alt + shift - b : yabai -m space --balance
+alt + shift - e : yabai -m space --balance
 
 #The grid format is <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # make floating window fill screen
-cmd + alt - up : yabai -m window --grid 1:1:0:0:1:1
+alt + ctrl - f : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
 # cmd + alt - left : yabai -m window --grid 1:2:0:0:1:1
@@ -211,32 +198,36 @@ cmd + alt - up : yabai -m window --grid 1:1:0:0:1:1
 # shift + ctrl - s : yabai -m window --move rel:0:20
 
 # increase window size
-cmd + alt - 0x1B : yabai -m window --resize right:-20:0
-cmd + alt - 0x18 : yabai -m window --resize right:20:0
+ctrl + alt - left : yabai -m window --resize right:-20:0
+ctrl + alt - right : yabai -m window --resize right:20:0
 # cmd + alt - w : yabai -m window --resize top:0:-20
 
 # decrease window size
-cmd + alt - 0x21 : yabai -m window --resize bottom:0:20
-cmd + alt - 0x1E : yabai -m window --resize bottom:0:-20
+ctrl + alt - down : yabai -m window --resize bottom:0:20
+ctrl + alt - up :   yabai -m window --resize bottom:0:-20
 
 # set insertion point in focused container
 # ctrl + alt - h : yabai -m window --insert west
 
+alt + shift - f : yabai -m window --toggle zoom-fullscreen
 # toggle window zoom
-cmd + alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
-
-# toggle window split type
-alt - s : yabai -m window --toggle split
-
+alt + shift - z : yabai -m window --toggle zoom-parent
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;\
+alt + shift - t : yabai -m window --toggle float;\
                   yabai -m window --grid 6:6:1:1:4:4
 
+# toggle window split type
+alt + shift - s : yabai -m window --toggle split
+alt + shift - r : yabai -m space --rotate 270
+
 # toggle sticky(+float), topmost, picture-in-picture
-cmd + alt - p : yabai -m window --toggle sticky;\
-                  yabai -m window --toggle topmost;\
-                  yabai -m window --toggle pip
+# alt + shift - p : yabai -m window --toggle sticky;\
+#                   yabai -m window --toggle topmost;\
+#                   yabai -m window --toggle pip
+
+# toggle window border
+alt + shift - b : yabai -m window --toggle border
+
 
 # prevents skhd from monitoring events for listed processes.
 # .blacklist [
