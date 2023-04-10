@@ -19,6 +19,7 @@ tap "jesseduffield/lazygit" #lazygit
 ###############################################################
 # Terminal
 brew "stow"
+brew "tmux"
 brew "starship"
 brew "autojump"
 brew "neofetch"
@@ -61,6 +62,8 @@ cask "raycast", args: { no_quarantine: true }
 cask "numi", args: { no_quarantine: true }
 cask "balenaetcher", args: { no_quarantine: true }
 cask "audacity", args: { no_quarantine: true }
+cask "zerotier-one", args: { no_quarantine: true }
+cask "syncthing", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "karabiner-elements", args: { no_quarantine: true }
@@ -112,6 +115,7 @@ cask "vlc", args: { no_quarantine: true }
 # Used in: .spaceebarrc, kitty.conf & .vscode (remote)
 cask "font-mononoki-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+cask "font-jetbrains-mono"
 cask "font-hack-nerd-font"
 cask "font-fira-code-nerd-font"
 cask "font-caskaydia-cove-nerd-font"
