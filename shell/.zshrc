@@ -146,4 +146,3 @@ export FZF_DEFAULT_OPTS=" \
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
 [ -x "$(command -v rtx)" ] && eval "$(rtx activate zsh)"
 
-

@@ -89,6 +89,7 @@ done
 # yabai -m space term --display 3
 
 yabai -m rule --add app=kitty space=^2
+yabai -m rule --add app=WezTerm space=^2
 yabai -m rule --add app=Finder space=^5
 yabai -m rule --add app=Code space=^4
 yabai -m rule --add app=Spyder space=^4

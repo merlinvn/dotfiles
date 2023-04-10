@@ -77,7 +77,8 @@
 # ############################################################### #
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process
 
 # open Brave Browser
 # cmd + shift - return : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
