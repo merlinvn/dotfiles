@@ -16,7 +16,7 @@
   tab     q       w       e      r       t       y       u       i     o     p      [      ]    \
   caps    a       s       d      f       g       h       j       k     l     ;      '      ret
   lsft    z       x       c      v       b       n       m       ,     .     /      rsft
-  lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
+  fn lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
 )
 
 ;; Below, I use `around' to compose `layer-toggle' with `fn' (instead
@@ -90,15 +90,26 @@
   neo (layer-switch neo34) ;; Set colemak as the base layer
   e_syms (tap-hold 200 e (layer-toggle neo34_sym))
   d_num (tap-hold 200 d (layer-toggle neo34_num))
+
+  fn (around (layer-toggle function) fn)
 )
 
 (deflayer default
-  _      _         _         _          _         _    _        _          _         _         _         _    _
+  _      f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
-  _    _       _             @snav                         _    _  _      _        _       _
+  @fn   _    _       _             @snav                         _    _  _      _        _       _
+)
+
+(deflayer function
+  _    brdn      brup      lp         mctl      bldn blup     prev       pp        next      mute     vold volu
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _
+  _    _       _       _                _                     _    _    _    _  _   _
 )
 
 (deflayer navigation
@@ -107,7 +118,7 @@
   _      M-tab   A-tab   C-S-tab C-tab  _    caps    home    up      end      _    _    _    _
   esc    lmet    lalt    lctl    lsft    _    bspc    left    down    right    ret  _    _
   _      @qwe    @neo    _       _       _    del     pgdn    pgup    _        _    _
-  _      _       _                       _                     _    _    _    _   _   _
+  _   _      _       _                       _                     _    _    _    _   _   _
 )
 
 (deflayer numbers
@@ -116,7 +127,7 @@
   _    _       _       _       _       _    *    7    8    9    =    _    _    _
   _    lmet    lalt    lctl    lsft    _    +    4    5    6    -    _    _
   _    _       _       _       _       _    /    1    2    3    .    ,
-  _    _       _                0                     _    _    _    _  _   _
+  _  _    _       _                0                     _    _    _    _  _   _
 )
 
 (deflayer symbols
@@ -125,7 +136,7 @@
   _    !    @    {     }     %    XX   ^    &    $    ret    _    _    _
   _    ;    :    \(    \)    =    |    <    >    -    \_      "    _
   `    \    [    ]     +     _    ?    #    *    "    ~      _
-  _    _    _              _              _    _    _    _   _  _
+  _   _    _    _              _              _    _    _    _   _  _
 )
 
 (deflayer fn
@@ -134,7 +145,7 @@
   _      f10    f7    f8    f9    _    _    _       _       _       _       _    _    _
   _      f11    f4    f5    f6    _    _    rsft    rctl    lalt    rmet    _    _
   f12    f1     f2    f3    _     _    _    _       _       _       _       _
-  _      _      _                  _                _     _    _    _       _       _
+  _   _      _      _                  _                _     _    _    _       _       _
 )
 
 (deflayer neo34_bak
@@ -143,7 +154,7 @@
  tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
 @c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
    '      x       c       d            v       XX      XX    /    j       k       ,       .
-  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
+  _   _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
 )
 
 (deflayer neo34
@@ -152,7 +163,7 @@
  tab      q       w       f            p       b       XX    z    l       u       y       ;       [    ]
 @c_esc    @m_a    @a_r    @c_s         @s_t    g       XX    m    @s_n    @c_h    @a_i    @m_o    ent
    '      x       c       @d_num       v       XX      XX    /    j       k       ,       .
-  _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
+  _   _       _       _       @snav_neo    @e_syms bspc    _     _    _       _
 )
 
 (deflayer neo34_nav
@@ -161,7 +172,7 @@
  tab      M-tab    A-tab    C-S-tab    C-tab    XX      XX    caps    home    up      end      XX    XX    XX
 @c_esc    lmet     lalt     lctl       lsft     XX      XX    bspc    left    down    right    ret   ret
 @qwe      @neo     XX       XX         XX       XX      XX    del     pgdn    pgup    XX       XX
-  _       _        _        spc        bspc     del     _     _       _       _
+  _    _       _        _        spc        bspc     del     _     _       _       _
 )
 
 (deflayer neo34_sym
@@ -170,7 +181,7 @@
  tab      !    @    {      }     %       XX    XX   ^    &    $     ret       XX    XX
 @c_esc    ;    :    \(     \)    =       XX    |    <    >    -    \_   ret
 "         \    [    ]      +     XX      XX    ?    #    *    `     ~
-_         _    _    spc    _     bspc    _     _    _    _
+ _    _     _    _    spc    _     bspc    _     _    _    _
 )
 
 (deflayer neo34_num
@@ -179,6 +190,6 @@ _         _    _    spc    _     bspc    _     _    _    _
  tab      XX      XX      XX      XX      XX      XX    *    7    8    9    /    XX    XX
 @c_esc    lmet    lalt    lctl    lsft    XX      XX    +    4    5    6    .    ret
 XX        XX      XX      XX      XX      XX      XX    -    1    2    3    ,
-  _       _       _       spc     0       bspc    _     _    _    _
+  _    _       _       _       spc     0       bspc    _     _    _    _
 )
 

@@ -88,19 +88,20 @@ done
 # yabai -m space code --display 3
 # yabai -m space term --display 3
 
-yabai -m rule --add app=kitty space=2
-yabai -m rule --add app=Finder space=5
-yabai -m rule --add app=Code space=4
-yabai -m rule --add app=Spyder space=4
-yabai -m rule --add app=Safari space=3
-yabai -m rule --add app="Brave Browser" space=3
-yabai -m rule --add app="Microsoft Edge" space=3
-yabai -m rule --add app=Reeder space=7
-yabai -m rule --add app=Telegram space=8
+yabai -m rule --add app=kitty space=^2
+yabai -m rule --add app=Finder space=^5
+yabai -m rule --add app=Code space=^4
+yabai -m rule --add app=Spyder space=^4
+yabai -m rule --add app=Safari space=^3
+yabai -m rule --add app="Brave Browser" space=^3
+yabai -m rule --add app="Microsoft Edge" space=^3
+yabai -m rule --add app=Reeder space=^7
+yabai -m rule --add app=Telegram space=^8
 
 #yabai -m rule --add app=".*" manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off
-yabai -m rule --add title="^Preferences" manage=off
+yabai -m rule --add title=".*Preferences$" manage=off
+yabai -m rule --add app="^Automator" manage=off
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off
 # yabai -m rule --add title="^Finder" manage=off
