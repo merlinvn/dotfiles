@@ -98,7 +98,7 @@ M.keys = function()
     {
       "<leader><space>",
       "<cmd>Telescope buffers show_all_buffers=true<cr>",
-      desc = "Switch Buffer",
+      desc = "Find Buffer",
     },
 
     -- FILES

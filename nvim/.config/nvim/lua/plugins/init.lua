@@ -240,9 +240,30 @@ return {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       -- "rcarriga/nvim-notify",
+      -- {
+      --   "rcarriga/nvim-notify",
+      --   keys = {
+      --     {
+      --       "<leader>nx",
+      --       function()
+      --         require("notify").dismiss({ silent = true, pending = true })
+      --       end,
+      --       desc = "Delete all Notifications",
+      --     },
+      --   },
+      --   opts = {
+      --     timeout = 3000,
+      --     max_height = function()
+      --       return math.floor(vim.o.lines * 0.75)
+      --     end,
+      --     max_width = function()
+      --       return math.floor(vim.o.columns * 0.75)
+      --     end,
+      --   },
+      -- },
     },
     opts = require("plugins.config.noice").opts,
-    -- keys = require("plugins.config.noice").keys,
+    keys = require("plugins.config.noice").keys,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -463,20 +484,24 @@ return {
     "mfussenegger/nvim-dap",
     ft = { "rb", "rs", "cpp", "h" },
     dependencies = {
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = { "nvim-dap" },
+        cmd = { "DapInstall", "DapUninstall" },
+        opts = { handlers = {} },
+      },
+      {
+        "rcarriga/nvim-dap-ui",
+        ft = { "rb", "rs", "cpp", "h" },
+        keys = "<leader>dU",
+        opts = require("plugins.config.nvim-dap").ui_opts,
+      },
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        event = "BufReadPre",
+        opts = require("plugins.config.nvim-dap").virtual_text_opts,
+      },
     },
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    ft = { "rb", "rs", "cpp", "h" },
-    keys = "<leader>dU",
-    opts = require("plugins.config.nvim-dap").ui_opts,
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    event = "BufReadPre",
-    opts = require("plugins.config.nvim-dap").virtual_text_opts,
   },
 
   {

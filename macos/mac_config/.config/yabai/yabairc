@@ -104,6 +104,7 @@ yabai -m rule --add app="^System Preferences$" sticky=on manage=off
 yabai -m rule --add title=".*Preferences$" manage=off
 yabai -m rule --add app="^Automator" manage=off
 yabai -m rule --add app="^System Information" manage=off
+yabai -m rule --add app="^Installer" manage=off
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off
 # yabai -m rule --add title="^Finder" manage=off

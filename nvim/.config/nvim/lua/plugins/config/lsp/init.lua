@@ -1,106 +1,5 @@
 local M = {}
 
-function M.config(_, opts)
-  -- setup autoformat
-  require("plugins.config.lsp.format").autoformat = opts.autoformat
-
-  require("merlinvn.util").on_attach(function(client, buffer)
-    require("plugins.config.lsp.format").on_attach(client, buffer)
-    require("plugins.config.lsp.keymaps").on_attach(client, buffer)
-  end)
-
-  -- Diagnostic symbols in the sign column (gutter)
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-  vim.diagnostic.config(opts.diagnostics)
-
-  -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
-  local servers = opts.servers
-  local capabilities = require("cmp_nvim_lsp").default_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  )
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-  local setup = function(server)
-    local server_opts = vim.tbl_deep_extend("force", {
-      capabilities = vim.deepcopy(capabilities),
-    }, servers[server] or {})
-
-    if opts.setup[server] then
-      if opts.setup[server](server, server_opts) then
-        return
-      end
-    elseif opts.setup["*"] then
-      if opts.setup["*"](server, server_opts) then
-        return
-      end
-    end
-    -- default setup
-    require("lspconfig")[server].setup(server_opts)
-  end
-
-  -- temp fix for lspconfig rename
-  -- https://github.com/neovim/nvim-lspconfig/pull/2439
-  local mappings = require("mason-lspconfig.mappings.server")
-  if not mappings.lspconfig_to_package.lua_ls then
-    mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-    mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
-  end
-
-  local mlsp = require("mason-lspconfig")
-  local available = mlsp.get_available_servers()
-
-  local ensure_installed = {}
-  for server, server_opts in pairs(servers) do
-    if server_opts then
-      server_opts = server_opts == true and {} or server_opts
-      -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-      if
-        server_opts.mason == false or not vim.tbl_contains(available, server)
-      then
-        setup(server)
-      else
-        ensure_installed[#ensure_installed + 1] = server
-      end
-    end
-  end
-
-  require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-  require("mason-lspconfig").setup_handlers({ setup })
-
-  local protocol = require("vim.lsp.protocol")
-  protocol.CompletionItemKind = {
-    "", -- Text
-    "", -- Method
-    "", -- Function
-    "", -- Constructor
-    "", -- Field
-    "", -- Variable
-    "", -- Class
-    "ﰮ", -- Interface
-    "", -- Module
-    "", -- Property
-    "", -- Unit
-    "", -- Value
-    "", -- Enum
-    "", -- Keyword
-    "﬌", -- Snippet
-    "", -- Color
-    "", -- File
-    "", -- Reference
-    "", -- Folder
-    "", -- EnumMember
-    "", -- Constant
-    "", -- Struct
-    "", -- Event
-    "ﬦ", -- Operator
-    "", -- TypeParameter
-  }
-end
-
 M.opts = { -- options for vim.diagnostic.config()
   diagnostics = {
     underline = true,
@@ -231,6 +130,108 @@ M.opts = { -- options for vim.diagnostic.config()
     -- ["*"] = function(server, opts) end,
   },
 }
+
+function M.config(_, opts)
+  -- setup autoformat
+  require("plugins.config.lsp.format").autoformat = opts.autoformat
+
+  require("merlinvn.util").on_attach(function(client, buffer)
+    require("plugins.config.lsp.format").on_attach(client, buffer)
+    require("plugins.config.lsp.keymaps").on_attach(client, buffer)
+  end)
+
+  -- Diagnostic symbols in the sign column (gutter)
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
+  vim.diagnostic.config(opts.diagnostics)
+
+  -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
+  local servers = opts.servers
+  local capabilities = require("cmp_nvim_lsp").default_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+  )
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  local setup = function(server)
+    local server_opts = vim.tbl_deep_extend("force", {
+      capabilities = vim.deepcopy(capabilities),
+    }, servers[server] or {})
+
+    if opts.setup[server] then
+      if opts.setup[server](server, server_opts) then
+        return
+      end
+    elseif opts.setup["*"] then
+      if opts.setup["*"](server, server_opts) then
+        return
+      end
+    end
+    -- default setup
+    require("lspconfig")[server].setup(server_opts)
+  end
+
+  -- temp fix for lspconfig rename
+  -- https://github.com/neovim/nvim-lspconfig/pull/2439
+  local mappings = require("mason-lspconfig.mappings.server")
+  if not mappings.lspconfig_to_package.lua_ls then
+    mappings.lspconfig_to_package.lua_ls = "lua-language-server"
+    mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
+  end
+
+  local mlsp = require("mason-lspconfig")
+  local available = mlsp.get_available_servers()
+
+  local ensure_installed = {}
+  for server, server_opts in pairs(servers) do
+    if server_opts then
+      server_opts = server_opts == true and {} or server_opts
+      -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+      if
+        server_opts.mason == false or not vim.tbl_contains(available, server)
+      then
+        setup(server)
+      else
+        ensure_installed[#ensure_installed + 1] = server
+      end
+    end
+  end
+
+  require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
+  require("mason-lspconfig").setup_handlers({ setup })
+
+  local protocol = require("vim.lsp.protocol")
+  protocol.CompletionItemKind = {
+    "", -- Text
+    "", -- Method
+    "", -- Function
+    "", -- Constructor
+    "", -- Field
+    "", -- Variable
+    "", -- Class
+    "ﰮ", -- Interface
+    "", -- Module
+    "", -- Property
+    "", -- Unit
+    "", -- Value
+    "", -- Enum
+    "", -- Keyword
+    "﬌", -- Snippet
+    "", -- Color
+    "", -- File
+    "", -- Reference
+    "", -- Folder
+    "", -- EnumMember
+    "", -- Constant
+    "", -- Struct
+    "", -- Event
+    "ﬦ", -- Operator
+    "", -- TypeParameter
+  }
+end
+
 M.keys = {
   {
     "<leader>f",
