@@ -64,6 +64,7 @@ cask "balenaetcher", args: { no_quarantine: true }
 cask "audacity", args: { no_quarantine: true }
 cask "zerotier-one", args: { no_quarantine: true }
 cask "syncthing", args: { no_quarantine: true }
+cask "calibre", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "karabiner-elements", args: { no_quarantine: true }

@@ -109,26 +109,30 @@ alt + shift - right : yabai -m window --warp east
                   #yabai -m space --focus "${index}"
 
 # fast focus desktop / splace
-alt + ctrl - j : yabai -m space --focus prev || yabai -m space --focus last
-alt + ctrl - k : yabai -m space --focus next || yabai -m space --focus first
-alt + shift - j :  yabai -m window --space prev || yabai -m window --space last && yabai -m space --focus prev || yabai -m space --focus last
-alt + shift - k :  yabai -m window --space next || yabai -m window --space first && yabai -m space --focus next || yabai -m space --focus first
+# alt + ctrl - j : yabai -m space --focus prev || yabai -m space --focus last
+# alt + ctrl - k : yabai -m space --focus next || yabai -m space --focus first
+# alt + shift - j :  yabai -m window --space prev || yabai -m window --space last && yabai -m space --focus prev || yabai -m space --focus last
+# alt + shift - k :  yabai -m window --space next || yabai -m window --space first && yabai -m space --focus next || yabai -m space --focus first
 # send window to desktop and follow focus
-#alt + shift - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
-                        #yabai -m window --space "${index}" &&\
-                        #yabai -m space --focus "${index}"
-#alt + shift - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
-                        #yabai -m window --space "${index}" &&\
-                        #yabai -m space --focus "${index}"
+alt + ctrl - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+                        yabai -m space --focus "${index}"
+alt + ctrl - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+                        yabai -m space --focus "${index}"
+alt + shift - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+                        yabai -m window --space "${index}" &&\
+                        yabai -m space --focus "${index}"
+alt + shift - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+                        yabai -m window --space "${index}" &&\
+                        yabai -m space --focus "${index}"
 
 # focus monitor
-# alt - h  : yabai -m display --focus prev || yabai -m display --focus last
-# alt - l  : yabai -m display --focus next || yabai -m display --focus first
+alt + ctrl - h  : yabai -m display --focus prev || yabai -m display --focus last
+alt + ctrl - l  : yabai -m display --focus next || yabai -m display --focus first
 #ctrl + alt - down  : yabai -m display --focus recent
 
 # send window to monitor and follow focus
-# alt + shift - h  : yabai -m window --display prev; yabai -m display --focus prev
-# alt + shift - l : yabai -m window --display next; yabai -m display --focus next
+alt + shift - h  : (yabai -m window --display prev && yabai -m display --focus prev) || (yabai -m window --display last && yabai -m display --focus last)
+alt + shift - l : (yabai -m window --display next && yabai -m display --focus next) || (yabai -m window --display first && yabai -m display --focus first)
 #alt + ctrl - down  : yabai -m window --display recent; yabai -m display --focus recent
 
 
