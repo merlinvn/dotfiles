@@ -79,6 +79,7 @@
 # open terminal, blazingly fast compared to iTerm/Hyper
 # cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd - return : /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process
+cmd - tab : yabai -m space --focus recent
 
 # open Brave Browser
 # cmd + shift - return : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
@@ -182,26 +183,52 @@ shift + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
 shift + alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
 shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
 
+# maximize window in bsp mode
+alt + shift - m : yabai -m window --toggle zoom-fullscreen
+# alt - f : yabai -m window --toggle native-fullscreen
+
+# toggle window zoom
+alt + shift - z : yabai -m window --toggle zoom-parent
+
+# float / unfloat window and center on screen
+alt + shift - t : yabai -m window --toggle float;\
+                  yabai -m window --grid 6:6:1:1:4:4
+
+# toggle window split type
+alt + shift - s : yabai -m window --toggle split
+alt + shift - r : yabai -m space --rotate 270
+
 # toggle space layout mode
 # todo combine with fill screen below for all floating windows
-alt + shift - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+# alt + shift - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+alt + shift - q : yabai -m space --layout bsp
+alt + shift - w : yabai -m space --layout stack
+alt + shift - f : yabai -m space --layout float
 
 # balance size of windows
-alt + shift - e : yabai -m space --balance
+alt + shift - b : yabai -m space --balance
+
+### Floating Window Management ###
 
 #The grid format is <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
-# make floating window fill screen
-alt + ctrl - f : yabai -m window --grid 1:1:0:0:1:1
+# make floating window fill screen / maximize
+cmd + alt - m : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-# cmd + alt - left : yabai -m window --grid 1:2:0:0:1:1
+# TODO: implement snapping top bottom
+cmd + alt - left : yabai -m window --grid 1:2:0:0:1:1
+cmd + alt - right : yabai -m window --grid 1:2:1:0:1:1
+# center floating window
+cmd + alt - c : yabai -m window --grid 6:6:1:1:4:4
 
-#yabai -m window --grid 1:3:0:0:2:1
-#
 # move floating window
-# shift + ctrl - a : yabai -m window --move rel:-20:0
-# shift + ctrl - s : yabai -m window --move rel:0:20
+cmd + alt - h : yabai -m window --move rel:-20:0
+cmd + alt - j : yabai -m window --move rel:0:20
+cmd + alt - k : yabai -m window --move rel:0:-20
+cmd + alt - l : yabai -m window --move rel:20:0
 
+
+#### Resize windows in both bsp and float mode ####
 # increase window size
 ctrl + alt - left : yabai -m window --resize right:-20:0
 ctrl + alt - right : yabai -m window --resize right:20:0
@@ -211,19 +238,6 @@ ctrl + alt - right : yabai -m window --resize right:20:0
 ctrl + alt - down : yabai -m window --resize bottom:0:20
 ctrl + alt - up :   yabai -m window --resize bottom:0:-20
 
-# set insertion point in focused container
-# ctrl + alt - h : yabai -m window --insert west
-
-alt + shift - f : yabai -m window --toggle zoom-fullscreen
-# toggle window zoom
-alt + shift - z : yabai -m window --toggle zoom-parent
-# float / unfloat window and center on screen
-alt + shift - t : yabai -m window --toggle float;\
-                  yabai -m window --grid 6:6:1:1:4:4
-
-# toggle window split type
-alt + shift - s : yabai -m window --toggle split
-alt + shift - r : yabai -m space --rotate 270
 
 # toggle sticky(+float), topmost, picture-in-picture
 # alt + shift - p : yabai -m window --toggle sticky;\
@@ -231,7 +245,7 @@ alt + shift - r : yabai -m space --rotate 270
 #                   yabai -m window --toggle pip
 
 # toggle window border
-alt + shift - b : yabai -m window --toggle border
+# alt + shift - b : yabai -m window --toggle border
 
 
 # prevents skhd from monitoring events for listed processes.
