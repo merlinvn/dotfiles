@@ -50,7 +50,7 @@ brew "ruff"
 brew "ghcup"
 brew "ffmpeg"
 # Appearance
-brew "spacebar"
+# brew "spacebar"
 brew "yabai"
 brew "skhd"
 

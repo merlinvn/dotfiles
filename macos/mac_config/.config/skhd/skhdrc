@@ -201,9 +201,9 @@ alt + shift - r : yabai -m space --rotate 270
 # toggle space layout mode
 # todo combine with fill screen below for all floating windows
 # alt + shift - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
-alt + shift - q : yabai -m space --layout bsp
-alt + shift - w : yabai -m space --layout stack
-alt + shift - f : yabai -m space --layout float
+alt + shift - q : yabai -m space --layout bsp; echo "refresh" | nc -U /tmp/yabai-indicator.socket
+alt + shift - w : yabai -m space --layout stack; echo "refresh" | nc -U /tmp/yabai-indicator.socket
+alt + shift - f : yabai -m space --layout float; echo "refresh" | nc -U /tmp/yabai-indicator.socket
 
 # balance size of windows
 alt + shift - b : yabai -m space --balance
