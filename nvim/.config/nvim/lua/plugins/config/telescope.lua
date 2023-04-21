@@ -79,11 +79,11 @@ M.config = function()
 end
 
 M.keys = function()
-  local status, telescope = pcall(require, "telescope")
+  local status = pcall(require, "telescope")
   if not status then
     return
   end
-  local telescope_prefix = "<leader>t"
+  local telescope_prefix = "<leader>s"
   local MyTelescope = require("merlinvn.telescope")
 
   return {
@@ -103,7 +103,7 @@ M.keys = function()
 
     -- FILES
     {
-      "<leader>e",
+      "<leader>p",
       MyTelescope.find_files(),
       desc = "Files / Project files",
     },

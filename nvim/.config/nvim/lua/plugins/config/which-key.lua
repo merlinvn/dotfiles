@@ -15,32 +15,39 @@ M.config = function()
   require("plugins.config.legendary").setup()
 
   wk.register({
-    ["<leader>r"] = {
-      name = "reload",
-      -- l = "Reload current luafile",
-    },
-    ["<leader>g"] = {
-      name = "+git",
-    },
-    ["<leader>w"] = {
-      name = "+windows",
-    },
-    ["<leader>o"] = {
-      name = "+options/open",
-    },
-    ["<leader>t"] = {
-      name = "+telescope",
-    },
-    ["<leader>v"] = {
-      name = "+vim",
-    },
-    ["<leader>x"] = {
-      name = "+diagnotics",
-    },
     ["<leader>c"] = {
       name = "+code",
       w = "swap next",
       W = "swap previous",
+    },
+    -- edit: substitute, change, delete, yank, paste, undo, redo
+    ["<leader>e"] = {
+      name = "+edit",
+    },
+    ["<leader>g"] = {
+      name = "+git",
+    },
+    ["<leader>o"] = {
+      name = "+options/open",
+    },
+    ["<leader>r"] = {
+      name = "reload",
+      -- l = "Reload current luafile",
+    },
+    ["<leader>s"] = {
+      name = "+search",
+    },
+    ["<leader>v"] = {
+      name = "+vim",
+    },
+    ["<leader>w"] = {
+      name = "+windows",
+    },
+    ["<leader>x"] = {
+      name = "+diagnotics",
+    },
+    ["<leader>q"] = {
+      name = "+quit",
     },
   })
 end

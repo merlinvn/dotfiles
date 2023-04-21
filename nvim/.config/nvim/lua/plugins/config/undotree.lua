@@ -2,7 +2,7 @@ local M = {}
 
 M.keys = {
   {
-    "<leader>u",
+    "<leader>eu",
     ":UndotreeToggle<CR>",
     noremap = true,
     silent = true,

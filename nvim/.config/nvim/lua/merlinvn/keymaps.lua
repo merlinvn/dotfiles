@@ -75,20 +75,20 @@ vim.keymap.set("n", "<S-Tab>", "<<")
 vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
-vim.keymap.set("n", "<C-p>", '"+p')
+vim.keymap.set({ "n", "v" }, "<C-p>", '"+p')
+vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 vim.keymap.set(
   { "n", "v" },
-  "<leader>p",
+  "<leader>ep",
   '"+p',
   { desc = "paste from clipboard after" }
 )
 vim.keymap.set(
   { "n", "v" },
-  "<leader>P",
+  "<leader>eP",
   '"+P',
   { desc = "paste from clipboard before" }
 )
-vim.keymap.set("i", "<C-p>", '<esc>"+pa')
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- select what just pasted
@@ -100,7 +100,6 @@ vim.keymap.set(
 )
 
 -- next greatest remap ever : yank to clipboard
--- vim.keymap.set({ "n", "x", "v" }, "<leader>y", [["+y]], { silent = true, noremap = true, desc = "yank to clipboard" })
 vim.keymap.set(
   { "n", "x", "v" },
   "<C-y>",
@@ -110,7 +109,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n", "x", "v" },
-  "<leader>y",
+  "<leader>ey",
   [["+y]],
   { silent = true, noremap = true, desc = "yank to clipboard" }
 )
@@ -118,7 +117,7 @@ vim.keymap.set(
 -- delete to register _ (black hole)
 vim.keymap.set(
   { "n", "v" },
-  "<leader>d",
+  "<leader>ed",
   [["_d]],
   { silent = true, desc = "delete to black hole" }
 )
@@ -128,20 +127,21 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- replace selected in visual mode, by yank current selection to register h, then
 -- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
-vim.keymap.set(
-  "v",
-  "<Leader>s",
-  '"hy:%s/<C-r>h//gc<Left><Left><Left>',
-  { noremap = true, desc = "[s]ubtitude selected" }
-)
--- replace current word in normal mode
-vim.keymap.set(
-  "n",
-  "<Leader>s",
-  ":%s/<C-r><C-w>//gI<Left><Left><Left>",
-  { noremap = true, desc = "[s]ubtitude selected" }
-)
-
+-- vim.keymap.set(
+--   "v",
+--   "<Leader>s",
+--   '"hy:%s/<C-r>h//gc<Left><Left><Left>',
+--   { noremap = true, desc = "[s]ubtitude selected" }
+-- )
+--
+-- -- replace current word in normal mode
+-- vim.keymap.set(
+--   "n",
+--   "<Leader>s",
+--   ":%s/<C-r><C-w>//gI<Left><Left><Left>",
+--   { noremap = true, desc = "[s]ubtitude selected" }
+-- )
+--
 -- move line up / down
 vim.keymap.set(
   "n",
