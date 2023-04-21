@@ -4,7 +4,7 @@
 # export TERM="screen-256color" # This sets up colors properly
 
 # set shell
-export SHELL=/usr/bin/zsh
+export SHELL=$(which zsh)
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -166,7 +166,3 @@ function nvims() {
 }
 
 bindkey -s ^n "nvims\n"
-
-
-
-
