@@ -67,7 +67,8 @@ cask "syncthing", args: { no_quarantine: true }
 cask "calibre", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
-cask "karabiner-elements", args: { no_quarantine: true }
+cask "obsidian", args: { no_quarantine: true }
+# cask "karabiner-elements", args: { no_quarantine: true }
 # Development
 cask "kitty", args: { no_quarantine: true }
 cask "alacritty", args: { no_quarantine: true }

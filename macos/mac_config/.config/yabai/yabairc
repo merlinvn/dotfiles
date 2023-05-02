@@ -88,23 +88,25 @@ done
 yabai -m space 1 --layout float
 yabai -m space 2 --layout stack
 yabai -m space 4 --layout stack
+yabai -m space 7 --layout stack
 yabai -m space 8 --layout stack
 
 yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
-yabai -m rule --add app=Finder space=^5
-yabai -m rule --add app="Commander One PRO" space=^5
-yabai -m rule --add app=Code space=^4
-yabai -m rule --add app=Spyder space=^4
 yabai -m rule --add app=Safari space=^3
 yabai -m rule --add app="Brave Browser" space=^3
 yabai -m rule --add app="Microsoft Edge" space=^3
-yabai -m rule --add app=Reeder space=^7
+yabai -m rule --add app=Code space=^4
+yabai -m rule --add app=Spyder space=^4
+yabai -m rule --add app="^Navicat" space=^4
+yabai -m rule --add app=Finder space=^5
+yabai -m rule --add app="Commander One PRO" space=^5
 yabai -m rule --add app=Mail space=^6
+yabai -m rule --add app=Reeder space=^7
+yabai -m rule --add app="^Acrobat" space=^7
+yabai -m rule --add app="^Obsidian" space=^7
 yabai -m rule --add app=Telegram space=^8
 yabai -m rule --add app=VLC space=^9
-yabai -m rule --add app="^Acrobat" space=^7
-yabai -m rule --add app="^Navicat" space=^4
 
 #yabai -m rule --add app=".*" manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off
