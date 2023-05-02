@@ -84,8 +84,8 @@ cmd - tab : yabai -m space --focus recent
 # open Brave Browser
 # cmd + shift - return : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
 
-# reload
-alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# reload yabai and skhd configuration files
+alt + cmd - r : yabai --restart-service
 alt + cmd - a : skhd --reload
 
 # focus window

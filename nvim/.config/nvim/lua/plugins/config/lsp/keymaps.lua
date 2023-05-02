@@ -139,7 +139,7 @@ function M.on_attach(client, bufnr)
 
   nmap(
     "<leader>cf",
-    "<cmd>lua require('plugins.lsp.format').format()<CR>",
+    "<cmd>lua require('plugins.lsp.format').format({ force = true })<CR>",
     "Format buffer"
   )
 

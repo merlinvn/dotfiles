@@ -85,6 +85,11 @@ done
 # yabai -m space code --display 3
 # yabai -m space term --display 3
 
+yabai -m space 1 --layout float
+yabai -m space 2 --layout stack
+yabai -m space 4 --layout stack
+yabai -m space 8 --layout stack
+
 yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
 yabai -m rule --add app=Finder space=^5
@@ -95,8 +100,11 @@ yabai -m rule --add app=Safari space=^3
 yabai -m rule --add app="Brave Browser" space=^3
 yabai -m rule --add app="Microsoft Edge" space=^3
 yabai -m rule --add app=Reeder space=^7
+yabai -m rule --add app=Mail space=^6
 yabai -m rule --add app=Telegram space=^8
 yabai -m rule --add app=VLC space=^9
+yabai -m rule --add app="^Acrobat" space=^7
+yabai -m rule --add app="^Navicat" space=^4
 
 #yabai -m rule --add app=".*" manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off
@@ -109,6 +117,8 @@ yabai -m rule --add app="^YabaiIndicator" manage=off
 yabai -m rule --add app="^Bartender" manage=off
 yabai -m rule --add app="Commander One PRO" manage=off
 yabai -m rule --add app="^Dozer" manage=off
+yabai -m rule --add app="^Xee" manage=off
+yabai -m rule --add app="^WireGuard" manage=off
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off
 # yabai -m rule --add title="^Finder" manage=off
