@@ -2,7 +2,7 @@
   name = Nguyen Tran
   email = merlinvn@gmail.com
 [core]
-  editor = vi
+  editor = nvim
   excludesfile = ~/.gitignore
   autocrlf = input
 [color]
