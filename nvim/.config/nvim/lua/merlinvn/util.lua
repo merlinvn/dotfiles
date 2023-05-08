@@ -16,6 +16,7 @@ function M.opts(name)
   if not plugin then
     return {}
   end
+  -- print("found plugin: ", name)
   local Plugin = require("lazy.core.plugin")
   return Plugin.values(plugin, "opts", false)
 end

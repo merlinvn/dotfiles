@@ -105,8 +105,9 @@ yabai -m rule --add app=Mail space=^6
 yabai -m rule --add app=Reeder space=^7
 yabai -m rule --add app="^Acrobat" space=^7
 yabai -m rule --add app="^Obsidian" space=^7
-yabai -m rule --add app=Telegram space=^8
-yabai -m rule --add app=VLC space=^9
+yabai -m rule --add app="^Telegram" space=^8
+yabai -m rule --add app="^Discord" space=^8
+yabai -m rule --add app="^VLC" space=^9
 
 #yabai -m rule --add app=".*" manage=off
 yabai -m rule --add app="^System Preferences$" sticky=on manage=off
@@ -126,10 +127,10 @@ yabai -m rule --add app="^WireGuard" manage=off
 # yabai -m rule --add title="^Finder" manage=off
 
 # focus window after active space changes
-yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+# yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[0].id')"
 
 # focus window after active display changes
-yabai -m signal --add event=display_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+# yabai -m signal --add event=display_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[0].id')"
 
 # signal yabai-indicator to refresh
 yabai -m signal --add event=mission_control_exit action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
@@ -147,5 +148,6 @@ yabai -m signal --add event=window_deminimized action='echo "refresh windows" | 
 # echo "refresh" | nc -U /tmp/yabai-indicator.socket
 
 
+##YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
 
 echo "yabai configuration loaded.."

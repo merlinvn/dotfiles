@@ -5,12 +5,7 @@ local M = {}
 M.autoformat = true
 
 function M.toggle()
-  if vim.b.autoformat == false then
-    vim.b.autoformat = nil
-    M.autoformat = true
-  else
-    M.autoformat = not M.autoformat
-  end
+  M.autoformat = not M.autoformat
   if M.autoformat then
     Util.info("Enabled format on save", { title = "Format" })
   else
@@ -18,17 +13,14 @@ function M.toggle()
   end
 end
 
-function M.format(opts)
+function M.format()
   local buf = vim.api.nvim_get_current_buf()
-  if vim.b.autoformat == false and not (opts and opts.force) then
-    return
-  end
   local ft = vim.bo[buf].filetype
   local have_nls = #require("null-ls.sources").get_available(
     ft,
     "NULL_LS_FORMATTING"
   ) > 0
-
+  print("have_nls", have_nls)
   vim.lsp.buf.format(vim.tbl_deep_extend("force", {
     bufnr = buf,
     filter = function(client)

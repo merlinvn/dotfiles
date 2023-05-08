@@ -18,7 +18,6 @@ local imap_buf = function(keys, func, desc, bufnr)
   )
 end
 
--- TODO: add addition keymaps for rust lsp later
 function M.on_attach_rust(client, bufnr)
   local nmap = function(keys, func, desc)
     nmap_buf(keys, func, desc, bufnr)
@@ -42,6 +41,9 @@ function M.on_attach(client, bufnr)
   end
   local imap = function(keys, func, desc)
     imap_buf(keys, func, desc, bufnr)
+  end
+  local format = function()
+    require("plugins.config.lsp.format").format()
   end
   -- Mappings.
 
@@ -137,28 +139,23 @@ function M.on_attach(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap("gD", vim.lsp.buf.declaration, "Go to declaration")
 
-  nmap(
-    "<leader>cf",
-    "<cmd>lua require('plugins.lsp.format').format({ force = true })<CR>",
-    "Format buffer"
-  )
+  nmap("<leader>cf", format, "Format buffer")
 
-  vim.keymap.set("v", "<leader>cf", function()
-    vim.lsp.buf.rangeFormatting({ async = true, timeout_ms = 5000 })
-  end, {
+  vim.keymap.set("v", "<leader>cf", format, {
     buffer = bufnr,
     noremap = true,
     silent = true,
     desc = "Format range",
   })
 
-  imap("<C-f>", function()
-    vim.lsp.buf.format()
-  end, "Format buffer")
+  imap("<C-f>", format, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-    vim.lsp.buf.format()
-  end, { desc = "Format current buffer with LSP" })
+  vim.api.nvim_buf_create_user_command(
+    bufnr,
+    "Format",
+    format,
+    { desc = "Format current buffer with LSP" }
+  )
 
   -- nmap(
   --   "<leader>wa",

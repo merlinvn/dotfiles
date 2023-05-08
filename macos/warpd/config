@@ -1,0 +1,23 @@
+buttons: j k ,
+oneshot_buttons: m / .
+screen_chars: nhioarstg
+left: Left
+right: Right
+up: Up
+down: Down
+start: n Home
+end: i End
+top: u
+bottom: h
+middle: o
+scroll_up: p
+scroll_down: f
+grid_keys: l u n h
+grid_color: #212f5a
+grid_left: r
+grid_right: t
+grid_up: f
+grid_down: s
+hint2_chars: luynhijk,
+hint: X
+hint2: x
