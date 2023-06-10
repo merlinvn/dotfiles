@@ -110,3 +110,6 @@ set_alias jr zellij r --
 set_alias je zellij edit
 set_alias jj zellij
 
+alias python='python3'
+alias pip='pip3'
+

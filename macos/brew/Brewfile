@@ -51,8 +51,8 @@ brew "ghcup"
 brew "ffmpeg"
 # Appearance
 # brew "spacebar"
-brew "yabai"
-brew "skhd"
+# brew "yabai"
+# brew "skhd"
 
 ###############################################################
 # Casks (Applications)                                        #

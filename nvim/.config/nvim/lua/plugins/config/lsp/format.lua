@@ -20,7 +20,6 @@ function M.format()
     ft,
     "NULL_LS_FORMATTING"
   ) > 0
-  print("have_nls", have_nls)
   vim.lsp.buf.format(vim.tbl_deep_extend("force", {
     bufnr = buf,
     filter = function(client)

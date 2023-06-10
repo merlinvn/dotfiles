@@ -8,6 +8,7 @@ export SHELL=$(which zsh)
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 
 
 # Path to your oh-my-zsh installation.
@@ -168,7 +169,7 @@ function nvims() {
 bindkey -s ^n "nvims\n"
 
 # Add any commands which depend on conda here
-lazy_conda_aliases=('python' 'conda')
+lazy_conda_aliases=('conda')
 
 function load_conda() {
   for lazy_conda_alias in $lazy_conda_aliases
