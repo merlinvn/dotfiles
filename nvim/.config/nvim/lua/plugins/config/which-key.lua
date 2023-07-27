@@ -15,20 +15,36 @@ M.config = function()
   require("plugins.config.legendary").setup()
 
   wk.register({
+    ["<leader>b"] = {
+      name = "+buffer",
+    },
     ["<leader>c"] = {
       name = "+code",
+      t = "+test",
       w = "swap next",
       W = "swap previous",
     },
     -- edit: substitute, change, delete, yank, paste, undo, redo
-    ["<leader>e"] = {
-      name = "+edit",
+    -- ["<leader>e"] = {
+    --   name = "+edit",
+    -- },
+    ["<leader>d"] = {
+      name = "+dap",
+    },
+    ["<leader>f"] = {
+      name = "+files/find",
     },
     ["<leader>g"] = {
       name = "+git",
     },
+    ["<leader>n"] = {
+      name = "+session",
+    },
     ["<leader>o"] = {
       name = "+options/open",
+    },
+    ["<leader>q"] = {
+      name = "+quit/session",
     },
     ["<leader>r"] = {
       name = "reload",
@@ -36,6 +52,9 @@ M.config = function()
     },
     ["<leader>s"] = {
       name = "+search",
+    },
+    ["<leader>t"] = {
+      name = "+tree",
     },
     ["<leader>v"] = {
       name = "+vim",
@@ -45,9 +64,6 @@ M.config = function()
     },
     ["<leader>x"] = {
       name = "+diagnotics",
-    },
-    ["<leader>q"] = {
-      name = "+quit",
     },
   })
 end

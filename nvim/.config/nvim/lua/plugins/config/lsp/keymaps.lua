@@ -95,11 +95,11 @@ function M.on_attach(client, bufnr)
     imap("<C-K>", vim.lsp.buf.signature_help, "Show signature help")
   end
 
-  nmap(
-    "<leader>cd",
-    "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
-    "Document diagnostics"
-  )
+  -- nmap(
+  --   "<leader>cd",
+  --   "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
+  --   "Document diagnostics"
+  -- )
 
   nmap(
     "gd",
@@ -118,21 +118,21 @@ function M.on_attach(client, bufnr)
   )
   -- nmap("gt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>")
 
-  nmap(
-    "<leader>cs",
-    "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-    "Document symbols"
-  )
-  nmap(
-    "<leader>cS",
-    "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
-    "Workspace symbols"
-  )
-  nmap(
-    "<leader>cD",
-    "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-    "Workspace diagnostics"
-  )
+  -- nmap(
+  --   "<leader>cs",
+  --   "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+  --   "Document symbols"
+  -- )
+  -- nmap(
+  --   "<leader>cS",
+  --   "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
+  --   "Workspace symbols"
+  -- )
+  -- nmap(
+  --   "<leader>cD",
+  --   "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
+  --   "Workspace diagnostics"
+  -- )
 
   -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 

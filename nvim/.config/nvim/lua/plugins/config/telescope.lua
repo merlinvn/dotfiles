@@ -83,10 +83,12 @@ M.keys = function()
   if not status then
     return
   end
-  local telescope_prefix = "<leader>s"
-  local MyTelescope = require("merlinvn.telescope")
+  local search_prefix = "<leader>s"
+  local find_prefix = "<leader>f"
+  local telescopeHelper = require("merlinvn.telescope")
 
   return {
+    -- search in command
     {
       mode = "c",
       "<c-r><c-r>",
@@ -94,146 +96,167 @@ M.keys = function()
       noremap = false,
       nowait = true,
     },
-    -- vim.keymap.set("n", "<leader><space>", require('merlinvn.telescope').buffers,  { desc = "Current buffers" })
+    -- top level search
+    {
+      "<leader>p",
+      telescopeHelper.find_files(),
+      desc = "Files / Project files",
+    },
+    {
+      "<leader>:",
+      "<cmd>Telescope command_history<cr>",
+      desc = "Commands History",
+    },
     {
       "<leader><space>",
       "<cmd>Telescope buffers show_all_buffers=true<cr>",
       desc = "Find Buffer",
     },
-
-    -- FILES
-    {
-      "<leader>p",
-      MyTelescope.find_files(),
-      desc = "Files / Project files",
-    },
-
-    {
-      telescope_prefix .. "f",
-      MyTelescope.find_files(),
-      desc = "Files / Project files",
-    },
-    {
-      telescope_prefix .. "/",
-      MyTelescope.grep_prompt,
-      desc = "Global search cwd",
-    },
-    {
-      telescope_prefix .. "t",
-      "<cmd>Telescope<cr>",
-      desc = "Telescope",
-    },
-    {
-      telescope_prefix .. "b",
-      "<cmd>Telescope buffers show_all_buffers=true<cr>",
-      desc = "[B]uffers",
-    },
-    {
-      telescope_prefix .. "o",
-      "<cmd>Telescope oldfiles<cr>",
-      desc = "[O]ld files",
-    },
-    {
-      telescope_prefix .. "g",
-      "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
-      desc = "Live [G]rep",
-    },
-    {
-      telescope_prefix .. "a",
-      "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>",
-      desc = "[A]ll files",
-    },
-    {
-      telescope_prefix .. "e",
-      "<cmd>lua require('merlinvn.telescope').file_browser()<cr>",
-      desc = "Fil[e] browser",
-    },
-    {
-      telescope_prefix .. "z",
-      "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
-      desc = "Search by file type",
-    },
-    {
-      telescope_prefix .. "y",
-      "<cmd>Telescope symbols<cr>",
-      desc = "Symbols",
-    },
-    -- SEARCH
     {
       "<leader>/",
+      "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
+      desc = "Live Grep",
+    },
+
+    -- SEARCH
+    {
+      search_prefix .. "a",
+      "<cmd>Telescope autocommands<cr>",
+      desc = "Auto Commands",
+    },
+    {
+      search_prefix .. "b",
       "<cmd>lua require('merlinvn.telescope').curbuf()<cr>",
       desc = "Search current buffer",
     },
-    -- search word under cursor
     {
-      telescope_prefix .. "w",
-      "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>",
-      desc = "Search word under cursor",
-    },
-
-    -- VIM
-    {
-      telescope_prefix .. "r",
-      "<cmd>lua require('telescope.builtin').registers()<cr>",
-      desc = "[R]egisters",
-    },
-    {
-
-      telescope_prefix .. "c",
+      search_prefix .. "C",
       "<cmd>Telescope commands<cr>",
       desc = "Commands",
     },
     {
-      telescope_prefix .. "h",
+      search_prefix .. "c",
+      "<cmd>Telescope command_history<cr>",
+      desc = "Commands History",
+    },
+    {
+      search_prefix .. "d",
+      "<cmd>Telescope diagnostics bufnr=0<cr>",
+      desc = "Document diagnostics",
+    },
+    {
+      search_prefix .. "D",
+      "<cmd>Telescope diagnostics<cr>",
+      desc = "Workspace diagnostics",
+    },
+    {
+      search_prefix .. "e",
+      "<cmd>Telescope symbols<cr>",
+      desc = "Emojis",
+    },
+    {
+      search_prefix .. "g",
+      "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
+      desc = "Live Grep",
+    },
+    {
+      search_prefix .. "h",
       "<cmd>lua require('merlinvn.telescope').help_tags()<cr>",
-      desc = "[H]elp tags",
+      desc = "Help tags",
     },
     {
-      telescope_prefix .. "k",
+      search_prefix .. "k",
       "<cmd>lua require('telescope.builtin').keymaps()<cr>",
-      desc = "[K]eymaps",
+      desc = "Keymaps",
+    },
+    { search_prefix .. "k", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+    { search_prefix .. "m", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+    {
+      search_prefix .. "M",
+      "<cmd>Telescope man_pages<cr>",
+      desc = "Man Pages",
     },
     {
-      telescope_prefix .. "O",
+      search_prefix .. "o",
       "<cmd>lua require('merlinvn.telescope').vim_options()<cr>",
       desc = "Vim Options",
     },
-    -- {"m", "<cmd>Telescope marks<cr>", { desc = "Marks" })
     {
-      telescope_prefix .. ";",
-      "<cmd>Telescope command_history<cr>",
-      desc = "Command history",
+      search_prefix .. '"',
+      "<cmd>lua require('telescope.builtin').registers()<cr>",
+      desc = "Registers",
     },
     {
-      telescope_prefix .. "?",
+      search_prefix .. "T",
+      "<cmd>lua require('telescope.builtin').treesitter()<CR>",
+      { desc = "Treesitter" },
+    },
+    {
+      search_prefix .. "t",
+      "<cmd>Telescope<cr>",
+      desc = "Telescope",
+    },
+    {
+      search_prefix .. "s",
+      "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+      "Document symbols",
+    },
+    {
+      search_prefix .. "S",
+      "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
+      "Workspace symbols",
+    },
+    {
+      search_prefix .. "w",
+      "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>",
+      desc = "Search word under cursor",
+    },
+    {
+      search_prefix .. "?",
       "<cmd>Telescope search_history<cr>",
       desc = "Search history",
     },
 
+    -- FIND
     {
-      telescope_prefix .. "d",
+      find_prefix .. "a",
+      "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>",
+      desc = "All files",
+    },
+    {
+      find_prefix .. "b",
+      "<cmd>Telescope buffers<cr>",
+      desc = "Buffers",
+    },
+    {
+      find_prefix .. "d",
       "<cmd>lua require('merlinvn.telescope').edit_dotfiles()<cr>",
       desc = "Dotfiles",
     },
     {
-      telescope_prefix .. "n",
+      find_prefix .. "e",
+      "<cmd>lua require('merlinvn.telescope').file_browser()<cr>",
+      desc = "File browser",
+    },
+    {
+      find_prefix .. "f",
+      telescopeHelper.find_files(),
+      desc = "Files / Project files",
+    },
+    {
+      find_prefix .. "n",
       "<cmd>lua require('merlinvn.telescope').edit_neovim()<cr>",
       desc = "Neovim config",
     },
-
-    -- search word from input
-
-    -- nnoremap ("gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-    -- nnoremap ("<leader>ch", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-    --
-    -- " nnoremap gs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-    -- " nnoremap <leader>cs <cmd>lua vim.lsp.buf.document_symbol()<CR>
-
-    -- treesitter
     {
-      telescope_prefix .. "s",
-      "<cmd>lua require('telescope.builtin').treesitter()<CR>",
-      { desc = "Treesitter" },
+      find_prefix .. "o",
+      "<cmd>Telescope oldfiles<cr>",
+      desc = "Old files",
+    },
+    {
+      find_prefix .. "t",
+      "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
+      desc = "Search by file type",
     },
   }
 end

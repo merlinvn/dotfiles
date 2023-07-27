@@ -37,7 +37,11 @@ vim.keymap.set(
 
 -- remap quit
 vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Close window" })
+-- quit
+vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- vim.keymap.set("n", "Q", ":q<CR>", { silent = true, desc = "Close window" })
+
+vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 vim.keymap.set(
   "n",
@@ -57,6 +61,14 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Escape and clear hlsearch" }
 )
 
+-- search word under cursor
+vim.keymap.set(
+  { "n", "x" },
+  "gw",
+  "*N",
+  { noremap = true, silent = true, desc = "Search word under cursor" }
+)
+
 -- vim.keymap.set("i", "jk", "<esc>", { noremap = true, silent = true, desc = "jk to esc" })
 
 -- better indent: indent and stay in visual
@@ -70,26 +82,13 @@ vim.keymap.set("n", "<Tab>", ">>")
 vim.keymap.set("n", "<S-Tab>", "<<")
 
 -- better p
--- vim.keymap.set("n", ",p", '"0p')
--- vim.keymap.set("n", ",P", '"0p')
 vim.keymap.set("v", "p", '"_dP')
 
 -- paste from clipboard
 vim.keymap.set({ "n", "v" }, "<C-p>", '"+p')
 vim.keymap.set("i", "<C-p>", '<esc>"+pa')
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>ep",
-  '"+p',
-  { desc = "paste from clipboard after" }
-)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>eP",
-  '"+P',
-  { desc = "paste from clipboard before" }
-)
-vim.keymap.set("x", "<leader>p", [["_dP]])
+
+-- vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- select what just pasted
 vim.keymap.set(
@@ -107,17 +106,10 @@ vim.keymap.set(
   { silent = true, noremap = true, desc = "yank to clipboard" }
 )
 
-vim.keymap.set(
-  { "n", "x", "v" },
-  "<leader>ey",
-  [["+y]],
-  { silent = true, noremap = true, desc = "yank to clipboard" }
-)
-
 -- delete to register _ (black hole)
 vim.keymap.set(
   { "n", "v" },
-  "<leader>ed",
+  "<leader>dd",
   [["_d]],
   { silent = true, desc = "delete to black hole" }
 )
@@ -317,6 +309,12 @@ vim.keymap.set(
   "<C-^>",
   { noremap = true, silent = true, desc = "<-> buffer" }
 )
+vim.keymap.set(
+  "n",
+  "<leader>bb",
+  "<cmd>e #<cr>",
+  { noremap = true, silent = true, desc = "Switch to Other Buffer" }
+)
 
 -- tab navigation
 -- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
@@ -387,7 +385,6 @@ vim.keymap.set("n", "<leader>vm", "<cmd>Mason<CR>", { silent = true })
 -- TOGGLE OPTIONS
 -- o == option
 -- format not working yet
-
 local toggle_prefix = "<leader>o"
 if type(toggle_prefix) == "string" and toggle_prefix ~= "" then
   local map_toggle = function(lhs, rhs, desc)
@@ -432,7 +429,7 @@ if type(toggle_prefix) == "string" and toggle_prefix ~= "" then
     "Toggle 'ignorecase'"
   )
   map_toggle("l", "<Cmd>setlocal list! list?<CR>", "Toggle 'list'")
-  map_toggle("n", "<Cmd>setlocal number! number?<CR>", "Toggle 'number'")
+  map_toggle("N", "<Cmd>setlocal number! number?<CR>", "Toggle 'number'")
   map_toggle(
     "r",
     "<Cmd>setlocal relativenumber! relativenumber?<CR>",
@@ -444,19 +441,19 @@ end
 
 -- new file
 -- o == open
-vim.keymap.set("n", "<leader>oe", "<cmd>enew<cr>", { desc = "New File" })
-vim.keymap.set(
-  "n",
-  "<leader>ol",
-  "<cmd>lopen<cr>",
-  { desc = "Open Location List" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>oq",
-  "<cmd>copen<cr>",
-  { desc = "Open Quickfix List" }
-)
+
+-- vim.keymap.set(
+--   "n",
+--   "<leader>ol",
+--   "<cmd>lopen<cr>",
+--   { desc = "Open Location List" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "<leader>oq",
+--   "<cmd>copen<cr>",
+--   { desc = "Open Quickfix List" }
+-- )
 
 -- EDIT HELPERS
 -- undo break points

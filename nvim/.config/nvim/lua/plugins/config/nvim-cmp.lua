@@ -1,13 +1,7 @@
+---@diagnostic disable: missing-fields
 local M = {}
 
 M.config = function()
-  -- local has_words_before = function()
-  --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  -- end
-  -- local t = function(str)
-  --   return vim.api.nvim_replace_termcodes(str, true, true, true)
-  -- end
   local status, cmp = pcall(require, "cmp")
   if not status then
     return
@@ -16,7 +10,7 @@ M.config = function()
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
 
-  -- require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load()
 
   local source_mapping = {
     buffer = "[buf]",
@@ -41,7 +35,7 @@ M.config = function()
     ["<C-p>"] = cmp.mapping.select_prev_item({
       behavior = cmp.SelectBehavior.Insert,
     }),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<C-y>"] = cmp.mapping(
@@ -54,56 +48,12 @@ M.config = function()
     ["<M-y>"] = cmp.mapping(
       cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
+        select = true,
       }),
       { "i", "c" }
     ),
     -- `complete` function show selection menu
-    ["<C-space>"] = cmp.mapping({
-      i = cmp.mapping.complete({}),
-      c = function(
-        _ --[[fallback]]
-      )
-        if cmp.visible() then
-          if not cmp.confirm({ select = true }) then
-            return
-          end
-        else
-          cmp.complete()
-        end
-      end,
-    }),
-    -- ["<tab>"] = false,
-    ["<tab>"] = cmp.config.disable,
-    -- ["<tab>"] = cmp.mapping {
-    --   i = cmp.config.disable,
-    --   c = function(fallback)
-    --     fallback()
-    --   end,
-    -- },
-
-    -- Testing
-    ["<c-q>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
-    }),
-    -- If you want tab completion :'(
-    --  First you have to just promise to read `:help ins-completion`.
-    --
-    -- ["<Tab>"] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
-    -- ["<S-Tab>"] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
+    ["<C-space>"] = cmp.mapping.complete(),
   }
   cmp.setup({
     snippet = {
@@ -149,32 +99,38 @@ M.config = function()
       -- { name = "look" },
     },
     completion = { completeopt = "menu,menuone,noinsert" },
-    sorting = {
-      priority_weight = 2,
-      comparators = {
-        -- require("copilot_cmp.comparators").prioritize,
-        -- require("copilot_cmp.comparators").score,
-
-        -- Below is the default comparitor list and order for nvim-cmp
-        cmp.config.compare.offset,
-        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-        cmp.config.compare.exact,
-        cmp.config.compare.score,
-        cmp.config.compare.recently_used,
-        cmp.config.compare.locality,
-        cmp.config.compare.kind,
-        cmp.config.compare.sort_text,
-        cmp.config.compare.length,
-        cmp.config.compare.order,
+    experimental = {
+      ghost_text = {
+        hl_group = "CmpGhostText",
       },
     },
+    sorting = require("cmp.config.default")().sorting,
+    -- sorting = {
+    --   priority_weight = 2,
+    --   comparators = {
+    --     -- require("copilot_cmp.comparators").prioritize,
+    --     -- require("copilot_cmp.comparators").score,
+    --
+    --     -- Below is the default comparitor list and order for nvim-cmp
+    --     cmp.config.compare.offset,
+    --     -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+    --     cmp.config.compare.exact,
+    --     cmp.config.compare.score,
+    --     cmp.config.compare.recently_used,
+    --     cmp.config.compare.locality,
+    --     cmp.config.compare.kind,
+    --     cmp.config.compare.sort_text,
+    --     cmp.config.compare.length,
+    --     cmp.config.compare.order,
+    --   },
+    -- },
   })
 
   vim.cmd([[  highlight! default link CmpItemKind CmpItemMenuDefault ]])
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline("/", {
     -- completion = { autocomplete = true },
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({}),
     sources = {
       { name = "buffer" },
       -- { name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] } }
@@ -183,7 +139,7 @@ M.config = function()
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({}),
     sources = cmp.config.sources({
       { name = "path" },
     }, {

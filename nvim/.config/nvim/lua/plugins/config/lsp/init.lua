@@ -98,6 +98,7 @@ M.opts = { -- options for vim.diagnostic.config()
           checkOnSave = {
             -- default: `cargo check`
             command = "clippy",
+            -- command = "check",
           },
         },
         inlayHints = {
@@ -233,11 +234,11 @@ function M.config(_, opts)
 end
 
 M.keys = {
-  {
-    "<leader>f",
-    "<cmd>lua require('plugins.config.lsp.format').format()<CR>",
-    desc = "Format",
-  },
+  -- {
+  --   "<leader>f",
+  --   "<cmd>lua require('plugins.config.lsp.format').format()<CR>",
+  --   desc = "Format",
+  -- },
 }
 
 return M

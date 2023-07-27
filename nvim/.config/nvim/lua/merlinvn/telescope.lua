@@ -26,12 +26,6 @@ local set_prompt_to_entry_value = function(prompt_bufnr)
   action_state.get_current_picker(prompt_bufnr):reset_prompt(entry.ordinal)
 end
 
-local dotfiles_path = "$HOME/dotfiles/"
-
-if vim.fn.has("win32") == 1 then
-  dotfiles_path = "~/.config"
-end
-
 local neovim_opts_with_preview, opts_without_preview
 
 neovim_opts_with_preview = {
@@ -66,6 +60,13 @@ opts_without_preview.previewer = false
 
 M.edit_dotfiles = function()
   local opts = vim.deepcopy(neovim_opts_with_preview)
+
+  local dotfiles_path = "~/dotfiles/"
+
+  if vim.fn.has("win32") == 1 then
+    dotfiles_path = "~/.config"
+  end
+
   local m = {
     prompt_title = "< My dotfiles >",
     cwd = dotfiles_path,
@@ -77,6 +78,7 @@ M.edit_dotfiles = function()
   end
 
   require("telescope.builtin").find_files(opts)
+  -- require("telescope.builtin").find_files()
 end
 
 M.edit_neovim = function()
@@ -89,6 +91,7 @@ M.edit_neovim = function()
   for k, v in pairs(m) do
     opts[k] = v
   end
+  -- require("telescope.builtin").find_files(opts)
   require("telescope.builtin").find_files(opts)
 end
 

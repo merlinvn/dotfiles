@@ -73,6 +73,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    -- commit = "597a3cc889c1d16dc38ae4c61f9b542d5258815f",
     event = "VeryLazy",
     dependencies = {
       "echasnovski/mini.fuzzy",
@@ -217,19 +218,44 @@ return {
 
   --{{{ UI
   {
-    "echasnovski/mini.starter",
-    lazy = false,
-    config = function()
-      require("mini.starter").setup()
-    end,
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = require("plugins.config.alpha-nvim").opts,
+    config = require("plugins.config.alpha-nvim").config,
   },
-  -- manage session
+  -- better vim.ui
   {
-    "echasnovski/mini.sessions",
-    config = function()
-      require("mini.sessions").setup({})
+    "stevearc/dressing.nvim",
+    lazy = true,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
     end,
   },
+  -- {
+  --   "echasnovski/mini.starter",
+  --   event = "VimEnter",
+  --   lazy = false,
+  --   config = function()
+  --     require("mini.starter").setup()
+  --   end,
+  -- },
+  -- manage session
+  -- {
+  --   "echasnovski/mini.sessions",
+  --   config = function()
+  --     require("mini.sessions").setup({})
+  --   end,
+  -- },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -240,27 +266,27 @@ return {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       -- "rcarriga/nvim-notify",
-      -- {
-      --   "rcarriga/nvim-notify",
-      --   keys = {
-      --     {
-      --       "<leader>nx",
-      --       function()
-      --         require("notify").dismiss({ silent = true, pending = true })
-      --       end,
-      --       desc = "Delete all Notifications",
-      --     },
-      --   },
-      --   opts = {
-      --     timeout = 3000,
-      --     max_height = function()
-      --       return math.floor(vim.o.lines * 0.75)
-      --     end,
-      --     max_width = function()
-      --       return math.floor(vim.o.columns * 0.75)
-      --     end,
-      --   },
-      -- },
+      {
+        "rcarriga/nvim-notify",
+        keys = {
+          {
+            "<leader>on",
+            function()
+              require("notify").dismiss({ silent = true, pending = true })
+            end,
+            desc = "Delete all Notifications",
+          },
+        },
+        opts = {
+          timeout = 3000,
+          max_height = function()
+            return math.floor(vim.o.lines * 0.75)
+          end,
+          max_width = function()
+            return math.floor(vim.o.columns * 0.75)
+          end,
+        },
+      },
     },
     opts = require("plugins.config.noice").opts,
     keys = require("plugins.config.noice").keys,
@@ -287,24 +313,23 @@ return {
     init = require("plugins.config.nvim-navic").init,
     opts = require("plugins.config.nvim-navic").opts,
     -- config = require("plugins.config.nvim-navic").config,
+    enabled = true,
   },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
     opts = require("plugins.config.lualine").opts,
-    enabled = false,
   },
-
-  {
-    "echasnovski/mini.statusline",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "lewis6991/gitsigns.nvim",
-    },
-    version = false,
-    config = require("plugins.config.mini.statusline").config,
-  },
+  -- {
+  --   "echasnovski/mini.statusline",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --     "lewis6991/gitsigns.nvim",
+  --   },
+  --   version = false,
+  --   config = require("plugins.config.mini.statusline").config,
+  -- },
   {
     "akinsho/toggleterm.nvim",
     branch = "main",
@@ -338,9 +363,8 @@ return {
       -- vim.cmd([[colorscheme gruvbox]])
       require("plugins.config.color").colorMyPencils("gruvbox")
     end,
-    enabled = false,
+    enabled = true,
   },
-
   {
     "arturgoms/moonbow.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -350,7 +374,7 @@ return {
       -- vim.cmd([[colorscheme gruvbox]])
       require("plugins.config.color").colorMyPencils("moonbow")
     end,
-    enabled = true,
+    enabled = false,
   },
   {
     "catppuccin/nvim",
@@ -372,7 +396,16 @@ return {
   --}}} end of UI
 
   -- {{{ Editor
-
+  -- search/replace in multiple files
+  {
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+    -- stylua: ignore
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+    },
+  },
   {
     "kylechui/nvim-surround",
     event = "InsertEnter",
@@ -463,11 +496,11 @@ return {
   {
     "vim-test/vim-test",
     keys = {
-      { "<leader>ctt", "<cmd>TestNearest<cr>" },
-      { "<leader>ctf", "<cmd>TestFile<cr>" },
-      { "<leader>cts", "<cmd>TestSuite<cr>" },
-      { "<leader>ctl", "<cmd>TestLast<cr>" },
-      { "<leader>ctv", "<cmd>TestVisit<cr>" },
+      { "<leader>ctt", "<cmd>TestNearest<cr>", desc = "Test nearest" },
+      { "<leader>ctf", "<cmd>TestFile<cr>", desc = "Test file" },
+      { "<leader>cts", "<cmd>TestSuite<cr>", desc = "Test suite" },
+      { "<leader>ctl", "<cmd>TestLast<cr>", desc = "Test last" },
+      { "<leader>ctv", "<cmd>TestVisit<cr>", desc = "Test visit" },
     },
   },
   -- commenter
@@ -493,7 +526,23 @@ return {
       {
         "rcarriga/nvim-dap-ui",
         ft = { "rb", "rs", "cpp", "h" },
-        keys = "<leader>dU",
+        keys = {
+          {
+            "<leader>du",
+            function()
+              require("dapui").toggle({})
+            end,
+            desc = "Dap UI",
+          },
+          {
+            "<leader>de",
+            function()
+              require("dapui").eval()
+            end,
+            desc = "Eval",
+            mode = { "n", "v" },
+          },
+        },
         opts = require("plugins.config.nvim-dap").ui_opts,
       },
       {
@@ -502,19 +551,61 @@ return {
         opts = require("plugins.config.nvim-dap").virtual_text_opts,
       },
     },
+      -- stylua: ignore
+    keys = {
+      { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+      { "<leader>dc", function() require("dap").continue() end, desc = "Continue" },
+      { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
+      { "<leader>dg", function() require("dap").goto_() end, desc = "Go to line (no execute)" },
+      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
+      { "<leader>dj", function() require("dap").down() end, desc = "Down" },
+      { "<leader>dk", function() require("dap").up() end, desc = "Up" },
+      { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
+      { "<leader>do", function() require("dap").step_out() end, desc = "Step Out" },
+      { "<leader>dO", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<leader>dp", function() require("dap").pause() end, desc = "Pause" },
+      { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
+      { "<leader>ds", function() require("dap").session() end, desc = "Session" },
+      { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
+      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
+    },
   },
 
   {
     "folke/todo-comments.nvim",
-    event = "BufReadPre",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
-    end,
+    config = true,
+    keys = {
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo comment",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous todo comment",
+      },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      {
+        "<leader>xT",
+        "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
+        desc = "Todo/Fix/Fixme (Trouble)",
+      },
+      { "<leader>sx", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      {
+        "<leader>sX",
+        "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+        desc = "Todo/Fix/Fixme",
+      },
+    },
   },
 
   -- AI assistant
@@ -561,6 +652,29 @@ return {
   -- }}}
 
   -- {{{ Utils
+  -- session management
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {
+      options = {
+        "buffers",
+        "curdir",
+        "tabpages",
+        "winsize",
+        "help",
+        "globals",
+        "skiprtp",
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+    },
+  },
+
   {
     "folke/which-key.nvim",
     dependencies = {

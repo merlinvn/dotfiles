@@ -19,6 +19,7 @@ local swap_next, swap_prev = (function()
 end)()
 
 M.opts = {
+  ignore_install = { "help" },
   ensure_installed = {
     "c",
     "cpp",
@@ -27,7 +28,7 @@ M.opts = {
     "python",
     "rust",
     "typescript",
-    "help",
+    -- "help",
     "bash",
     "markdown",
     "regex",

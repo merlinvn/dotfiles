@@ -52,6 +52,7 @@ vim.opt.formatoptions = "crqnj" -- Automatic formatting options
 vim.opt.hidden = true -- Enable background buffers
 vim.opt.hlsearch = false -- turn off hightlight for searched text
 vim.opt.ignorecase = true -- Ignore case
+vim.opt.smartcase = true -- Do not ignore case with capitals
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -77,7 +78,6 @@ vim.opt.shiftwidth = indent -- Size of an indent
 vim.opt.shortmess = "atToOFc" -- Prompt message options
 vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.signcolumn = "yes" -- Show sign column
-vim.opt.smartcase = true -- Do not ignore case with capitals
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.

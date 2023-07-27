@@ -3,9 +3,10 @@ local M = {}
 M.opts = {
   options = {
     icons_enabled = true,
+    theme = "auto",
     -- theme = 'ayu_dark',
-    -- theme = "auto",
-    theme = "gruvbox_dark",
+    -- theme = "moonbow",
+    -- theme = "gruvbox_dark",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
     disabled_filetypes = {},
@@ -19,6 +20,11 @@ M.opts = {
         file_status = true, -- displays file status (readonly status, modified status)
         path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
       },
+      -- stylua: ignore
+      -- {
+      --   function() return require("nvim-navic").get_location() end,
+      --   cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
+      -- },
     },
     lualine_x = {
       {

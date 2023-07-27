@@ -1,21 +1,21 @@
 local M = {}
 M.keys = {
+  -- {
+  --   "<leader>xx",
+  --   "<cmd>TroubleToggle<cr>",
+  --   silent = true,
+  --   noremap = true,
+  --   desc = "Toggle Trouble",
+  -- },
   {
-    "<leader>xx",
-    "<cmd>TroubleToggle<cr>",
-    silent = true,
-    noremap = true,
-    desc = "Toggle Trouble",
-  },
-  {
-    "<leader>xw",
+    "<leader>xX",
     "<cmd>TroubleToggle workspace_diagnostics<cr>",
     silent = true,
     noremap = true,
     desc = "Workspace Diagnostics",
   },
   {
-    "<leader>xd",
+    "<leader>xx",
     "<cmd>TroubleToggle document_diagnostics<cr>",
     silent = true,
     noremap = true,
@@ -36,7 +36,7 @@ M.keys = {
     desc = "Quickfix",
   },
   {
-    "gR",
+    "xr",
     "<cmd>TroubleToggle lsp_references<cr>",
     silent = true,
     noremap = true,

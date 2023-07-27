@@ -49,6 +49,7 @@ fi
 
 export GO111MODULE=on
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 [ -d "/usr/local/go/bin" ] && export PATH=$PATH:/usr/local/go/bin
 
