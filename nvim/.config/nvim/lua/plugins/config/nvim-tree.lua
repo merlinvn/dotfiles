@@ -160,6 +160,7 @@ local function on_attach(bufnr)
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set("n", "u", api.tree.change_root_to_parent, opts("Up"))
 end
+
 M.opts = {
   sort_by = "case_sensitive",
   view = {

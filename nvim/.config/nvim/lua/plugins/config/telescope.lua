@@ -2,6 +2,29 @@ local M = {}
 
 M.opts = function()
   local actions = require("telescope.actions")
+  if not require("merlinvn.util").has("flash.nvim") then
+    return
+  end
+  local function flash(prompt_bufnr)
+    require("flash").jump({
+      pattern = "^",
+      label = { after = { 0, 0 } },
+      search = {
+        mode = "search",
+        exclude = {
+          function(win)
+            return vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+              ~= "TelescopeResults"
+          end,
+        },
+      },
+      action = function(match)
+        local picker =
+          require("telescope.actions.state").get_current_picker(prompt_bufnr)
+        picker:set_selection(match.pos[1] - 1)
+      end,
+    })
+  end
   return {
     defaults = {
       -- file_sorter = require "telescope.sorters".get_fuzzy_file(),
@@ -15,38 +38,19 @@ M.opts = function()
       mappings = {
         i = {
           ["<C-q>"] = actions.send_to_qflist,
+          ["<C-s>"] = flash,
           -- ["<c-t>"] = trouble.open_with_trouble
         },
         n = {
+          s = flash,
           -- ["<c-t>"] = trouble.open_with_trouble
         },
       },
       set_env = { ["COLORTERM"] = "truecolor" },
       -- file_ignore_patterns = { "ext/.*" } -- comment this line for non C++ project
     },
-    pickers = {
-      -- find_files = {
-      --   mappings = {
-      --     n = {
-      --       ["cd"] = function(prompt_bufnr)
-      --         local selection = require("telescope.actions.state").get_selected_entry()
-      --         local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-      --         require("telescope.actions").close(prompt_bufnr)
-      --         -- Depending on what you want put `cd`, `lcd`, `tcd`
-      --         vim.cmd(string.format("silent lcd %s", dir))
-      --       end
-      --     }
-      --   }
-      -- }
-    },
+    pickers = {},
     extensions = {
-      -- fzf = {
-      --   fuzzy = true,
-      --   override_generic_sorter = true,
-      --   override_file_sorter = true,
-      --   case_mode = "smart_case" -- or "ignore_case" or "respect_case"
-      --   -- the default case_mode is "smart_case"
-      -- },
       ["ui-select"] = {
         require("telescope.themes").get_dropdown({
           -- even more opts

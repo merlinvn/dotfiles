@@ -41,7 +41,7 @@ vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Close window" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- vim.keymap.set("n", "Q", ":q<CR>", { silent = true, desc = "Close window" })
 
-vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+vim.keymap.set("n", "<leader>fc", "<cmd>enew<cr>", { desc = "Create new file" })
 
 vim.keymap.set(
   "n",
@@ -462,12 +462,6 @@ vim.keymap.set("i", ".", ".<c-g>u")
 vim.keymap.set("i", "!", "!<c-g>u")
 vim.keymap.set("i", "[", "[<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
-
--- auto close brackets
-vim.keymap.set("i", "{<cr>", "{<cr>}<c-o>O", { noremap = true })
-vim.keymap.set("i", "{}", "{}<Left>", { noremap = true })
-vim.keymap.set("i", "()", "()<Left>", { noremap = true })
-vim.keymap.set("i", "<>", "<><Left>", { noremap = true })
 
 -- remap _ naturally pair with -
 vim.keymap.set(

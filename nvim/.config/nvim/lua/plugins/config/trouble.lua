@@ -36,7 +36,7 @@ M.keys = {
     desc = "Quickfix",
   },
   {
-    "xr",
+    "<leader>xr",
     "<cmd>TroubleToggle lsp_references<cr>",
     silent = true,
     noremap = true,

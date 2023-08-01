@@ -16,17 +16,25 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        init = function()
+          -- disable rtp plugin, as we only need its queries for mini.ai
+          -- In case other textobject modules are enabled, we will load them
+          -- once nvim-treesitter is loaded
+          require("lazy.core.loader").disable_rtp_plugin(
+            "nvim-treesitter-textobjects"
+          )
+          load_textobjects = true
+        end,
+      },
+    },
     opts = require("plugins.config.treesitter").opts,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
-
-  -- { -- Additional text objects via treesitter
-  --   "nvim-treesitter/nvim-treesitter-textobjects",
-  --   dependencies = "nvim-treesitter",
-  --   event = "BufReadPost",
-  -- },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -80,6 +88,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
+      "folke/flash.nvim",
     },
     config = require("plugins.config.telescope").config,
     keys = require("plugins.config.telescope").keys,
@@ -184,35 +193,22 @@ return {
     keys = require("plugins.config.harpoon").keys,
   },
 
-  -- Navigation
+  -- Flash enhances the built-in search functionality by showing labels
+  -- at the end of each match, letting you quickly jump to a specific
+  -- location.
   {
-    "ggandor/flit.nvim",
-    dependencies = {
-      "ggandor/leap.nvim",
-    },
-    config = function()
-      require("flit").setup()
-    end,
-    enabled = false,
-  },
-  {
-    "ggandor/leap.nvim",
-    event = "BufReadPre",
-    dependencies = {
-      "tpope/vim-repeat",
-    },
-    opts = require("plugins.config.leap").opts,
-    keys = require("plugins.config.leap").keys,
-  },
-
-  {
-    "echasnovski/mini.jump",
-    event = "BufReadPre",
-    version = false,
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    vscode = true,
     opts = {},
-    config = function(_, opts)
-      require("mini.jump").setup(opts)
-    end,
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
   },
   -- }}} end of navigation
 
@@ -241,21 +237,6 @@ return {
       end
     end,
   },
-  -- {
-  --   "echasnovski/mini.starter",
-  --   event = "VimEnter",
-  --   lazy = false,
-  --   config = function()
-  --     require("mini.starter").setup()
-  --   end,
-  -- },
-  -- manage session
-  -- {
-  --   "echasnovski/mini.sessions",
-  --   config = function()
-  --     require("mini.sessions").setup({})
-  --   end,
-  -- },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -386,12 +367,6 @@ return {
     enabled = false,
   },
 
-  {
-    "echasnovski/mini.base16",
-    version = "*",
-    config = require("plugins.config.mini.base16").config,
-    enabled = false,
-  },
   -- }}}
   --}}} end of UI
 
@@ -406,11 +381,47 @@ return {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
     },
   },
+
+  -- Fast and feature-rich surround actions. For text that includes
+  -- surrounding characters like brackets or quotes, this allows you
+  -- to se the text inside, change or modify the surrounding characters,
+  -- and more.
   {
-    "kylechui/nvim-surround",
-    event = "InsertEnter",
-    opts = require("plugins.config.nvim-surround").opts,
+    "echasnovski/mini.surround",
+    keys = function(_, keys)
+      -- Populate the keys based on the user's options
+      local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
+      local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+      local mappings = {
+        { opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
+        { opts.mappings.delete, desc = "Delete surrounding" },
+        { opts.mappings.find, desc = "Find right surrounding" },
+        { opts.mappings.find_left, desc = "Find left surrounding" },
+        { opts.mappings.highlight, desc = "Highlight surrounding" },
+        { opts.mappings.replace, desc = "Replace surrounding" },
+        {
+          opts.mappings.update_n_lines,
+          desc = "Update `MiniSurround.config.n_lines`",
+        },
+      }
+      mappings = vim.tbl_filter(function(m)
+        return m[1] and #m[1] > 0
+      end, mappings)
+      return vim.list_extend(mappings, keys)
+    end,
+    opts = {
+      mappings = {
+        add = "gza", -- Add surrounding in Normal and Visual modes
+        delete = "gzd", -- Delete surrounding
+        find = "gzf", -- Find surrounding (to the right)
+        find_left = "gzF", -- Find surrounding (to the left)
+        highlight = "gzh", -- Highlight surrounding
+        replace = "gzr", -- Replace surrounding
+        update_n_lines = "gzn", -- Update `n_lines`
+      },
+    },
   },
+
   {
     "echasnovski/mini.ai",
     event = "BufReadPre",
@@ -506,10 +517,17 @@ return {
   -- commenter
   {
     "echasnovski/mini.comment",
-    event = "BufReadPre",
+    event = "VeryLazy",
     config = function()
       require("mini.comment").setup({})
     end,
+  },
+
+  -- auto pairs
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    opts = {},
   },
 
   -- Debug
@@ -609,20 +627,11 @@ return {
   },
 
   -- AI assistant
-  -- { "tzachar/cmp-tabnine", build = "./install.sh", dependencies = "hrsh7th/nvim-cmp" },
-  -- "github/copilot.vim",
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
     opts = require("plugins.config.copilot").opts,
   },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   after = { "copilot.lua" },
-  --   config = function()
-  --     require("copilot_cmp").setup()
-  --   end
-  -- },
 
   -- C++:
   {
@@ -677,9 +686,6 @@ return {
 
   {
     "folke/which-key.nvim",
-    dependencies = {
-      "mrjones2014/legendary.nvim",
-    },
     event = "VeryLazy",
     config = require("plugins.config.which-key").config,
   },
@@ -737,14 +743,6 @@ return {
   --   }
   -- },
   --
-  -- -- "tpope/vim-surround", -- Surround text objects easily
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   config = function() require("nvim-autopairs").setup {
-  --       disable_filetype = { "TelescopePromp", "vim" }
-  --     }
-  --   end
-  -- },
 
   {
     "epwalsh/obsidian.nvim",

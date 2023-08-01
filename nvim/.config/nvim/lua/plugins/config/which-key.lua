@@ -12,9 +12,14 @@ M.config = function()
     },
   })
 
-  require("plugins.config.legendary").setup()
+  -- require("plugins.config.legendary").setup()
 
   wk.register({
+    ["g"] = {
+      z = {
+        name = "+surround",
+      },
+    },
     ["<leader>b"] = {
       name = "+buffer",
     },
