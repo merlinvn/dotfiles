@@ -43,7 +43,7 @@ function M.on_attach(client, bufnr)
     imap_buf(keys, func, desc, bufnr)
   end
   local format = function()
-    require("plugins.config.lsp.format").format()
+    require("plugins.config.lsp.format").format({})
   end
   -- Mappings.
 
@@ -65,14 +65,10 @@ function M.on_attach(client, bufnr)
 
     -- Code actions
     nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>")
-    nmap("<leader>cr", "<cmd>Lspsaga rename<CR>", "[C]ode [R]ename")
+    nmap("<leader>cr", "<cmd>Lspsaga rename<CR>", "Code Rename")
     -- Rename all occurrences of the hovered word for the selected files
     -- currently has bugs cannot exit rename mode
-    nmap(
-      "<leader>cR",
-      "<cmd>Lspsaga rename ++project<CR>",
-      "[C]ode [R]ename all"
-    )
+    nmap("<leader>cR", "<cmd>Lspsaga rename ++project<CR>", "Code Rename all")
     -- Toggle outline
     nmap("<leader>ct", "<cmd>Lspsaga outline<CR>", "Toggle outline")
     nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Show hover")
@@ -87,8 +83,8 @@ function M.on_attach(client, bufnr)
     -- nmap("gp", vim.diagnostic.goto_prev, "Go to previous diagnostic")
     -- nmap("gn", vim.diagnostic.goto_next, "Go to next diagnostic")
 
-    nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [a]ction")
-    nmap("<leader>cr", vim.lsp.buf.rename, "[C]ode [R]ename")
+    nmap("<leader>ca", vim.lsp.buf.code_action, "Code action")
+    nmap("<leader>cr", vim.lsp.buf.rename, "Code rename")
 
     nmap("K", vim.lsp.buf.hover, "Show hover")
     nmap("gk", vim.lsp.buf.signature_help, "Show signature help")
@@ -140,6 +136,7 @@ function M.on_attach(client, bufnr)
   nmap("gD", vim.lsp.buf.declaration, "Go to declaration")
 
   nmap("<leader>cf", format, "Format buffer")
+  nmap("<leader>n", format, "Format buffer")
 
   vim.keymap.set("v", "<leader>cf", format, {
     buffer = bufnr,
@@ -148,7 +145,14 @@ function M.on_attach(client, bufnr)
     desc = "Format range",
   })
 
-  imap("<C-f>", format, "Format buffer")
+  vim.keymap.set("v", "<leader>n", format, {
+    buffer = bufnr,
+    noremap = true,
+    silent = true,
+    desc = "Format range",
+  })
+
+  -- imap("<C-f>", format, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(
     bufnr,

@@ -95,6 +95,7 @@ yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
 yabai -m rule --add app=Alacritty space=^2
 yabai -m rule --add app="^neovide" space=^4
+yabai -m rule --add app="^Nova" space=^4
 yabai -m rule --add app=Safari space=^3
 yabai -m rule --add app="Brave Browser" space=^3
 yabai -m rule --add app="Microsoft Edge" space=^3
@@ -125,6 +126,8 @@ yabai -m rule --add app="Commander One PRO" manage=off
 yabai -m rule --add app="^Dozer" manage=off
 yabai -m rule --add app="^Xee" manage=off
 yabai -m rule --add app="^WireGuard" manage=off
+yabai -m rule --add app="^Commander One" title!="Quick Look" subrole="Quick Look" manage=off grid=12:12:1:1:10:10
+
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off
 # yabai -m rule --add title="^Finder" manage=off

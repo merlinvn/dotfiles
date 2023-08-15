@@ -684,10 +684,16 @@ return {
     },
   },
 
+  -- {
+  --   "folke/which-key.nvim",
+  --   event = "VeryLazy",
+  --   config = require("plugins.config.which-key").config,
+  --   enabled = false,
+  -- },
+
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = require("plugins.config.which-key").config,
+    "echasnovski/mini.clue",
+    config = require("plugins.config.mini.clue").config,
   },
   {
     "mbbill/undotree",

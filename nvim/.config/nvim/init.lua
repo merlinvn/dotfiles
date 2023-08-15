@@ -16,6 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("merlinvn")
+-- require("merlinvn")
+
+require("merlinvn.set")
+require("merlinvn.keymaps")
+require("merlinvn.autocmd")
 
 require("lazy").setup("plugins")

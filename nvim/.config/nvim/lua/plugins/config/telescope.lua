@@ -193,7 +193,7 @@ M.keys = function()
     {
       search_prefix .. "T",
       "<cmd>lua require('telescope.builtin').treesitter()<CR>",
-      { desc = "Treesitter" },
+      desc = "Treesitter",
     },
     {
       search_prefix .. "t",
@@ -203,12 +203,12 @@ M.keys = function()
     {
       search_prefix .. "s",
       "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-      "Document symbols",
+      desc = "Document symbols",
     },
     {
       search_prefix .. "S",
       "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
-      "Workspace symbols",
+      desc = "Workspace symbols",
     },
     {
       search_prefix .. "w",

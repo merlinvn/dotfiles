@@ -319,15 +319,60 @@ vim.keymap.set(
 -- tab navigation
 -- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
 -- Go to tab by number
-vim.keymap.set("n", "<leader>1", "1gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>2", "2gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>3", "3gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>4", "4gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>5", "5gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>6", "6gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>7", "7gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>8", "8gt", { silent = true, remap = true })
-vim.keymap.set("n", "<leader>9", "9gt", { silent = true, remap = true })
+vim.keymap.set(
+  "n",
+  "<leader>1",
+  "1gt",
+  { silent = true, remap = true, desc = "Go to tab 1" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>2",
+  "2gt",
+  { silent = true, remap = true, desc = "Go to tab 2" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>3",
+  "3gt",
+  { silent = true, remap = true, desc = "Go to tab 3" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>4",
+  "4gt",
+  { silent = true, remap = true, desc = "Go to tab 4" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>5",
+  "5gt",
+  { silent = true, remap = true, desc = "Go to tab 5" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>6",
+  "6gt",
+  { silent = true, remap = true, desc = "Go to tab 6" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>7",
+  "7gt",
+  { silent = true, remap = true, desc = "Go to tab 7" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>8",
+  "8gt",
+  { silent = true, remap = true, desc = "Go to tab 8" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>9",
+  "9gt",
+  { silent = true, remap = true, desc = "Go to tab 9" }
+)
 vim.keymap.set(
   "n",
   "<leader>0",
@@ -378,9 +423,19 @@ vim.keymap.set(
 
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vl", "<cmd>Lazy<CR>", { silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>vl",
+  "<cmd>Lazy<CR>",
+  { silent = true, desc = "Lazy" }
+)
 
-vim.keymap.set("n", "<leader>vm", "<cmd>Mason<CR>", { silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>vm",
+  "<cmd>Mason<CR>",
+  { silent = true, desc = "Mason" }
+)
 
 -- TOGGLE OPTIONS
 -- o == option

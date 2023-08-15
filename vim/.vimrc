@@ -1,29 +1,95 @@
+" {{{ Plugins Section ===============
+" Initialize plugin system
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+
+call plug#begin('~/.vim/plugged')
+"{{ The Basics }}
+    Plug 'gmarik/Vundle.vim'                           " Vundle
+    Plug 'itchyny/lightline.vim'                       " Lightline statusbar
+    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
+    Plug 'frazrepo/vim-rainbow'
+"{{ File management }}
+    Plug 'vifm/vifm.vim'                               " Vifm
+    Plug 'scrooloose/nerdtree'                         " Nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
+    Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
+
+"{{ Productivity }}
+    Plug 'easymotion/vim-easymotion' " easy moving around
+    Plug 'vimwiki/vimwiki'                             " VimWiki
+    Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
+    Plug 'machakann/vim-highlightedyank'    " highlight yanked text for 1 second
+
+"{{ Tim Pope Plugins }}
+    Plug 'tpope/vim-surround'                          " Change surrounding marks
+
+"{{ Syntax Highlighting and Colors }}
+    Plug 'gruvbox-community/gruvbox'
+    Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
+    Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
+    Plug 'vim-python/python-syntax' " Python highlighting
+    Plug 'ap/vim-css-color' " Color previews for CSS
+"{{ Junegunn Choi Plugins }}
+    Plug 'junegunn/goyo.vim' " Distraction-free viewing
+    Plug 'junegunn/limelight.vim' " Hyperfocus on a range
+    Plug 'junegunn/vim-emoji'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
+" NerdCommenter
+" https://github.com/preservim/nerdcommenter
+Plug 'preservim/nerdcommenter'
+
+"Plug 'itchyny/lightline.vim'
+"Plug 'mhinz/vim-startify'
+
+" Cheat Sheet
+"Plug 'dbeniamine/cheat.sh-vim'
+
+" Vim css color
+"Plug 'ap/vim-css-color'
+"Plug 'chrisbra/Colorizer'
+
+Plug 'liuchengxu/vim-which-key'
+
+
+call plug#end()
+
+" }}} End Plugin Section =============
+
 " {{{ Basic Settings Section
+set nocompatible
+filetype off
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
 
-"change gui cursor by mode
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-"                    \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-"                    \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-if &term =~ '^xterm'
-  " SI = INSERT mode
-  " SR = REPLACE mode
-  " EI = NORMAL mode (ELSE)
-  let &t_SI .= "\<Esc>[6 q"
-  let &t_SR .= "\<Esc>[4 q"
-  let &t_EI .= "\<Esc>[2 q"
- " 1 or 0 -> blinking block
- " 2 -> solid block
- " 3 -> blinking underscore
- " Recent versions of xterm (282 or above) also support
- " 4-> solid underscore
- " 5 -> blinking vertical bar
- " 6 -> solid vertical bar
-  augroup windows_term
-    autocmd!
-    autocmd VimEnter * silent !echo -ne "\e[1 q"
-    autocmd VimLeave * silent !echo -ne "\e[5 q"
-  augroup END
+" hange cursor shape on different mode
+if exists($TMUX)
+    " Vertical bar in insert mode
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    " Block in normal mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    " Underline in replace mode
+    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+    " Vertical bar in insert mode
+    let &t_SI = "\e[5 q"
+    " Block in normal mode
+    let &t_SR = "\e[4 q"
+    " Underline in replace mode
+    let &t_EI = "\e[1 q"
 endif
 
 set ttimeout
@@ -41,10 +107,12 @@ set hidden
 set noerrorbells
 set vb t_vb=
 
+set expandtab
+set smarttab
 set tabstop=2 softtabstop=2
 set shiftwidth=2
-set expandtab
 set smartindent
+
 autocmd FileType go setlocal expandtab!
 
 set nu
@@ -82,9 +150,6 @@ set laststatus=2
 
 set clipboard+=unnamedplus
 
-" for vim wiki
-set nocompatible
-filetype plugin on
 syntax on
 
 set shell=/bin/zsh
@@ -101,68 +166,6 @@ endif
 set splitright
 set splitbelow
 " }}} ======== End of Setting Section =============
-
-" {{{ Plugins Section ===============
-" Initialize plugin system
-
-" Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-" Run PlugInstall if there are missing plugins
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
-
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'gruvbox-community/gruvbox'
-
-" easy moving around
-Plug 'easymotion/vim-easymotion'
-
-" highlight yanked text for 1 second
-Plug 'machakann/vim-highlightedyank'
-
-" quick add, delete, change surround
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-
-" NerdCommenter
-" https://github.com/preservim/nerdcommenter
-Plug 'preservim/nerdcommenter'
-
-"Plug 'itchyny/lightline.vim'
-"Plug 'mhinz/vim-startify'
-
-" Cheat Sheet
-"Plug 'dbeniamine/cheat.sh-vim'
-
-" Vim css color
-"Plug 'ap/vim-css-color'
-"Plug 'chrisbra/Colorizer'
-
-Plug 'liuchengxu/vim-which-key'
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-call plug#end()
-
-""" Plugin settings
- "colorscheme gruvbox
-autocmd vimenter * nested colorscheme gruvbox
-
-highlight Normal guibg=NONE
-set background=dark
-
-" set path for gofmt
-let g:gofmt_exe='/usr/local/go/bin/gofmt'
-
-" }}} End Plugin Section =============
 
 " {{{ Keymaps Section =================
 
@@ -182,7 +185,7 @@ nnoremap <silent> <C-s> :up<CR>
 inoremap <silent> <C-s> <Esc>:up<CR>
 
 " remap close key
-nnoremap <silent> <Leader>q :q<CR>
+nnoremap <silent> <Leader>qq :qa<CR>
 nnoremap <silent> <C-q> :q<CR>
 
 " Edit vimr configuration file
@@ -202,6 +205,7 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 
 " buffers navigation
 nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>bb :e #<CR>
 
 " tab navigation
 " Go to tab by number
@@ -245,24 +249,34 @@ noremap ,P "0p
 noremap <C-p> "+p
 vnoremap <C-p> "+p
 inoremap <C-p> "+p
-noremap <Leader>p "+p
-vnoremap <Leader>p "+p
+"noremap <Leader>p "+p
+"vnoremap <Leader>p "+p
 
 " copy whole text in file
 "noremap yz :%y+<CR>
 
-" greatest remap ever
-"xnoremap <leader>p "_dP
-
-" next greatest remap ever : asbjornHaland
-nnoremap <leader>y "+y
 nnoremap <C-y> "+y
-vnoremap <leader>y "+y
 vnoremap <C-y> "+y
-nmap <leader>Y "+Y
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+" Change 2 split windows from vert to horiz or horiz to vert
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
+
 
 " }}} End Remap Section ===============
 
@@ -299,6 +313,99 @@ endfunction
 " }}} End Hook Section ================
 
 " {{{1 Plugin settings Section
+
+" {{{2 colors themes
+autocmd vimenter * nested colorscheme gruvbox
+
+highlight Normal guibg=NONE
+set background=dark
+
+"highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
+"highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
+"highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
+"highlight Statement        ctermfg=2    ctermbg=none    cterm=none
+"highlight Directory        ctermfg=4    ctermbg=none    cterm=none
+"highlight StatusLine       ctermfg=7    ctermbg=8       cterm=none
+"highlight StatusLineNC     ctermfg=7    ctermbg=8       cterm=none
+"highlight NERDTreeClosable ctermfg=2
+"highlight NERDTreeOpenable ctermfg=8
+"highlight Comment          ctermfg=4    ctermbg=none    cterm=italic
+"highlight Constant         ctermfg=12   ctermbg=none    cterm=none
+"highlight Special          ctermfg=4    ctermbg=none    cterm=none
+"highlight Identifier       ctermfg=6    ctermbg=none    cterm=none
+"highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
+"highlight String           ctermfg=12   ctermbg=none    cterm=none
+"highlight Number           ctermfg=1    ctermbg=none    cterm=none
+"highlight Function         ctermfg=1    ctermbg=none    cterm=none
+" highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
+" " highlight Folded           ctermfg=103     ctermbg=234     cterm=none
+" " highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
+" " highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
+" " highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
+" " highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
+" " highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
+" " highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
+" " highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
+" " highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
+" " highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
+" " highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
+" " highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
+" " highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
+" " highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
+" " highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
+" " highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
+" " highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
+" " highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
+" " highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
+" " highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
+" " highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
+" " highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
+" " highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
+" " highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
+" " highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
+
+" }}}
+" set path for gofmt
+let g:gofmt_exe='/usr/local/go/bin/gofmt'
+
+" {{{2 The lightline.vim theme
+let g:lightline = {
+      \ 'colorscheme': 'darcula',
+  \ }
+
+" Always show statusline
+set laststatus=2
+
+" Uncomment to prevent non-normal modes showing in powerline and below powerline.
+set noshowmode
+"}}}
+
+" {{{2 Vifm
+map <Leader>vv :Vifm<CR>
+map <Leader>vs :VsplitVifm<CR>
+map <Leader>vx :SplitVifm<CR>
+map <Leader>vd :DiffVifm<CR>
+map <Leader>vt :TabVifm<CR>
+" }}}
+
+" {{{2 Vim Wiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                        \ 'syntax': 'markdown', 'ext': '.md'}]
+"}}}
+
+"{{{2 NERDTree
+"" Uncomment to autostart the NERDTree
+"" autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+map <Leader>tt :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=38
+"}}}
+
 " {{{2 nerdcommenter
 let g:NERDCreateDefaultMappings = 0
 nnoremap gcc :call nerdcommenter#Comment(0,"toggle")<CR>
@@ -307,13 +414,15 @@ vnoremap gc :call nerdcommenter#Comment(0,"toggle")<CR>
 " }}}
 
 " {{{2 fzf
-nnoremap <Leader><Leader> :Buffers<CR>
+nnoremap <Leader><Space> :Buffers<CR>
 nnoremap <Leader>e :Files<CR>
-nnoremap <Leader>tg :Rg<CR>
-nnoremap <Leader>tp :GFiles<CR>
-nnoremap <Leader>t/ :BLines<CR>
-nnoremap <Leader>tk :Maps<CR>
-nnoremap <Leader>tc :Commands<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>p :GFiles<CR>
+nnoremap <Leader>fp :GFiles<CR>
+nnoremap <Leader>sg :Rg<CR>
+nnoremap <Leader>s/ :BLines<CR>
+nnoremap <Leader>sk :Maps<CR>
+nnoremap <Leader>sc :Commands<CR>
 
 " }}}
 
@@ -368,33 +477,44 @@ let g:which_key_map['9'] = 'tab 9'
 
 let g:which_key_map['d'] = 'delete to _'
 let g:which_key_map['e'] = 'Files'
-let g:which_key_map['q'] = 'Close'
 
-let g:which_key_map['y'] = 'yank to +'
-let g:which_key_map['Y'] = 'yank to +'
-let g:which_key_map['p'] = 'paste from +'
-let g:which_key_map['P'] = 'paste from +'
+let g:which_key_map['p'] = 'Project files'
 
 
 let g:which_key_map['b'] = {
       \'name': '+buffers',
+      \'b': 'Other buffers',
       \'d':  'Close'
       \}
 
-let g:which_key_map['h'] = 'win-left'
-let g:which_key_map['j'] = 'win-down'
-let g:which_key_map['k'] = 'win-up'
-let g:which_key_map['l'] = 'win-right'
+"let g:which_key_map['h'] = 'win-left'
+"let g:which_key_map['j'] = 'win-down'
+"let g:which_key_map['k'] = 'win-up'
+"let g:which_key_map['l'] = 'win-right'
+
+let g:which_key_map['q'] = {
+      \'name': '+quit',
+      \'q': 'Quit All',
+      \}
+
+let g:which_key_map['f'] = {
+      \'name': '+finds',
+      \'f':  'Files',
+      \'p':  'Git / Project Files',
+      \}
 
 let g:which_key_map['t'] = {
-      \'name': '+finds',
+      \'name': '+tree',
+      \'t':  'Toggle Tree',
+      \}
+
+let g:which_key_map['s'] = {
+      \'name': '+search',
       \'/':  'Search in buffer',
       \'c':  'Commands',
       \'g':  'Grep',
       \'k':  'Normal Keymaps',
-      \'p':  'Git / Project Files',
       \}
-
 let g:which_key_map['v'] = {
       \'name': '+vim',
       \'e': 'Edit .vimrc',

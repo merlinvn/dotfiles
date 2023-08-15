@@ -35,6 +35,9 @@ M.opts = { -- options for vim.diagnostic.config()
     pyright = {},
     astro = {},
     tsserver = {
+      format = {
+        enable = true,
+      },
       filetypes = {
         "javascript",
         "javascriptreact",
@@ -122,6 +125,7 @@ M.opts = { -- options for vim.diagnostic.config()
       end)
       return true
     end,
+
     -- example to setup with typescript.nvim
     -- tsserver = function(_, opts)
     --   require("typescript").setup({ server = opts })
