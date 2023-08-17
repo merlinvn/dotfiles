@@ -75,3 +75,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+if vim.g.lasttab == nil then
+  vim.g.lasttab = 1
+end
+
+vim.api.nvim_create_autocmd({ "TabLeave" }, {
+  group = MerlinVnGroup,
+  pattern = "*",
+  command = "let g:lasttab = tabpagenr()",
+})

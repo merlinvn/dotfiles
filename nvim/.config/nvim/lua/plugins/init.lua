@@ -752,14 +752,17 @@ return {
 
   {
     "epwalsh/obsidian.nvim",
-    event = "VeryLazy",
+    lazy = true,
+    event = {
+      "BufReadPre " .. vim.fn.expand("~") .. "/My_zet/Neo's thought/**.md",
+    },
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "godlygeek/tabular",
       "preservim/vim-markdown",
     },
     opts = require("plugins.config.obsidian").opts,
-    enabled = false,
+    keys = require("plugins.config.obsidian").keys,
   },
   {
     "preservim/vim-markdown",

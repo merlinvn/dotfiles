@@ -121,3 +121,5 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 vim.o.foldmethod = "marker"
+
+vim.g.markdown_recommended_style = 0

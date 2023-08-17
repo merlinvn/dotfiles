@@ -1,111 +1,13 @@
 local M = {}
 
-local mode = "tabs"
-M.keys = function()
-  if mode == "buffers" then
-    return {
-      {
-        "[b",
-        "<cmd>BufferLineCyclePrev<cr>",
-        { noremap = true, silent = true, desc = "Prev buffer" },
-      },
-      {
-        "]b",
-        "<cmd>BufferLineCycleNext<cr>",
-        { noremap = true, silent = true, desc = "Next buffer" },
-      },
-      {
-        "<leader>bn",
-        ":BufferLineCycleNext<cr>",
-        { noremap = true, silent = true, desc = "Next buffer" },
-      },
-      {
-        "<leader>bp",
-        ":BufferLineCyclePrev<cr>",
-        { noremap = true, silent = true, desc = "Prev buffer" },
-      },
-      {
-        "gb",
-        ":BufferLineCycleNext<cr>",
-        { noremap = true, silent = true, desc = "next buffer" },
-      },
-      {
-        "gB",
-        ":bprev<cr>",
-        { noremap = true, silent = true, desc = "next buffer" },
-      },
+M.keys = {
+  -- { "<leader><tab>", ":BufferLinePick<CR>", desc = "Select tab" },
+}
 
-      {
-        "<leader>bb",
-        ":BufferLinePick<CR>",
-        { noremap = true, silent = true, desc = "Buffer pick" },
-      },
-      {
-        "<C-b>",
-        ":BufferLinePick<CR>",
-        { noremap = true, silent = true, desc = "Buffer pick" },
-      },
-      {
-        "<leader>bw",
-        ":BufferLinePickClose<CR>",
-        { noremap = true, silent = true, desc = "Buffer close" },
-      },
-      {
-        "<leader>br",
-        ":BufferLineCloseRight<CR>",
-        { noremap = true, silent = true, desc = "Close all right" },
-      },
-      {
-        "<leader>bl",
-        ":BufferLineCloseLeft<CR>",
-        { noremap = true, silent = true, desc = "Close all left" },
-      },
-      {
-        "<leader>bo",
-        ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>",
-        { noremap = true, silent = true, desc = "Close others" },
-      },
-      {
-        "<leader>ba",
-        ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>:bdelete<CR>",
-        { noremap = true, silent = true, desc = "Close all" },
-      },
-      {
-        "<leader>bd",
-        ":bdelete<CR>",
-        { noremap = true, silent = true, desc = "Close current" },
-      },
-    }
-  end
-  return {
-    -- { "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" } },
-    -- { "]b", "<cmd>bnext<cr>", { desc = "Next buffer" } },
-    -- {
-    --   "<leader>bn",
-    --   ":bnext<cr>",
-    --   { noremap = true, silent = true, desc = "Next buffer" },
-    -- },
-    -- {
-    --   "<leader>bp",
-    --   ":bprev<cr>",
-    --   { noremap = true, silent = true, desc = "Prev buffer" },
-    -- },
-    -- {
-    --   "gb",
-    --   ":bnext<cr>",
-    --   { noremap = true, silent = true, desc = "next buffer" },
-    -- },
-    -- {
-    --   "gB",
-    --   ":bprev<cr>",
-    --   { noremap = true, silent = true, desc = "next buffer" },
-    -- },
-  }
-end
 M.opts = {
   options = {
     numbers = "ordinal",
-    mode = mode,
+    mode = "tabs",
     -- mode = "buffers",
     -- numbers = "none",
     diagnostics = "nvim_lsp",

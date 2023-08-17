@@ -15,54 +15,46 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin('~/.vim/plugged')
 "{{ The Basics }}
-    Plug 'gmarik/Vundle.vim'                           " Vundle
-    Plug 'itchyny/lightline.vim'                       " Lightline statusbar
-    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
-    Plug 'frazrepo/vim-rainbow'
+  Plug 'gmarik/Vundle.vim'                           " Vundle
+  Plug 'itchyny/lightline.vim'                       " Lightline statusbar
+  Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
+
 "{{ File management }}
-    Plug 'vifm/vifm.vim'                               " Vifm
-    Plug 'scrooloose/nerdtree'                         " Nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
-    Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
+  Plug 'vifm/vifm.vim'                               " Vifm
+  Plug 'scrooloose/nerdtree'                         " Nerdtree
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
+  Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 
 "{{ Productivity }}
-    Plug 'easymotion/vim-easymotion' " easy moving around
-    Plug 'vimwiki/vimwiki'                             " VimWiki
-    Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
-    Plug 'machakann/vim-highlightedyank'    " highlight yanked text for 1 second
+  Plug 'easymotion/vim-easymotion' " easy moving around
+  Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
+  Plug 'machakann/vim-highlightedyank'    " highlight yanked text for 1 second
 
 "{{ Tim Pope Plugins }}
-    Plug 'tpope/vim-surround'                          " Change surrounding marks
+  Plug 'tpope/vim-surround'                          " Change surrounding marks
 
 "{{ Syntax Highlighting and Colors }}
-    Plug 'gruvbox-community/gruvbox'
-    Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
-    Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
-    Plug 'vim-python/python-syntax' " Python highlighting
-    Plug 'ap/vim-css-color' " Color previews for CSS
-"{{ Junegunn Choi Plugins }}
-    Plug 'junegunn/goyo.vim' " Distraction-free viewing
-    Plug 'junegunn/limelight.vim' " Hyperfocus on a range
-    Plug 'junegunn/vim-emoji'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+  Plug 'gruvbox-community/gruvbox'
+  Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
+  Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
+  Plug 'vim-python/python-syntax' " Python highlighting
+  Plug 'ap/vim-css-color' " Color previews for CSS
 
+"{{ Junegunn Choi Plugins }}
+  "Plug 'junegunn/goyo.vim' " Distraction-free viewing
+  Plug 'junegunn/limelight.vim' " Hyperfocus on a range
+  Plug 'junegunn/vim-emoji'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/vim-peekaboo'
+
+"{{ UI }}"
+  Plug 'liuchengxu/vim-which-key'
+
+"{{ Coding }}
 " NerdCommenter
 " https://github.com/preservim/nerdcommenter
-Plug 'preservim/nerdcommenter'
-
-"Plug 'itchyny/lightline.vim'
-"Plug 'mhinz/vim-startify'
-
-" Cheat Sheet
-"Plug 'dbeniamine/cheat.sh-vim'
-
-" Vim css color
-"Plug 'ap/vim-css-color'
-"Plug 'chrisbra/Colorizer'
-
-Plug 'liuchengxu/vim-which-key'
-
+  Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -94,7 +86,7 @@ endif
 
 set ttimeout
 set ttimeoutlen=100
-set timeoutlen=750
+set timeoutlen=500
 
 " fold method: marker
 set fdm=marker
@@ -155,6 +147,7 @@ syntax on
 set shell=/bin/zsh
 
 set shell=/bin/bash
+
 if has("unix")
   let s:uname = system("uname -s")
   if s:uname == "Darwin\n"
@@ -178,7 +171,10 @@ set splitbelow
 
 " change Leader from '\' to '\s'
 nnoremap <SPACE> <Nop>
-let mapleader=" "
+let g:mapleader="\<Space>"
+let g:maplocalleader = ','
+
+nnoremap Q <nop>
 
 " remap save key
 nnoremap <silent> <C-s> :up<CR>
@@ -194,18 +190,17 @@ nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 " move lines up down
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-nnoremap <M-j> :m .+1<CR>==
-nnoremap <M-k> :m .-2<CR>==
-inoremap <M-j> <Esc>:m .+1<CR>==gi
-inoremap <M-k> <Esc>:m .-2<CR>==gi
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
+nnoremap <S-Down> :m .+1<CR>==
+nnoremap <S-Up> :m .-2<CR>==
+inoremap <S-Down> <Esc>:m .+1<CR>==gi
+inoremap <S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <S-Down> :m '>+1<CR>gv=gv
+vnoremap <S-Up> :m '<-2<CR>gv=gv
 
 " buffers navigation
 nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>bb :e #<CR>
+nnoremap <Leader>` :e #<CR>
 
 " tab navigation
 " Go to tab by number
@@ -219,6 +214,14 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <leader><tab> :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <leader><tab> :exe "tabn ".g:lasttab<cr>
 
 " Yank from the current cursor to the end of line
 noremap Y y$
@@ -238,8 +241,8 @@ noremap N Nzzzv
 noremap J mzJ`z
 
 " jump list mutation
-noremap <expr> k (v:count > 5 ? 'm' . v:count : '') . 'k'
-noremap <expr> j (v:count > 5 ? 'm' . v:count : '') . 'j'
+"noremap <expr> k (v:count > 5 ? 'm' . v:count : '') . 'k'
+"noremap <expr> j (v:count > 5 ? 'm' . v:count : '') . 'j'
 
 " better p
 noremap ,p "0p
@@ -248,9 +251,7 @@ noremap ,P "0p
 " paste from clipboard
 noremap <C-p> "+p
 vnoremap <C-p> "+p
-inoremap <C-p> "+p
-"noremap <Leader>p "+p
-"vnoremap <Leader>p "+p
+inoremap <C-p> <esc>"+pa
 
 " copy whole text in file
 "noremap yz :%y+<CR>
@@ -274,9 +275,8 @@ noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
 " Change 2 split windows from vert to horiz or horiz to vert
-map <Leader>th <C-w>t<C-w>H
-map <Leader>tk <C-w>t<C-w>K
-
+"map <Leader>th <C-w>t<C-w>H
+"map <Leader>tk <C-w>t<C-w>K
 
 " }}} End Remap Section ===============
 
@@ -388,11 +388,6 @@ map <Leader>vd :DiffVifm<CR>
 map <Leader>vt :TabVifm<CR>
 " }}}
 
-" {{{2 Vim Wiki
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                        \ 'syntax': 'markdown', 'ext': '.md'}]
-"}}}
-
 "{{{2 NERDTree
 "" Uncomment to autostart the NERDTree
 "" autocmd vimenter * NERDTree
@@ -413,20 +408,8 @@ vnoremap gc :call nerdcommenter#Comment(0,"toggle")<CR>
 
 " }}}
 
-" {{{2 fzf
-nnoremap <Leader><Space> :Buffers<CR>
-nnoremap <Leader>e :Files<CR>
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>fp :GFiles<CR>
-nnoremap <Leader>sg :Rg<CR>
-nnoremap <Leader>s/ :BLines<CR>
-nnoremap <Leader>sk :Maps<CR>
-nnoremap <Leader>sc :Commands<CR>
-
-" }}}
-
 " {{{2 easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 map f <Plug>(easymotion-bd-f)
 nmap f <Plug>(easymotion-overwin-f2)
@@ -435,19 +418,41 @@ nmap s <Plug>(easymotion-overwin-f2)
 "}}}
 
 " {{{2 Vim highlightedyank
-let g:highlightedyank_highlight_duration = 500
+let g:highlightedyank_highlight_duration = 750
 "}}}
+
+" {{{2 fzf
+" files / find
+nnoremap <Leader><SPACE> :Buffers<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>e :Files<CR>
+nnoremap <Leader>fp :GFiles<CR>
+nnoremap <Leader>p :GFiles<CR>
+
+" search
+nnoremap <Leader>sc :Commands<CR>
+nnoremap <Leader>sg :Rg<CR>
+nnoremap <Leader>sh :Helptags<CR>
+nnoremap <Leader>sj :Jumps<CR>
+nnoremap <Leader>sk :Maps<CR>
+nnoremap <Leader>sm :Marks<CR>
+nnoremap <Leader>s/ :BLines<CR>
+nnoremap <Leader>/ :BLines<CR>
+
+" }}}
 
 " {{{2 vim-which-key
 " Map leader to which_key
-nnoremap <silent> <leader> :<c-u> WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u> WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 " Create map to add keys to
 let g:which_key_map =  {}
 " Define a separator
 let g:which_key_sep = '→'
-set timeoutlen=750
+set timeoutlen=500
 
 " Change the colors if you want
 highlight default link WhichKey          Operator
@@ -522,7 +527,6 @@ let g:which_key_map['v'] = {
       \}
 
 call which_key#register('<Space>', "g:which_key_map")
-
 "}}}
 
 " }}}

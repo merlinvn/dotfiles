@@ -31,7 +31,7 @@ M.keys = {
     mode = { "i", "s" },
   },
   {
-    "<leader>rs",
+    "<leader>vs",
     "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>",
     desc = "Reload luasnip",
   },

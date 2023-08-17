@@ -50,7 +50,6 @@ M.config = function()
       { mode = "x", keys = "[" },
       { mode = "x", keys = "]" },
     },
-
     clues = {
       -- Enhance this by adding descriptions for <Leader> mapping groups
       miniclue.gen_clues.builtin_completion(),
@@ -64,9 +63,9 @@ M.config = function()
       { mode = "n", keys = "<Leader>d", desc = "+Dap" },
       { mode = "n", keys = "<Leader>f", desc = "+Files/Find" },
       { mode = "n", keys = "<Leader>g", desc = "+Git" },
+      { mode = "n", keys = "<Leader>n", desc = "+Notes" },
       { mode = "n", keys = "<Leader>o", desc = "+Toggle" },
       { mode = "n", keys = "<Leader>q", desc = "+Quit/Sessions" },
-      { mode = "n", keys = "<Leader>r", desc = "+Reload" },
       { mode = "n", keys = "<Leader>s", desc = "+Search" },
       { mode = "n", keys = "<Leader>t", desc = "+NeoTree" },
       { mode = "n", keys = "<Leader>v", desc = "+Vim" },

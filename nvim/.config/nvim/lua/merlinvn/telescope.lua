@@ -78,7 +78,6 @@ M.edit_dotfiles = function()
   end
 
   require("telescope.builtin").find_files(opts)
-  -- require("telescope.builtin").find_files()
 end
 
 M.edit_neovim = function()
@@ -91,7 +90,6 @@ M.edit_neovim = function()
   for k, v in pairs(m) do
     opts[k] = v
   end
-  -- require("telescope.builtin").find_files(opts)
   require("telescope.builtin").find_files(opts)
 end
 
@@ -185,22 +183,22 @@ end
 
 function M.find_files(opts)
   local params = { builtin = "find_files", opts = opts }
-  return function()
-    local builtin = params.builtin
-    local myOpts = params.opts or {}
-    -- myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
-    if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
-      myOpts.show_untracked = true
-      builtin = "git_files"
-    else
-      builtin = "find_files"
-    end
-    require("telescope.builtin")[builtin](myOpts)
+  -- return function()
+  local builtin = params.builtin
+  local myOpts = params.opts or {}
+  -- myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
+  if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
+    myOpts.show_untracked = true
+    builtin = "git_files"
+  else
+    builtin = "find_files"
   end
+  require("telescope.builtin")[builtin](myOpts)
+  -- end
 end
 
 -- find all files but respect the .gitignore
-function M.fd()
+M.fd = function()
   local opts = {
     hidden = true,
     sorting_strategy = "descending",
@@ -225,7 +223,7 @@ end
 -- end
 
 -- all hidden files include ignored files but not include the .git folder
-function M.search_all_files()
+M.search_all_files = function()
   require("telescope.builtin").find_files({
     hidden = true,
     find_command = {

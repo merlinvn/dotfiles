@@ -41,11 +41,11 @@ vim.keymap.set("n", "<C-q>", ":q<CR>", { silent = true, desc = "Close window" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- vim.keymap.set("n", "Q", ":q<CR>", { silent = true, desc = "Close window" })
 
-vim.keymap.set("n", "<leader>fc", "<cmd>enew<cr>", { desc = "Create new file" })
+vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "Create new file" })
 
 vim.keymap.set(
   "n",
-  "<Leader>rl",
+  "<Leader>vr",
   ":w<cr>:luafile %<CR>",
   { desc = "Reload current lua file", silent = true }
 )
@@ -137,38 +137,38 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- move line up / down
 vim.keymap.set(
   "n",
-  "<M-j>",
+  "<S-Down>",
   ":m .+1<CR>==",
   { silent = true, desc = "move line down" }
 )
 vim.keymap.set(
-  "v",
-  "<M-j>",
-  ":m '>+1<CR>gv=gv",
-  { silent = true, desc = "move line down" }
-)
-vim.keymap.set(
-  "i",
-  "<M-j>",
-  "<Esc>:m .+1<CR>==gi",
-  { silent = true, desc = "move line down" }
-)
-vim.keymap.set(
   "n",
-  "<M-k>",
+  "<S-Up>",
   ":m .-2<CR>==",
   { silent = true, desc = "move line up" }
 )
 vim.keymap.set(
-  "v",
-  "<M-k>",
-  ":m '<-2<CR>gv=gv",
-  { silent = true, desc = "move line up" }
+  "i",
+  "<S-Down>",
+  "<Esc>:m .+1<CR>==gi",
+  { silent = true, desc = "move line down" }
 )
 vim.keymap.set(
   "i",
-  "<M-k>",
+  "<S-Up>",
   "<Esc>:m .-2<CR>==gi",
+  { silent = true, desc = "move line up" }
+)
+vim.keymap.set(
+  "v",
+  "<S-Down>",
+  ":m '>+1<CR>gv=gv",
+  { silent = true, desc = "move line down" }
+)
+vim.keymap.set(
+  "v",
+  "<S-Up>",
+  ":m '<-2<CR>gv=gv",
   { silent = true, desc = "move line up" }
 )
 
@@ -305,15 +305,15 @@ vim.keymap.set(
 -- buffers navigation
 vim.keymap.set(
   "n",
-  "<leader><tab>",
-  "<C-^>",
+  "<leader>bb",
+  "<cmd>e #<cr>",
   { noremap = true, silent = true, desc = "<-> buffer" }
 )
 vim.keymap.set(
   "n",
-  "<leader>bb",
+  "<leader>`",
   "<cmd>e #<cr>",
-  { noremap = true, silent = true, desc = "Switch to Other Buffer" }
+  { noremap = true, silent = true, desc = "<-> buffer" }
 )
 
 -- tab navigation
@@ -378,6 +378,13 @@ vim.keymap.set(
   "<leader>0",
   ":tablast<cr>",
   { silent = true, remap = true }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader><tab>",
+  ':execute "tabn " .. g:lasttab<CR>',
+  { silent = true, remap = true, desc = "<-> tab" }
 )
 
 -- Go to next / previous, center with zz, and zv to open fold

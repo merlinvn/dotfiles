@@ -100,10 +100,9 @@ M.keys = function()
       noremap = false,
       nowait = true,
     },
-    -- top level search
     {
       "<leader>p",
-      telescopeHelper.find_files(),
+      telescopeHelper.find_files,
       desc = "Files / Project files",
     },
     {
@@ -118,11 +117,10 @@ M.keys = function()
     },
     {
       "<leader>/",
-      "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
+      telescopeHelper.curbuf,
       desc = "Live Grep",
     },
 
-    -- SEARCH
     {
       search_prefix .. "a",
       "<cmd>Telescope autocommands<cr>",
@@ -130,7 +128,7 @@ M.keys = function()
     },
     {
       search_prefix .. "b",
-      "<cmd>lua require('merlinvn.telescope').curbuf()<cr>",
+      telescopeHelper.curbuf,
       desc = "Search current buffer",
     },
     {
@@ -160,17 +158,17 @@ M.keys = function()
     },
     {
       search_prefix .. "g",
-      "<cmd>lua require('merlinvn.telescope').multi_rg()<cr>",
+      telescopeHelper.multi_rg,
       desc = "Live Grep",
     },
     {
       search_prefix .. "h",
-      "<cmd>lua require('merlinvn.telescope').help_tags()<cr>",
+      telescopeHelper.help_tags,
       desc = "Help tags",
     },
     {
       search_prefix .. "k",
-      "<cmd>lua require('telescope.builtin').keymaps()<cr>",
+      require("telescope.builtin").keymaps,
       desc = "Keymaps",
     },
     { search_prefix .. "k", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
@@ -182,7 +180,7 @@ M.keys = function()
     },
     {
       search_prefix .. "o",
-      "<cmd>lua require('merlinvn.telescope').vim_options()<cr>",
+      telescopeHelper.vim_options,
       desc = "Vim Options",
     },
     {
@@ -212,8 +210,8 @@ M.keys = function()
     },
     {
       search_prefix .. "w",
-      "<cmd>lua require('merlinvn.telescope').word_under_cursor()<cr>",
-      desc = "Search word under cursor",
+      telescopeHelper.word_under_cursor,
+      desc = "Searchword under cursor",
     },
     {
       search_prefix .. "?",
@@ -224,7 +222,7 @@ M.keys = function()
     -- FIND
     {
       find_prefix .. "a",
-      "<cmd>lua require('merlinvn.telescope').search_all_files()<cr>",
+      telescopeHelper.search_all_files,
       desc = "All files",
     },
     {
@@ -233,24 +231,14 @@ M.keys = function()
       desc = "Buffers",
     },
     {
-      find_prefix .. "d",
-      "<cmd>lua require('merlinvn.telescope').edit_dotfiles()<cr>",
-      desc = "Dotfiles",
-    },
-    {
       find_prefix .. "e",
-      "<cmd>lua require('merlinvn.telescope').file_browser()<cr>",
+      telescopeHelper.file_browser,
       desc = "File browser",
     },
     {
-      find_prefix .. "f",
-      telescopeHelper.find_files(),
+      find_prefix .. "p",
+      telescopeHelper.find_files,
       desc = "Files / Project files",
-    },
-    {
-      find_prefix .. "n",
-      "<cmd>lua require('merlinvn.telescope').edit_neovim()<cr>",
-      desc = "Neovim config",
     },
     {
       find_prefix .. "o",
@@ -259,8 +247,18 @@ M.keys = function()
     },
     {
       find_prefix .. "t",
-      "<cmd>lua require('merlinvn.telescope').search_only_certain_files()<cr>",
+      telescopeHelper.search_only_certain_files,
       desc = "Search by file type",
+    },
+    {
+      "<Leader>vd",
+      telescopeHelper.edit_dotfiles,
+      desc = "Dotfiles",
+    },
+    {
+      "<Leader>vn",
+      telescopeHelper.edit_neovim,
+      desc = "Neovim config",
     },
   }
 end

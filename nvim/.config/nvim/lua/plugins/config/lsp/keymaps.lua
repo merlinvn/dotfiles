@@ -136,7 +136,7 @@ function M.on_attach(client, bufnr)
   nmap("gD", vim.lsp.buf.declaration, "Go to declaration")
 
   nmap("<leader>cf", format, "Format buffer")
-  nmap("<leader>n", format, "Format buffer")
+  nmap("<leader>ff", format, "Format buffer")
 
   vim.keymap.set("v", "<leader>cf", format, {
     buffer = bufnr,
