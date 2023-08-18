@@ -21,10 +21,10 @@ M.opts = function()
   }
 end
 
-M.config = function(_,opts)
+M.config = function(_, opts)
   require("mini.ai").setup(opts)
   -- register all text objects with which-key
-  if require("core.util").has("which-key.nvim") then
+  if require("helpers.lazy").has("which-key.nvim") then
     ---@type table<string, string|table>
     local i = {
       [" "] = "Whitespace",

@@ -250,7 +250,7 @@ if type(toggle_prefix) == "string" and toggle_prefix ~= "" then
   )
   map_toggle(
     "d",
-    '<Cmd>lua print(require("core.util").toggle_diagnostic())<CR>',
+    '<Cmd>lua print(require("helpers.toggle").toggle_diagnostic())<CR>',
     "Toggle diagnostic"
   )
   map_toggle(

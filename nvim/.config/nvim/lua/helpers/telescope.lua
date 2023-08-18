@@ -1,18 +1,4 @@
--- require("telescope").load_extension("ui-select")
--- local Util = require("core.util")
-
 local M = {}
-
-function M.reload_modules()
-  -- from ThePrimeagen
-  -- Because TJ gave it to me.  Makes me happpy.  Put it next to his other
-  -- awesome things.
-  local lua_dirs = vim.fn.glob("./lua/*", false, true)
-  for _, dir in ipairs(lua_dirs) do
-    dir = string.gsub(dir, "./lua/", "")
-    require("plenary.reload").reload_module(dir)
-  end
-end
 
 local action_state = require("telescope.actions.state")
 local themes = require("telescope.themes")
@@ -186,7 +172,11 @@ function M.find_files(opts)
   -- return function()
   local builtin = params.builtin
   local myOpts = params.opts or {}
-  -- myOpts = vim.tbl_deep_extend("force", { cwd = Util.get_root() }, myOpts or {})
+  myOpts = vim.tbl_deep_extend(
+    "force",
+    { cwd = require("helpers.path").get_root() },
+    myOpts or {}
+  )
   if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
     myOpts.show_untracked = true
     builtin = "git_files"

@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = function()
   local actions = require("telescope.actions")
-  if not require("core.util").has("flash.nvim") then
+  if not require("helpers.lazy").has("flash.nvim") then
     return
   end
   local function flash(prompt_bufnr)
@@ -77,7 +77,7 @@ M.config = function()
   if require("telescope") == nil then
     return
   end
-  require("telescope").setup(M.opts())
+  require("telescope").setup(M.opts() or {})
   require("telescope").load_extension("ui-select")
   require("telescope").load_extension("file_browser")
 end
@@ -89,7 +89,7 @@ M.keys = function()
   end
   local search_prefix = "<leader>s"
   local find_prefix = "<leader>f"
-  local telescopeHelper = require("core.telescope")
+  local telescopeHelper = require("helpers.telescope")
 
   return {
     -- search in command

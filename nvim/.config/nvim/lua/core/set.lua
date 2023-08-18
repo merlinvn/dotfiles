@@ -1,10 +1,20 @@
+-- disable netrw and use nvim-tree instead
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
-if vim.fn.has("mac") == 1 then
-  vim.opt.shell = "/bin/zsh"
+-- TODO: do it in a generic way
+-- check if default shell is zsh
+if vim.env.SHELL ~= nil then
+  vim.g.shell = vim.env.SHELL
 end
+
+-- if vim.fn.has("mac") == 1 then
+--   vim.opt.shell = "/bin/zsh"
+-- end
 
 local indent, width = 2, 80
 
