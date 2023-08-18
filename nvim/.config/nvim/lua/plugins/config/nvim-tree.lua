@@ -177,11 +177,11 @@ M.opts = {
 
 M.keys = {
   {
-    "<leader>tf",
+    "<leader>te",
     ":NvimTreeFindFile<CR>",
     noremap = true,
     silent = true,
-    desc = "Tree find file",
+    desc = "Tree focus file",
   },
   {
     "<leader>e",
@@ -190,15 +190,15 @@ M.keys = {
     silent = true,
     desc = "Tree toggle",
   },
+  -- {
+  --   "<leader>tt",
+  --   ":NvimTreeToggle<CR>",
+  --   noremap = true,
+  --   silent = true,
+  --   desc = "Tree toggle",
+  -- },
   {
-    "<leader>tt",
-    ":NvimTreeToggle<CR>",
-    noremap = true,
-    silent = true,
-    desc = "Tree toggle",
-  },
-  {
-    "<leader>tr",
+    "<leader>tf",
     ":NvimTreeFocus<CR>",
     noremap = true,
     silent = true,

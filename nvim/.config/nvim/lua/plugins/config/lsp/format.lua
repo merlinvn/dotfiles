@@ -117,7 +117,7 @@ function M.format(opts)
   --     end
   --     return client.name ~= "null-ls"
   --   end,
-  -- }, require("merlinvn.util").opts("nvim-lspconfig").format or {}))
+  -- }, require("core.util").opts("nvim-lspconfig").format or {}))
 
   local buf = vim.api.nvim_get_current_buf()
   if vim.b.autoformat == false and not (opts and opts.force) then
@@ -142,7 +142,7 @@ function M.format(opts)
     filter = function(client)
       return vim.tbl_contains(client_ids, client.id)
     end,
-  }, require("merlinvn.util").opts("nvim-lspconfig").format or {}))
+  }, require("core.util").opts("nvim-lspconfig").format or {}))
 end
 
 function M.on_attach(client, buf)

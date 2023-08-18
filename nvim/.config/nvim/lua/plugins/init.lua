@@ -67,16 +67,6 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope-hop.nvim",
-    event = "VeryLazy",
-    enabled = false,
-  },
-  {
-    "nvim-telescope/telescope-smart-history.nvim",
-    event = "VeryLazy",
-    enabled = false,
-  },
-  {
     "nvim-telescope/telescope-symbols.nvim",
   },
   {
@@ -136,9 +126,8 @@ return {
     "williamboman/mason.nvim",
     event = { "BufReadPre", "BufNewFile" },
     cmd = "Mason",
-    keys = { { "<leader>vm", "<cmd>Mason<cr>", desc = "Mason" } },
-    opts = require("plugins.config.mason").opts,
     config = require("plugins.config.mason").config,
+    keys = { { "<leader>vm", "<cmd>Mason<cr>", desc = "Show Mason" } },
   },
   {
     "j-hui/fidget.nvim",
@@ -164,27 +153,6 @@ return {
     "simrat39/symbols-outline.nvim",
     event = "BufReadPre",
   },
-  -- lspsaga is still buggy
-  {
-    "glepnir/lspsaga.nvim",
-    enabled = false,
-    event = "BufRead",
-    opts = {
-      rename = {
-        quit = "<esc>",
-      },
-      scroll_preview = {
-        scroll_down = "<C-d>",
-        scroll_up = "<C-u>",
-      },
-      beacon = {
-        enable = false,
-        frequency = 7,
-      },
-    },
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
-  },
-  -- }}}
 
   -- {{{ Navigation
   -- file marker & navigation
@@ -334,15 +302,15 @@ return {
     end,
   },
 
-  { "tjdevries/colorbuddy.nvim" },
+  -- { "tjdevries/colorbuddy.nvim" },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
-      -- vim.cmd([[colorscheme gruvbox]])
-      require("plugins.config.color").colorMyPencils("gruvbox")
+      vim.cmd([[colorscheme gruvbox]])
+      -- require("plugins.config.color").colorMyPencils("gruvbox")
     end,
     enabled = true,
   },
@@ -352,17 +320,8 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
-      -- vim.cmd([[colorscheme gruvbox]])
-      require("plugins.config.color").colorMyPencils("moonbow")
-    end,
-    enabled = false,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("plugins.config.catppuccin").config()
+      vim.cmd([[colorscheme moonbow]])
+      -- require("plugins.config.color").colorMyPencils("moonbow")
     end,
     enabled = false,
   },
@@ -505,14 +464,20 @@ return {
   },
   -- testting
   {
+    -- https://github.com/vim-test/vim-test
     "vim-test/vim-test",
     keys = {
-      { "<leader>ctt", "<cmd>TestNearest<cr>", desc = "Test nearest" },
-      { "<leader>ctf", "<cmd>TestFile<cr>", desc = "Test file" },
-      { "<leader>cts", "<cmd>TestSuite<cr>", desc = "Test suite" },
-      { "<leader>ctl", "<cmd>TestLast<cr>", desc = "Test last" },
-      { "<leader>ctv", "<cmd>TestVisit<cr>", desc = "Test visit" },
+      { "<leader>tr", "<cmd>TestNearest<cr>", desc = "Test nearest" },
+      { "<leader>tt", "<cmd>TestFile<cr>", desc = "Test file" },
+      { "<leader>ts", "<cmd>TestSuite<cr>", desc = "Test suite" },
+      { "<leader>tl", "<cmd>TestLast<cr>", desc = "Test last" },
+      { "<leader>tv", "<cmd>TestVisit<cr>", desc = "Test visit" },
     },
+    config = function()
+      vim.g["test#strategy"] = "neovim"
+      vim.g["test#neovim#term_position"] = "vert 60"
+      vim.g["test#neovim#term_reuse"] = 1
+    end,
   },
   -- commenter
   {
@@ -527,13 +492,14 @@ return {
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
-    opts = {},
+    config = function()
+      require("mini.pairs").setup({})
+    end,
   },
-
   -- Debug
   {
     "mfussenegger/nvim-dap",
-    ft = { "rb", "rs", "cpp", "h" },
+    -- ft = { "rb", "rs", "cpp", "h" },
     dependencies = {
       {
         "jay-babu/mason-nvim-dap.nvim",
@@ -588,6 +554,7 @@ return {
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
+    enabled = false,
   },
 
   {

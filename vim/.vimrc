@@ -17,7 +17,6 @@ call plug#begin('~/.vim/plugged')
 "{{ The Basics }}
   Plug 'gmarik/Vundle.vim'                           " Vundle
   Plug 'itchyny/lightline.vim'                       " Lightline statusbar
-  Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
 
 "{{ File management }}
   Plug 'vifm/vifm.vim'                               " Vifm
@@ -27,23 +26,20 @@ call plug#begin('~/.vim/plugged')
 
 "{{ Productivity }}
   Plug 'easymotion/vim-easymotion' " easy moving around
-  Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
   Plug 'machakann/vim-highlightedyank'    " highlight yanked text for 1 second
 
 "{{ Tim Pope Plugins }}
   Plug 'tpope/vim-surround'                          " Change surrounding marks
+  Plug 'tpope/vim-repeat'                          " Change surrounding marks
 
 "{{ Syntax Highlighting and Colors }}
   Plug 'gruvbox-community/gruvbox'
-  Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
-  Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
   Plug 'vim-python/python-syntax' " Python highlighting
   Plug 'ap/vim-css-color' " Color previews for CSS
 
 "{{ Junegunn Choi Plugins }}
-  "Plug 'junegunn/goyo.vim' " Distraction-free viewing
   Plug 'junegunn/limelight.vim' " Hyperfocus on a range
-  Plug 'junegunn/vim-emoji'
+  "Plug 'junegunn/vim-emoji'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
@@ -530,3 +526,4 @@ call which_key#register('<Space>', "g:which_key_map")
 "}}}
 
 " }}}
+

@@ -120,7 +120,7 @@ M.opts = { -- options for vim.diagnostic.config()
     rust_analyzer = function(_, opts)
       require("rust-tools").setup({ server = opts })
       -- additional keymaps
-      require("merlinvn.util").on_attach(function(client, buf)
+      require("core.util").on_attach(function(client, buf)
         require("plugins.config.lsp.keymaps").on_attach_rust(client, buf)
       end)
       return true
@@ -140,7 +140,7 @@ function M.config(_, opts)
   -- setup autoformat
   require("plugins.config.lsp.format").autoformat = opts.autoformat
 
-  require("merlinvn.util").on_attach(function(client, buffer)
+  require("core.util").on_attach(function(client, buffer)
     require("plugins.config.lsp.format").on_attach(client, buffer)
     require("plugins.config.lsp.keymaps").on_attach(client, buffer)
   end)

@@ -11,9 +11,18 @@ M.opts = function()
       ".git"
     ),
     sources = {
-      null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.formatting.eslint_d.with({
+        condition = function(utils)
+          -- root has file .eslintrc.json or .eslintrc
+          return utils.root_has_file({ ".eslintrc.json", ".eslintrc" })
+        end,
+      }),
       null_ls.builtins.diagnostics.eslint_d.with({
         diagnostics_format = "[eslint] #{m}\n(#{c})",
+        condition = function(utils)
+          -- root has file .eslintrc.json or .eslintrc
+          return utils.root_has_file({ ".eslintrc.json", ".eslintrc" })
+        end,
       }),
       null_ls.builtins.formatting.prettierd.with({
         condition = function(utils)
@@ -22,7 +31,12 @@ M.opts = function()
             and not utils.root_has_file({ ".eslintrc.json", ".eslintrc" })
         end,
       }),
-      null_ls.builtins.code_actions.eslint_d,
+      null_ls.builtins.code_actions.eslint_d.with({
+        condition = function(utils)
+          -- root has file .eslintrc.json or .eslintrc
+          return utils.root_has_file({ ".eslintrc.json", ".eslintrc" })
+        end,
+      }),
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.flake8,
       null_ls.builtins.formatting.autopep8,

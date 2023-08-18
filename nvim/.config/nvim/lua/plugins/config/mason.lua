@@ -9,10 +9,10 @@ M.opts = {
   },
 }
 
-M.config = function(_, opts)
-  require("mason").setup(opts)
+M.config = function()
+  require("mason").setup(M.opts)
   local mr = require("mason-registry")
-  for _, tool in ipairs(opts.ensure_installed) do
+  for _, tool in ipairs(M.opts.ensure_installed) do
     local p = mr.get_package(tool)
     if not p:is_installed() then
       p:install()

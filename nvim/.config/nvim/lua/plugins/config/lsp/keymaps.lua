@@ -1,26 +1,10 @@
-local Util = require("merlinvn.util")
 local M = {}
 
-local nmap_buf = function(keys, func, desc, bufnr)
-  vim.keymap.set(
-    "n",
-    keys,
-    func,
-    { buffer = bufnr, noremap = true, silent = true, desc = desc }
-  )
-end
-local imap_buf = function(keys, func, desc, bufnr)
-  vim.keymap.set(
-    "i",
-    keys,
-    func,
-    { buffer = bufnr, noremap = true, silent = true, desc = desc }
-  )
-end
+local buf_map = require("helpers.keys").buf_map
 
 function M.on_attach_rust(client, bufnr)
   local nmap = function(keys, func, desc)
-    nmap_buf(keys, func, desc, bufnr)
+    buf_map("n", keys, func, bufnr, desc, { noremap = true })
   end
 
   -- local imap = function(keys, func, desc)
@@ -36,66 +20,33 @@ end
 function M.on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  local nmap = function(keys, func, desc)
-    nmap_buf(keys, func, desc, bufnr)
-  end
-  local imap = function(keys, func, desc)
-    imap_buf(keys, func, desc, bufnr)
-  end
   local format = function()
     require("plugins.config.lsp.format").format({})
   end
   -- Mappings.
-
-  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  -- vim.keymap.set('n', 'go', vim.diagnostic.open_float,
-  --   { noremap = true, silent = true, desc = 'Open diagnostics float' }
-  if Util.has("lspsaga.nvim") then
-    -- Go to definition
-    -- nmap("gd", "<cmd>Lspsaga goto_definition<CR>", "Definitions")
-    -- Diagnostics
-    nmap(
-      "[d",
-      "<cmd>Lspsaga diagnostic_jump_prev<CR>",
-      "Go to previous diagnostic"
-    )
-    nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Go to next diagnostic")
-    -- Show buffer diagnostics
-    -- nmap("<leader>cd", "<cmd>Lspsaga show_buf_diagnostics<CR>", "Show buffer diagnostics")
-
-    -- Code actions
-    nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>")
-    nmap("<leader>cr", "<cmd>Lspsaga rename<CR>", "Code Rename")
-    -- Rename all occurrences of the hovered word for the selected files
-    -- currently has bugs cannot exit rename mode
-    nmap("<leader>cR", "<cmd>Lspsaga rename ++project<CR>", "Code Rename all")
-    -- Toggle outline
-    nmap("<leader>ct", "<cmd>Lspsaga outline<CR>", "Toggle outline")
-    nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Show hover")
-
-    -- Call hierarchy
-    nmap("<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-    nmap("<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-  else
-    -- nmap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions")
-
-    -- use [d and ]d to navigate diagnostics in the mini.bracketed
-    -- nmap("gp", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-    -- nmap("gn", vim.diagnostic.goto_next, "Go to next diagnostic")
-
-    nmap("<leader>ca", vim.lsp.buf.code_action, "Code action")
-    nmap("<leader>cr", vim.lsp.buf.rename, "Code rename")
-
-    nmap("K", vim.lsp.buf.hover, "Show hover")
-    nmap("gk", vim.lsp.buf.signature_help, "Show signature help")
-    imap("<C-K>", vim.lsp.buf.signature_help, "Show signature help")
+  local nmap = function(keys, func, desc)
+    buf_map("n", keys, func, bufnr, desc, { noremap = true })
+  end
+  local imap = function(keys, func, desc)
+    buf_map("i", keys, func, bufnr, desc, { noremap = true })
   end
 
-  -- nmap(
-  --   "<leader>cd",
-  --   "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>",
-  --   "Document diagnostics"
-  -- )
+  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+  -- using trouble instead
+  -- nmap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions")
+  -- vim.keymap.set('n', 'go', vim.diagnostic.open_float,
+  --   { noremap = true, silent = true, desc = 'Open diagnostics float' }
+
+  -- use [d and ]d to navigate diagnostics in the mini.bracketed
+  -- nmap("gp", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+  -- nmap("gn", vim.diagnostic.goto_next, "Go to next diagnostic")
+
+  nmap("<leader>ca", vim.lsp.buf.code_action, "Code action")
+  nmap("<leader>cr", vim.lsp.buf.rename, "Code rename")
+
+  nmap("K", vim.lsp.buf.hover, "Show hover")
+  nmap("gk", vim.lsp.buf.signature_help, "Show signature help")
+  imap("<C-K>", vim.lsp.buf.signature_help, "Show signature help")
 
   nmap(
     "gd",
@@ -114,22 +65,6 @@ function M.on_attach(client, bufnr)
   )
   -- nmap("gt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>")
 
-  -- nmap(
-  --   "<leader>cs",
-  --   "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-  --   "Document symbols"
-  -- )
-  -- nmap(
-  --   "<leader>cS",
-  --   "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
-  --   "Workspace symbols"
-  -- )
-  -- nmap(
-  --   "<leader>cD",
-  --   "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-  --   "Workspace diagnostics"
-  -- )
-
   -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -138,18 +73,12 @@ function M.on_attach(client, bufnr)
   nmap("<leader>cf", format, "Format buffer")
   nmap("<leader>ff", format, "Format buffer")
 
-  vim.keymap.set("v", "<leader>cf", format, {
-    buffer = bufnr,
+  buf_map("v", "<leader>cf", format, bufnr, "Format range", {
     noremap = true,
-    silent = true,
-    desc = "Format range",
   })
 
-  vim.keymap.set("v", "<leader>n", format, {
-    buffer = bufnr,
+  buf_map("v", "<leader>ff", format, bufnr, "Format range", {
     noremap = true,
-    silent = true,
-    desc = "Format range",
   })
 
   -- imap("<C-f>", format, "Format buffer")
@@ -160,20 +89,6 @@ function M.on_attach(client, bufnr)
     format,
     { desc = "Format current buffer with LSP" }
   )
-
-  -- nmap(
-  --   "<leader>wa",
-  --   vim.lsp.buf.add_workspace_folder,
-  --   "[W]orkspace [A]dd Folder"
-  -- )
-  -- nmap(
-  --   "<leader>wr",
-  --   vim.lsp.buf.remove_workspace_folder,
-  --   "[W]orkspace [R]emove Folder"
-  -- )
-  -- nmap("<leader>wf", function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, "[W]orkspace list [F]olders")
 end
 
 return M

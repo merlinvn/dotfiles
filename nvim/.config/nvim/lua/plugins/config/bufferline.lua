@@ -83,14 +83,16 @@ M.opts = {
 
 M.config = function(_, opts)
   require("bufferline").setup(opts)
+  local noremap = require("helpers.keys").noremap
+
   for i = 1, 9 do
-    vim.keymap.set("n", "<leader>" .. i, function()
+    noremap("n", "<leader>" .. i, function()
       require("bufferline").go_to_buffer(i, true)
-    end, { noremap = true, silent = true, desc = "Go to tab " .. i })
+    end, "Go to tab " .. i)
   end
 
-  vim.keymap.set("n", "<leader>0", function()
+  noremap("n", "<leader>0", function()
     require("bufferline").go_to_buffer(-1, true)
-  end, { noremap = true, silent = true, desc = "Go to last tab" })
+  end, "Go to last tab")
 end
 return M

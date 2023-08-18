@@ -1,5 +1,5 @@
 -- require("telescope").load_extension("ui-select")
--- local Util = require("merlinvn.util")
+-- local Util = require("core.util")
 
 local M = {}
 

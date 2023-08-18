@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = function()
   local actions = require("telescope.actions")
-  if not require("merlinvn.util").has("flash.nvim") then
+  if not require("core.util").has("flash.nvim") then
     return
   end
   local function flash(prompt_bufnr)
@@ -89,7 +89,7 @@ M.keys = function()
   end
   local search_prefix = "<leader>s"
   local find_prefix = "<leader>f"
-  local telescopeHelper = require("merlinvn.telescope")
+  local telescopeHelper = require("core.telescope")
 
   return {
     -- search in command

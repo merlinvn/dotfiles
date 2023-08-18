@@ -34,7 +34,7 @@ M.config = function()
     --   name = "+edit",
     -- },
     ["<leader>d"] = {
-      name = "+dap",
+      name = "+debug",
     },
     ["<leader>f"] = {
       name = "+files/find",
@@ -59,7 +59,7 @@ M.config = function()
       name = "+search",
     },
     ["<leader>t"] = {
-      name = "+tree",
+      name = "+test/tree",
     },
     ["<leader>v"] = {
       name = "+vim",
