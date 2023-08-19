@@ -1,4 +1,7 @@
 local M = {}
+
+M.load_textobjects = false
+
 local swap_next, swap_prev = (function()
   local swap_objects = {
     p = "@parameter.inner",

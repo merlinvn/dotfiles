@@ -1,7 +1,4 @@
-local load_textobjects = false
-
 return {
-  -- "lewis6991/impatient.nvim",
   -- {{{ Must-have
   -- TJ created lodash of neovim
   {
@@ -28,7 +25,7 @@ return {
           require("lazy.core.loader").disable_rtp_plugin(
             "nvim-treesitter-textobjects"
           )
-          load_textobjects = true
+          require("plugins.config.treesitter").load_textobjects = true
         end,
       },
     },
@@ -46,7 +43,7 @@ return {
         end, opts.ensure_installed)
       end
       require("nvim-treesitter.configs").setup(opts)
-      if load_textobjects then
+      if require("plugins.config.treesitter").load_textobjects then
         -- PERF: no need to load the plugin, if we only need its queries for mini.ai
         if opts.textobjects then
           for _, mod in ipairs({ "move", "select", "swap", "lsp_interop" }) do
@@ -181,6 +178,7 @@ return {
     "simrat39/symbols-outline.nvim",
     event = "BufReadPre",
   },
+  --}}}
 
   -- {{{ Navigation
   -- file marker & navigation
@@ -319,7 +317,10 @@ return {
     keys = require("plugins.config.smart-splits").keys,
   },
 
-  -- {{{2 Colors
+  -- { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
+  --}}} end of UI
+
+  -- {{{ Colors
   -- Colorscheme section
   -- Color highlight
   {
@@ -337,8 +338,8 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
-      vim.cmd([[colorscheme gruvbox]])
-      -- require("plugins.config.color").colorMyPencils("gruvbox")
+      require("plugins.config.color").setup_gruvbox()
+      require("plugins.config.color").loadColorscheme("gruvbox")
     end,
     enabled = true,
   },
@@ -355,7 +356,6 @@ return {
   },
 
   -- }}}
-  --}}} end of UI
 
   -- {{{ Editor
   -- search/replace in multiple files
@@ -365,7 +365,8 @@ return {
     opts = { open_cmd = "noswapfile vnew" },
     -- stylua: ignore
     keys = {
-      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+      { "<leader>sR", function() require("spectre").open_visual({select_word=true}) end, desc = "Replace in all files" },
+      { "<leader>sr", function() require("spectre").open_file_search({select_word=true}) end, desc = "Replace in current file" },
     },
   },
 
@@ -679,17 +680,17 @@ return {
     },
   },
 
-  -- {
-  --   "folke/which-key.nvim",
-  --   event = "VeryLazy",
-  --   config = require("plugins.config.which-key").config,
-  --   enabled = false,
-  -- },
-
   {
-    "echasnovski/mini.clue",
-    config = require("plugins.config.mini.clue").config,
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = require("plugins.config.which-key").config,
+    enabled = true,
   },
+
+  -- {
+  --   "echasnovski/mini.clue",
+  --   config = require("plugins.config.mini.clue").config,
+  -- },
   {
     "mbbill/undotree",
     keys = require("plugins.config.undotree").keys,
@@ -797,7 +798,6 @@ return {
 
   -- misc
   -- "axkirillov/easypick.nvim",
-  -- { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
   -- {'krady21/compiler-explorer.nvim'},
 
   -- Note taking

@@ -260,6 +260,10 @@ M.keys = function()
       telescopeHelper.edit_neovim,
       desc = "Neovim config",
     },
+
+    --git
+    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
   }
 end
 
