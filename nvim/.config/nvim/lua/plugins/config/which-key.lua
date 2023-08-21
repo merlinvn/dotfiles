@@ -25,7 +25,6 @@ M.config = function()
     },
     ["<leader>c"] = {
       name = "+code",
-      t = "+test",
       w = "swap next",
       W = "swap previous",
     },

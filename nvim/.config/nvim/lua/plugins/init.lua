@@ -628,6 +628,15 @@ return {
     event = "InsertEnter",
     opts = require("plugins.config.copilot").opts,
   },
+  {
+    "dpayne/CodeGPT.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = require("plugins.config.CodeGPT").config,
+    keys = require("plugins.config.CodeGPT").keys,
+  },
 
   -- C++:
   {
@@ -760,6 +769,17 @@ return {
     },
     opts = require("plugins.config.obsidian").opts,
     keys = require("plugins.config.obsidian").keys,
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+    end,
   },
   {
     "preservim/vim-markdown",
