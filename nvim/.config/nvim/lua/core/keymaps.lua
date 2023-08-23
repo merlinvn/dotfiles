@@ -95,9 +95,8 @@ map("v", "<S-Down>", ":m '>+1<CR>gv=gv", "move line down")
 map("v", "<S-Up>", ":m '<-2<CR>gv=gv", "move line up")
 
 -- join and stay in the same line
-noremap("n", "gj", "mzJ`z", "Join line")
-
-noremap("n", "gs", "a<CR><ESC>k$", "Split line")
+-- noremap("n", "gj", "mzJ`z", "Join line")
+-- noremap("n", "gs", "a<CR><ESC>k$", "Split line")
 
 -- change word with <c-c>
 map("n", "<C-c>", "<cmd>normal! ciw<cr>a")
@@ -164,7 +163,8 @@ noremap("n", "<leader>bb", "<cmd>e #<cr>", "<-> buffer")
 noremap("n", "<leader>`", "<cmd>e #<cr>", "<-> buffer")
 
 -- tab navigation
--- refer to bufferline for buffer navigation, un comment the following if you don't use bufferline
+-- refer to bufferline for buffer navigation,
+-- comment the following if you use buffer mode in bufferline
 -- Go to tab by number
 map("n", "<leader>1", "1gt", "Go to tab 1", { remap = true })
 map("n", "<leader>2", "2gt", "Go to tab 2", { remap = true })
@@ -192,6 +192,8 @@ map("n", "N", "Nzzzv")
 -- scroll and stay in center
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+map("n", "<PageUp>", "<PageUp>zz")
+map("n", "<PageDown>", "<PageDown>zz")
 
 -- move to the end of the line in insert mode
 map("i", "<C-a>", "<End>")
@@ -212,7 +214,6 @@ map("n", "<expr> j", "(v:count > 5 ? 'm'' . v:count : '') . 'j'")
 --   like `dj` on non-wrapped line will not delete it.
 -- - Condition on `v:count == 0` to allow easier use of relative line numbers.
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", "", { expr = true })
-
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", "", { expr = true })
 
 -- map("n", "<leader>x", "<cmd>!chmod +x %<CR>", )

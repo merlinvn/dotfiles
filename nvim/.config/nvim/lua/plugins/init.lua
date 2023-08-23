@@ -194,7 +194,13 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     vscode = true,
-    opts = {},
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
     -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -442,13 +448,33 @@ return {
       require("mini.bracketed").setup({})
     end,
   },
-
   {
     "echasnovski/mini.splitjoin",
     event = "BufReadPre",
     version = false,
     config = function()
       require("mini.splitjoin").setup({})
+    end,
+  },
+  {
+    "echasnovski/mini.operators",
+    event = "BufReadPre",
+    version = false,
+    config = function()
+      require("mini.operators").setup({
+        -- Replace text with register
+        replace = {
+          prefix = 'g"',
+          -- Whether to reindent new text to match previous indent
+          reindent_linewise = true,
+        },
+        -- Sort text
+        sort = {
+          prefix = "gs",
+          -- Function which does the sort
+          func = nil,
+        },
+      })
     end,
   },
   -- }}}
@@ -767,19 +793,8 @@ return {
       "godlygeek/tabular",
       "preservim/vim-markdown",
     },
-    opts = require("plugins.config.obsidian").opts,
     keys = require("plugins.config.obsidian").keys,
-    config = function(_, opts)
-      require("obsidian").setup(opts)
-
-      vim.keymap.set("n", "gf", function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
-          return "gf"
-        end
-      end, { noremap = false, expr = true })
-    end,
+    config = require("plugins.config.obsidian").config,
   },
   {
     "preservim/vim-markdown",
@@ -790,6 +805,7 @@ return {
     },
     config = function()
       vim.g.vim_markdown_folding_disabled = 1
+      vim.g.vim_markdown_no_default_key_mappings = 1
       -- vim.g.vim_markdown_folding_level = 3
     end,
   },
@@ -810,6 +826,21 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = require("plugins.config.gitsigns").opts,
   },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {
+      max_count = 3,
+      disable_mouse = false,
+      disabled_keys = {
+        ["<Up>"] = { "" },
+        ["<Down>"] = { "" },
+        ["<Left>"] = { "" },
+        ["<Right>"] = { "" },
+      },
+    },
+  },
+
   -- "airblade/vim-gitgutter",
   -- "TimUntersberger/neogit",
   -- "tpope/vim-fugitive",

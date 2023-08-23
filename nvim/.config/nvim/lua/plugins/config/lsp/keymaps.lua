@@ -45,7 +45,7 @@ function M.on_attach(client, bufnr)
   nmap("<leader>cr", vim.lsp.buf.rename, "Code rename")
 
   nmap("K", vim.lsp.buf.hover, "Show hover")
-  nmap("gk", vim.lsp.buf.signature_help, "Show signature help")
+  nmap("gK", vim.lsp.buf.signature_help, "Show signature help")
   imap("<C-K>", vim.lsp.buf.signature_help, "Show signature help")
 
   nmap(
@@ -73,13 +73,9 @@ function M.on_attach(client, bufnr)
   nmap("<leader>cf", format, "Format buffer")
   nmap("<leader>ff", format, "Format buffer")
 
-  buf_map("v", "<leader>cf", format, bufnr, "Format range", {
-    noremap = true,
-  })
+  buf_map("v", "<leader>cf", format, bufnr, "Format range", { noremap = true })
 
-  buf_map("v", "<leader>ff", format, bufnr, "Format range", {
-    noremap = true,
-  })
+  buf_map("v", "<leader>ff", format, bufnr, "Format range", { noremap = true })
 
   -- imap("<C-f>", format, "Format buffer")
   -- Create a command `:Format` local to the LSP buffer

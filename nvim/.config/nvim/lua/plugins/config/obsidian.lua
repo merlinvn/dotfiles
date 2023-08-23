@@ -56,6 +56,7 @@ M.opts = {
   disable_frontmatter = false,
 
   note_frontmatter_func = function(note)
+    local obsidian = require("obsidian")
     -- This is equivalent to the default frontmatter function.
     local out = {
       id = note.id,
@@ -66,7 +67,7 @@ M.opts = {
     -- So here we just make sure those fields are kept in the frontmatter.
     if
       note.metadata ~= nil
-      and require("obsidian").util.table_length(note.metadata) > 0
+      and obsidian.util.table_length(note.metadata) > 0
     then
       for k, v in pairs(note.metadata) do
         out[k] = v
@@ -80,6 +81,19 @@ M.opts = {
     return out
   end,
 }
+
+M.config = function(_)
+  local obsidian = require("obsidian")
+  obsidian.setup(M.opts)
+
+  vim.keymap.set("n", "gf", function()
+    if obsidian.util.cursor_on_markdown_link() then
+      return "<cmd>ObsidianFollowLink<CR>"
+    else
+      return "gf"
+    end
+  end, { noremap = false, expr = true })
+end
 
 M.newNote = function()
   -- on cancel or empty input do nothing and return
