@@ -408,7 +408,8 @@ vnoremap gc :call nerdcommenter#Comment(0,"toggle")<CR>
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 map f <Plug>(easymotion-bd-f)
-nmap f <Plug>(easymotion-overwin-f2)
+map t <Plug>(easymotion-bd-t)
+"nmap f <Plug>(easymotion-overwin-f2)
 nmap s <Plug>(easymotion-overwin-f2)
 
 "}}}
