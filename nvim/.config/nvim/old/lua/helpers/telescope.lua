@@ -107,7 +107,7 @@ function M.grep_last_search(opts)
   -- \<getreg\>\C
   -- -> Subs out the search things
   local register =
-      vim.fn.getreg("/"):gsub("\\<", ""):gsub("\\>", ""):gsub("\\C", "")
+    vim.fn.getreg("/"):gsub("\\<", ""):gsub("\\>", ""):gsub("\\C", "")
 
   opts.path_display = { "shorten" }
   opts.word_match = "-w"
@@ -174,7 +174,7 @@ function M.find_files(opts)
   local myOpts = params.opts or {}
   myOpts = vim.tbl_deep_extend(
     "force",
-    { cwd = M.get_root() },
+    { cwd = require("helpers.path").get_root() },
     myOpts or {}
   )
   if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
@@ -244,11 +244,11 @@ function M.multi_rg()
   })
 end
 
-M.oldfiles = function()
+function M.oldfiles()
   require("telescope").extensions.frecency.frecency(themes.get_ivy({}))
 end
 
-M.search_only_certain_files = function()
+function M.search_only_certain_files()
   require("telescope.builtin").find_files({
     hidden = true,
     find_command = {
@@ -263,7 +263,7 @@ M.search_only_certain_files = function()
   })
 end
 
-M.buffers = function()
+function M.buffers()
   local opts = themes.get_ivy({
     shorten_path = false,
     border = true,
@@ -289,65 +289,19 @@ function M.curbuf()
   require("telescope.builtin").current_buffer_fuzzy_find(opts)
 end
 
-M.help_tags = function()
+function M.help_tags()
   require("telescope.builtin").help_tags({
     show_version = true,
   })
 end
 
-M.vim_options = function()
+function M.vim_options()
   require("telescope.builtin").vim_options({
     layout_config = {
       width = 0.5,
     },
     sorting_strategy = "ascending",
   })
-end
-
-M.root_patterns = { ".git", "lua" }
-
--- returns the root directory based on:
--- * lsp workspace folders
--- * lsp root_dir
--- * root pattern of filename of the current buffer
--- * root pattern of cwd
----@return string
-function M.get_root()
-  ---@type string?
-  local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
-  ---@type string[]
-  local roots = {}
-  if path then
-    for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      local workspace = client.config.workspace_folders
-      local paths = workspace
-          and vim.tbl_map(function(ws)
-            return vim.uri_to_fname(ws.uri)
-          end, workspace)
-          or client.config.root_dir and { client.config.root_dir }
-          or {}
-      for _, p in ipairs(paths) do
-        local r = vim.loop.fs_realpath(p)
-        if path:find(r, 1, true) then
-          roots[#roots + 1] = r
-        end
-      end
-    end
-  end
-  table.sort(roots, function(a, b)
-    return #a > #b
-  end)
-  ---@type string?
-  local root = roots[1]
-  if not root then
-    path = path and vim.fs.dirname(path) or vim.loop.cwd()
-    ---@type string?
-    root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.loop.cwd()
-  end
-  ---@cast root string
-  return root
 end
 
 return M

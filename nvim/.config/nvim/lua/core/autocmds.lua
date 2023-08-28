@@ -1,26 +1,15 @@
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group =
-  vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank({
-      -- higroup = 'IncSearch',
-      -- timeout = 300,
-    })
-  end,
-  group = highlight_group,
-  pattern = "*",
-})
-
 -- [[ Fix file on save]]
 -- remove trailing spaces at the end of all lines
 local MerlinVnGroup = vim.api.nvim_create_augroup("MerlinVn", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = MerlinVnGroup,
-  pattern = "*",
-  command = "%s/\\s\\+$//e",
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   group = MerlinVnGroup,
+--   pattern = "*",
+--   callback = function()
+--     local MiniTrail = require("mini.trailspace")
+--     MiniTrail.trim()
+--     MiniTrail.trim_last_lines()
+--   end,
+-- })
 
 -- resize splis if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
@@ -75,10 +64,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
-
-if vim.g.lasttab == nil then
-  vim.g.lasttab = 1
-end
 
 vim.api.nvim_create_autocmd({ "TabLeave" }, {
   group = MerlinVnGroup,

@@ -69,13 +69,30 @@ map({ "n", "v" }, "<leader>dd", [["_d]], "delete to black hole")
 -- This is going to get me cancelled
 map("i", "<C-c>", "<Esc>")
 
--- move line up / down is subtituted by mini.move <M-j> and <M-k>
--- map("n", "<S-Down>", ":m .+1<CR>==", "move line down")
--- map("n", "<S-Up>", ":m .-2<CR>==", "move line up")
--- map("i", "<S-Down>", "<Esc>:m .+1<CR>==gi", "move line down")
--- map("i", "<S-Up>", "<Esc>:m .-2<CR>==gi", "move line up")
--- map("v", "<S-Down>", ":m '>+1<CR>gv=gv", "move line down")
--- map("v", "<S-Up>", ":m '<-2<CR>gv=gv", "move line up")
+-- replace selected in visual mode, by yank current selection to register h, then
+-- <C-r>h to paste in command mode, calling <left> * 3 to go back to proper position
+-- noremap(
+--   "v",
+--   "<Leader>s",
+--   '"hy:%s/<C-r>h//gc<Left><Left><Left>',
+--   "[s]ubtitude selected"
+-- )
+--
+-- -- replace current word in normal mode
+-- noremap(
+--   "n",
+--   "<Leader>s",
+--   ":%s/<C-r><C-w>//gI<Left><Left><Left>",
+--   "[s]ubtitude selected"
+-- )
+--
+-- move line up / down
+map("n", "<S-Down>", ":m .+1<CR>==", "move line down")
+map("n", "<S-Up>", ":m .-2<CR>==", "move line up")
+map("i", "<S-Down>", "<Esc>:m .+1<CR>==gi", "move line down")
+map("i", "<S-Up>", "<Esc>:m .-2<CR>==gi", "move line up")
+map("v", "<S-Down>", ":m '>+1<CR>gv=gv", "move line down")
+map("v", "<S-Up>", ":m '<-2<CR>gv=gv", "move line up")
 
 -- join and stay in the same line
 -- noremap("n", "gj", "mzJ`z", "Join line")

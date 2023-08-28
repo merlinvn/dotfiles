@@ -13,7 +13,6 @@ export PATH=/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# export NVM_LAZY=1
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -150,6 +149,7 @@ export FZF_DEFAULT_OPTS=" \
 
 # nvim selector
 alias lv="NVIM_APPNAME=LazyVim nvim"
+alias mini="NVIM_APPNAME=MiniVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
@@ -166,7 +166,7 @@ function nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
-bindkey -s ^n "nvims\n"
+# bindkey -s ^n "nvims\n"
 
 # Add any commands which depend on conda here
 lazy_conda_aliases=('conda')

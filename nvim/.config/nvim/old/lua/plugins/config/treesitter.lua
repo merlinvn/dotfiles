@@ -31,10 +31,11 @@ M.opts = {
     "python",
     "rust",
     "typescript",
-    -- "help",
+    "javascript",
+    "yaml",
     "bash",
-    "markdown",
     "regex",
+    "markdown",
     "markdown_inline",
   },
   auto_install = true,
@@ -66,7 +67,7 @@ M.opts = {
     navigation = {
       enable = false,
       keymaps = {
-        goto_definition = "gnd", -- mapping to go to definition of symbol under cursor
+        goto_definition = "gnd",  -- mapping to go to definition of symbol under cursor
         list_definitions = "gnD", -- mapping to list all definitions in current file
       },
     },

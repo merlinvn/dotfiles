@@ -151,6 +151,7 @@ function M.config(_, opts)
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
+
   vim.diagnostic.config(opts.diagnostics)
 
   -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
