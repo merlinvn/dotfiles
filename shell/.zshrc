@@ -203,3 +203,4 @@ do
     alias $lazy_conda_alias="load_conda && $lazy_conda_alias"
 done
 
+export PATH="/usr/local/opt/llvm/bin:$PATH"

@@ -5,11 +5,14 @@
 local jump_2d = function()
   local Flash = require("flash")
 
+  ---@diagnostic disable-next-line: undefined-doc-name
   ---@param opts Flash.Format
   local function format(opts)
     -- always show first and second label
     return {
+      ---@diagnostic disable-next-line: undefined-field
       { opts.match.label1, "FlashMatch" },
+      ---@diagnostic disable-next-line: undefined-field
       { opts.match.label2, "FlashLabel" },
     }
   end

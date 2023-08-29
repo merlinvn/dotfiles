@@ -77,13 +77,13 @@ M.opts = {
   servers = {
     clangd = {
       mason = false,
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-      },
+      -- cmd = {
+      --   "clangd",
+      --   "--background-index",
+      --   "--suggest-missing-includes",
+      --   "--clang-tidy",
+      --   "--header-insertion=iwyu",
+      -- },
     },
     gopls = {},
     pyright = {},
@@ -141,6 +141,7 @@ M.opts = {
     tailwindcss = {},
     dockerls = {},
     cmake = {},
+    eslint = {},
     ["rust_analyzer"] = {
       mason = false,
       settings = {
@@ -203,7 +204,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     cmd = "LspInfo",
-    lazt = "VeryLazy",
+    lazy = "VeryLazy",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
@@ -227,6 +228,7 @@ return {
         vim.lsp.protocol.make_client_capabilities()
       )
       capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities.offsetEncoding = { "utf-16" }
 
       local setup = function(server)
         local server_opts = vim.tbl_deep_extend("force", {

@@ -1,3 +1,15 @@
+local tsjs_formatter = function(ft)
+  if
+    require("helpers.path").root_has_file({
+      ".eslintrc.json",
+      ".eslintrc",
+    })
+  then
+    return require("formatter.filetypes." .. ft).eslint_d
+  end
+  return require("formatter.filetypes." .. ft).prettier
+end
+
 return {
   {
     "mhartington/formatter.nvim",
@@ -22,7 +34,7 @@ return {
           lua = {
             -- "formatter.filetypes.lua" defines default configurations for the
             -- "lua" filetype
-            require("formatter.filetypes.lua").stylua,
+            -- require("formatter.filetypes.lua").stylua,
 
             -- You can also define your own configuration
             function()
@@ -46,7 +58,31 @@ return {
               }
             end,
           },
-
+          typescriptreact = {
+            -- require("formatter.filetypes.typescriptreact").prettier,
+            tsjs_formatter("typescriptreact"),
+          },
+          typescript = {
+            tsjs_formatter("typescript"),
+          },
+          javascript = {
+            tsjs_formatter("javascript"),
+          },
+          javascriptreact = {
+            tsjs_formatter("javascriptreact"),
+          },
+          json = {
+            require("formatter.filetypes.json").prettier,
+          },
+          cpp = {
+            require("formatter.filetypes.cpp").clangformat,
+          },
+          rust = {
+            require("formatter.filetypes.rust").rustfmt,
+          },
+          yaml = {
+            require("formatter.filetypes.yaml").prettier,
+          },
           -- Use the special "*" filetype for defining formatter configurations on
           -- any filetype
           ["*"] = {
