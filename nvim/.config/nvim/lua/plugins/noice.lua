@@ -10,28 +10,28 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-      -- {
-      --   "rcarriga/nvim-notify",
-      --   keys = {
-      --     {
-      --       "<leader>on",
-      --       function()
-      --         require("notify").dismiss({ silent = true, pending = true })
-      --       end,
-      --       desc = "Delete all Notifications",
-      --     },
-      --   },
-      --   opts = {
-      --     timeout = 3000,
-      --     max_height = function()
-      --       return math.floor(vim.o.lines * 0.75)
-      --     end,
-      --     max_width = function()
-      --       return math.floor(vim.o.columns * 0.75)
-      --     end,
-      --   },
-      -- },
+      -- "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        keys = {
+          {
+            "<leader>vo",
+            function()
+              require("notify").dismiss({ silent = true, pending = true })
+            end,
+            desc = "Delete all Notifications",
+          },
+        },
+        -- opts = {
+        --   timeout = 3000,
+        --   max_height = function()
+        --     return math.floor(vim.o.lines * 0.75)
+        --   end,
+        --   max_width = function()
+        --     return math.floor(vim.o.columns * 0.75)
+        --   end,
+        -- },
+      },
     },
     opts = {
       -- you can enable a preset for easier configuration

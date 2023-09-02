@@ -6,6 +6,9 @@ return {
     -- dependencies = { { "zbirenbaum/copilot-cmp" } },
     config = function()
       require("copilot").setup({
+        filetypes = {
+          markdown = true,
+        },
         suggestion = {
           auto_trigger = true,
           -- enabled = false,

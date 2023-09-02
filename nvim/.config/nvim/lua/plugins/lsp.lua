@@ -173,7 +173,14 @@ M.opts = {
   -- return true if you don't want additional default setup with lspconfig
   setup = {
     rust_analyzer = function(_, opts)
-      require("rust-tools").setup({ server = opts })
+      require("rust-tools").setup({
+        server = opts,
+        tools = {
+          inlay_hints = {
+            highlight = "@comment",
+          },
+        },
+      })
       -- additional keymaps
       -- require("helpers").on_attach(function(client, buf)
       --   require("plugins.config.lsp.keymaps").on_attach_rust(client, buf)

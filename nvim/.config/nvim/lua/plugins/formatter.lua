@@ -83,6 +83,9 @@ return {
           yaml = {
             require("formatter.filetypes.yaml").prettier,
           },
+          python = {
+            require("formatter.filetypes.python").autopep8,
+          },
           -- Use the special "*" filetype for defining formatter configurations on
           -- any filetype
           ["*"] = {

@@ -45,7 +45,7 @@ return {
           name = "+git",
         },
         ["<leader>n"] = {
-          name = "+session",
+          name = "+notes",
         },
         ["<leader>o"] = {
           name = "+options/open",
