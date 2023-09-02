@@ -107,7 +107,7 @@ function M.grep_last_search(opts)
   -- \<getreg\>\C
   -- -> Subs out the search things
   local register =
-      vim.fn.getreg("/"):gsub("\\<", ""):gsub("\\>", ""):gsub("\\C", "")
+    vim.fn.getreg("/"):gsub("\\<", ""):gsub("\\>", ""):gsub("\\C", "")
 
   opts.path_display = { "shorten" }
   opts.word_match = "-w"
@@ -172,17 +172,17 @@ function M.find_files(opts)
   -- return function()
   local builtin = params.builtin
   local myOpts = params.opts or {}
-  myOpts = vim.tbl_deep_extend(
-    "force",
-    { cwd = M.get_root() },
-    myOpts or {}
-  )
-  if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
+
+  -- find root directory
+  --
+  local is_git = os.execute("git") == 0
+  if is_git then
     myOpts.show_untracked = true
     builtin = "git_files"
   else
     builtin = "find_files"
   end
+
   require("telescope.builtin")[builtin](myOpts)
   -- end
 end
@@ -325,8 +325,8 @@ function M.get_root()
           and vim.tbl_map(function(ws)
             return vim.uri_to_fname(ws.uri)
           end, workspace)
-          or client.config.root_dir and { client.config.root_dir }
-          or {}
+        or client.config.root_dir and { client.config.root_dir }
+        or {}
       for _, p in ipairs(paths) do
         local r = vim.loop.fs_realpath(p)
         if path:find(r, 1, true) then
