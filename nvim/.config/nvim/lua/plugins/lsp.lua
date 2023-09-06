@@ -207,6 +207,7 @@ M.config_diagnotics = function(opts)
   end
   vim.diagnostic.config(opts.diagnostics)
 end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -224,6 +225,10 @@ return {
       },
     },
     config = function()
+      -- -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+      require("neodev").setup({
+        -- add any options here, or leave empty to use the default settings
+      })
       M.config_diagnotics(M.opts)
 
       require("helpers.lsp").on_attach(function(client, bufnr)
@@ -286,12 +291,6 @@ return {
       require("mason-lspconfig").setup_handlers({ setup })
     end,
   },
-  {
-    "folke/neodev.nvim",
-    event = "BufReadPre",
-    config = true,
-  },
-
   -- {
   --   "nvim-lua/lsp_extensions.nvim",
   --   event = "BufReadPre",

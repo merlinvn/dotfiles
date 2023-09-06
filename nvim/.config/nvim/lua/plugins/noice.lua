@@ -58,10 +58,10 @@ return {
       lsp = {
         -- disable the following features in orther for lsp-zero works
         hover = {
-          -- enabled = false,
+          enabled = false,
         },
         signature = {
-          -- enabled = false,
+          enabled = false,
         },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {

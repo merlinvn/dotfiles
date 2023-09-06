@@ -117,6 +117,10 @@ return {
           },
         },
         sorting = require("cmp.config.default")().sorting,
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
       })
 
       vim.cmd([[  highlight! default link CmpItemKind CmpItemMenuDefault ]])
