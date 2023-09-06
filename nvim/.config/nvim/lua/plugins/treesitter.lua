@@ -242,7 +242,13 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter",
     event = "BufReadPost",
-    config = true,
+    config = function()
+      require("treesitter-context").setup({
+        enable = true,
+        max_lines = 5,
+        multiline_threshold = 20,
+      })
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
