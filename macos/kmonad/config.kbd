@@ -117,7 +117,7 @@
   _      A-1     A-2     A-3     A-4    A-5   A-6     A-7     A-8     A-9      _    _    _    _
   _      M-tab   A-tab   C-S-tab C-tab  _    caps    home    up      end      _    _    _    _
   esc    lmet    lalt    lctl    lsft   _    bspc    left    down    right    ret  _    M-ret
-  @neo    M-z    M-x     M-c     M-v    _    del     pgdn    pgup    _        _    _
+  A-w    M-z     M-x     M-c     M-v    _    del     pgdn    pgup    _        _    _
   _   _      _       _                       _                     _    _    _    _   _   _
 )
 
@@ -192,4 +192,3 @@ M-z       M-x      M-c      M-v        @qwe       XX      XX    del     pgdn    
 XX        XX      XX      XX      XX      XX      XX    -    1    2    3    ,
   _    _       _       _       spc     0       bspc    _     _    _    _
 )
-

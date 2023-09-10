@@ -44,9 +44,11 @@ return {
 
     config = function(_)
       require("codegpt.config")
-      vim.g["codegpt_openai_api_key"] = os.getenv("OPENAI_API_KEY")
+      -- vim.g["codegpt_openai_api_key"] = os.getenv("OPENAI_API_KEY")
+      vim.g["codegpt_openai_api_key"] = ""
       vim.g["codegpt_chat_completions_url"] =
-      "http://127.0.0.1:1337/chat/completions"
+        "http://10.10.10.4:2600/v1/chat/completions"
+      -- "http://127.0.0.1:1337/chat/completions"
     end,
 
     keys = {

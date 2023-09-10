@@ -1,23 +1,44 @@
-buttons: j k ,
-oneshot_buttons: m / .
+# normal mode
+buttons: m , .
+oneshot_buttons: j k l
 screen_chars: nhioarstg
-left: Left
-right: Right
-up: Up
-down: Down
-start: n Home
-end: i End
-top: u
-bottom: h
-middle: o
-scroll_up: p
-scroll_down: f
-grid_keys: l u n h
-grid_color: #212f5a
-grid_left: r
-grid_right: t
-grid_up: f
-grid_down: s
-hint2_chars: luynhijk,
-hint: X
+
+# normal: activate hint and hint2
+hint: space
+
+# disable grid mode
+hint: g
 hint2: x
+
+# normal mode: move cursor
+left: leftarrow
+right: rightarrow
+up: uparrow
+down: downarrow
+
+start: ^
+end: $
+top: H
+bottom: L
+middle: M
+
+scroll_up: e
+scroll_down: r
+
+accelerator: a
+decelerator: d
+
+# end normal mode
+
+# hint mode
+hint2_chars: 789456123
+
+# grid mode: .... may be useless
+grid_keys: u i j k
+# grid_keys: l u n h
+grid_keys: kp7 kp8 kp4 kp5
+grid_color: #212f5a
+grid_left: leftarrow
+grid_right: rightarrow
+grid_up: uparrow
+grid_down: downarrow
