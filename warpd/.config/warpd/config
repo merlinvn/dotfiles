@@ -22,8 +22,8 @@ top: H
 bottom: L
 middle: M
 
-scroll_up: e
-scroll_down: r
+# scroll_up: r
+# scroll_down: e
 
 accelerator: a
 decelerator: d

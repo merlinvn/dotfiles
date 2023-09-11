@@ -104,7 +104,7 @@ yabai -m rule --add app=Code space=^4
 yabai -m rule --add app=Spyder space=^4
 yabai -m rule --add app="^Navicat" space=^4
 yabai -m rule --add app=Finder space=^5
-yabai -m rule --add app="Commander One PRO" space=^5
+yabai -m rule --add app="Commander One" space=^5
 yabai -m rule --add app=Mail space=^6
 yabai -m rule --add app=Reeder space=^7
 yabai -m rule --add app="^Acrobat" space=^7
@@ -123,10 +123,10 @@ yabai -m rule --add app="^System Information" manage=off
 yabai -m rule --add app="^Installer" manage=off
 yabai -m rule --add app="^YabaiIndicator" manage=off
 yabai -m rule --add app="^Bartender" manage=off
-yabai -m rule --add app="Commander One PRO" manage=off
 yabai -m rule --add app="^Dozer" manage=off
 yabai -m rule --add app="^Xee" manage=off
 yabai -m rule --add app="^WireGuard" manage=off
+yabai -m rule --add app="Commander One" title="File Info" manage=off
 yabai -m rule --add app="^Commander One" title!="Quick Look" subrole="Quick Look" manage=off grid=12:12:1:1:10:10
 
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
