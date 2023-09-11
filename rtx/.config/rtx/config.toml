@@ -1,0 +1,7 @@
+[tools]
+node = "lts"
+python = "3.10"
+
+[plugins]
+python = 'https://github.com/jdxcode/rtx-python'
+
