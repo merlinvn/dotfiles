@@ -101,3 +101,5 @@ export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 [[ -d "$HOME/.local/share/bob/nvim-bin" ]] && export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 export EDITOR="nvim"
+
+bindkey -s ^f "tmux-sessionizer\n"
