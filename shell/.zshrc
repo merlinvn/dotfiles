@@ -204,3 +204,6 @@ do
 done
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# bun completions
+[ -s "/Users/neo/.bun/_bun" ] && source "/Users/neo/.bun/_bun"

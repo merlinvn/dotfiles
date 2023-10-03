@@ -5,7 +5,8 @@ local tsjs_formatter = function(ft)
       ".eslintrc",
     })
   then
-    return require("formatter.filetypes." .. ft).eslint_d
+    -- return require("formatter.filetypes." .. ft).eslint
+    return require("formatter.filetypes." .. ft).prettier
   end
   return require("formatter.filetypes." .. ft).prettier
 end
@@ -19,6 +20,7 @@ return {
     },
     config = function()
       -- Utilities for creating configurations
+      local defaults = require("formatter.defaults")
       local util = require("formatter.util")
 
       -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
@@ -85,6 +87,9 @@ return {
           },
           python = {
             require("formatter.filetypes.python").autopep8,
+          },
+          astro = {
+            util.withl(defaults.prettier, "astro"),
           },
           -- Use the special "*" filetype for defining formatter configurations on
           -- any filetype

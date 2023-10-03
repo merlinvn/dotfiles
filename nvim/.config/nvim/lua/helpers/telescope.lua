@@ -174,9 +174,9 @@ function M.find_files(opts)
   local myOpts = params.opts or {}
 
   -- find root directory
-  --
-  local is_git = os.execute("git") == 0
-  if is_git then
+  myOpts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, myOpts or {})
+
+  if vim.loop.fs_stat((myOpts.cwd or vim.loop.cwd()) .. "/.git") then
     myOpts.show_untracked = true
     builtin = "git_files"
   else

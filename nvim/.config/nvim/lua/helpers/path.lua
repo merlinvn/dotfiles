@@ -17,19 +17,19 @@ M.path = {
 
 M.root_patterns = { ".git", "lua" }
 
--- returns the root directory based on:
--- * lsp workspace folders
--- * lsp root_dir
--- * root pattern of filename of the current buffer
--- * root pattern of cwd
----@return string
+--- Retrieves the root directory associated with the current buffer or workspace.
+
+---@return string? The root directory path as a string, or nil if no root directory is found.
 function M.get_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
+
   ---@type string[]
   local roots = {}
+
   if path then
+    -- Iterate over active LSP clients for the current buffer.
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
       local paths = workspace
@@ -38,6 +38,8 @@ function M.get_root()
           end, workspace)
         or client.config.root_dir and { client.config.root_dir }
         or {}
+
+      -- Check if the current buffer's path is within the LSP client's workspace or root_dir.
       for _, p in ipairs(paths) do
         local r = vim.loop.fs_realpath(p)
         if path:find(r, 1, true) then
@@ -46,17 +48,23 @@ function M.get_root()
       end
     end
   end
+
+  -- Sort the discovered roots by path length in descending order.
   table.sort(roots, function(a, b)
     return #a > #b
   end)
+
   ---@type string?
   local root = roots[1]
+
   if not root then
+    -- If no root is found, attempt to find a root using predefined patterns.
     path = path and vim.fs.dirname(path) or vim.loop.cwd()
     ---@type string?
     root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
     root = root and vim.fs.dirname(root) or vim.loop.cwd()
   end
+
   ---@cast root string
   return root
 end

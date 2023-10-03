@@ -66,9 +66,9 @@ return {
         ["<leader>v"] = {
           name = "+vim",
         },
-        ["<leader>w"] = {
-          name = "+windows",
-        },
+        -- ["<leader>w"] = {
+        --   name = "+windows",
+        -- },
         ["<leader>x"] = {
           name = "+diagnotics",
         },

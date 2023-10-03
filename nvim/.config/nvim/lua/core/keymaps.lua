@@ -109,10 +109,10 @@ noremap("t", "<C-k>", "<C-\\><C-n><C-w>h", "win up")
 noremap("t", "<C-l>", "<C-\\><C-n><C-w>h", "win right")
 
 -- split windows
-noremap("n", "<leader>ww", "<C-W>w", "Other window")
-noremap("n", "<leader>wd", "<C-W>c", "Delete window")
-noremap("n", "<leader>wx", "<C-W>s", "Split window below")
-noremap("n", "<leader>wv", "<C-W>v", "Split window right")
+-- noremap("n", "<leader>ww", "<C-W>w", "Other window")
+-- noremap("n", "<leader>wd", "<C-W>c", "Delete window")
+-- noremap("n", "<leader>wx", "<C-W>s", "Split window below")
+-- noremap("n", "<leader>wv", "<C-W>v", "Split window right")
 noremap("n", "<leader>-", "<C-W>s", "Split window below")
 noremap("n", "<leader>|", "<C-W>v", "Split window right")
 

@@ -1,4 +1,5 @@
 local M = {}
+
 ---@diagnostic disable-next-line: unused-local
 M.default_keymaps = function(client, bufnr)
   local format = function()
@@ -101,6 +102,32 @@ M.opts = {
         "typescript.tsx",
       },
       cmd = { "typescript-language-server", "--stdio" },
+      settings = {
+
+        -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+        javascript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+        typescript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+      },
     },
     lua_ls = {
       settings = {
@@ -134,6 +161,11 @@ M.opts = {
               "use",
               "t",
             },
+          },
+          hint = {
+            enable = true,
+            -- Disable LSP diagnostics for Lua
+            -- diagnostics = false,
           },
         },
       },
@@ -196,6 +228,7 @@ M.opts = {
     -- Specify * to use this function as a fallback for any server
     -- ["*"] = function(server, opts) end,
   },
+  inlay_hints = { enable = true },
 }
 
 M.config_diagnotics = function(opts)
@@ -289,6 +322,15 @@ return {
 
       require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup_handlers({ setup })
+
+      if vim.lsp.inlay_hint then
+        vim.keymap.set(
+          "n",
+          "<leader>ch",
+          "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>",
+          { noremap = true, silent = true, desc = "Toggle hints" }
+        )
+      end
     end,
   },
   -- {
