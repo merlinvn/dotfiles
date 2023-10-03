@@ -2,10 +2,6 @@ local M = {}
 
 ---@diagnostic disable-next-line: unused-local
 M.default_keymaps = function(client, bufnr)
-  local format = function()
-    vim.cmd([[FormatWrite]])
-  end
-
   local buf_map = require("helpers.keys").buf_map
   -- Mappings.
   local nmap = function(keys, func, desc)
@@ -42,11 +38,6 @@ M.default_keymaps = function(client, bufnr)
     "References"
   )
 
-  nmap("<leader>ff", format, "Format buffer")
-
-  buf_map("v", "<leader>ff", format, bufnr, "Format range", { noremap = true })
-  nmap("<F3>", format, "Format buffer")
-
   nmap("<leader>ca", vim.lsp.buf.code_action, "Code action")
   nmap("<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action")
   nmap("<leader>cr", vim.lsp.buf.rename, "Code rename")
@@ -70,6 +61,9 @@ M.opts = {
       prefix = "",
     },
   },
+  -- add any global capabilities here
+  capabilities = {},
+  autoformat = true,
   format = {
     formatting_options = nil,
     timeout_ms = nil,
@@ -263,6 +257,9 @@ return {
         -- add any options here, or leave empty to use the default settings
       })
       M.config_diagnotics(M.opts)
+
+      -- create autoformat
+      require("helpers.lsp_format").setup(M.opts)
 
       require("helpers.lsp").on_attach(function(client, bufnr)
         M.default_keymaps(client, bufnr)

@@ -8,7 +8,7 @@ map({ "i", "v", "n", "s" }, "<C-S-s>", "<cmd>wa<CR><esc>")
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
 -- map({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update | redraw<CR>", "Save")
-map({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update<CR>", "Save")
+-- map({ "n", "v", "s" }, "<C-s>", "<Cmd>silent! update<CR>", "Save")
 
 map(
   { "i", "x" },
@@ -85,18 +85,7 @@ map("i", "<C-c>", "<Esc>")
 map("n", "<C-c>", "<cmd>normal! ciw<cr>a")
 
 -- Add empty lines before and after cursor line without goto insert mode
-map(
-  "n",
-  "gO",
-  "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>",
-  "Put empty line above"
-)
-map(
-  "n",
-  "go",
-  "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>",
-  "Put empty line below"
-)
+-- map to "go" and "gO" in mini.basic
 
 -- NAVIGATION
 -- windows navigation
@@ -188,3 +177,15 @@ map("i", "?", "?<c-g>u")
 
 -- remap _ naturally pair with -
 map("n", "_", "(v:count == 0 ? 'j' : 'j').'^'", "", { expr = true })
+
+-- code format
+map({ "n", "v" }, "<leader>ff", function()
+  require("helpers.lsp_format").format({ force = true })
+end, "Format")
+map({ "n", "v" }, "<F3>", function()
+  require("helpers.lsp_format").format({ force = true })
+end, "Format")
+
+map({ "n" }, "\\f", function()
+  require("helpers.lsp_format").toggle()
+end, "Toggle 'Format on Save'")

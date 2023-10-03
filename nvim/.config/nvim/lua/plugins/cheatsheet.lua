@@ -13,6 +13,18 @@ return {
       "Cheatsheet",
       "CheatsheetEdit",
     },
+    keys = {
+      {
+        "<leader>hh",
+        "<cmd>Cheatsheet<cr>",
+        desc = "Cheatsheet",
+      },
+      {
+        "<leader>he",
+        "<cmd>CheatsheetEdit<cr>",
+        desc = "CheatsheetEdit",
+      },
+    },
   },
   -- {
   --   -- Automatically turns off search highlighing when move away from it.

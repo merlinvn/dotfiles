@@ -5,8 +5,8 @@
 #
 # Notation for key sequences:
 #
-# \      Leader (see `<leader>`)
-# -      Localleader (see `<localleader>`)
+# _      Leader (see `<leader>`)
+# \      Localleader (see `<localleader>`)
 # ‹r›    A register (", *, 0, 1, …)
 #        See `registers`
 # ‹Move› A motion or a text object
@@ -39,24 +39,28 @@
 # O    Operator (use in Visual mode, or
 #      before a motion or a text object)
 # *    Acts on text under/after cursor
-## working-on
-Change delimiters                   | cs‹c›‹c›      N
-Delete delimiters                   | ds‹c›         N
-Add delimiters                      | ys‹to›‹c›     N
-Add delimiters                      | S…            V
-Argument text object                | a             T
-Minor smart select                  | ,             T
-Large smart select                  | ;             T
+## mini.basic
+Move down by visible lines with no [count]    | j     | Normal, Visual   
+Move up by visible lines with no [count]      | k     | Normal, Visual   
+Add [count] empty lines after cursor          | go    | Normal           
+Add [count] empty lines before cursor         | gO    | Normal           
+Copy to system clipboard                      | gy    | Normal, Visual   
+Paste from system clipboard                   | gp    | Normal, Visual   
+Visually select latest changed or yanked text | gV    | Normal           
+Search inside current visual selection        | g/    | Visual           
+Search forward for current visual selection   | *     | Visual           
+Search backward for current visual selection  | #     | Visual           
+Save and go to Normal mode                    | <C-s> | Normal, Visual, Insert       
+Correct latest misspelled word                | <C-z> | Normal, Insert   
+## edit 
 Scratch buffer                      | \ss           N
-Swap parameters                     | \S            N
-Back to last insert mode            | gi            N
 Reselect last selection             | gv            N
 Change from inside word             | ciw           N
 ## surround
-Change delimiters                   | cs‹c›‹c›      N
-Delete delimiters                   | ds‹c›         N
-Add delimiters                      | ys‹to›‹c›     N
-Add delimiters                      | S…            V
+Change surround                         | cs‹c›‹c›      N
+Delete surround                         | ds‹c›         N
+Add (yank) surrond                      | ys‹to›‹c›     N
+Add delimiters                          | S…            V
 ## easy align
 Easy align                          | ga‹c›         V
 Easy align motion                   | ga‹Move›      N
@@ -64,44 +68,39 @@ Easy align motion                   | ga‹Move›      N
 Snippet jumping                     | «C-t» «C-s»   IN
 Select text for snippets            | «C-y»         V
 ## LSP
-Declaration                         | _D            N
-Definition                          | _d            N
-References                          | _r            N
-Implementation                      | _i            N
-Type definition                     | _t            N
-Hover                               | _h            N
-Signature help                      | _s            N
-Code action                         | _x            N
+Declaration                         | gD            N
+Definition                          | gd            N
+References                          | gr            N
+Implementation                      | gi            N
+Type definition                     | gt            N
+Hover                               | K             N
+Signature help                      | gK            N
+Code action                         | \ca           N
 Show line diagnostics               | _l            N
-Rename                              | _ar           N
-Incoming calls                      | _I            N
-Outgoing calls                      | _O            N
-Document symbol                     | _w            N
-Workspace symbol                    | _W            N
-Document diagnostics                | _e            N
-Workspace diagnostics               | _W            N
+Rename                              | _cr           N
+Document symbol                     | _ss           N
+Workspace symbol                    | _sS           N
+Document diagnostics                | _sd           N
+Workspace diagnostics               | _sD           N
 ## configuration
-Reload vimrc                        | \sv           N
-Edit vimrc                          | 'V            N
-Edit cheat sheet                    | 'C            N
+Find Neovim config                  | _vn           N
+Mason                               | _vm           N
+Lazy                                | _vl           N
 ## extra-text-objects
 tags                                | t             T
 argument                            | a             T
 brackets                            | b             T
 any quote                           | q             T
-minor smart select                  | ,             T
-large smart select                  | ;             T
 ## settings-options
-Turn on settings                    | [ox           N
-Turn off settings with              | ]ox           N
-Toggle settings                     | yox           N
-Background                          | yob           N
-Cursorline                          | yoc           N
-Hidden chars (list)                 | yol           N
-Spell                               | yos           N
-Wrap                                | yow           N
-Expand tab                          | yot           N
+Toggle background (light/dark)      | \b            N
+Toggle cursorline                   | \c            N
+Toggle cursorcolumn                 | \C            N
+Toggle diagnostics                  | \d            N
+Toggle format on save               | \f            N
+Toggle spell                               | \s            N
+Toggle wrap                                | \w            N
 ## buffers
 Scratch buffer                      | \ss           N
 ## treesitter
-Swap parameters                     | \S            N
+Swap next parameters                | _csp          N
+Swap previous parameters            | _csP          N

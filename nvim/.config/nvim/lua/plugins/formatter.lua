@@ -14,6 +14,7 @@ end
 return {
   {
     "mhartington/formatter.nvim",
+    enabled = false,
     dependencies = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
