@@ -72,6 +72,12 @@ M.opts = {
   servers = {
     clangd = {
       mason = false,
+      filetypes = {
+        "c",
+        "cpp",
+        "cuda",
+        "proto",
+      },
       -- cmd = {
       --   "clangd",
       --   "--background-index",
@@ -166,7 +172,9 @@ M.opts = {
     },
     tailwindcss = {},
     dockerls = {},
-    cmake = {},
+    cmake = {
+      mason = false,
+    },
     eslint = {},
     ["rust_analyzer"] = {
       mason = false,
