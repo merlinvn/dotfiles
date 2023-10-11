@@ -83,11 +83,11 @@ cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d
 cmd - tab : yabai -m space --focus recent
 
 # warpd control mouse by keyboard
-cmd+alt - d : warpd --hint2 --oneshot; warpd --click 1
-cmd+alt - x : warpd --hint
+# cmd+alt - d : warpd --hint2 --oneshot; warpd --click 1
+# cmd+alt - x : warpd --hint
 # cmd+alt - g : warpd --grid
-cmd+alt - c : warpd --normal
-cmd+alt - s : warpd --screen --oneshot
+# cmd+alt - c : warpd --normal
+# cmd+alt - s : warpd --screen --oneshot
 
 # open Brave Browser
 # cmd + shift - return : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
