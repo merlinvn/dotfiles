@@ -146,28 +146,6 @@ export FZF_DEFAULT_OPTS=" \
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
 [ -x "$(command -v rtx)" ] && eval "$(rtx activate zsh)"
 
-
-# nvim selector
-alias lv="NVIM_APPNAME=LazyVim nvim"
-alias mini="NVIM_APPNAME=MiniVim nvim"
-alias nvim-kick="NVIM_APPNAME=kickstart nvim"
-alias nvim-chad="NVIM_APPNAME=NvChad nvim"
-alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
-
-function nvims() {
-  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
-
-# bindkey -s ^n "nvims\n"
-
 # Add any commands which depend on conda here
 lazy_conda_aliases=('conda')
 
@@ -207,3 +185,30 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # bun completions
 [ -s "/Users/neo/.bun/_bun" ] && source "/Users/neo/.bun/_bun"
+
+
+# CUDA Path
+if [ -d "/usr/local/cuda-12.2/bin" ]; then
+  export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
+  export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+fi
+
+# nvim selector
+alias lv="NVIM_APPNAME=LazyVim nvim"
+alias mini="NVIM_APPNAME=MiniVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+function nvims() {
+  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
