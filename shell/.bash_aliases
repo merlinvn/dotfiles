@@ -113,3 +113,4 @@ set_alias jj zellij
 alias python='python3'
 alias pip='pip3'
 
+alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
