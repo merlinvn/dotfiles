@@ -2,7 +2,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event = "BufReadPre",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     config = function()
       local highlight = {
         "RainbowRed",
@@ -29,8 +29,10 @@ return {
       local opts = {
         indent = {
           -- highlight = highlight,
-          char = "┊",
           smart_indent_cap = true,
+          -- char = "┊",
+          char = "│",
+          tab_char = "│",
         },
         whitespace = {
           highlight = highlight,
@@ -42,12 +44,18 @@ return {
             "alpha",
             "dashboard",
             "neo-tree",
-            "nvim-tree",
             "Trouble",
+            "trouble",
             "lazy",
+            "mason",
+            "notify",
+            "toggleterm",
+            "lazyterm",
+            "nvim-tree",
           },
         },
         scope = {
+          enabled = false,
           include = {
             -- node_type = { ["*"] = { "*" } },
           },

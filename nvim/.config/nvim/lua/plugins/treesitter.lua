@@ -241,21 +241,33 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,
-        max_lines = 5,
-        multiline_threshold = 20,
-      })
-    end,
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = {
+      mode = "cursor",
+      max_lines = 3,
+      multiline_threshold = 20,
+    },
+    keys = {
+      {
+        "\\t",
+        function()
+          -- local Util = require("lazy.core.util")
+          local tsc = require("treesitter-context")
+          tsc.toggle()
+          -- if Util.inject.get_upvalue(tsc.toggle, "enabled") then
+          --   Util.info("Enabled Treesitter Context", { title = "Option" })
+          -- else
+          --   Util.warn("Disabled Treesitter Context", { title = "Option" })
+          -- end
+        end,
+        desc = "Toggle Treesitter Context",
+      },
+    },
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "BufReadPost",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = {},
   },
   {
     "nvim-treesitter/playground",

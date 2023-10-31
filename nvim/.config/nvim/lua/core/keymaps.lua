@@ -137,10 +137,10 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 -- scroll and stay in center
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "<PageUp>", "<PageUp>zz")
-map("n", "<PageDown>", "<PageDown>zz")
+-- map("n", "<C-d>", "<C-d>zz")
+-- map("n", "<C-u>", "<C-u>zz")
+-- map("n", "<PageUp>", "<PageUp>zz")
+-- map("n", "<PageDown>", "<PageDown>zz")
 
 -- move to the end of the line in insert mode
 map("i", "<C-a>", "<End>")
