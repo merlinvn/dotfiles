@@ -19,6 +19,7 @@ return {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
           nls.builtins.diagnostics.cmake_lint,
+          nls.builtins.formatting.autopep8,
           -- nls.builtins.diagnostics.flake8,
         },
       }
