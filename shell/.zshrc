@@ -215,4 +215,4 @@ function nvims() {
 [[ -s /storage/home/uut47/.autojump/etc/profile.d/autojump.sh ]] && source /storage/home/uut47/.autojump/etc/profile.d/autojump.sh
 
 ## disable software control flow to allow Ctrl-S and Ctrl-Q function as normal ("save" "quit" in nvim)
-stty -ixon
+# stty -ixon

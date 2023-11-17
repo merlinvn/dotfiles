@@ -54,7 +54,6 @@ return {
         }),
         ["<C-b>"] = cmp.mapping.scroll_docs(-5),
         ["<C-f>"] = cmp.mapping.scroll_docs(5),
-
         ["<C-e>"] = cmp.mapping.complete(),
         ["<C-y>"] = cmp.mapping(
           cmp.mapping.confirm({

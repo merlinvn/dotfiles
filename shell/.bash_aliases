@@ -1,11 +1,11 @@
 function set_alias() {
-  local cmd=$1
-  local tool=$2
-  shift 2
+	local cmd=$1
+	local tool=$2
+	shift 2
 
-  if [ -x "$(command -v $tool)" ]; then
-    alias $cmd="$tool $*"
-  fi
+	if [ -x "$(command -v $tool)" ]; then
+		alias $cmd="$tool $*"
+	fi
 }
 
 # unameOut="$(uname -s)"
@@ -26,25 +26,25 @@ alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
 
 # Git aliases.
-if [[ -f "$HOME/forgit/forgit.plugin.zsh" ]] ; then
+if [[ -f "$HOME/forgit/forgit.plugin.zsh" ]]; then
 
 else
-  alias gd='git diff'
-  alias ga='git add'
+	alias gd='git diff'
+	alias ga='git add'
 fi
 
 if [[ -x "$(command -v git)" ]]; then
-  alias gi='git init'
-  alias gaa='git add .'
-  alias gaaa='git add -A'
-  alias gc='git commit'
-  alias gcm='git commit -m'
-  alias gcam='git commit -am'
-  alias gp='git pull --rebase'
-  alias gpsh='git push'
-  alias gs='echo ""; echo "*********************************************"; echo -e "   DO NOT FORGET TO PULL BEFORE COMMITTING"; echo "*********************************************"; echo ""; git status'
-  alias gss='git status -s'
-  alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+	alias gi='git init'
+	alias gaa='git add .'
+	alias gaaa='git add -A'
+	alias gc='git commit'
+	alias gcm='git commit -m'
+	alias gcam='git commit -am'
+	alias gp='git pull --rebase'
+	alias gpsh='git push'
+	alias gs='echo ""; echo "*********************************************"; echo -e "   DO NOT FORGET TO PULL BEFORE COMMITTING"; echo "*********************************************"; echo ""; git status'
+	alias gss='git status -s'
+	alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 fi
 
 set_alias lg lazygit
@@ -52,9 +52,9 @@ set_alias gg gitui
 
 # npm aliases
 if [[ -x "$(command -v npm)" ]]; then
-  alias ni="npm install"
-  alias nr="npm run"
-  alias ns="npm start"
+	alias ni="npm install"
+	alias nr="npm run"
+	alias ns="npm start"
 fi
 
 set_alias bat batcat
@@ -72,11 +72,11 @@ set_alias k kubectl
 
 # cheat.sh
 if [[ -x "$(command -v cht.sh)" ]]; then
-  alias c='cht.sh'
+	alias c='cht.sh'
 else
-  c(){
-    curl cht.sh/$1
-  }
+	c() {
+		curl cht.sh/$1
+	}
 fi
 
 set_alias m micro
@@ -97,13 +97,13 @@ set_alias gt go-task
 set_alias t go-task
 
 if [[ -x "$(command -v yay)" ]]; then
-  alias yayi="yay -Slq | fzf --multi --preview 'if yay -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; yay -Qi {1}; else echo -e \"Package information:\n\n\"; yay -Si {1}; fi || echo No information found.' | xargs -ro yay -S"
-  alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
+	alias yayi="yay -Slq | fzf --multi --preview 'if yay -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; yay -Qi {1}; else echo -e \"Package information:\n\n\"; yay -Si {1}; fi || echo No information found.' | xargs -ro yay -S"
+	alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
 fi
 
 if [[ -x "$(command -v paru)" ]]; then
-  alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
-  alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+	alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
+	alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
 fi
 
 set_alias jr zellij r --
@@ -114,3 +114,7 @@ alias python='python3'
 alias pip='pip3'
 
 alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
+
+if [[ -x "$(command -v gh)" ]]; then
+	alias '??'='gh copilot suggest -t shell'
+fi
