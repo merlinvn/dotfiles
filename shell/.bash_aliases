@@ -117,4 +117,6 @@ alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
 
 if [[ -x "$(command -v gh)" ]]; then
 	alias '??'='gh copilot suggest -t shell'
+	alias 'git?'='gh copilot suggest -t git'
+	alias 'gh?'='gh copilot suggest -t gh'
 fi
