@@ -57,3 +57,16 @@ end
 vim.keymap.del({ "n", "t" }, "<c-/>")
 map("n", "<c-t>", lazyterm, { desc = "Terminal (root dir)" })
 map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- better p
+map("v", "p", '"_dP')
+
+-- copy and paste to/from system clipboard
+map({ "n", "v" }, "<C-p>", [["+p]], { desc = "Paste from clipboard" })
+map("i", "<C-p>", [[<esc>"+pa]], { desc = "Paste from clipboard" })
+
+-- next greatest remap ever : yank to clipboard
+map({ "n", "x", "v" }, "<C-y>", [["+y]], { desc = "yank to clipboard", noremap = true })
+
+-- delete to register _ (black hole)
+map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
