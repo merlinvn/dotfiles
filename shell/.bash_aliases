@@ -89,7 +89,7 @@ alias tmux="TERM=screen-256color tmux"
 
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+# [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 alias anaconda='source  ~/.conda.shellrc'
 
