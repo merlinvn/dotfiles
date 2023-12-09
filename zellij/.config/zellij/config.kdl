@@ -1,12 +1,12 @@
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+// If you'd like to override the default keybindings completely, be sure to change "Ctrl h" to "keybinds clear-defaults=true"
 keybinds clear-defaults=true {
     normal {
         bind "Alt ," { GoToPreviousTab; }
         bind "Alt ." { GoToNextTab; }
-        bind "Alt Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "Alt Right" { MoveFocus "Right";SwitchToMode "Normal"; }
-        bind "Alt Down" { MoveFocus "Down";SwitchToMode "Normal"; }
-        bind "Alt Up" { MoveFocus "Up";SwitchToMode "Normal"; }
+        // bind "Alt Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        // bind "Alt Right" { MoveFocus "Right";SwitchToMode "Normal"; }
+        // bind "Alt Down" { MoveFocus "Down";SwitchToMode "Normal"; }
+        // bind "Alt Up" { MoveFocus "Up";SwitchToMode "Normal"; }
     }
 
     tmux {
@@ -33,15 +33,17 @@ keybinds clear-defaults=true {
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
 
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "l" { MoveFocus "Right";SwitchToMode "Normal"; }
-        bind "j" { MoveFocus "Down";SwitchToMode "Normal"; }
-        bind "k" { MoveFocus "Up";SwitchToMode "Normal"; }
+        bind "h" "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "l" "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        bind "j" "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "k" "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
 
-        bind "Left" { Resize "Increase Left"; }
-        bind "Down" { Resize "Increase Down"; }
-        bind "Up" { Resize "Increase Up"; }
-        bind "Right" { Resize "Increase Right"; }
+        bind "w" { SwitchFocus; SwitchToMode "Normal";}
+
+        // bind "Left" { Resize "Increase Left"; }
+        // bind "Down" { Resize "Increase Down"; }
+        // bind "Up" { Resize "Increase Up"; }
+        // bind "Right" { Resize "Increase Right"; }
 
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
@@ -85,16 +87,16 @@ keybinds clear-defaults=true {
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
         bind "l" "Right" { Resize "Increase Right"; }
-        bind "H" { Resize "Decrease Left"; }
-        bind "J" { Resize "Decrease Down"; }
-        bind "K" { Resize "Decrease Up"; }
-        bind "L" { Resize "Decrease Right"; }
+        // bind "H" { Resize "Decrease Left"; }
+        // bind "J" { Resize "Decrease Down"; }
+        // bind "K" { Resize "Decrease Up"; }
+        // bind "L" { Resize "Decrease Right"; }
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
     }
 
     move {
-        bind "n" "Tab" { MovePane; }
+        bind "n" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
         bind "j" "Down" { MovePane "Down"; }
@@ -127,12 +129,12 @@ keybinds clear-defaults=true {
     }
 
     renametab {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
+        bind "Ctrl c" { UndoRenameTab; SwitchToMode "Normal"; }
         bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; }
     }
 
     scroll {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
+        //bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
@@ -152,6 +154,7 @@ keybinds clear-defaults=true {
     }
 
     search {
+        bind "/" { SwitchToMode "Scroll"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
@@ -180,7 +183,7 @@ keybinds clear-defaults=true {
     }
 
     shared_except "locked" {
-        bind "Ctrl t" { ToggleFloatingPanes; SwitchToMode "Normal";  }
+        bind "Alt t" { ToggleFloatingPanes; SwitchToMode "Normal";  }
         /* bind "Ctrl g" { SwitchToMode "Locked"; } */
     }
 }
@@ -230,102 +233,102 @@ plugins {
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
-    themes {
-        dracula {
-            fg 248 248 242
-            bg 40 42 54
-            red 255 85 85
-            green 80 250 123
-            yellow 241 250 140
-            blue 98 114 164
-            magenta 255 121 198
-            orange 255 184 108
-            cyan 139 233 253
-            black 0 0 0
-            white 255 255 255
-        }
-        gruvbox-light {
-            fg 60 56 54
-            bg 251 82 75
-            black 40 40 40
-            red 205 75 69
-            green 152 151 26
-            yellow 215 153 33
-            blue 69 133 136
-            magenta 177 98 134
-            cyan 104 157 106
-            white 213 196 161
-            orange 214 93 14
-        }
-        gruvbox-dark {
-            fg 213 196 161
-            bg 40 40 40
-            black 60 56 54
-            red 204 36 29
-            green 152 151 26
-            yellow 215 153 33
-            blue 69 133 136
-            magenta 177 98 134
-            cyan 104 157 106
-            white 251 241 199
-            orange 214 93 14
-        }
-        catppuccin-latte {
-            bg "#acb0be" // Surface2
-            fg "#acb0be" // Surface2
-            red "#d20f39"
-            green "#40a02b"
-            blue "#1e66f5"
-            yellow "#df8e1d"
-            magenta "#ea76cb" // Pink
-            orange "#fe640b" // Peach
-            cyan "#04a5e5" // Sky
-            black "#dce0e8" // Crust
-            white "#4c4f69" // Text
-        }
-
-        catppuccin-frappe {
-            bg "#626880" // Surface2
-            fg "#c6d0f5"
-            red "#e78284"
-            green "#a6d189"
-            blue "#8caaee"
-            yellow "#e5c890"
-            magenta "#f4b8e4" // Pink
-            orange "#ef9f76" // Peach
-            cyan "#99d1db" // Sky
-            black "#292c3c" // Mantle
-            white "#c6d0f5"
-        }
-
-        catppuccin-macchiato {
-            bg "#5b6078" // Surface2
-            fg "#cad3f5"
-            red "#ed8796"
-            green "#a6da95"
-            blue "#8aadf4"
-            yellow "#eed49f"
-            magenta "#f5bde6" // Pink
-            orange "#f5a97f" // Peach
-            cyan "#91d7e3" // Sky
-            black "#1e2030" // Mantle
-            white "#cad3f5"
-        }
-
-        catppuccin-mocha {
-            bg "#585b70" // Surface2
-            fg "#cdd6f4"
-            red "#f38ba8"
-            green "#a6e3a1"
-            blue "#89b4fa"
-            yellow "#f9e2af"
-            magenta "#f5c2e7" // Pink
-            orange "#fab387" // Peach
-            cyan "#89dceb" // Sky
-            black "#181825" // Mantle
-            white "#cdd6f4"
-        }
+themes {
+    dracula {
+        fg 248 248 242
+        bg 40 42 54
+        red 255 85 85
+        green 80 250 123
+        yellow 241 250 140
+        blue 98 114 164
+        magenta 255 121 198
+        orange 255 184 108
+        cyan 139 233 253
+        black 0 0 0
+        white 255 255 255
     }
+    gruvbox-light {
+        fg 60 56 54
+        bg 251 82 75
+        black 40 40 40
+        red 205 75 69
+        green 152 151 26
+        yellow 215 153 33
+        blue 69 133 136
+        magenta 177 98 134
+        cyan 104 157 106
+        white 213 196 161
+        orange 214 93 14
+    }
+    gruvbox-dark {
+        fg 213 196 161
+        bg 40 40 40
+        black 60 56 54
+        red 204 36 29
+        green 152 151 26
+        yellow 215 153 33
+        blue 69 133 136
+        magenta 177 98 134
+        cyan 104 157 106
+        white 251 241 199
+        orange 214 93 14
+    }
+    catppuccin-latte {
+        bg "#acb0be" // Surface2
+        fg "#acb0be" // Surface2
+        red "#d20f39"
+        green "#40a02b"
+        blue "#1e66f5"
+        yellow "#df8e1d"
+        magenta "#ea76cb" // Pink
+        orange "#fe640b" // Peach
+        cyan "#04a5e5" // Sky
+        black "#dce0e8" // Crust
+        white "#4c4f69" // Text
+    }
+
+    catppuccin-frappe {
+        bg "#626880" // Surface2
+        fg "#c6d0f5"
+        red "#e78284"
+        green "#a6d189"
+        blue "#8caaee"
+        yellow "#e5c890"
+        magenta "#f4b8e4" // Pink
+        orange "#ef9f76" // Peach
+        cyan "#99d1db" // Sky
+        black "#292c3c" // Mantle
+        white "#c6d0f5"
+    }
+
+    catppuccin-macchiato {
+        bg "#5b6078" // Surface2
+        fg "#cad3f5"
+        red "#ed8796"
+        green "#a6da95"
+        blue "#8aadf4"
+        yellow "#eed49f"
+        magenta "#f5bde6" // Pink
+        orange "#f5a97f" // Peach
+        cyan "#91d7e3" // Sky
+        black "#1e2030" // Mantle
+        white "#cad3f5"
+    }
+
+    catppuccin-mocha {
+        bg "#585b70" // Surface2
+        fg "#cdd6f4"
+        red "#f38ba8"
+        green "#a6e3a1"
+        blue "#89b4fa"
+        yellow "#f9e2af"
+        magenta "#f5c2e7" // Pink
+        orange "#fab387" // Peach
+        cyan "#89dceb" // Sky
+        black "#181825" // Mantle
+        white "#cdd6f4"
+    }
+}
 
 // Choose the theme that is specified in the themes section.
 // Default: default
@@ -336,7 +339,7 @@ theme "gruvbox-dark"
 // Default: "default"
 //
 default_layout "compact"
-// default_layout "default"
+//default_layout "default"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -368,8 +371,8 @@ default_layout "compact"
 //
 // copy_command "xclip -selection clipboard" // x11
 // TODO: find better way for cross-platform copy
-   copy_command "wl-copy"                    // wayland
-// copy_command "pbcopy"                     // osx
+//   copy_command "wl-copy"                    // wayland
+copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
