@@ -3,3 +3,16 @@
 -- Add any additional options here
 
 vim.opt.clipboard = ""
+
+-- Abbrev
+vim.cmd("cnoreabbrev Q  q")
+vim.cmd("cnoreabbrev q1  q!")
+vim.cmd("cnoreabbrev Q1  q!")
+vim.cmd("cnoreabbrev Qa1 qa!")
+vim.cmd("cnoreabbrev Qa qa")
+vim.cmd("cnoreabbrev W  w")
+vim.cmd("cnoreabbrev Wq wq")
+vim.cmd("cnoreabbrev WQ wq")
+vim.cmd("cnoreabbrev Set set")
+vim.cmd("cnoreabbrev SEt set")
+vim.cmd("cnoreabbrev SET set")

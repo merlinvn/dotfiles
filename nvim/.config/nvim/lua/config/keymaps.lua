@@ -6,7 +6,15 @@ local Util = require("lazyvim.util")
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-map("n", "<C-q>", ":q<CR>", { desc = "Close window", noremap = true, silent = true })
+map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent = true })
+
+-- Quit
+map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit" })
+map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit" })
+map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save" })
+map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save" })
+map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save" })
+map("n", "<M-q>", ":q<CR>", { desc = "Quit buffer without save" })
 
 -- Tab for indent
 map("v", "<Tab>", ">><Esc>gv")
@@ -43,6 +51,9 @@ vim.keymap.del("n", "<leader><tab>f")
 vim.keymap.del("n", "<leader><tab><tab>")
 vim.keymap.del("n", "<leader><tab>d")
 
+map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
+map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
+
 -- map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 -- map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- map("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Last Tab" })
@@ -51,22 +62,20 @@ vim.keymap.del("n", "<leader><tab>d")
 -- map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- terminal
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root(), border = "double" })
-end
-vim.keymap.del({ "n", "t" }, "<c-/>")
-map("n", "<c-t>", lazyterm, { desc = "Terminal (root dir)" })
-map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- vim.keymap.del({ "n", "t" }, "<c-/>")
+vim.keymap.del({ "n" }, "<leader>ft")
+vim.keymap.del({ "n" }, "<leader>fT")
 
 -- better p
 map("v", "p", '"_dP')
 
--- copy and paste to/from system clipboard
-map({ "n", "v" }, "<C-p>", [["+p]], { desc = "Paste from clipboard" })
-map("i", "<C-p>", [[<esc>"+pa]], { desc = "Paste from clipboard" })
+-- Clipboard
+map({ "i", "c" }, "<C-p>", "<C-R>+", { desc = "Paste from clipboard" })
+map({ "n", "v" }, "<C-p>", [["+gP]], { desc = "Paste from clipboard" })
+map({ "n", "v" }, "<C-y>", [["+y]], { desc = "Copy to clipboard" })
+map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
+-- paste text but DONT copy the overridden text
+map("x", "p", [["_dP]])
+map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
 
 -- next greatest remap ever : yank to clipboard
-map({ "n", "x", "v" }, "<C-y>", [["+y]], { desc = "yank to clipboard", noremap = true })
-
--- delete to register _ (black hole)
-map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })

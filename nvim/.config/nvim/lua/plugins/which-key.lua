@@ -5,7 +5,8 @@ return {
     opts = {
       defaults = {
         ["<leader>v"] = { name = "+vim" },
-        -- ["<leader>t"] = { name = "+tabs" },
+        ["<leader>d"] = { name = "+delete" },
+        ["<leader>t"] = { name = "+tabs/tests" },
       },
     },
   },

@@ -14,9 +14,9 @@ return {
     { "<leader>bo", false },
     { "<leader>br", false },
     { "<leader>bl", false },
-    { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev tab" },
-    { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next tab" },
-    { "[b", "<cmd>bprev<cr>", desc = "Prev buffer" },
-    { "]b", "<cmd>bnext<cr>", desc = "Next buffer" },
+    { "<S-h>", false },
+    { "<S-l>", false },
+    { "<leader>bp", "<cmd>bprev<cr>", desc = "Prev buffer" },
+    { "<leader>bn", "<cmd>bnext<cr>", desc = "Next buffer" },
   },
 }
