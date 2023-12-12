@@ -40,6 +40,9 @@ map("n", "<leader>8", "8gt", { desc = "Go to tab 8", noremap = true, silent = tr
 map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = true })
 map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
+-- switch back and forth between buffers
+map("n", "<leader>a", ":b#<CR>", { desc = "Switch buffer", silent = true, noremap = true }) --  switch last buffer
+
 -- consider if it is necessary or not
 map("n", "]<tab>", ":tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
 map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true, silent = true })

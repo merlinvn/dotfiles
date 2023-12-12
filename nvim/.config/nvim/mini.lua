@@ -26,6 +26,7 @@ vim.opt.wrap = false -- enable text wrapping
 vim.opt.fileencoding = "utf-8" -- encoding set to utf-8
 vim.opt.showtabline = 1 -- always show the tab line  1 = if at-least 2 tab, 2 = always, 0 = never
 vim.opt.laststatus = 2 -- always show statusline
+vim.opt.statusline = "%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l,%04v]"
 vim.opt.expandtab = false -- expand tab
 vim.opt.smarttab = true --
 vim.opt.smartindent = true
@@ -37,6 +38,9 @@ vim.opt.splitbelow = true -- split go below
 vim.opt.splitright = true -- vertical split to the right
 vim.opt.termguicolors = true -- terminal gui colors
 vim.opt.background = "dark" -- use dark theme only
+vim.opt.path:append "**" -- for fuzzy find
+vim.opt.wildmenu = true -- list finding items as menu
+
 --vim.cmd('colorscheme habamax')			-- set colorscheme
 vim.cmd('filetype plugin on')			-- set filetype
 
@@ -90,7 +94,9 @@ map("n", "<C-Up>", "<C-w>+") -- resize window to up
 map("n", "<C-Down>", "<C-w>-") -- resize window to down
 
 -- buffer navigation
-map("n", "<leader>bb", ":ls<CR>:b<Space>") --  to next buffer
+--map("n", "<leader>bb", ":ls<CR>:b<Space>") --  select buffer
+map("n", "<leader>bb", ":b <C-d>") --  select buffer
+map("n", "<leader>a", ":b#<CR>") --  switch last buffer
 map("n", "<leader>bn", ":bnext <CR>") --  to next buffer
 map("n", "<leader>bp", ":bprevious <CR>") -- to previous buffer
 map("n", "<leader>bd", ":bd! <CR>") -- Space+d delets current buffer
@@ -137,8 +143,9 @@ vim.cmd("cnoreabbrev SET set")
 
 -- Misc
 map("v", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words
-map("n", "<leader>os", ":setlocal spell! spelllang=en_us<CR>") -- Spell-check on\off
+map("n", "\\s", ":setlocal spell! spelllang=en_us<CR>") -- Spell-check on\off
 
+map("n", "<leader>ve", ":e $MYVIMRC<CR>", {desc = "Open MYVIMRC", silent= true} ) -- Save and reload current lua file
 map("n", "<leader>vr", ":w<CR>:luafile %<CR>", {desc = "Save and reload current file", silent= true} ) -- Save and reload current lua file
 
 -- AutoCOMMANDS
@@ -175,13 +182,14 @@ vim.api.nvim_create_autocmd("BufWrite", {
 ------------------------------
 -- FileBrowser
 map("n", "<leader>e", ":Lex<CR>") -- space+e toggles netrw tree view
-map("n", "<leader>o", ":Explore<CR>") -- Open file-picker
-vim.g.netrw_browse_split = 4 -- open in prior window
-vim.g.netrw_keepdir = 0 -- Sync current directory with browsing directory
-vim.g.netrw_altv = 1 -- change from left splitting to right splitting
+map("n", "<leader>p", ":Explore<CR>") -- Open file-picker
 vim.g.netrw_banner = 0 -- gets rid of the annoying banner for netrw
 vim.g.netrw_liststyle = 3 -- tree style view in netrw
+vim.g.netrw_browse_split = 0 -- open file in current netrw window
+-- vim.g.netrw_browse_split = 4 -- open in prior window
+vim.g.netrw_altv = 1 -- change from left splitting to right splitting
 vim.g.netrw_winsize = 15 -- window size
+vim.g.netrw_keepdir = 0 -- Sync current directory with browsing directory
 vim.cmd("let g:netrw_list_hide=netrw_gitignore#Hide()")
 ------------------------------
 -- Completion from :h ins-completion
@@ -214,11 +222,11 @@ vim.cmd([[
 	endfun
 ]])
 -- Automatically Pair brackets, parethesis, and quotes
-map("i", "'", "''<left>")
-map("i", '"', '""<left>')
-map("i", "(", "()<left>")
-map("i", "[", "[]<left>")
-map("i", "{", "{}<left>")
-map("i", "{;", "{};<left><left>")
-map("i", "/*", "/**/<left><left>")
+-- map("i", "'", "''<left>")
+-- map("i", '"', '""<left>')
+-- map("i", "(", "()<left>")
+-- map("i", "[", "[]<left>")
+-- map("i", "{", "{}<left>")
+-- map("i", "{;", "{};<left><left>")
+-- map("i", "/*", "/**/<left><left>")
 ------------------------------
