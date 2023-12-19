@@ -9,12 +9,12 @@ local opts = { noremap = true, silent = true }
 map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent = true })
 
 -- Quit
-map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit" })
-map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit" })
-map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save" })
-map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save" })
-map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save" })
-map("n", "<M-q>", ":q<CR>", { desc = "Quit buffer without save" })
+map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
+map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit", silent = true })
+map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
+map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
+map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save", silent = true })
+map("n", "<M-q>", ":q<CR>", { desc = "Quit buffer without save", silent = true })
 
 -- Tab for indent
 map("v", "<Tab>", ">><Esc>gv")

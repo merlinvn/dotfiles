@@ -27,8 +27,11 @@ vim.opt.fileencoding = "utf-8" -- encoding set to utf-8
 vim.opt.showtabline = 1 -- always show the tab line  1 = if at-least 2 tab, 2 = always, 0 = never
 vim.opt.laststatus = 2 -- always show statusline
 vim.opt.statusline = "%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l,%04v]"
-vim.opt.expandtab = false -- expand tab
-vim.opt.smarttab = true --
+vim.opt.expandtab = true -- expand tab
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.smarttab = true
 vim.opt.smartindent = true
 vim.opt.scrolloff = 8 -- scroll page when cursor is 8 lines from top/bottom
 vim.opt.sidescrolloff = 8 -- scroll page when cursor is 8 spaces from left/right
@@ -38,11 +41,11 @@ vim.opt.splitbelow = true -- split go below
 vim.opt.splitright = true -- vertical split to the right
 vim.opt.termguicolors = true -- terminal gui colors
 vim.opt.background = "dark" -- use dark theme only
-vim.opt.path:append "**" -- for fuzzy find
+vim.opt.path:append("**") -- for fuzzy find
 vim.opt.wildmenu = true -- list finding items as menu
 
 --vim.cmd('colorscheme habamax')			-- set colorscheme
-vim.cmd('filetype plugin on')			-- set filetype
+vim.cmd("filetype plugin on") -- set filetype
 
 -- Undo
 vim.opt.undodir = vim.fn.stdpath("data") .. "/vi/undo"
@@ -54,6 +57,9 @@ vim.opt.undofile = true
 -- KEYBINDS
 -- Functional wrapper for mapping custom keybindings
 local map = vim.keymap.set
+
+-- better Ctrl-C in insert mode
+map("i", "<C-C>", "<esc>")
 
 -- Line movement Soft wrap movement fix
 map("n", "j", "gj") -- move vert by visual line
@@ -96,6 +102,7 @@ map("n", "<C-Down>", "<C-w>-") -- resize window to down
 -- buffer navigation
 --map("n", "<leader>bb", ":ls<CR>:b<Space>") --  select buffer
 map("n", "<leader>bb", ":b <C-d>") --  select buffer
+map("n", "<leader><leader>", ":b <C-d>") --  select buffer
 map("n", "<leader>a", ":b#<CR>") --  switch last buffer
 map("n", "<leader>bn", ":bnext <CR>") --  to next buffer
 map("n", "<leader>bp", ":bprevious <CR>") -- to previous buffer
@@ -105,7 +112,7 @@ map("n", "<leader>bd", ":bd! <CR>") -- Space+d delets current buffer
 map({ "i", "c" }, "<C-p>", "<C-R>+", { desc = "Paste from clipboard" })
 map({ "n", "v" }, "<C-p>", '"+gP', { desc = "Paste from clipboard" })
 map({ "n", "v" }, "<C-y>", '"+y', { desc = "Copy to clipboard" })
-map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
+map({ "v" }, "<leader>dx", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 map("x", "p", [["_dP]])
 -- delete text but DONT copy to clipboard
@@ -145,8 +152,8 @@ vim.cmd("cnoreabbrev SET set")
 map("v", "<leader>sr", '"hy:%s/<C-r>h//g<left><left>') -- Replace all instances of highlighted words
 map("n", "\\s", ":setlocal spell! spelllang=en_us<CR>") -- Spell-check on\off
 
-map("n", "<leader>ve", ":e $MYVIMRC<CR>", {desc = "Open MYVIMRC", silent= true} ) -- Save and reload current lua file
-map("n", "<leader>vr", ":w<CR>:luafile %<CR>", {desc = "Save and reload current file", silent= true} ) -- Save and reload current lua file
+map("n", "<leader>ve", ":e $MYVIMRC<CR>", { desc = "Open MYVIMRC", silent = true }) -- Save and reload current lua file
+map("n", "<leader>vr", ":w<CR>:luafile %<CR>", { desc = "Save and reload current file", silent = true }) -- Save and reload current lua file
 
 -- AutoCOMMANDS
 ------------------------------

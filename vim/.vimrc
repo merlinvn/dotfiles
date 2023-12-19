@@ -1,6 +1,5 @@
 " Set Leader Key
 let mapleader = " "
-
 " Options
 set nospell
 set spelllang=en_us
@@ -20,8 +19,10 @@ set fileencoding=utf-8
 set showtabline=1
 set laststatus=2
 set statusline=%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l:%04v]
-set noexpandtab
+set expandtab
 set smarttab
+set tabstop=2 softtabstop=2
+set shiftwidth=2
 set smartindent
 set scrolloff=8
 set sidescrolloff=8
@@ -39,7 +40,6 @@ set wildmenu
 filetype plugin on
 colorscheme habamax
 
-
 " Undo Settings
 set undodir=~/.vim/undo
 set undofile
@@ -47,6 +47,12 @@ set undofile
 " Key Mappings
 nnoremap j gj
 nnoremap k gk
+
+" better Ctrl-C
+nnoremap <C-C> <esc>
+
+" better join
+nnoremap J mzJ`z
 
 " Tabs
 nnoremap <leader>tn :tabnew<CR>
@@ -81,6 +87,7 @@ nnoremap <C-Down> <C-w>-
 " Buffer Navigation
 "nnoremap <leader>bb :ls<CR>:b<Space>
 nnoremap <leader>bb :b<Space><C-d>
+nnoremap <leader><leader> :b<Space><C-d>
 nnoremap <leader>a  :b#<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
@@ -90,7 +97,7 @@ nnoremap <leader>bd :bd!<CR>
 vnoremap <C-p> "+gP
 nnoremap <C-p> "+p
 nnoremap <C-y> "+y
-vnoremap <C-c> "+x
+vnoremap <leader>dx "+x
 xmap p "_dP
 vnoremap <leader>dd "_d
 
@@ -135,10 +142,10 @@ nnoremap <leader>ve :e $MYVIMRC<CR>
 nnoremap <leader>vr :w<CR>:source %<CR>
 
 " AutoCOMMANDS
-augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='ErrorMsg', timeout=300 }
-augroup END
+" augroup highlight_yank
+"   autocmd!
+"   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='ErrorMsg', timeout=300 }
+" augroup END
 
 " Mode based Cursorline
 autocmd InsertEnter * set nocursorline
@@ -153,6 +160,7 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 
 " FileBrowser
+nnoremap <leader>p :find<space>
 nnoremap <leader>e :Lex<CR>
 nnoremap <leader>o :Explore<CR>
 let g:netrw_browse_split=4
