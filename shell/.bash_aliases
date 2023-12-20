@@ -17,10 +17,16 @@ function set_alias() {
 #     *)          machine="UNKNOWN:${unameOut}"
 # esac
 
-set_alias ls exa --color=auto
-set_alias ll exa -alhF
-set_alias la exa -a
-set_alias l exa -F
+if [[ -x "$(command -v exa)" ]]; then
+  set_alias ls exa --color=auto
+  set_alias ll exa -alhF
+  set_alias la exa -a
+  set_alias l exa -F
+else
+  set_alias ll ls -al
+  set_alias la ls -a
+  set_alias l ls -F
+fi
 
 alias python='/usr/bin/python3'
 alias pip='/usr/bin/pip3'
