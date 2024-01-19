@@ -98,7 +98,7 @@ export FZF_DEFAULT_OPTS=" \
 
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
 [ -x "$(command -v rtx)" ] && eval "$(rtx activate zsh)"
-[ -x "$(command -v $HOME/.local/bin/mise)" ] && eval "$(~/.local/bin/mise activate zsh)"
+[ -x "$(command -v mise)" ] && eval "$(mise activate zsh)"
 
 # Add any commands which depend on conda here
 lazy_conda_aliases=('conda')
