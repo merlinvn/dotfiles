@@ -126,3 +126,9 @@ if [[ -x "$(command -v gh)" ]]; then
 	alias 'git?'='gh copilot suggest -t git'
 	alias 'gh?'='gh copilot suggest -t gh'
 fi
+
+# mise aliases
+if [[ -x "$(command -v mise)" ]]; then
+  alias x="mise exec --"
+  alias r="mise run --"
+fi

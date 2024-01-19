@@ -38,7 +38,7 @@ set path+=**
 set wildmenu
 
 filetype plugin on
-colorscheme habamax
+"colorscheme habamax
 
 " Undo Settings
 set undodir=~/.vim/undo

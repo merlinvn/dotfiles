@@ -21,32 +21,24 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-if [ -d /sbin ] ; then
-    PATH="/sbin:$PATH"
-fi
+[ -d /sbin ] && PATH="/sbin:$PATH"
+[ -d /usr/local/bin ] && PATH="/usr/local/bin:$PATH"
+[ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+[ -d "$HOME/.cargo/bin" ] &&  PATH="$HOME/.cargo/bin:$PATH"
 
 if xhost >& /dev/null ; then
   setxkbmap -option caps:escape
 fi
 
-if [ -f "$HOME/.cargo/env" ]; then
-  . "$HOME/.cargo/env"
-fi
-
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
+# GO setting
 export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -75,7 +67,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-[[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
+# Auto startx
+#[[ -f "/etc/arch-release" ]] && [[ $(fgconsole 2>/dev/null) == 1 ]] && startx -- vt1
 
 # if [[ "$OSTYPE" == "darwin"* ]]; then
 #   alias python=python3
