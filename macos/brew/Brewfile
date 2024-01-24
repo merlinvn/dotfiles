@@ -50,7 +50,7 @@ brew "ruff"
 brew "ghcup"
 brew "ffmpeg"
 brew "zellij"
-brew "rtx"
+brew "mise"
 brew "bob"
 # Appearance
 # brew "spacebar"
