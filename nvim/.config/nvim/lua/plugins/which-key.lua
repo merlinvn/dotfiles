@@ -7,6 +7,7 @@ return {
         ["<leader>v"] = { name = "+vim" },
         ["<leader>d"] = { name = "+delete" },
         ["<leader>t"] = { name = "+tabs/tests" },
+        ["<leader>h"] = { name = "+harpoon" },
       },
     },
   },
