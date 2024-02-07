@@ -3,11 +3,11 @@
 ###############################################################
 # Homebrew
 tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/autoupdate"
 # tap "homebrew/cask"
 # tap "homebrew/core"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-drivers"
-tap "homebrew/autoupdate"
+#tap "homebrew/cask-drivers"
 # Third-party
 tap "cmacrae/formulae" # spacebar
 tap "koekeishiya/formulae" # yabai
@@ -24,7 +24,7 @@ brew "starship"
 brew "autojump"
 brew "neofetch"
 brew "bat"
-brew "exa"
+# brew "exa" # not maintained by brew
 brew "ripgrep"
 brew "tree"
 brew "wget"
@@ -38,7 +38,7 @@ brew "lazygit"
 brew "tldr"
 # Development
 brew "git"
-brew "python3"
+#brew "python3" # using mise to manage python
 brew "openjdk"
 brew "java"
 brew "mdv"
@@ -68,6 +68,7 @@ cask "audacity", args: { no_quarantine: true }
 cask "zerotier-one", args: { no_quarantine: true }
 cask "syncthing", args: { no_quarantine: true }
 cask "calibre", args: { no_quarantine: true }
+cask "dropbox", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "obsidian", args: { no_quarantine: true }
@@ -84,12 +85,12 @@ cask "adobe-creative-cloud", args: { no_quarantine: true }
 cask "firefox", args: { no_quarantine: true }
 cask "brave-browser", args: { no_quarantine: true }
 cask "google-chrome", args: { no_quarantine: true }
-cask "microsoft-edge", args: { no_quarantine: true }
+#cask "microsoft-edge", args: { no_quarantine: true }
 #cask "tor-browser", args: { no_quarantine: true }
 # Gaming
 # Work/School
 # cask "microsoft-teams", args: { no_quarantine: true }
-#cask "discord", args: { no_quarantine: true }
+cask "discord", args: { no_quarantine: true }
 cask "zoom", args: { no_quarantine: true }
 cask "slack", args: { no_quarantine: true }
 cask "telegram", args: { no_quarantine: true }
