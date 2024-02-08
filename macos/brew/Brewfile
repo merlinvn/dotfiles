@@ -44,6 +44,7 @@ brew "java"
 brew "mdv"
 brew "gcc"
 brew "go"
+brew "llvm"
 brew "yarn"
 brew "npm"
 brew "ruff"
@@ -69,6 +70,7 @@ cask "zerotier-one", args: { no_quarantine: true }
 cask "syncthing", args: { no_quarantine: true }
 cask "calibre", args: { no_quarantine: true }
 cask "dropbox", args: { no_quarantine: true }
+cask "keycastr", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "obsidian", args: { no_quarantine: true }
