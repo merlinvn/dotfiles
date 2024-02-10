@@ -38,6 +38,7 @@ brew "lazygit"
 brew "tldr"
 # Development
 brew "git"
+brew "git-lfs"
 #brew "python3" # using mise to manage python
 brew "openjdk"
 brew "java"

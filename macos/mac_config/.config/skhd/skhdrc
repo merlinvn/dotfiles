@@ -125,27 +125,27 @@ alt + shift - right : yabai -m window --warp east
 # send window to desktop and follow focus
 
 # focus next and previous desktop / space
-alt + ctrl - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+ctrl - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
                         yabai -m space --focus "${index}"
-alt + ctrl - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+ctrl - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
                         yabai -m space --focus "${index}"
 
 # send window to next and previous desktop and follow focus
-alt + shift - j : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+ctrl+shift - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
                         yabai -m window --space "${index}" &&\
                         yabai -m space --focus "${index}"
-alt + shift - k : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+ctrl+shift - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
                         yabai -m window --space "${index}" &&\
                         yabai -m space --focus "${index}"
 
 # focus monitor
-alt + ctrl - h  : yabai -m display --focus prev || yabai -m display --focus last
-alt + ctrl - l  : yabai -m display --focus next || yabai -m display --focus first
+ctrl - up  : yabai -m display --focus prev || yabai -m display --focus last
+ctrl - down  : yabai -m display --focus next || yabai -m display --focus first
 #ctrl + alt - down  : yabai -m display --focus recent
 
 # send window to monitor and follow focus
-alt + shift - h  : (yabai -m window --display prev && yabai -m display --focus prev) || (yabai -m window --display last && yabai -m display --focus last)
-alt + shift - l : (yabai -m window --display next && yabai -m display --focus next) || (yabai -m window --display first && yabai -m display --focus first)
+ctrl+shift - up  : (yabai -m window --display prev && yabai -m display --focus prev) || (yabai -m window --display last && yabai -m display --focus last)
+ctrl+shift - down : (yabai -m window --display next && yabai -m display --focus next) || (yabai -m window --display first && yabai -m display --focus first)
 #alt + ctrl - down  : yabai -m window --display recent; yabai -m display --focus recent
 
 
@@ -185,53 +185,52 @@ alt - 9 : yabai -m space --focus 9
 #alt + shift - 9 : si="$(yabai -m query --displays --space | jq '.spaces[8]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
 #alt + shift - 0 : si="$(yabai -m query --displays --space | jq '.spaces[9]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
 
-shift + alt - 1 : yabai -m window --space 1 --focus
-shift + alt - 2 : yabai -m window --space 2 --focus
-shift + alt - 3 : yabai -m window --space 3 --focus
-shift + alt - 4 : yabai -m window --space 4 --focus
-shift + alt - 5 : yabai -m window --space 5 --focus
-shift + alt - 6 : yabai -m window --space 6 --focus
-shift + alt - 7 : yabai -m window --space 7 --focus
-shift + alt - 8 : yabai -m window --space 8 --focus
-shift + alt - 9 : yabai -m window --space 9 --focus
+alt+shift - 1 : yabai -m window --space 1 --focus
+alt+shift - 2 : yabai -m window --space 2 --focus
+alt+shift - 3 : yabai -m window --space 3 --focus
+alt+shift - 4 : yabai -m window --space 4 --focus
+alt+shift - 5 : yabai -m window --space 5 --focus
+alt+shift - 6 : yabai -m window --space 6 --focus
+alt+shift - 7 : yabai -m window --space 7 --focus
+alt+shift - 8 : yabai -m window --space 8 --focus
+alt+shift - 9 : yabai -m window --space 9 --focus
 
 # maximize window in bsp mode
-alt + shift - m : yabai -m window --toggle zoom-fullscreen
+# alt + shift - m : yabai -m window --toggle zoom-fullscreen
 # alt - f : yabai -m window --toggle native-fullscreen
+alt+shift - return : yabai -m window --toggle zoom-fullscreen
 
 # toggle window zoom
-alt + shift - z : yabai -m window --toggle zoom-parent
+# alt + shift - z : yabai -m window --toggle zoom-parent
 
 # float / unfloat window and center on screen
-alt + shift - t : yabai -m window --toggle float;\
-                  yabai -m window --grid 6:6:1:1:4:4
+alt+shift - t : yabai -m window --toggle float --grid 6:6:1:1:4:4
 
 # toggle window split type
-alt + shift - s : yabai -m window --toggle split
-alt + shift - r : yabai -m space --rotate 270
+alt+shift - s : yabai -m window --toggle split
+alt+shift - r : yabai -m space --rotate 270
 
 # toggle space layout mode
 # todo combine with fill screen below for all floating windows
 # alt + shift - o : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
-alt + shift - q : yabai -m space --layout bsp; echo "refresh" | nc -U /tmp/yabai-indicator.socket
-alt + shift - w : yabai -m space --layout stack; echo "refresh" | nc -U /tmp/yabai-indicator.socket
-alt + shift - f : yabai -m space --layout float; echo "refresh" | nc -U /tmp/yabai-indicator.socket
+alt+shift - q : yabai -m space --layout bsp; echo "refresh" | nc -U /tmp/yabai-indicator.socket
+alt+shift - w : yabai -m space --layout stack; echo "refresh" | nc -U /tmp/yabai-indicator.socket
+alt+shift - f : yabai -m space --layout float; echo "refresh" | nc -U /tmp/yabai-indicator.socket
 
 # balance size of windows
-alt + shift - b : yabai -m space --balance
+alt+shift - b : yabai -m space --balance
 
 ### Floating Window Management ###
 
 #The grid format is <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 # make floating window fill screen / maximize
-cmd+alt - m : yabai -m window --grid 1:1:0:0:1:1
+# cmd+alt - m : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-# TODO: implement snapping top bottom
-cmd+alt - left : yabai -m window --grid 1:2:0:0:1:1
-cmd+alt - right : yabai -m window --grid 1:2:1:0:1:1
+# cmd+alt - left : yabai -m window --grid 1:2:0:0:1:1
+# cmd+alt - right : yabai -m window --grid 1:2:1:0:1:1
 # center floating window
-cmd+alt - n : yabai -m window --grid 6:6:1:1:4:4
+# cmd+alt - n : yabai -m window --grid 6:6:1:1:4:4
 
 # move floating window
 cmd+alt - h : yabai -m window --move rel:-20:0
@@ -242,13 +241,12 @@ cmd+alt - l : yabai -m window --move rel:20:0
 
 #### Resize windows in both bsp and float mode ####
 # increase window size
-ctrl+alt - left : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
-ctrl+alt - right : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
-# cmd + alt - w : yabai -m window --resize top:0:-20
+cmd+alt - left : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
+cmd+alt - right : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
 
 # decrease window size
-ctrl+alt - down : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
-ctrl+alt - up :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
+cmd+alt - down : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
+cmd+alt - up :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
 
 # toggle sticky(+float), topmost, picture-in-picture
 # alt + shift - p : yabai -m window --toggle sticky;\
