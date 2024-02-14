@@ -4,7 +4,7 @@
 
 local Util = require("lazyvim.util")
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+-- local opts = { noremap = true, silent = true }
 
 map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent = true })
 
@@ -66,8 +66,19 @@ map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 
 -- terminal
 -- vim.keymap.del({ "n", "t" }, "<c-/>")
+-- vim.keymap.del({ "n", "t" }, "<c-_>")
+
+vim.keymap.set("n", "<C-/>", function()
+  Util.terminal(nil, { border = "double" })
+end, { desc = "Term with border" })
+
+vim.keymap.set("n", "<C-_>", function()
+  Util.terminal(nil, { border = "double" })
+end, { desc = "Term with border" })
+
 vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
+-- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
 
 -- better p
 map("v", "p", '"_dP')

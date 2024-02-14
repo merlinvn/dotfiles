@@ -1,6 +1,6 @@
 [tools]
-node = ["18", "lts"]
-python = ["3.10"]
+node = "lts"
+python = "3.11"
 bun = "latest"
 
 [plugins]

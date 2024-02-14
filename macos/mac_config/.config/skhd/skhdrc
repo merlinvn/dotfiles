@@ -125,41 +125,28 @@ alt + shift - right : yabai -m window --warp east
 # send window to desktop and follow focus
 
 # focus next and previous desktop / space
-ctrl - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+ctrl+cmd - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
                         yabai -m space --focus "${index}"
-ctrl - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+ctrl+cmd - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
                         yabai -m space --focus "${index}"
 
 # send window to next and previous desktop and follow focus
-ctrl+shift - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
+ctrl+cmd+shift - left : index=`expr $(yabai -m query --spaces --space | jq '.index') - 1` &&\
                         yabai -m window --space "${index}" &&\
                         yabai -m space --focus "${index}"
-ctrl+shift - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
+ctrl+cmd+shift - right : index=`expr $(yabai -m query --spaces --space | jq '.index') + 1` &&\
                         yabai -m window --space "${index}" &&\
                         yabai -m space --focus "${index}"
 
 # focus monitor
-ctrl - up  : yabai -m display --focus prev || yabai -m display --focus last
-ctrl - down  : yabai -m display --focus next || yabai -m display --focus first
+ctrl+cmd - up  : yabai -m display --focus prev || yabai -m display --focus last
+ctrl+cmd - down  : yabai -m display --focus next || yabai -m display --focus first
 #ctrl + alt - down  : yabai -m display --focus recent
 
 # send window to monitor and follow focus
-ctrl+shift - up  : (yabai -m window --display prev && yabai -m display --focus prev) || (yabai -m window --display last && yabai -m display --focus last)
-ctrl+shift - down : (yabai -m window --display next && yabai -m display --focus next) || (yabai -m window --display first && yabai -m display --focus first)
+ctrl+cmd+shift - up  : (yabai -m window --display prev && yabai -m display --focus prev) || (yabai -m window --display last && yabai -m display --focus last)
+ctrl+cmd+shift - down : (yabai -m window --display next && yabai -m display --focus next) || (yabai -m window --display first && yabai -m display --focus first)
 #alt + ctrl - down  : yabai -m window --display recent; yabai -m display --focus recent
-
-
-# relative space/desktop on the current display
-#alt - 1 : si="$(yabai -m query --displays --space | jq '.spaces[0]')" && yabai -m space --focus "${si}"
-#alt - 2 : si="$(yabai -m query --displays --space | jq '.spaces[1]')" && yabai -m space --focus "${si}"
-#alt - 3 : si="$(yabai -m query --displays --space | jq '.spaces[2]')" && yabai -m space --focus "${si}"
-#alt - 4 : si="$(yabai -m query --displays --space | jq '.spaces[3]')" && yabai -m space --focus "${si}"
-#alt - 5 : si="$(yabai -m query --displays --space | jq '.spaces[4]')" && yabai -m space --focus "${si}"
-#alt - 6 : si="$(yabai -m query --displays --space | jq '.spaces[5]')" && yabai -m space --focus "${si}"
-#alt - 7 : si="$(yabai -m query --displays --space | jq '.spaces[6]')" && yabai -m space --focus "${si}"
-#alt - 8 : si="$(yabai -m query --displays --space | jq '.spaces[7]')" && yabai -m space --focus "${si}"
-#alt - 9 : si="$(yabai -m query --displays --space | jq '.spaces[8]')" && yabai -m space --focus "${si}"
-#alt - 0 : si="$(yabai -m query --displays --space | jq '.spaces[9]')" && yabai -m space --focus "${si}"
 
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
@@ -170,20 +157,6 @@ alt - 6 : yabai -m space --focus 6
 alt - 7 : yabai -m space --focus 7
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
-
-
-#cmd+ctrl - down : yabai -m window --space recent | yabai -m space --focus recent
-
-#alt + shift - 1 : si="$(yabai -m query --displays --space | jq '.spaces[0]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 2 : si="$(yabai -m query --displays --space | jq '.spaces[1]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 3 : si="$(yabai -m query --displays --space | jq '.spaces[2]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 4 : si="$(yabai -m query --displays --space | jq '.spaces[3]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 5 : si="$(yabai -m query --displays --space | jq '.spaces[4]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 6 : si="$(yabai -m query --displays --space | jq '.spaces[5]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 7 : si="$(yabai -m query --displays --space | jq '.spaces[6]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 8 : si="$(yabai -m query --displays --space | jq '.spaces[7]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 9 : si="$(yabai -m query --displays --space | jq '.spaces[8]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
-#alt + shift - 0 : si="$(yabai -m query --displays --space | jq '.spaces[9]')" ; yabai -m window --space "${si}"; yabai -m space --focus "${si}"
 
 alt+shift - 1 : yabai -m window --space 1 --focus
 alt+shift - 2 : yabai -m window --space 2 --focus

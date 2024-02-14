@@ -97,6 +97,7 @@ yabai -m rule --add app=Spyder space=^4
 yabai -m rule --add app="^Navicat" space=^4
 yabai -m rule --add app="^Docker" space=^4
 yabai -m rule --add app=Finder space=^5
+yabai -m rule --add app="^Finder" title="^Copy" manage=off layer=above sticky=off
 yabai -m rule --add app="Commander One" space=^5
 yabai -m rule --add app=Mail space=^6
 yabai -m rule --add app=Reeder space=^7

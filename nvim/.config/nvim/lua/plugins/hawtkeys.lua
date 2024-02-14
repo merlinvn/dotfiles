@@ -6,4 +6,7 @@ return {
     --- if you use functions, or whichky, or lazy to map keys
     --- then please see the API below for options
   },
+  keys = {
+    { "<leader>sK", "<cmd>Hawtkeys<CR>", { noremap = true, silent = true }, desc = "Find available keys" },
+  },
 }

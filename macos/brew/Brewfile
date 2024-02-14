@@ -24,6 +24,7 @@ brew "starship"
 brew "autojump"
 brew "neofetch"
 brew "bat"
+brew "fd"
 # brew "exa" # not maintained by brew
 brew "ripgrep"
 brew "tree"
@@ -72,6 +73,7 @@ cask "syncthing", args: { no_quarantine: true }
 cask "calibre", args: { no_quarantine: true }
 cask "dropbox", args: { no_quarantine: true }
 cask "keycastr", args: { no_quarantine: true }
+cask "obs", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "obsidian", args: { no_quarantine: true }
