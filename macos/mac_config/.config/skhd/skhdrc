@@ -77,7 +77,8 @@
 # ############################################################### #
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 # cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2 --single-instance -d ~
 # cmd - return : /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process
 cmd - tab : yabai -m space --focus recent
@@ -94,7 +95,7 @@ cmd - tab : yabai -m space --focus recent
 
 # reload yabai and skhd configuration files
 cmd+alt - r : yabai --restart-service
-cmd+alt - a : skhd --reload
+cmd+alt - a : skhd --restart-service
 
 # focus window
 alt - left : yabai -m window --focus west

@@ -8,6 +8,7 @@ return {
           mason = false,
           cmd = {
             "/opt/homebrew/opt/llvm/bin/clangd",
+            -- "clangd",
             "--background-index",
             "--clang-tidy",
             "--header-insertion=iwyu",
