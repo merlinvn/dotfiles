@@ -28,7 +28,7 @@ return {
     {
       "<leader>vd",
       function()
-        require("telescope.builtin").git_files({ cwd = "~/dotfiles/" })
+        require("telescope.builtin").git_files({ cwd = "~/.dotfiles/" })
       end,
       desc = "Find Dotfiles",
     },
