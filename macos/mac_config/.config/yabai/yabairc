@@ -84,7 +84,7 @@ yabai -m space 9 --layout float
 
 yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
-yabai -m rule --add app=alacritty space=^2
+yabai -m rule --add app=Alacritty space=^2
 yabai -m rule --add app="^neovide" space=^4
 yabai -m rule --add app="^Nova" space=^4
 yabai -m rule --add app="^MacVim" space=^4

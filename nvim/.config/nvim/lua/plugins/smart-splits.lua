@@ -32,6 +32,7 @@ return {
       },
       { "<C-k>", "<cmd>lua require('smart-splits').move_cursor_up()<cr>", desc = "Move cursor up" },
       {
+        mode = "n",
         "<C-l>",
         "<cmd>lua require('smart-splits').move_cursor_right()<cr>",
         desc = "move cursor right",

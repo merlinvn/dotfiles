@@ -65,8 +65,8 @@ map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 -- map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- terminal
--- vim.keymap.del({ "n", "t" }, "<c-/>")
--- vim.keymap.del({ "n", "t" }, "<c-_>")
+-- bring back C-L to clear screen in terminal
+vim.keymap.del({ "t" }, "<c-l>")
 
 vim.keymap.set("n", "<C-/>", function()
   Util.terminal(nil, { border = "double" })
@@ -90,6 +90,6 @@ map({ "n", "v" }, "<C-y>", [["+y]], { desc = "Copy to clipboard" })
 map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 map("x", "p", [["_dP]])
-map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
+-- map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
 
 -- next greatest remap ever : yank to clipboard
