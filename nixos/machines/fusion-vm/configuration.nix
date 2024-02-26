@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/common-packages.nix
+      ../../modules/development-tools.nix
     ];
 
   # Bootloader.
@@ -63,16 +65,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    curl
-    stow
-    zsh
-    autojump
-    fzf
-    starship
-    unstable.neovim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -83,7 +75,9 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+  };
   programs.autojump.enable = true;
 
   # List services that you want to enable:

@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable}: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, ...}: 
   let
   in { 
     nixosConfigurations = {
@@ -16,6 +16,7 @@
         modules = [
           ({ config, pkgs, ... }: {
             # Example: using unstable package directly in the configuration
+            #
             nixpkgs.overlays = [
               (self: super: {
                 unstable = import nixpkgs-unstable {
@@ -28,7 +29,7 @@
               # Access an unstable package as `pkgs.unstable.somePackage`
             ];
           })
-          ./configuration.nix
+          ./machines/fusion-vm/configuration.nix
         ];
       };
     };
