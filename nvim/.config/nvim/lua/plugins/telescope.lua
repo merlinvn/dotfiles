@@ -17,7 +17,7 @@ return {
     { "<leader>,", false },
     { "<leader><space>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Find opening buffers" },
     { "<leader>p", Util.telescope("files"), desc = "Find Files (root dir)" },
-    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Grep Current Buffer" },
+    -- { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Grep Current Buffer" },
     {
       "<leader>vn",
       function()
