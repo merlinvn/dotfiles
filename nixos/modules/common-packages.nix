@@ -13,6 +13,7 @@
     fzf
     starship
     lazygit
+    ripgrep
   ];
 }
 
