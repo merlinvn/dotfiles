@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/common-packages.nix
       ../../modules/development-tools.nix
+      #../../modules/hyprland.nix
     ];
 
   # Bootloader.

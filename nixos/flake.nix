@@ -4,14 +4,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ...}: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, ...} @ inputs:
   let
-  in { 
+  in {
     nixosConfigurations = {
       fusion-vm = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
         # Pass both stable and unstable packages to the configuration
         modules = [
           ({ config, pkgs, ... }: {
