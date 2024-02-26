@@ -15,10 +15,10 @@ XMODIFIERS=@im=ibus
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 [ -d /sbin ] && PATH="/sbin:$PATH"
@@ -32,10 +32,10 @@ fi
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-[ -d "$HOME/.cargo/bin" ] &&  PATH="$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
-if xhost >& /dev/null ; then
-  setxkbmap -option caps:escape
+if xhost >&/dev/null; then
+	setxkbmap -option caps:escape
 fi
 
 # GO setting
@@ -45,17 +45,16 @@ export PATH=$PATH:$GOPATH/bin
 
 [ -d "/usr/local/go/bin" ] && export PATH=$PATH:/usr/local/go/bin
 
-
 # GCC 10.2.0
 if [ -d "/usr/local/gcc-10.2.0" ]; then
-  export PATH=/usr/local/gcc-10.2.0/bin:$PATH
-  export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
-  alias gcc=gcc-10.2
-  alias g++=g++-10.2
+	export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+	export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+	alias gcc=gcc-10.2
+	alias g++=g++-10.2
 fi
 
 if [ -f "/usr/bin/rbenv" ]; then
-  eval "$(rbenv init -)"
+	eval "$(rbenv init -)"
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -77,8 +76,8 @@ export LANGUAGE=en_US.UTF-8
 # fi
 
 if [ -d "$HOME/.volta" ]; then
-  export VOLTA_HOME="$HOME/.volta"
-  export PATH="$VOLTA_HOME/bin:$PATH"
+	export VOLTA_HOME="$HOME/.volta"
+	export PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
 # bun
@@ -95,4 +94,4 @@ export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 
 export EDITOR="nvim"
 
-bindkey -s ^f "tmux-sessionizer\n"
+# bindkey -s ^f "tmux-sessionizer\n"

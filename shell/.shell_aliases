@@ -8,38 +8,30 @@ function set_alias() {
 	fi
 }
 
-# unameOut="$(uname -s)"
-# case "${unameOut}" in
-#     Linux*)     machine=Linux;;
-#     Darwin*)    machine=Mac;;
-#     CYGWIN*)    machine=Cygwin;;
-#     MINGW*)     machine=MinGw;;
-#     *)          machine="UNKNOWN:${unameOut}"
-# esac
-
 if [[ -x "$(command -v exa)" ]]; then
-  set_alias ls exa --color=auto
-  set_alias ll exa -alhF
-  set_alias la exa -a
-  set_alias l exa -F
+  alias ls='exa --color=auto'
+  alias ll='exa -alhF'
+  alias la='exa -a'
+  alias l='exa -F'
 else
-  set_alias ll ls -al
-  set_alias la ls -a
-  set_alias l ls -F
+  alias ll='ls -al'
+  alias la='ls -a'
+  alias l='ls -F'
 fi
 
-alias python='/usr/bin/python3'
-alias pip='/usr/bin/pip3'
+# Python
+set_alias python /usr/bin/python3
+set_alias pip /usr/bin/pip3
 
-# Git aliases.
-if [[ -f "$HOME/forgit/forgit.plugin.zsh" ]]; then
+# zellij
+set_alias jr zellij r --
+set_alias je zellij edit
+set_alias jj zellij
 
-else
+# Git aliases
+if [[ -x "$(command -v git)" ]]; then
 	alias gd='git diff'
 	alias ga='git add'
-fi
-
-if [[ -x "$(command -v git)" ]]; then
 	alias gi='git init'
 	alias gaa='git add .'
 	alias gaaa='git add -A'
@@ -70,9 +62,6 @@ set_alias catr batcat -p
 set_alias br broot
 set_alias find fd
 
-# set_alias top htop
-# set_alias top bpytop
-
 # kubernetes
 set_alias k kubectl
 
@@ -89,9 +78,9 @@ set_alias m micro
 set_alias v nvim
 set_alias vi nvim
 
-alias tmux="TERM=screen-256color tmux"
+# alias tmux="TERM=screen-256color tmux"
 
-[[ -f "/usr/bin/vcgencmd" ]] && alias temp="/usr/bin/vcgencmd measure_temp"
+# [[ -f "/usr/bin/vcgencmd" ]] && alias temp="/usr/bin/vcgencmd measure_temp"
 
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 
@@ -102,6 +91,7 @@ alias anaconda='source  ~/.conda.shellrc'
 set_alias gt go-task
 set_alias t go-task
 
+# Enhanced package management aliases for yay and paru
 if [[ -x "$(command -v yay)" ]]; then
 	alias yayi="yay -Slq | fzf --multi --preview 'if yay -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; yay -Qi {1}; else echo -e \"Package information:\n\n\"; yay -Si {1}; fi || echo No information found.' | xargs -ro yay -S"
 	alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
@@ -111,13 +101,6 @@ if [[ -x "$(command -v paru)" ]]; then
 	alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
 	alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
 fi
-
-set_alias jr zellij r --
-set_alias je zellij edit
-set_alias jj zellij
-
-alias python='python3'
-alias pip='pip3'
 
 alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
 
