@@ -2,4 +2,4 @@
 
 echo "Rebuild nixos"
 
-sudo nixos-rebuild switch --flake .#fusion-vm
+sudo nixos-rebuild switch --flake .#$HOST
