@@ -39,7 +39,7 @@ require("lazy").setup({
   ui = {
     border = "double",
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight", "habamax", "gruvbox" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
