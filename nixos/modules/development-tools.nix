@@ -7,6 +7,6 @@
     nodejs
     rustup
     go
-    unstable.neovim
+    neovim
   ];
 }
