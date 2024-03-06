@@ -82,6 +82,7 @@ yabai -m space 7 --layout stack
 yabai -m space 8 --layout stack
 yabai -m space 9 --layout float
 
+yabai -m rule --add app=^Numi space=^1
 yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
 yabai -m rule --add app=Alacritty space=^2

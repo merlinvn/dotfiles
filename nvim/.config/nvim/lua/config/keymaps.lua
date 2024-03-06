@@ -91,5 +91,8 @@ map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 map("x", "p", [["_dP]])
 -- map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
+--
 
--- next greatest remap ever : yank to clipboard
+-- shortcut for Lazy
+map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })

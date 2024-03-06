@@ -37,6 +37,8 @@ brew "mas"
 brew "bitwarden-cli"
 brew "lazygit"
 brew "tldr"
+brew "age"
+
 # Development
 brew "git"
 brew "git-lfs"
