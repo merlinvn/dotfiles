@@ -170,3 +170,9 @@ function nvims() {
 
 ## disable software control flow to allow Ctrl-S and Ctrl-Q function as normal ("save" "quit" in nvim)
 # stty -ixon
+
+## run neofetch if avalable
+[ -x "$(command -v neofetch)" ] && neofetch
+
+# opam configuration
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

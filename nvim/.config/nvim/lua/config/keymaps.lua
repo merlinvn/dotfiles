@@ -40,34 +40,14 @@ map("n", "<leader>8", "8gt", { desc = "Go to tab 8", noremap = true, silent = tr
 map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = true })
 map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
--- switch back and forth between buffers
-map("n", "<leader>a", ":b#<CR>", { desc = "Switch buffer", silent = true, noremap = true }) --  switch last buffer
-
 -- consider if it is necessary or not
 map("n", "]<tab>", ":tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
 map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true, silent = true })
 
-vim.keymap.del("n", "<leader><tab>]")
-vim.keymap.del("n", "<leader><tab>[")
-vim.keymap.del("n", "<leader><tab>l")
-vim.keymap.del("n", "<leader><tab>f")
-vim.keymap.del("n", "<leader><tab><tab>")
-vim.keymap.del("n", "<leader><tab>d")
-
 map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
 map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 
--- map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next Tab" })
--- map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
--- map("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Last Tab" })
--- map("n", "<leader>tf", "<cmd>tabfirst<cr>", { desc = "First Tab" })
--- map("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "New Tab" })
--- map("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-
 -- terminal
--- bring back C-L to clear screen in terminal
-vim.keymap.del({ "t" }, "<c-l>")
-
 vim.keymap.set("n", "<C-/>", function()
   Util.terminal(nil, { border = "double" })
 end, { desc = "Term with border" })
@@ -76,8 +56,6 @@ vim.keymap.set("n", "<C-_>", function()
   Util.terminal(nil, { border = "double" })
 end, { desc = "Term with border" })
 
-vim.keymap.del({ "n" }, "<leader>ft")
-vim.keymap.del({ "n" }, "<leader>fT")
 -- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
 
 -- better p
@@ -90,9 +68,23 @@ map({ "n", "v" }, "<C-y>", [["+y]], { desc = "Copy to clipboard" })
 map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 map("x", "p", [["_dP]])
--- map({ "n", "v" }, "<leader>dd", [["_d]], { desc = "delete to black hole", noremap = true })
 --
 
 -- shortcut for Lazy
 map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })
+
+-- delete some default keymaps in LazyVim
+vim.keymap.del("n", "<leader><tab>]")
+vim.keymap.del("n", "<leader><tab>[")
+vim.keymap.del("n", "<leader><tab>l")
+vim.keymap.del("n", "<leader><tab>f")
+vim.keymap.del("n", "<leader><tab><tab>")
+vim.keymap.del("n", "<leader><tab>d")
+vim.keymap.del("n", "<leader>L")
+
+-- bring back C-L to clear screen in terminal
+vim.keymap.del({ "t" }, "<c-l>")
+
+vim.keymap.del({ "n" }, "<leader>ft")
+vim.keymap.del({ "n" }, "<leader>fT")

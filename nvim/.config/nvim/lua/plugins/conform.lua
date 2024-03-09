@@ -6,6 +6,9 @@ return {
         markdown = {
           "prettier",
         },
+        ocaml = {
+          "ocamlformat",
+        },
       },
     },
   },
