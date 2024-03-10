@@ -25,8 +25,7 @@ style = "Italic"
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
-# family = "Hack Nerd Font"
-style = "Regular"
+# family = "Hack Nerd Font" style = "Regular"
 
 [font.offset]
 x = 0
@@ -74,4 +73,6 @@ bindings = [
   { key = "Key7", mods = "Control", chars = "\u001b[55;5u" },
   { key = "Key8", mods = "Control", chars = "\u001b[56;5u" },
   { key = "Key9", mods = "Control", chars = "\u001b[57;5u" },
+  { key = "Tab", mods = "Control", chars = "\u001b[27;5;9~" },
+  { key = "Tab", mods = "Control|Shift", chars = "\u001b[27;6;9~" },
 ]
