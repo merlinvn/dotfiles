@@ -16,3 +16,5 @@ vim.cmd("cnoreabbrev WQ wq")
 vim.cmd("cnoreabbrev Set set")
 vim.cmd("cnoreabbrev SEt set")
 vim.cmd("cnoreabbrev SET set")
+
+vim.o.list = true

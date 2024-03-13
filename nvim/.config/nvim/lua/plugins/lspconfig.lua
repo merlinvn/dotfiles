@@ -6,6 +6,9 @@ return {
         ocamllsp = {
           mason = false,
         },
+        gleam = {
+          mason = false,
+        },
       },
       setup = {
         clangd = function(_, opts)

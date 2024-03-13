@@ -19,6 +19,16 @@ else
   alias l='ls -F'
 fi
 
+alias c='cd'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias grep='grep -i --color=auto'
+alias tree='tree -C'
+alias less='less -R'
+alias watch='watch -c'
+
 # Python
 set_alias python /usr/bin/python3
 set_alias pip /usr/bin/pip3
@@ -67,16 +77,20 @@ set_alias k kubectl
 
 # cheat.sh
 if [[ -x "$(command -v cht.sh)" ]]; then
-	alias c='cht.sh'
+	alias cht='cht.sh'
 else
-	c() {
-		curl cht.sh/$1
+	cht() {
+    if [[ -x "$(command -v tldr)" ]]; then
+      tldr $1
+    else
+      curl cht.sh/$1
+    fi
 	}
 fi
 
 set_alias m micro
-set_alias v nvim
-set_alias vi nvim
+set_alias v vim
+set_alias n nvim
 
 # alias tmux="TERM=screen-256color tmux"
 
@@ -115,3 +129,5 @@ if [[ -x "$(command -v mise)" ]]; then
   alias x="mise exec --"
   alias r="mise run --"
 fi
+
+set_alias w watchexec
