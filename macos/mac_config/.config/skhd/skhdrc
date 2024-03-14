@@ -206,8 +206,8 @@ resize < b : yabai -m space --balance; skhd -k 'escape'
 ## space management
 # focus next and previous desktop / space
 
-spaces < left : yabai -m space --focus next || yabai -m space --focus first
-spaces < right : yabai -m space --focus prev || yabai -m space --focus last
+spaces < left : yabai -m space --focus prev || yabai -m space --focus last
+spaces < right : yabai -m space --focus next || yabai -m space --focus first
 
 # send window to next and previous desktop and follow focus
 spaces < shift - left : (yabai -m window --space prev --focus) || (yabai -m window --space last --focus )
