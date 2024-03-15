@@ -38,6 +38,8 @@ brew "bitwarden-cli"
 brew "lazygit"
 brew "tldr"
 brew "age"
+brew "yt-dlp"
+brew "mpv"
 
 # Development
 brew "git"
