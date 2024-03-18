@@ -30,8 +30,8 @@ alias less='less -R'
 alias watch='watch -c'
 
 # Python
-set_alias python /usr/bin/python3
-set_alias pip /usr/bin/pip3
+#set_alias python /usr/bin/python3
+#set_alias pip /usr/bin/pip3
 
 # zellij
 set_alias jr zellij r --
