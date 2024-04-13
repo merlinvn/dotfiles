@@ -39,7 +39,8 @@ dimensions = { columns = 0, lines = 0 }
 dynamic_padding = true
 dynamic_title = false
 title = "Alacritty"
-opacity = 0.5
+opacity = 1.0
+#opacity = 0.5
 option_as_alt = "Both"
 padding = { x = 4, y = 4 }
 

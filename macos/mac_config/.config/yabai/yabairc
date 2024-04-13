@@ -83,6 +83,10 @@ yabai -m space 8 --layout stack
 yabai -m space 9 --layout stack
 
 yabai -m rule --add app=^Numi space=^1
+yabai -m rule --add app=^Zed space=^1
+yabai -m rule --add app="^OBS Studio" space=^1
+yabai -m rule --add app="^OBS Studio" title="^Multiview" manage=off sticky=on
+yabai -m rule --add app="^Adobe Photoshop" space=^1
 yabai -m rule --add app=kitty space=^2
 yabai -m rule --add app=WezTerm space=^2
 yabai -m rule --add app=Alacritty space=^2
@@ -93,7 +97,7 @@ yabai -m rule --add app="^Safari" space=^3
 yabai -m rule --add app="^Firefox" space=^3
 yabai -m rule --add app="^Brave" space=^3
 yabai -m rule --add app="Microsoft Edge" space=^3
-yabai -m rule --add app=Code space=^4
+yabai -m rule --add app="^Code" space=^4
 yabai -m rule --add app=Spyder space=^4
 yabai -m rule --add app="^Navicat" space=^4
 yabai -m rule --add app="^Docker" space=^4
@@ -104,12 +108,13 @@ yabai -m rule --add app=Mail space=^6
 yabai -m rule --add app=Reeder space=^7
 yabai -m rule --add app="^Acrobat" space=^7
 yabai -m rule --add app="^Obsidian" space=^7
+yabai -m rule --add app="^calibre" space=^7
 yabai -m rule --add app="^Telegram" space=^8
 yabai -m rule --add app="^Discord" space=^8
-yabai -m rule --add app="^calibre" space=^9
-yabai -m rule --add app="^VLC" space=^9
+yabai -m rule --add app="^VLC" space=^9 manage=off
 yabai -m rule --add app="^zoom" space=^9
-# yabai -m rule --add app="*" space=^1
+yabai -m rule --add app="^Microsoft Teams" space=^9
+yabai -m rule --add app="*" space=^1
 
 #yabai -m rule --add app=".*" manage=off
 yabai -m rule --add app="^System Settings$" sticky=on manage=off
@@ -128,6 +133,8 @@ yabai -m rule --add app="^WireGuard" manage=off
 yabai -m rule --add app="Commander One" title="File Info" manage=off
 yabai -m rule --add app="^Commander One" title!="Quick Look" subrole="Quick Look" manage=off grid=12:12:1:1:10:10
 # yabai -m rule --add app=".*" manage=off
+
+# yabai -m rule --add app=".*" sub-layer=normal
 
 #yabai -m rule --add app=kitty grid=1:1:0:0:1:1
 # yabai -m rule --add app="^System Preferences$" manage=off

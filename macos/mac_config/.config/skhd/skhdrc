@@ -112,7 +112,9 @@ alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 ## switch back and forth between spaces
 cmd - tab : yabai -m space --focus recent || yabai -m space --focus next || yabai -m space --focus first
 # cycle all windows on space for both stack and bsp layout
-alt - tab : (yabai -m window --focus stack.next || yabai -m window --focus stack.first) || (yabai -m window --focus next || yabai -m window --focus first)
+#alt - tab : (yabai -m window --focus stack.next || yabai -m window --focus stack.first) || (yabai -m window --focus next || yabai -m window --focus first)
+alt - tab : [ $(yabai -m query --windows --space | jq -re "map(select(.\"has-focus\" == true)) | length != 0") = true ] && yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")" ||  yabai -m window --focus "$(yabai -m query --spaces --space | jq -re ".windows[0]?")" &> /dev/null
+
 
 # focus window
 cmd+alt - left : yabai -m window --focus west
