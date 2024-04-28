@@ -92,6 +92,13 @@ export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 
 [[ -d "$HOME/.local/share/bob/nvim-bin" ]] && export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
-export EDITOR="nvim"
+[[ -x "$(command -v nvim)" ]] && export EDITOR="nvim"
+
+# Set up CUDA environment
+if [ -d "/usr/local/cuda" ]; then
+    export PATH="/usr/local/cuda/bin:$PATH"
+    export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+fi
+
 
 # bindkey -s ^f "tmux-sessionizer\n"
