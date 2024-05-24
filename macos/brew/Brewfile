@@ -26,6 +26,7 @@ brew "neofetch"
 brew "bat"
 brew "fd"
 # brew "exa" # not maintained by brew
+brew "eza"
 brew "ripgrep"
 brew "tree"
 brew "wget"

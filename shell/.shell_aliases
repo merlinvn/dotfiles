@@ -8,18 +8,18 @@ function set_alias() {
 	fi
 }
 
-if [[ -x "$(command -v exa)" ]]; then
-  alias ls='exa --color=auto'
-  alias ll='exa -alhF'
-  alias la='exa -a'
-  alias l='exa -F'
+if [[ -x "$(command -v eza)" ]]; then
+  alias ls='eza --color=auto'
+  alias ll='eza -alhF'
+  alias la='eza -a'
+  alias l='eza -F'
 else
   alias ll='ls -al'
   alias la='ls -a'
   alias l='ls -F'
 fi
 
-alias c='cd'
+#alias c='cd'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -131,3 +131,6 @@ if [[ -x "$(command -v mise)" ]]; then
 fi
 
 set_alias w watchexec
+
+[[ -x "$(command -v pbpaste)" ]] && alias p="pbpaste"
+[[ -x "$(command -v pbcopy)" ]] && alias c="pbcopy"

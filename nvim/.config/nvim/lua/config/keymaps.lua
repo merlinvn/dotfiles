@@ -6,6 +6,20 @@ local Util = require("lazyvim.util")
 local map = vim.keymap.set
 -- local opts = { noremap = true, silent = true }
 
+-- delete some default keymaps in LazyVim
+vim.keymap.del("n", "<leader><tab>]")
+vim.keymap.del("n", "<leader><tab>[")
+vim.keymap.del("n", "<leader><tab>l")
+vim.keymap.del("n", "<leader><tab>f")
+vim.keymap.del("n", "<leader><tab><tab>")
+vim.keymap.del("n", "<leader><tab>d")
+vim.keymap.del("n", "<leader>L")
+
+-- bring back C-L to clear screen in terminal
+vim.keymap.del({ "t" }, "<c-l>")
+
+vim.keymap.del({ "n" }, "<leader>ft")
+vim.keymap.del({ "n" }, "<leader>fT")
 map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent = true })
 
 -- Quit
@@ -47,17 +61,6 @@ map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true
 map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
 map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 
--- terminal
-vim.keymap.set("n", "<C-/>", function()
-  Util.terminal(nil, { border = "double" })
-end, { desc = "Term with border" })
-
-vim.keymap.set("n", "<C-_>", function()
-  Util.terminal(nil, { border = "double" })
-end, { desc = "Term with border" })
-
--- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
-
 -- better p
 map("v", "p", '"_dP')
 
@@ -74,17 +77,13 @@ map("x", "p", [["_dP]])
 map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })
 
--- delete some default keymaps in LazyVim
-vim.keymap.del("n", "<leader><tab>]")
-vim.keymap.del("n", "<leader><tab>[")
-vim.keymap.del("n", "<leader><tab>l")
-vim.keymap.del("n", "<leader><tab>f")
-vim.keymap.del("n", "<leader><tab><tab>")
-vim.keymap.del("n", "<leader><tab>d")
-vim.keymap.del("n", "<leader>L")
+-- terminal
+vim.keymap.set("n", "<C-/>", function()
+  Util.terminal(nil, { border = "double" })
+end, { desc = "Term with border" })
 
--- bring back C-L to clear screen in terminal
-vim.keymap.del({ "t" }, "<c-l>")
+vim.keymap.set("n", "<C-_>", function()
+  Util.terminal(nil, { border = "double" })
+end, { desc = "Term with border" })
 
-vim.keymap.del({ "n" }, "<leader>ft")
-vim.keymap.del({ "n" }, "<leader>fT")
+-- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
