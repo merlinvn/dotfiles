@@ -132,3 +132,4 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
+if [ -f "/Users/neo/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/neo/.config/fabric/fabric-bootstrap.inc"; fi

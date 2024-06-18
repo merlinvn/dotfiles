@@ -176,3 +176,5 @@ function nvims() {
 
 # opam configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
+if [ -f "/Users/neo/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/neo/.config/fabric/fabric-bootstrap.inc"; fi
