@@ -46,7 +46,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-moon",
+      colorscheme = "tokyonight",
       -- colorscheme = "catppuccin",
       -- colorscheme = "gruvbox",
     },
@@ -54,11 +54,15 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
+      style = "moon",
       transparent = true,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
       },
+      on_colors = function(c)
+        c.border = c.blue5
+      end,
     },
   },
 }

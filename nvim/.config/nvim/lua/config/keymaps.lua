@@ -24,7 +24,7 @@ map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent 
 
 -- Quit
 map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
-map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit", silent = true })
+-- map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit", silent = true })
 map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save", silent = true })

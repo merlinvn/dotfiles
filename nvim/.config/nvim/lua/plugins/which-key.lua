@@ -3,10 +3,10 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      defaults = {
-        ["<leader>v"] = { name = "+vim" },
-        ["<leader>d"] = { name = "+delete/debug" },
-        ["<leader>t"] = { name = "+tabs/tests" },
+      spec = {
+        ["<leader>v"] = { group = "vim" },
+        ["<leader>d"] = { group = "delete/debug" },
+        ["<leader>t"] = { group = "tabs/tests" },
         -- ["<leader>h"] = { name = "+harpoon" },
       },
     },

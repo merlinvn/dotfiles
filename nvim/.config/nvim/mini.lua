@@ -84,7 +84,7 @@ map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = tr
 map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
 -- Splits  & Windows
-map("n", "<leader>w", "<C-w>") -- leader w or Ctrl-w, it is your choice
+-- map("n", "<leader>w", "<C-w>") -- leader w or Ctrl-w, it is your choice
 map("n", "<C-q>", ":close<CR>") -- close current split
 
 -- Split Navigation
@@ -126,7 +126,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv") -- Move current line up
 
 -- Quit
 map("n", "<leader>qw", ":wq<CR>", { desc = "Save & quit" })
-map("n", "<leader>wq", ":wq<CR>", { desc = "Save & quit" })
+-- map("n", "<leader>wq", ":wq<CR>", { desc = "Save & quit" })
 map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save" })
 map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save" })
 map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save" })
@@ -166,25 +166,25 @@ vim.cmd([[
 ]])
 -- Mode based Cursorline
 vim.api.nvim_create_autocmd("InsertEnter", {
-	pattern = "*",
-	callback = function()
-		vim.o.cursorline = false
-	end,
+  pattern = "*",
+  callback = function()
+    vim.o.cursorline = false
+  end,
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	callback = function()
-		vim.o.cursorline = true
-	end,
+  pattern = "*",
+  callback = function()
+    vim.o.cursorline = true
+  end,
 })
 -- Format Trailing on save
 vim.api.nvim_create_autocmd("BufWrite", {
-	pattern = "*",
-	callback = function()
-		vim.cmd([[%s/\s\+$//e]]) -- remove trailing whitespace
-		vim.cmd([[%s/\n\+\%$//e]]) -- remove trailing newlines
-		vim.lsp.buf.format()
-	end,
+  pattern = "*",
+  callback = function()
+    vim.cmd([[%s/\s\+$//e]]) -- remove trailing whitespace
+    vim.cmd([[%s/\n\+\%$//e]]) -- remove trailing newlines
+    vim.lsp.buf.format()
+  end,
 })
 ------------------------------
 -- FileBrowser

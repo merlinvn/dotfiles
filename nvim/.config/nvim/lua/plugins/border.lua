@@ -15,7 +15,7 @@ return {
   -- lazyvim.plugins.editor
   {
     "which-key.nvim",
-    opts = { window = { border = "rounded" } },
+    opts = { win = { border = "rounded" } },
   },
   -- lazyvim.plugins.lsp
   {
