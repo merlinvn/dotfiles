@@ -82,7 +82,7 @@
 :: monitors @ : osascript -e 'display notification "Monitors mode" with title "Yabai"'
 
 # reload yabai and skhd configuration files
-default, resize, windows < cmd+alt - y : yabai --restart-service; skhd --restart-service
+default, resize, windows < cmd+alt - y : yabai --restart-service; skhd --restart-service; osascript -e 'display notification "Yabai restarted" with title "Yabai"'  
 default, resize, windows < cmd+alt - a : skhd --restart-service && \
                                          osascript -e 'display notification "Skhd restarted" with title "Yabai"'  
 
