@@ -10,6 +10,7 @@ return {
           ["<c-t>"] = actions.select_tab,
         },
       },
+      file_ignore_patterns = { "docs/Doxygen/.*" }, -- This line ignores docs/Doxygen folder
     },
   },
   keys = {

@@ -14,13 +14,19 @@ vim.keymap.del("n", "<leader><tab>f")
 vim.keymap.del("n", "<leader><tab><tab>")
 vim.keymap.del("n", "<leader><tab>d")
 vim.keymap.del("n", "<leader>L")
-
+vim.keymap.del("n", "<A-j>")
+vim.keymap.del("n", "<A-k>")
+vim.keymap.del("i", "<A-j>")
+vim.keymap.del("i", "<A-k>")
+vim.keymap.del("v", "<A-j>")
+vim.keymap.del("v", "<A-k>")
+--
 -- bring back C-L to clear screen in terminal
 vim.keymap.del({ "t" }, "<c-l>")
 
 vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
-map("n", "<C-q>", ":close<CR>", { desc = "Close window", noremap = true, silent = true })
+map("n", "<C-q>", ":q<CR>", { desc = "Quit buffer without save", silent = true })
 
 -- Quit
 map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
@@ -28,7 +34,6 @@ map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
 map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save", silent = true })
-map("n", "<M-q>", ":q<CR>", { desc = "Quit buffer without save", silent = true })
 
 -- Tab for indent
 map("v", "<Tab>", ">><Esc>gv")
@@ -87,3 +92,11 @@ vim.keymap.set("n", "<C-_>", function()
 end, { desc = "Term with border" })
 
 -- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
+
+-- Move Lines
+map("n", "<A-down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<A-up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("i", "<A-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-down>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })

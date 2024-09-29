@@ -9,6 +9,12 @@ return {
         ocaml = {
           "ocamlformat",
         },
+        cpp = {
+          "clang_format", -- Add clang-format for C++ files
+        },
+        c = {
+          "clang_format", -- Add clang-format for C files
+        },
       },
     },
   },

@@ -75,169 +75,180 @@
 # TO INTERACT WITH THE YABAI WM. THESE ARE SUPPOSED TO BE USED AS #
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
-:: default : osascript -e 'display notification "Default mode" with title "Yabai"'
-:: resize @ : osascript -e 'display notification "Resize mode" with title "Yabai"'
-:: windows @ : osascript -e 'display notification "Windows mode" with title "Yabai"'
-:: spaces @ : osascript -e 'display notification "Spaces mode" with title "Yabai"'
-:: monitors @ : osascript -e 'display notification "Monitors mode" with title "Yabai"'
-
-# reload yabai and skhd configuration files
-default, resize, windows < cmd+alt - y : yabai --restart-service; skhd --restart-service; osascript -e 'display notification "Yabai restarted" with title "Yabai"'  
-default, resize, windows < cmd+alt - a : skhd --restart-service && \
-                                         osascript -e 'display notification "Skhd restarted" with title "Yabai"'  
-
-## change mode
-alt - r; resize
-alt - w; windows
-alt - m; monitors
-alt - s; spaces
-
-## exit 
-resize,windows,monitors,spaces < escape; default
-resize,windows,monitors,spaces < return; default
-resize,windows,monitors,spaces < q; default
-
-windows,monitors,spaces < r; resize
-resize,monitors,spaces < w; windows
-resize,windows,monitors < s; spaces
-resize,windows,spaces < m; monitors
-
-# open terminal
-# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
-alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
-# cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2 --single-instance -d ~
-# cmd - return : /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process
-
-## switch back and forth between spaces
-cmd - tab : yabai -m space --focus recent || yabai -m space --focus next || yabai -m space --focus first
-# cycle all windows on space for both stack and bsp layout
-#alt - tab : (yabai -m window --focus stack.next || yabai -m window --focus stack.first) || (yabai -m window --focus next || yabai -m window --focus first)
-alt - tab : [ $(yabai -m query --windows --space | jq -re "map(select(.\"has-focus\" == true)) | length != 0") = true ] && yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")" ||  yabai -m window --focus "$(yabai -m query --spaces --space | jq -re ".windows[0]?")" &> /dev/null
 
 
-# focus window
-cmd+alt - left : yabai -m window --focus west
-cmd+alt - down : yabai -m window --focus south
-cmd+alt - up : yabai -m window --focus north
-cmd+alt - right : yabai -m window --focus east
+cmd+alt - a : skhd --restart-service
+cmd+alt - r : aerospace reload-config
 
-alt - 1 : yabai -m space --focus 1
-alt - 2 : yabai -m space --focus 2
-alt - 3 : yabai -m space --focus 3
-alt - 4 : yabai -m space --focus 4
-alt - 5 : yabai -m space --focus 5
-alt - 6 : yabai -m space --focus 6
-alt - 7 : yabai -m space --focus 7
-alt - 8 : yabai -m space --focus 8
-alt - 9 : yabai -m space --focus 9
+cmd - tab : aerospace workspace-back-and-forth
+alt - tab : ~/.dotfiles/scripts/aerospace_focus_float.sh
 
-alt+shift - 1 : yabai -m window --space 1 --focus
-alt+shift - 2 : yabai -m window --space 2 --focus
-alt+shift - 3 : yabai -m window --space 3 --focus
-alt+shift - 4 : yabai -m window --space 4 --focus
-alt+shift - 5 : yabai -m window --space 5 --focus
-alt+shift - 6 : yabai -m window --space 6 --focus
-alt+shift - 7 : yabai -m window --space 7 --focus
-alt+shift - 8 : yabai -m window --space 8 --focus
-alt+shift - 9 : yabai -m window --space 9 --focus
+# cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+# alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
-### Window Management ###
-# use Raycast to snap windows to screen edges
-# move floating window
-windows < left : yabai -m window --move rel:-20:0
-windows < down : yabai -m window --move rel:0:20
-windows < up : yabai -m window --move rel:0:-20
-windows < right : yabai -m window --move rel:20:0
-
-windows < h : yabai -m window --move rel:-20:0
-windows < j : yabai -m window --move rel:0:20
-windows < k : yabai -m window --move rel:0:-20
-windows < l : yabai -m window --move rel:20:0
-
-# move windows
-windows < shift - left : yabai -m window --swap west
-windows < shift - down : yabai -m window --swap south
-windows < shift - up : yabai -m window --swap north
-windows < shift - right : yabai -m window --swap east
-
-windows < shift - h : yabai -m window --warp west
-windows < shift - j : yabai -m window --warp south
-windows < shift - k : yabai -m window --warp north
-windows < shift - l : yabai -m window --warp east
-
-windows < shift - f : yabai -m window --toggle native-fullscreen; skhd -k 'escape'
-windows < f : yabai -m window --toggle zoom-fullscreen ; skhd -k 'escape'
-windows < p : yabai -m window --toggle zoom-parent; skhd -k 'escape'
-
-# float / unfloat window and center on screen
-windows < t: yabai -m window --toggle float --grid 6:6:1:1:4:4; skhd -k 'escape'
-
-# toggle window split type
-windows < l : yabai -m window --toggle split
-
-# toggle sticky(+float), topmost, picture-in-picture
-windows < shift - t : yabai -m window --toggle sticky;\
-                  yabai -m window --toggle topmost;\
-                  yabai -m window --toggle pip; skhd -k 'escape'
-
-# focus next and previous floating window
-# windows < w : yabai -m window --focus recent || yabai -m window --focus next; skhd -k 'escape'
-# windows < alt - w : yabai -m window --focus recent || yabai -m window --focus next; skhd -k 'escape'
-
-## Resize / swap windows
-# balance size of windows
-resize < left : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
-resize < right : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
-resize < down : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
-resize < up :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
-
-resize < h : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
-resize < j : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
-resize < k :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
-resize < l : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
-
-resize < b : yabai -m space --balance; skhd -k 'escape'
-
-## space management
-# focus next and previous desktop / space
-
-spaces < left : yabai -m space --focus prev || yabai -m space --focus last
-spaces < right : yabai -m space --focus next || yabai -m space --focus first
-
-# send window to next and previous desktop and follow focus
-spaces < shift - left : (yabai -m window --space prev --focus) || (yabai -m window --space last --focus )
-spaces < shift - right : (yabai -m window --space next --focus) || (yabai -m window --space first --focus)
-
-# toggle space layout mode
-# t: tiled, s: stack, f: float
-spaces < t : yabai -m space --layout bsp; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
-spaces < s : yabai -m space --layout stack; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
-spaces < f : yabai -m space --layout float; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
-spaces < o : yabai -m space --rotate 270
-
-## monitor management
-# focus monitor
-monitors < left  : yabai -m display --focus prev || yabai -m display --focus last; skhd -k 'escape'
-monitors < right  : yabai -m display --focus next || yabai -m display --focus first; skhd -k 'escape'
-monitors < x  : yabai -m display --focus recent; skhd -k 'escape'
-
-# send window to monitor and follow focus
-monitors < shift - left  : (yabai -m window --display prev --focus) || (yabai -m window --display last --focus); skhd -k 'escape'
-monitors < shift - right : (yabai -m window --display next --focus) || (yabai -m window --display first --focus); skhd -k 'escape'
-monitors < shift - x  : yabai -m window --display recent --focus; skhd -k 'escape'
-
-# application specific bindings
+# :: default : osascript -e 'display notification "Default mode" with title "Yabai"'
+# :: resize @ : osascript -e 'display notification "Resize mode" with title "Yabai"'
+# :: windows @ : osascript -e 'display notification "Windows mode" with title "Yabai"'
+# :: spaces @ : osascript -e 'display notification "Spaces mode" with title "Yabai"'
+# :: monitors @ : osascript -e 'display notification "Monitors mode" with title "Yabai"'
 #
-cmd - g [
-    "alacritty": skhd -k 'ctrl - space'; skhd -k 'g'
-    # "tmux": skhd -k 'ctrl - space'; skhd -k 'g'
-]
-
-# prevents skhd from monitoring events for listed processes.
-# .blacklist [
-#     "terminal"
-#     "qutebrowser"
-#     "kitty"
-#     "google chrome"
+# # reload yabai and skhd configuration files
+# default, resize, windows < cmd+alt - y : yabai --restart-service; skhd --restart-service; osascript -e 'display notification "Yabai restarted" with title "Yabai"'  
+# default, resize, windows < cmd+alt - a : skhd --restart-service && \
+#                                          osascript -e 'display notification "Skhd restarted" with title "Yabai"'  
+#
+# ## change mode
+# alt - r; resize
+# alt - w; windows
+# alt - m; monitors
+# alt - s; spaces
+#
+# ## exit 
+# resize,windows,monitors,spaces < escape; default
+# resize,windows,monitors,spaces < return; default
+# resize,windows,monitors,spaces < q; default
+#
+# windows,monitors,spaces < r; resize
+# resize,monitors,spaces < w; windows
+# resize,windows,monitors < s; spaces
+# resize,windows,spaces < m; monitors
+#
+# # open terminal
+# # cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+# alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+# # cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2 --single-instance -d ~
+# # cmd - return : /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process
+#
+# ## switch back and forth between spaces
+# cmd - tab : yabai -m space --focus recent || yabai -m space --focus next || yabai -m space --focus first
+# # cycle all windows on space for both stack and bsp layout
+# #alt - tab : (yabai -m window --focus stack.next || yabai -m window --focus stack.first) || (yabai -m window --focus next || yabai -m window --focus first)
+# alt - tab : [ $(yabai -m query --windows --space | jq -re "map(select(.\"has-focus\" == true)) | length != 0") = true ] && yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")" ||  yabai -m window --focus "$(yabai -m query --spaces --space | jq -re ".windows[0]?")" &> /dev/null
+#
+#
+# # focus window
+# cmd+alt - left : yabai -m window --focus west
+# cmd+alt - down : yabai -m window --focus south
+# cmd+alt - up : yabai -m window --focus north
+# cmd+alt - right : yabai -m window --focus east
+#
+# alt - 1 : yabai -m space --focus 1
+# alt - 2 : yabai -m space --focus 2
+# alt - 3 : yabai -m space --focus 3
+# alt - 4 : yabai -m space --focus 4
+# alt - 5 : yabai -m space --focus 5
+# alt - 6 : yabai -m space --focus 6
+# alt - 7 : yabai -m space --focus 7
+# alt - 8 : yabai -m space --focus 8
+# alt - 9 : yabai -m space --focus 9
+#
+# alt+shift - 1 : yabai -m window --space 1 --focus
+# alt+shift - 2 : yabai -m window --space 2 --focus
+# alt+shift - 3 : yabai -m window --space 3 --focus
+# alt+shift - 4 : yabai -m window --space 4 --focus
+# alt+shift - 5 : yabai -m window --space 5 --focus
+# alt+shift - 6 : yabai -m window --space 6 --focus
+# alt+shift - 7 : yabai -m window --space 7 --focus
+# alt+shift - 8 : yabai -m window --space 8 --focus
+# alt+shift - 9 : yabai -m window --space 9 --focus
+#
+# ### Window Management ###
+# # use Raycast to snap windows to screen edges
+# # move floating window
+# windows < left : yabai -m window --move rel:-20:0
+# windows < down : yabai -m window --move rel:0:20
+# windows < up : yabai -m window --move rel:0:-20
+# windows < right : yabai -m window --move rel:20:0
+#
+# windows < h : yabai -m window --move rel:-20:0
+# windows < j : yabai -m window --move rel:0:20
+# windows < k : yabai -m window --move rel:0:-20
+# windows < l : yabai -m window --move rel:20:0
+#
+# # move windows
+# windows < shift - left : yabai -m window --swap west
+# windows < shift - down : yabai -m window --swap south
+# windows < shift - up : yabai -m window --swap north
+# windows < shift - right : yabai -m window --swap east
+#
+# windows < shift - h : yabai -m window --warp west
+# windows < shift - j : yabai -m window --warp south
+# windows < shift - k : yabai -m window --warp north
+# windows < shift - l : yabai -m window --warp east
+#
+# windows < shift - f : yabai -m window --toggle native-fullscreen; skhd -k 'escape'
+# windows < f : yabai -m window --toggle zoom-fullscreen ; skhd -k 'escape'
+# windows < p : yabai -m window --toggle zoom-parent; skhd -k 'escape'
+#
+# # float / unfloat window and center on screen
+# windows < t: yabai -m window --toggle float --grid 6:6:1:1:4:4; skhd -k 'escape'
+#
+# # toggle window split type
+# windows < l : yabai -m window --toggle split
+#
+# # toggle sticky(+float), topmost, picture-in-picture
+# windows < shift - t : yabai -m window --toggle sticky;\
+#                   yabai -m window --toggle topmost;\
+#                   yabai -m window --toggle pip; skhd -k 'escape'
+#
+# # focus next and previous floating window
+# # windows < w : yabai -m window --focus recent || yabai -m window --focus next; skhd -k 'escape'
+# # windows < alt - w : yabai -m window --focus recent || yabai -m window --focus next; skhd -k 'escape'
+#
+# ## Resize / swap windows
+# # balance size of windows
+# resize < left : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
+# resize < right : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
+# resize < down : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
+# resize < up :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
+#
+# resize < h : yabai -m window --resize right:-20:0 || yabai -m window --resize left:-20:0
+# resize < j : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
+# resize < k :   yabai -m window --resize bottom:0:-20 || yabai -m window --resize top:0:-20
+# resize < l : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
+#
+# resize < b : yabai -m space --balance; skhd -k 'escape'
+#
+# ## space management
+# # focus next and previous desktop / space
+#
+# spaces < left : yabai -m space --focus prev || yabai -m space --focus last
+# spaces < right : yabai -m space --focus next || yabai -m space --focus first
+#
+# # send window to next and previous desktop and follow focus
+# spaces < shift - left : (yabai -m window --space prev --focus) || (yabai -m window --space last --focus )
+# spaces < shift - right : (yabai -m window --space next --focus) || (yabai -m window --space first --focus)
+#
+# # toggle space layout mode
+# # t: tiled, s: stack, f: float
+# spaces < t : yabai -m space --layout bsp; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
+# spaces < s : yabai -m space --layout stack; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
+# spaces < f : yabai -m space --layout float; echo "refresh" | nc -U /tmp/yabai-indicator.socket; skhd -k 'escape'
+# spaces < o : yabai -m space --rotate 270
+#
+# ## monitor management
+# # focus monitor
+# monitors < left  : yabai -m display --focus prev || yabai -m display --focus last; skhd -k 'escape'
+# monitors < right  : yabai -m display --focus next || yabai -m display --focus first; skhd -k 'escape'
+# monitors < x  : yabai -m display --focus recent; skhd -k 'escape'
+#
+# # send window to monitor and follow focus
+# monitors < shift - left  : (yabai -m window --display prev --focus) || (yabai -m window --display last --focus); skhd -k 'escape'
+# monitors < shift - right : (yabai -m window --display next --focus) || (yabai -m window --display first --focus); skhd -k 'escape'
+# monitors < shift - x  : yabai -m window --display recent --focus; skhd -k 'escape'
+#
+# # application specific bindings
+# #
+# cmd - g [
+#     "alacritty": skhd -k 'ctrl - space'; skhd -k 'g'
+#     # "tmux": skhd -k 'ctrl - space'; skhd -k 'g'
 # ]
+#
+# # prevents skhd from monitoring events for listed processes.
+# # .blacklist [
+# #     "terminal"
+# #     "qutebrowser"
+# #     "kitty"
+# #     "google chrome"
+# # ]

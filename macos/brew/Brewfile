@@ -3,7 +3,6 @@
 ###############################################################
 # Homebrew
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/autoupdate"
 # tap "homebrew/cask"
 # tap "homebrew/core"
@@ -33,7 +32,7 @@ brew "wget"
 brew "jq"
 # Tools/Utilities
 brew "defaultbrowser"
-brew "wallpaper"
+#brew "wallpaper"
 brew "mas"
 brew "bitwarden-cli"
 brew "lazygit"
@@ -79,6 +78,7 @@ cask "calibre", args: { no_quarantine: true }
 cask "dropbox", args: { no_quarantine: true }
 cask "keycastr", args: { no_quarantine: true }
 cask "obs", args: { no_quarantine: true }
+cask "nikitabobko/tap/aerospace", args: { no_quarantine: true }
 # Productivity
 cask "notion", args: { no_quarantine: true }
 cask "obsidian", args: { no_quarantine: true }

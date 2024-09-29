@@ -70,7 +70,7 @@ set_alias cat batcat
 set_alias catr batcat -p
 
 set_alias br broot
-set_alias find fd
+# set_alias find fd
 
 # kubernetes
 set_alias k kubectl
