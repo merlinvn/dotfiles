@@ -130,7 +130,7 @@ map("n", "<leader>qw", ":wq<CR>", { desc = "Save & quit" })
 map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save" })
 map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save" })
 map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save" })
-map("n", "<M-q>", ":q<CR>", { desc = "Close window", noremap = true, silent = true })
+map("n", "<C-q>", ":q<CR>", { desc = "Close window", noremap = true, silent = true })
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })

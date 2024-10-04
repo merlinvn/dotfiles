@@ -26,7 +26,7 @@ vim.keymap.del({ "t" }, "<c-l>")
 
 vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
-map("n", "<C-q>", ":q<CR>", { desc = "Quit buffer without save", silent = true })
+map("n", "<C-q>", ":q<CR>", { desc = "Close window", silent = true })
 
 -- Quit
 map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
@@ -80,6 +80,7 @@ map("x", "p", [["_dP]])
 
 -- shortcut for Lazy
 map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>ve", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
 map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })
 
 -- terminal

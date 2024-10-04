@@ -140,8 +140,6 @@ do
     alias $lazy_conda_alias="load_conda && $lazy_conda_alias"
 done
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
 
 # CUDA Path
 if [ -d "/usr/local/cuda-12.2/bin" ]; then
@@ -183,3 +181,6 @@ if [ -f "/Users/neo/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/neo/.
 # vcpkg
 export VCPKG_ROOT=~/vcpkg
 export PATH=$VCPKG_ROOT:$PATH
+
+# llvm
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

@@ -1,3 +1,4 @@
+local cmp = require("cmp")
 return {
   {
     "hrsh7th/cmp-cmdline",
@@ -31,43 +32,10 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
+    opts = {
+      mapping = {
+        ["<C-.>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      },
     },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      opts.mapping = {
-        ["<C-n>"] = cmp.mapping.select_next_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping.confirm({
-          select = true,
-        }),
-
-        ["<M-y>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-
-        ["<C-l>"] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
-        end, { "i", "s" }),
-        ["<C-h>"] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
-        end, { "i", "s" }),
-      }
-    end,
   },
 }
