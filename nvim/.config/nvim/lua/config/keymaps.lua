@@ -14,23 +14,18 @@ local map = vim.keymap.set
 -- vim.keymap.del("n", "<leader><tab><tab>")
 -- vim.keymap.del("n", "<leader><tab>d")
 vim.keymap.del("n", "<leader>L")
-vim.keymap.del("n", "<A-j>")
-vim.keymap.del("n", "<A-k>")
-vim.keymap.del("i", "<A-j>")
-vim.keymap.del("i", "<A-k>")
-vim.keymap.del("v", "<A-j>")
-vim.keymap.del("v", "<A-k>")
 --
 -- bring back C-L to clear screen in terminal
 vim.keymap.del({ "t" }, "<c-l>")
 
+-- cleare terminal keymaps
 vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
+
 map("n", "<C-q>", ":q<CR>", { desc = "Close window", silent = true })
 
 -- Quit
 map("n", "<leader>qw", ":qw<CR>", { desc = "Save & quit", silent = true })
--- map("n", "<leader>wq", ":qw<CR>", { desc = "Save & quit", silent = true })
 map("n", "<leader>q!", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>q1", ":q!<CR>", { desc = "Quit all buffer without save", silent = true })
 map("n", "<leader>qq", ":qa<CR>", { desc = "Quit buffer without save", silent = true })
@@ -48,23 +43,20 @@ map({ "n", "v" }, "<leader>ff", function()
 end, { desc = "File Format" })
 
 -- tab navigations
-map("n", "<leader>1", "1gt", { desc = "Go to tab 1", noremap = true, silent = true })
-map("n", "<leader>2", "2gt", { desc = "Go to tab 2", noremap = true, silent = true })
-map("n", "<leader>3", "3gt", { desc = "Go to tab 3", noremap = true, silent = true })
-map("n", "<leader>4", "4gt", { desc = "Go to tab 4", noremap = true, silent = true })
-map("n", "<leader>5", "5gt", { desc = "Go to tab 5", noremap = true, silent = true })
-map("n", "<leader>6", "6gt", { desc = "Go to tab 6", noremap = true, silent = true })
-map("n", "<leader>7", "7gt", { desc = "Go to tab 7", noremap = true, silent = true })
-map("n", "<leader>8", "8gt", { desc = "Go to tab 8", noremap = true, silent = true })
-map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = true })
-map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
+-- map("n", "<leader>1", "1gt", { desc = "Go to tab 1", noremap = true, silent = true })
+-- map("n", "<leader>2", "2gt", { desc = "Go to tab 2", noremap = true, silent = true })
+-- map("n", "<leader>3", "3gt", { desc = "Go to tab 3", noremap = true, silent = true })
+-- map("n", "<leader>4", "4gt", { desc = "Go to tab 4", noremap = true, silent = true })
+-- map("n", "<leader>5", "5gt", { desc = "Go to tab 5", noremap = true, silent = true })
+-- map("n", "<leader>6", "6gt", { desc = "Go to tab 6", noremap = true, silent = true })
+-- map("n", "<leader>7", "7gt", { desc = "Go to tab 7", noremap = true, silent = true })
+-- map("n", "<leader>8", "8gt", { desc = "Go to tab 8", noremap = true, silent = true })
+-- map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = true })
+-- map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
 -- consider if it is necessary or not
 -- map("n", "]<tab>", ":tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
 -- map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true, silent = true })
---
--- map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
--- map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 
 -- better p
 map("v", "p", '"_dP')
@@ -93,11 +85,3 @@ vim.keymap.set("n", "<C-_>", function()
 end, { desc = "Term with border" })
 
 -- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
-
--- Move Lines
-map("n", "<A-down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("n", "<A-up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-map("i", "<A-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-down>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-up>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })

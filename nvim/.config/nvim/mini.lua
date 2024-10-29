@@ -84,7 +84,6 @@ map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = tr
 map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
 -- Splits  & Windows
--- map("n", "<leader>w", "<C-w>") -- leader w or Ctrl-w, it is your choice
 map("n", "<C-q>", ":close<CR>") -- close current split
 
 -- Split Navigation

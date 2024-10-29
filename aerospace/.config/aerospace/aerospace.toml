@@ -195,12 +195,13 @@ ctrl-alt-shift-cmd-v = ['move-node-to-workspace Video', 'workspace Video']
 alt-tab = 'focus-back-and-forth'
 cmd-tab = 'workspace-back-and-forth'
 ctrl-alt-shift-q = 'workspace-back-and-forth'
+ctrl-alt-shift-w = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 ctrl-alt-shift-cmd-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-ctrl-alt-shift-cmd-semicolon = 'mode service'
+ctrl-alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -213,14 +214,14 @@ f = [
   'mode main',
 ] # Toggle between floating and tiling layout
 
-ctrl-alt-shift-cmd-f = 'fullscreen'
+shift-f = 'fullscreen'
 
 backspace = ['close-all-windows-but-current', 'mode main']
 
-ctrl-alt-shift-cmd-h = ['join-with left', 'mode main']
-ctrl-alt-shift-cmd-j = ['join-with down', 'mode main']
-ctrl-alt-shift-cmd-k = ['join-with up', 'mode main']
-ctrl-alt-shift-cmd-l = ['join-with right', 'mode main']
+shift-h = ['join-with left', 'mode main']
+shift-j = ['join-with down', 'mode main']
+shift-k = ['join-with up', 'mode main']
+shift-l = ['join-with right', 'mode main']
 
 
 [[on-window-detected]]
