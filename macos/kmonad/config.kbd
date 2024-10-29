@@ -92,6 +92,9 @@
   d_num (tap-hold 200 d (layer-toggle neo34_num))
 
   fn (around (layer-toggle function) fn)
+
+  hyper (around lctrl (around lalt (around lmeta lshft))) 
+  meh   (around lctrl (around lalt lshft)) 
 )
 
 (deflayer default
@@ -100,7 +103,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @met_a    @alt_s    @ctl_d     @sft_f    _    _        @sft_j     @ctl_k    @alt_l    @met_;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
-  @fn   _    _       _             @snav                         _    _  _      _        _       _
+  @fn   _    @meh       _             @snav                         _    @hyper  _      _        _       _
 )
 
 (deflayer function
@@ -114,7 +117,7 @@
 
 (deflayer navigation
   _      _       _       _       _      _    _       _       _       _        _    _    _
-  _      A-1     A-2     A-3     A-4    A-5   A-6     A-7     A-8     A-9      _    _    _    _
+  _      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      _    _    _    _
   _      M-tab   A-tab   C-S-tab C-tab     _         caps    home    up      end      _    _    _    _
   esc    lmet    lalt    lctl    lsft      _         bspc    left    down    right    _    _    M-ret
   -      M-space A-space C-space S-space  C-A-Space  del     pgdn    pgup    _    _    _

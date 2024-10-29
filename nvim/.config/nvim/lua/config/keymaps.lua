@@ -7,12 +7,12 @@ local map = vim.keymap.set
 -- local opts = { noremap = true, silent = true }
 
 -- delete some default keymaps in LazyVim
-vim.keymap.del("n", "<leader><tab>]")
-vim.keymap.del("n", "<leader><tab>[")
-vim.keymap.del("n", "<leader><tab>l")
-vim.keymap.del("n", "<leader><tab>f")
-vim.keymap.del("n", "<leader><tab><tab>")
-vim.keymap.del("n", "<leader><tab>d")
+-- vim.keymap.del("n", "<leader><tab>]")
+-- vim.keymap.del("n", "<leader><tab>[")
+-- vim.keymap.del("n", "<leader><tab>l")
+-- vim.keymap.del("n", "<leader><tab>f")
+-- vim.keymap.del("n", "<leader><tab><tab>")
+-- vim.keymap.del("n", "<leader><tab>d")
 vim.keymap.del("n", "<leader>L")
 vim.keymap.del("n", "<A-j>")
 vim.keymap.del("n", "<A-k>")
@@ -60,11 +60,11 @@ map("n", "<leader>9", "9gt", { desc = "Go to tab 9", noremap = true, silent = tr
 map("n", "<leader>0", ":tablast<cr>", { desc = "Go to last tab", noremap = true, silent = true })
 
 -- consider if it is necessary or not
-map("n", "]<tab>", ":tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
-map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true, silent = true })
-
-map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
-map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
+-- map("n", "]<tab>", ":tabnext<cr>", { desc = "Go to next tab", noremap = true, silent = true })
+-- map("n", "[<tab>", ":tabprev<cr>", { desc = "Go to previous tab", noremap = true, silent = true })
+--
+-- map("n", "<leader>tn", ":tabnew<CR>") -- open new Tab
+-- map("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 
 -- better p
 map("v", "p", '"_dP')
