@@ -1,44 +1,46 @@
+# vim: set syntax=sh :
+
+# Utility function to conditionally set an alias if a command is available
 function set_alias() {
 	local cmd=$1
 	local tool=$2
 	shift 2
-
 	if [ -x "$(command -v $tool)" ]; then
 		alias $cmd="$tool $*"
 	fi
 }
 
+# Basic Navigation Aliases
+# ------------------------
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias mkcd='mkdir $1 && cd $1'
+
+# File System and Text Tools
+# ------------------------
 if [[ -x "$(command -v eza)" ]]; then
-  alias ls='eza --color=auto'
-  alias ll='eza -alhF'
+  alias ls='eza --color=auto --icons --group-directories-first'
+  alias ll='eza -alhF --icons --group-directories-first'
   alias la='eza -a'
-  alias l='eza -F'
+  alias l='eza -F --icons --group-directories-first'
 else
   alias ll='ls -al'
   alias la='ls -a'
   alias l='ls -F'
 fi
 
-#alias c='cd'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
 alias grep='grep -i --color=auto'
 alias tree='tree -C'
 alias less='less -R'
 alias watch='watch -c'
 
-# Python
-#set_alias python /usr/bin/python3
-#set_alias pip /usr/bin/pip3
+# Kubernetes
+# ------------------------
+set_alias k kubectl
 
-# zellij
-set_alias jr zellij r --
-set_alias je zellij edit
-set_alias jj zellij
-
-# Git aliases
+# Git Aliases
+# ------------------------
 if [[ -x "$(command -v git)" ]]; then
 	alias gd='git diff'
 	alias ga='git add'
@@ -55,27 +57,112 @@ if [[ -x "$(command -v git)" ]]; then
 	alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 fi
 
+# Git Tools
+# ------------------------
 set_alias lg lazygit
 set_alias gg gitui
 
-# npm aliases
+# npm Aliases
+# ------------------------
 if [[ -x "$(command -v npm)" ]]; then
 	alias ni="npm install"
 	alias nr="npm run"
 	alias ns="npm start"
 fi
 
+# Alternative Tools
+# ------------------------
 set_alias bat batcat
 set_alias cat batcat
 set_alias catr batcat -p
 
+# Additional Utility Aliases
+# ------------------------
+alias luamake="$HOME/lua-language-server/3rd/luamake/luamake"
+alias anaconda='source ~/.conda.shellrc'
 set_alias br broot
-# set_alias find fd
+set_alias m micro
+set_alias v vim
+set_alias n nvim
+set_alias w watchexec
+[[ -x "$(command -v pbpaste)" ]] && alias p="pbpaste"
+[[ -x "$(command -v pbcopy)" ]] && alias c="pbcopy"
 
-# kubernetes
-set_alias k kubectl
+# Clipboard Management (for macOS)
+# ------------------------
+[[ -x "$(command -v pbpaste)" ]] && alias p="pbpaste"
+[[ -x "$(command -v pbcopy)" ]] && alias c="pbcopy"
 
-# cheat.sh
+# Terminal Management
+# ------------------------
+# Uncomment for Tmux with specific terminal type
+# alias tmux="TERM=screen-256color tmux"
+
+# Zellij Session Management
+# ------------------------
+set_alias jr zellij r --
+set_alias je zellij edit
+set_alias jj zellij
+
+# Neovim Configurations and Selector
+# ------------------------
+alias lv="NVIM_APPNAME=LazyVim nvim"
+alias mini="NVIM_APPNAME=MiniVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+function nvims() {
+  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
+# Docker Utilities
+# ------------------------
+function dipa(){
+  docker rm -v $(docker ps -a -q -f status=exited)
+  docker volume rm $(docker volume ls -qf dangling=true)
+  docker rmi $(docker images -qf dangling=true)
+}
+
+# GitHub CLI Copilot Aliases
+# ------------------------
+if [[ -x "$(command -v gh)" ]]; then
+	alias '??'='gh copilot suggest -t shell'
+	alias 'git?'='gh copilot suggest -t git'
+	alias 'gh?'='gh copilot suggest -t gh'
+fi
+
+# Package Management with yay and paru
+# ------------------------
+if [[ -x "$(command -v yay)" ]]; then
+	alias yayi="yay -Slq | fzf --multi --preview 'if yay -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; yay -Qi {1}; else echo -e \"Package information:\n\n\"; yay -Si {1}; fi || echo No information found.' | xargs -ro yay -S"
+	alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
+fi
+
+if [[ -x "$(command -v paru)" ]]; then
+	alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
+	alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+fi
+
+# Temporary File Removal
+# ------------------------
+alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
+
+# Task Runner Aliases
+# ------------------------
+set_alias gt go-task
+set_alias t go-task
+
+# Conditional Aliases for Specific Tools
+# ------------------------
 if [[ -x "$(command -v cht.sh)" ]]; then
 	alias cht='cht.sh'
 else
@@ -88,49 +175,10 @@ else
 	}
 fi
 
-set_alias m micro
-set_alias v vim
-set_alias n nvim
-
-# alias tmux="TERM=screen-256color tmux"
-
-# [[ -f "/usr/bin/vcgencmd" ]] && alias temp="/usr/bin/vcgencmd measure_temp"
-
-alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-
-# [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-alias anaconda='source  ~/.conda.shellrc'
-
-set_alias gt go-task
-set_alias t go-task
-
-# Enhanced package management aliases for yay and paru
-if [[ -x "$(command -v yay)" ]]; then
-	alias yayi="yay -Slq | fzf --multi --preview 'if yay -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; yay -Qi {1}; else echo -e \"Package information:\n\n\"; yay -Si {1}; fi || echo No information found.' | xargs -ro yay -S"
-	alias yayrm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
-fi
-
-if [[ -x "$(command -v paru)" ]]; then
-	alias parui="paru -Slq | fzf --multi --preview 'if paru -Qi {1} &> /dev/null; then echo -e \"Installed package information:\n\n\"; paru -Qi {1}; else echo -e \"Package information:\n\n\"; paru -Si {1}; fi || echo No information found.' | xargs -ro paru -S"
-	alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
-fi
-
-alias rma="perl -e 'for(<*>){((stat)[9]<(unlink))}' &"
-
-if [[ -x "$(command -v gh)" ]]; then
-	alias '??'='gh copilot suggest -t shell'
-	alias 'git?'='gh copilot suggest -t git'
-	alias 'gh?'='gh copilot suggest -t gh'
-fi
-
-# mise aliases
+# mise Aliases for Execution and Running
+# ------------------------
 if [[ -x "$(command -v mise)" ]]; then
   alias x="mise exec --"
   alias r="mise run --"
 fi
 
-set_alias w watchexec
-
-[[ -x "$(command -v pbpaste)" ]] && alias p="pbpaste"
-[[ -x "$(command -v pbcopy)" ]] && alias c="pbcopy"
