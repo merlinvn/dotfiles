@@ -2,6 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+if vim.fn.executable("/opt/homebrew/bin/fish") then
+  vim.opt.shell = "fish"
+else
+  -- Else default to the system current shell.
+  vim.opt.shell = os.getenv("SHELL")
+end
+
 vim.opt.clipboard = ""
 
 -- Abbrev
