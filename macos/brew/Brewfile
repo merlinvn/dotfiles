@@ -17,6 +17,7 @@ tap "jesseduffield/lazygit" #lazygit
 # Brews (Packages)                                            #
 ###############################################################
 # Terminal
+brew "fish"
 brew "stow"
 brew "tmux"
 brew "starship"

@@ -53,7 +53,7 @@ precmd_functions+=(_fix_cursor)
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
 # fzf (fuzzy finder) configuration
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
@@ -148,3 +148,4 @@ done
 if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then
   . "$HOME/.config/fabric/fabric-bootstrap.inc"
 fi
+

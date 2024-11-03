@@ -1,5 +1,8 @@
 set fish_greeting ""
 
+# aliases
+source (dirname (status --current-filename))/aliases.fish
+
 set -gx TERM xterm-256color
 
 # theme
@@ -9,14 +12,7 @@ set -g theme_display_user yes
 set -g theme_hide_hostname no
 set -g theme_hostname always
 
-# aliases
-alias ls "ls -p -G"
-alias la "ls -A"
-alias ll "ls -l"
-alias lla "ll -A"
-alias g git
-
-
+# PATH
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
@@ -35,10 +31,16 @@ fish_add_path $GOPATH/bin
 fish_add_path $HOME/.local/share/bob/nvim-bin
 
 if command -qv nvim
-    alias n nvim
     set -gx EDITOR nvim
 end
 
+# starship
+command -qv starship && starship init fish | source
+
+# color scheme
+source (dirname (status --current-filename))/tokyonight_night.fish
+
+# OS specific configuration
 switch (uname)
     case Darwin
         source (dirname (status --current-filename))/config-osx.fish
@@ -53,4 +55,5 @@ if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
 end
 
-command -qv starship && starship init fish | source
+# neofetch
+command -qv neofetch && neofetch
