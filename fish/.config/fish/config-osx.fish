@@ -6,7 +6,25 @@ end
 # setup autojump
 set -l file (brew --prefix)/opt/autojump/share/autojump/autojump.fish
 test -s "$file"; and source $file
-alias j="cd (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print \$NF}' | fzf +s)"
+
+
+# alias j="cd (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print \$NF}' | fzf +s)"
+# Define the 'j' function with fallback to autojump when arguments are provided
+function j
+    if test (count $argv) -gt 0
+        # Use the default autojump 'j' command if arguments are passed
+        autojump $argv
+        # After jumping, switch to that directory if found by autojump
+        and cd (autojump $argv)
+    else
+        # Use fzf selection if no arguments are passed
+        set dir (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print $NF}' | fzf +s --exit-0)
+        if test -n "$dir"
+            cd $dir
+        end
+    end
+end
+
 
 
 # Fzf

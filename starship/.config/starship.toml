@@ -1,10 +1,13 @@
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
-command_timeout=5000
+command_timeout = 5000
+# Move the directory to the second line
+# format = '$all$directory$character'
 
 # Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✖](bold red)"
 
 [username]
 style_user = "green bold"
@@ -14,20 +17,45 @@ disabled = false
 show_always = true
 
 [hostname]
+ssh_symbol = " "
 ssh_only = false
-format =  "[@](red)[$hostname](bold green): "
+format = "[@](red)[$hostname](bold green): "
 trim_at = ".companyname.com"
 disabled = false
 
 [directory]
-read_only = " "
+read_only = " 󰌾"
+read_only_style = 'red'
 fish_style_pwd_dir_length = 1
+truncation_length = 3
+# Set the full path to be displayed after the Git root directory.
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) '
+# Define style for segments.
+before_repo_root_style = "bold yellow"  # Style for path before Git root
+repo_root_style = "bold blue underline" # Style for Git root directory
+style = "bold cyan"                     # Style for path after Git root
+
+[battery]
+full_symbol = "• "
+charging_symbol = "⇡ "
+discharging_symbol = "⇣ "
+unknown_symbol = "❓ "
+empty_symbol = "❗ "
 
 [aws]
-symbol = " "
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
 
 [conda]
 symbol = " "
+
+[crystal]
+symbol = " "
 
 [dart]
 symbol = " "
@@ -36,19 +64,34 @@ symbol = " "
 symbol = " "
 
 [elixir]
-symbol = " "
+symbol = " "
 
 [elm]
 symbol = " "
 
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
 [git_branch]
 symbol = " "
+
+[git_commit]
+tag_symbol = '  '
 
 [golang]
 symbol = " "
 
-#[haskell]
-#symbol = " "
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
 
 [hg_branch]
 symbol = " "
@@ -59,35 +102,112 @@ symbol = " "
 [julia]
 symbol = " "
 
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
 
 [nim]
-symbol = " "
+symbol = "󰆥 "
 
 [nix_shell]
-symbol = " "
+symbol = " "
 
 [nodejs]
-symbol = " "
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+style = "bold blue"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 
 [perl]
-symbol = " "
+symbol = " "
 
 [php]
 symbol = " "
 
+[pijul_channel]
+symbol = " "
+
 [python]
-symbol = " "
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
 
 [ruby]
-symbol = " "
+symbol = " "
 
 [rust]
-symbol = " "
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
 
 [swift]
-symbol = "ﯣ "
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "

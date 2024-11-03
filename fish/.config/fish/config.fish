@@ -1,12 +1,14 @@
 set fish_greeting ""
 
+set SHELL (which fish)
+
 # aliases
 source (dirname (status --current-filename))/aliases.fish
 
 set -gx TERM xterm-256color
 
 # theme
-set -g theme_color_scheme terminal-dark
+# set -g theme_color_scheme terminal-dark
 set -g fish_prompt_pwd_dir_length 1
 set -g theme_display_user yes
 set -g theme_hide_hostname no
@@ -30,9 +32,7 @@ fish_add_path $GOPATH/bin
 # Neovim
 fish_add_path $HOME/.local/share/bob/nvim-bin
 
-if command -qv nvim
-    set -gx EDITOR nvim
-end
+command -qv nvim && set -gx EDITOR nvim
 
 # starship
 command -qv starship && starship init fish | source
