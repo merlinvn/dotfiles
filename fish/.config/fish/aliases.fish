@@ -2,8 +2,13 @@
 alias l "ls -p -G"
 alias ls "ls -p -G"
 alias la "ls -A"
-alias ll "ls -l"
-alias lla "ll -A"
+alias ll "ls -l -A"
+# alias lla "ll -A"
+
+if type -q eza
+    alias ll "eza -l -g -a --icons"
+    # alias lla "ll -a"
+end
 
 alias g git
 alias gs "git status"

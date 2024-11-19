@@ -9,8 +9,6 @@ else
   vim.opt.shell = os.getenv("SHELL")
 end
 
-vim.opt.clipboard = ""
-
 -- Abbrev
 vim.cmd("cnoreabbrev Q  q")
 vim.cmd("cnoreabbrev q1  q!")
@@ -23,5 +21,3 @@ vim.cmd("cnoreabbrev WQ wq")
 vim.cmd("cnoreabbrev Set set")
 vim.cmd("cnoreabbrev SEt set")
 vim.cmd("cnoreabbrev SET set")
-
-vim.o.list = true

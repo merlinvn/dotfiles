@@ -339,3 +339,7 @@ run = ["move-node-to-workspace Orbstack"]
 [[on-window-detected]]
 if.app-id = 'com.thenounproject.Noun-Project'
 run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = "layout floating"

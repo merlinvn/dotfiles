@@ -1,22 +1,22 @@
 return {
   "akinsho/bufferline.nvim",
-  opts = {
-    options = {
-      numbers = "ordinal",
-      mode = "tabs",
-      show_buffer_close_icons = false,
-      show_close_icon = false,
-    },
-  },
-  keys = {
-    { "<leader>bp", false },
-    { "<leader>bP", false },
-    { "<leader>bo", false },
-    { "<leader>br", false },
-    { "<leader>bl", false },
-    { "<S-h>", false },
-    { "<S-l>", false },
-    { "<leader>bp", "<cmd>bprev<cr>", desc = "Prev buffer" },
-    { "<leader>bn", "<cmd>bnext<cr>", desc = "Next buffer" },
-  },
+  -- opts = {
+  --   options = {
+  --     numbers = "ordinal",
+  --     mode = "tabs",
+  --     show_buffer_close_icons = false,
+  --     show_close_icon = false,
+  --   },
+  -- },
+  -- keys = {
+  --   { "<leader>bp", false },
+  --   { "<leader>bP", false },
+  --   { "<leader>bo", false },
+  --   { "<leader>br", false },
+  --   { "<leader>bl", false },
+  --   { "<S-h>", false },
+  --   { "<S-l>", false },
+  --   { "<leader>bp", "<cmd>bprev<cr>", desc = "Prev buffer" },
+  --   { "<leader>bn", "<cmd>bnext<cr>", desc = "Next buffer" },
+  -- },
 }

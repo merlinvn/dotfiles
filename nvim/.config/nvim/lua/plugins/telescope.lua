@@ -1,4 +1,3 @@
-local Util = require("lazyvim.util")
 local actions = require("telescope.actions")
 
 return {
@@ -14,11 +13,11 @@ return {
     },
   },
   keys = {
-    { "<leader>ff", false },
-    { "<leader>,", false },
-    { "<leader><space>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Find opening buffers" },
-    { "<leader>p", LazyVim.pick("auto"), desc = "Find Files (root dir)" },
-    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "[/] Fuzzily search in current buffer" },
+    -- { "<leader>ff", false },
+    -- { "<leader>,", false },
+    -- { "<leader><space>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Find opening buffers" },
+    -- { "<leader>p", LazyVim.pick("auto"), desc = "Find Files (root dir)" },
+    -- { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "[/] Fuzzily search in current buffer" },
     {
       "<leader>vn",
       function()
