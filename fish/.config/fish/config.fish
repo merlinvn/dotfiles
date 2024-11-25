@@ -19,23 +19,26 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
-# Rust
+fish_add_path $HOME/.fzf/bin
+
+# Rust 
 fish_add_path $HOME/.cargo/bin
 
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 
 # Go
-set -g GOPATH $HOME/go
-fish_add_path $GOPATH/bin
+set -x GOBIN $HOME/.local/bin
+fish_add_path $GOBIN
+fish_add_path /usr/local/go/bin
 
 # Neovim
 fish_add_path $HOME/.local/share/bob/nvim-bin
 
-command -qv nvim && set -gx EDITOR nvim
+type -q nvim; and set -gx EDITOR nvim
 
 # starship
-command -qv starship && starship init fish | source
+type -q starship; and starship init fish | source
 
 # color scheme
 source (dirname (status --current-filename))/tokyonight_night.fish
