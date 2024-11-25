@@ -1,0 +1,143 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc     f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
+  grv     1       2       3      4       5       6       7       8     9     0      -      =    bspc
+  tab     q       w       e      r       t       y       u       i     o     p      [      ]    \
+  caps    a       s       d      f       g       h       j       k     l     ;      '      ret
+  lsft    z       x       c      v       b       n       m       ,     .     /      rsft
+  fn  lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
+)
+
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+(defvar
+  ;; Note: consider using different time values for your different fingers.
+  ;; For example, your pinkies might be slower to release keys and index
+  ;; fingers faster.
+  tap-time 200
+  hold-time 150
+
+  left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+(defalias
+
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 20)
+  )
+
+  a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
+  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
+  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
+  l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
+  ; (tap-hold-release-keys $tap-time $hold-time (multi ; @tap) rmet $right-hand-keys)
+  ;;  a (tap-hold $tap-time $hold-time a lmet)
+  ;;  s (tap-hold $tap-time $hold-time s lalt)
+  ;;  d (tap-hold $tap-time $hold-time d lctl)
+  ;;  f (tap-hold $tap-time $hold-time f lsft)
+  ;;  j (tap-hold $tap-time $hold-time j rsft)
+  ;;  k (tap-hold $tap-time $hold-time k rctl)
+  ;;  l (tap-hold $tap-time $hold-time l ralt)
+  ;;  ; (tap-hold $tap-time $hold-time ; rmet)
+
+
+    snav  (tap-hold 200 200  spc (layer-while-held navigation))
+
+    c_syms (tap-hold 200 200 c (layer-while-held symbols))
+    m_syms (tap-hold 200 200 m (layer-while-held symbols))
+    v_num  (tap-hold 200 200 v (layer-while-held numbers))
+    n_fn   (tap-hold 200 200 n (layer-while-held fn))
+
+    ;; fns  (tap-hold 200 200 (layer-next fn) (layer-toggle fn))
+    vspc (tap-hold 200 200 v           spc)
+
+    c_esc (tap-hold 200 200 esc lctl)
+
+  fn (tap-hold 200 200 fn (layer-while-held function))
+
+  hyper (multi lctl lsft lalt lmet)
+  meh   (multi lctl lsft lalt)
+)
+
+(deflayer base
+  _      f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
+  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  @c_esc @a    @s    @d     @f    _    _        @j     @k    @l    @;    _    _
+  _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
+  @fn   _    @meh       _             @snav                         _    @hyper  _      _        _       _
+)
+
+(deflayer nomods
+  esc     f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
+  grv     1       2       3      4       5       6       7       8     9     0      -      =    bspc
+  tab     q       w       e      r       t       y       u       i     o     p      [      ]    \
+  caps    a       s       d      f       g       h       j       k     l     ;      '      ret
+  lsft    z       x       c      v       b       n       m       ,     .     /      rsft
+  @fn lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
+)
+
+(deflayer function
+  _    brdn      brup      bldn      blup     XX      XX    prev       pp        next      mute     vold volu
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _
+  _    _       _       _                _                     _    _    _    _  _   _
+)
+
+(deflayer navigation
+  _      _       _       _       _      _    _       _       _       _        _    _    _
+  _      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      _    _    _    _
+  _      C-A-S-q   C-A-S-w   C-S-tab C-tab     _         caps    home    up      end      _    _    _    _
+  esc    lmet    lalt    lctl    lsft      _         bspc    left    down    right    _    _    M-ret
+  -      M-spc A-spc C-spc S-spc  C-A-spc  del     pgdn    pgup    _    _    _
+  _   _      _       _                       _                     _    _    _    _   _   _
+)
+
+(deflayer numbers
+  _    _       _       _       _      _    _       _       _       _        _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    S-8    7    8    9    =    _    _    _
+  _    lmet    lalt    lctl    lsft    _    +    4    5    6    -    _    _
+  _    _       _       _       _       _    /    1    2    3    .    ,
+  _  _    _       _                0                     _    _    _    _  _   _
+)
+
+(deflayer symbols
+  _    _       _       _       _      _    _       _       _       _        _    _    _
+  _    _    _    _     _     _    _    _    _    _    _      _    _    _
+  _    S-1    S-2    S-[     S-]     S-5    XX    S-6    S-7    S-4    ret    _    _    _
+  _    ;    S-;    S-9    S-0    =    S-\    S-,    S-.    -    S--      S-'    _
+  '    \    [    ]     +     _    S-/    S-3    S-9    `    S-`      _
+  _   _    _    _              _              _    _    _    _   _  _
+)
+
+(deflayer fn
+  _      _       _       _       _      _    _       _       _       _        _    _    _
+  _      _      _     _     _     _    _    _       _       _       _       _    _    _
+  _      f10    f7    f8    f9    _    _    _       _       _       _       _    _    _
+  _      f11    f4    f5    f6    _    _    rsft    rctl    lalt    rmet    _    _
+  f12    f1     f2    f3    _     _    _    _       _       _       _       _
+  _   _      _      _                  _                _     _    _    _       _       _
+)
+
+

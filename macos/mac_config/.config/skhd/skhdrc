@@ -80,8 +80,9 @@
 cmd+alt - a : skhd --restart-service
 cmd+alt - r : aerospace reload-config
 
-cmd - tab : aerospace workspace-back-and-forth
-alt - tab : ~/.dotfiles/scripts/aerospace_focus_float.sh
+# cmd - tab : aerospace workspace-back-and-forth
+# cmd - tab : aerospace focus-back-and-forth || aerospace workspace-back-and-forth
+# alt - tab : ~/.dotfiles/scripts/aerospace_focus_float.sh
 
 # cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 # alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty

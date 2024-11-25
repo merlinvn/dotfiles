@@ -86,6 +86,8 @@ cask "obs", args: { no_quarantine: true }
 cask "nikitabobko/tap/aerospace", args: { no_quarantine: true }
 cask "keka", args: { no_quarantine: true } # archive manager
 cask "kap", args: { no_quarantine: true } # screen recording
+cask "itsycal", args: { no_quarantine: true } # screen recording
+# cask "itsycal", args: { no_quarantine: true } # screen recording
 
 # Productivity
 cask "notion", args: { no_quarantine: true }
