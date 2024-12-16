@@ -60,3 +60,6 @@ end
 
 # neofetch
 command -qv neofetch && neofetch
+
+# Added by Windsurf
+fish_add_path /Users/neo/.codeium/windsurf/bin

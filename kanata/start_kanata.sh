@@ -9,4 +9,4 @@ if pgrep "$process_name" >/dev/null; then
   exit 1
 fi
 
-sudo ~/.dotfiles/kanata/kanata_macos_cmd_allowed_arm64 -c ~/.dotfiles/kanata/config_macos.kbd -q &>/tmp/kanata.log &
+sudo ~/.dotfiles/kanata/kanata -c ~/.dotfiles/kanata/config_macos.kbd -q &>/tmp/kanata.log &

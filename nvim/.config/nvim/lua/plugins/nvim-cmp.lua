@@ -30,12 +30,12 @@ return {
       })
     end,
   },
-  {
-    "hrsh7th/nvim-cmp",
-    opts = {
-      mapping = {
-        ["<M-y>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      },
-    },
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = {
+  --     mapping = {
+  --       ["<M-y>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  --     },
+  --   },
+  -- },
 }
