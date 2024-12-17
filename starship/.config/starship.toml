@@ -20,7 +20,6 @@ show_always = true
 ssh_symbol = " "
 ssh_only = false
 format = "[@](red)[$hostname](bold green): "
-trim_at = ".companyname.com"
 disabled = false
 
 [directory]

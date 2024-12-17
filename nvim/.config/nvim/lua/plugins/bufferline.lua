@@ -1,5 +1,5 @@
 return {
-  "akinsho/bufferline.nvim",
+  -- "akinsho/bufferline.nvim",
   -- opts = {
   --   options = {
   --     numbers = "ordinal",
