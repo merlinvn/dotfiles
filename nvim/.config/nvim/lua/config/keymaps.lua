@@ -14,6 +14,11 @@ end
 local map = vim.keymap.set
 -- local opts = { noremap = true, silent = true }
 
+-- shortcut for Lazy
+map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>ve", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
+map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })
+
 map("n", "<C-q>", function()
   -- if there is no more buffewr, close the window with :q
   if is_last_buffer() then
@@ -39,19 +44,3 @@ map({ "n", "v" }, "<C-y>", [["+y]], { desc = "Copy to clipboard" })
 map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 -- map("x", "p", [["_dP]])
-
--- shortcut for Lazy
-map("n", "<leader>vl", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>ve", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
-map("n", "<leader>vL", "<cmd>Lazy log<cr>", { desc = "LazyLog" })
-
--- terminal
--- vim.keymap.set("n", "<C-/>", function()
---   Snacks.terminal(nil, { cwd = LazyVim.root() })
--- end, { desc = "Term with border" })
---
--- vim.keymap.set("n", "<C-_>", function()
---   Snacks.terminal(nil, { cwd = LazyVim.root() })
--- end, { desc = "Term with border" })
-
--- map({ "n", "t" }, "<c-/>", "<cmd>ToggleTerm<cr>") -- open new Tab
