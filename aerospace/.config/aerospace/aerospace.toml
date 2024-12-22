@@ -101,9 +101,9 @@ cmd-alt-h = [] # Disable "hide others"
 # end tell'
 # '''
 
-alt-enter = 'exec-and-forget Alacritty'
-cmd-enter = 'exec-and-forget Alacritty'
-ctrl-alt-shift-enter = 'exec-and-forget Alacritty'
+alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
@@ -250,6 +250,10 @@ if.app-name-regex-substring = '^Alacritty'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace 2"
 [[on-window-detected]]
@@ -332,8 +336,13 @@ if.app-id = 'com.interversehq.qView'
 run = ["move-node-to-workspace 10"]
 
 [[on-window-detected]]
+if.app-id = 'imagetasks.Pixea'
+run = ["layout floating", "move-node-to-workspace 10"]
+
+[[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
 run = ["layout floating", "move-node-to-workspace 10"]
+
 [[on-window-detected]]
 if.app-id = 'com.objective-see.lulu.app'
 run = ["layout floating"]

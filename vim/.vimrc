@@ -38,7 +38,12 @@ set path+=**
 set wildmenu
 
 filetype plugin on
-"colorscheme habamax
+if !empty(globpath(&runtimepath, "colors/habamax.vim"))
+    colorscheme habamax
+else
+    echom "Colorscheme 'habamax' not found. Using default."
+endif
+
 
 " Undo Settings
 set undodir=~/.vim/undo
@@ -169,7 +174,7 @@ let g:netrw_altv=1
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_winsize=15
-let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide=netrw_gitignore#Hide()
 
 " Completion
 set omnifunc=syntaxcomplete#Complete

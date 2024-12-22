@@ -27,6 +27,8 @@ read_only = " 󰌾"
 read_only_style = 'red'
 fish_style_pwd_dir_length = 1
 truncation_length = 3
+truncate_to_repo = false
+use_logical_path = false
 # Set the full path to be displayed after the Git root directory.
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) '
 # Define style for segments.

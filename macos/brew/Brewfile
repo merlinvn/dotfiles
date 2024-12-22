@@ -45,6 +45,9 @@ brew "tldr"
 brew "age"
 brew "yt-dlp"
 brew "mpv"
+brew "sevenzip"
+brew "zoxide"
+brew "yazi"
 
 # Development
 brew "git"
@@ -97,6 +100,7 @@ cask "obsidian", args: { no_quarantine: true }
 # Development
 cask "kitty", args: { no_quarantine: true }
 cask "alacritty", args: { no_quarantine: true }
+cask "wezterm", args: { no_quarantine: true }
 cask "visual-studio-code", args: { no_quarantine: true }
 cask "orbstack", args: { no_quarantine: true }
 cask "stats", args: { no_quarantine: true }
@@ -149,3 +153,4 @@ cask "font-hack-nerd-font"
 cask "font-fira-code-nerd-font"
 cask "font-caskaydia-cove-nerd-font"
 cask "font-cascadia-code"
+cask "font-symbols-only-nerd-font"

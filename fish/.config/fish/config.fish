@@ -1,9 +1,5 @@
 set fish_greeting ""
 
-set SHELL (which fish)
-
-# aliases
-source (dirname (status --current-filename))/aliases.fish
 
 set -gx TERM xterm-256color
 
@@ -40,26 +36,47 @@ type -q nvim; and set -gx EDITOR nvim
 # starship
 type -q starship; and starship init fish | source
 
+type -q zoxide; and zoxide init fish | source
+
+
+function fish_prompt
+    printf "\033]7;file://%s%s\a" (hostname) (pwd)
+    starship prompt
+end
+
 # color scheme
-source (dirname (status --current-filename))/tokyonight_night.fish
+source ~/.config/fish/tokyonight_night.fish
 
 # OS specific configuration
 switch (uname)
     case Darwin
-        source (dirname (status --current-filename))/config-osx.fish
+        source ~/.config/fish/config-osx.fish
     case Linux
-        source (dirname (status --current-filename))/config-linux.fish
+        source ~/.config/fish/config-linux.fish
     case '*'
-        source (dirname (status --current-filename))/config-windows.fish
+        source ~/.config/fish/config-windows.fish
 end
 
-set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+set LOCAL_CONFIG ~/.config/fish/config-local.fish
 if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
 end
 
-# neofetch
-command -qv neofetch && neofetch
-
 # Added by Windsurf
 fish_add_path /Users/neo/.codeium/windsurf/bin
+
+# aliases should be loaded last to avoid path resolution issues
+if test -f ~/.config/fish/aliases.fish
+    source ~/.config/fish/aliases.fish
+end
+
+if status --is-login
+    # Only run Neofetch if not in a tmux session
+    # if not set -q TMUX
+    #     neofetch
+    # end
+    # neofetch
+    command -qv neofetch && neofetch
+else
+    exec fish -l
+end
