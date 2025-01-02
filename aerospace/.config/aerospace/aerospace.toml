@@ -100,10 +100,13 @@ cmd-alt-h = [] # Disable "hide others"
 #     activate
 # end tell'
 # '''
+# alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+# cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+# ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 
-alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
-cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
-ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
@@ -251,6 +254,9 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace 1"
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
