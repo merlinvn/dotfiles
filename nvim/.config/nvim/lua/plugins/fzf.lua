@@ -1,5 +1,14 @@
 return {
   "ibhagwan/fzf-lua",
+  -- opts = function(_, opts)
+  --   local fzf = require("fzf-lua")
+  --   local config = fzf.config
+  --   local actions = fzf.actions
+  --   config.defaults.actions.files["ctrl-t"] = actions.file_tabedit
+  --   if LazyVim.has("trouble.nvim") then
+  --     config.defaults.actions.files["ctrl-S-t"] = require("trouble.sources.fzf").actions.open
+  --   end
+  -- end,
   keys = {
     {
       "<leader>vn",
