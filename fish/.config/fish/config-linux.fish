@@ -5,6 +5,13 @@
 test -s "$file"; and source $file
 
 
+begin
+    set --local AUTOJUMP_PATH /usr/share/autojump/autojump.fish
+    if test -e $AUTOJUMP_PATH
+        source $AUTOJUMP_PATH
+    end
+end
+
 # alias j="cd (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print \$NF}' | fzf +s)"
 # Define the 'j' function with fallback to autojump when arguments are provided
 function j
@@ -15,7 +22,7 @@ function j
         and cd (autojump $argv)
     else
         # Use fzf selection if no arguments are passed
-        set dir (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print $NF}' | fzf +s --exit-0)
+        set dir (cat ~/.local/share/autojump/autojump.txt | sort -nr | awk -F '\t' '{print $NF}' | fzf +s --exit-0)
         if test -n "$dir"
             cd $dir
         end
@@ -27,3 +34,6 @@ end
 # Fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
 set -g FZF_LEGACY_KEYBINDINGS 0
+
+
+type -q ~/.local/bin/mise; and ~/.local/bin/mise activate fish | source
