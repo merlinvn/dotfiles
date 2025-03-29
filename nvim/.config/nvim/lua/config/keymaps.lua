@@ -44,3 +44,11 @@ map({ "n", "v" }, "<C-y>", [["+y]], { desc = "Copy to clipboard" })
 map({ "v" }, "<C-c>", '"+x', { desc = "Cut to clipboard" })
 -- paste text but DONT copy the overridden text
 -- map("x", "p", [["_dP]])
+
+-- prevent yanking to the system clipboard
+map("n", "d", '"_d')
+map("v", "d", '"_d')
+map("n", "D", '"_D')
+map("n", "c", '"_c')
+map("v", "c", '"_c')
+map("n", "C", '"_C')

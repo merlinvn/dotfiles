@@ -1,6 +1,5 @@
 set fish_greeting ""
 
-
 set -gx TERM xterm-256color
 
 # theme
@@ -31,13 +30,15 @@ fish_add_path /usr/local/go/bin
 # Neovim
 fish_add_path $HOME/.local/share/bob/nvim-bin
 
+# Maestro
+#fish_add_path $HOME/.maestro/bin
+
 type -q nvim; and set -gx EDITOR nvim
 
 # starship
 type -q starship; and starship init fish | source
 
 type -q zoxide; and zoxide init fish | source
-
 
 function fish_prompt
     printf "\033]7;file://%s%s\a" (hostname) (pwd)
@@ -76,7 +77,11 @@ if status --is-login
     #     neofetch
     # end
     # neofetch
-    command -qv neofetch && neofetch
+    # command -qv neofetch && neofetch
 else
     exec fish -l
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+# source ~/.orbstack/shell/init2.fish 2>/dev/null || :

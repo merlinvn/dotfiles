@@ -1,7 +1,7 @@
 [tools]
 node = "22"
 bun = "latest"
-python = "3.12"
+python = "3.11.11"
 
 [plugins]
 # python = 'https://github.com/jdxcode/rtx-python'
