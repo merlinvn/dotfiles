@@ -101,7 +101,7 @@
 )
 
 (deflayer function
-  _    brdn      brup      bldn      blup     XX      XX    prev       pp        next      mute     vold volu
+  _    brdn      brup      bldn      blup    M-S-4       M-S-5    prev       pp        next      mute     vold volu
   _    _       _       _       _       _    _    _    _    _    _    _    _    _
   _    _       _       _       _       _    _    _    _    _    _    _    _    _
   _    _       _       _       _       _    _    _    _    _    _    _    _
