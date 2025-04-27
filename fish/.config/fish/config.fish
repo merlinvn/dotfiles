@@ -79,7 +79,7 @@ if status --is-login
     # neofetch
     # command -qv neofetch && neofetch
 else
-    exec fish -l
+    # exec fish -l
 end
 
 # Added by OrbStack: command-line tools and integration

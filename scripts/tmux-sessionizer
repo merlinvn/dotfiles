@@ -3,12 +3,17 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  # Create an array of directories that actually exist
   search_dirs=()
-  [[ -d ~/Projects ]] && search_dirs+=("$HOME/Projects")
-  [[ -d ~/projects ]] && search_dirs+=("$HOME/projects")
-  [[ -d ~/Downloads ]] && search_dirs+=("$HOME/Downloads")
-  [[ -d ~/Desktop ]] && search_dirs+=("$HOME/Desktop")
+
+  # Case-sensitive check for ~/Projects
+  if [[ -d ~/Projects && "$(basename ~/Projects)" == "Projects" ]]; then
+    search_dirs+=("$HOME/Projects")
+  elif [[ -d ~/projects && "$(basename ~/projects)" == "projects" ]]; then
+    search_dirs+=("$HOME/projects")
+  fi
+
+  [[ -d ~/Downloads && "$(basename ~/Downloads)" == "Downloads" ]] && search_dirs+=("$HOME/Downloads")
+  [[ -d ~/Desktop && "$(basename ~/Desktop)" == "Desktop" ]] && search_dirs+=("$HOME/Desktop")
 
   selected=$(find "${search_dirs[@]}" -mindepth 1 -maxdepth 2 -type d 2>/dev/null | fzf)
 fi

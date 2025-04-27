@@ -201,14 +201,14 @@ ctrl-alt-shift-cmd-v = ['move-node-to-workspace Video', 'workspace Video']
 # ctrl-alt-shift-shift-z = ['move-node-to-workspace Z']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-# WARNING: cmd-tab and alt-tab is controlled by skhd
+# cmd-tab is controlled by better touch tools
 
 # alt-tab = 'focus-back-and-forth'
 alt-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
 ctrl-alt-shift-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
 ctrl-alt-shift-w = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
 
-cmd-tab = 'workspace-back-and-forth'
+# cmd-tab = 'workspace-back-and-forth'          # not working yet
 ctrl-alt-shift-q = 'workspace-back-and-forth'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
