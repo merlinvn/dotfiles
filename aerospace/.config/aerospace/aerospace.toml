@@ -48,7 +48,7 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = ['move-mouse window-lazy-center']
+# on-focus-changed = ['move-mouse window-lazy-center']
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -142,7 +142,7 @@ ctrl-alt-shift-9 = 'workspace 9'
 ctrl-alt-shift-0 = 'workspace 10'
 # ctrl-alt-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 # ctrl-alt-shift-b = 'workspace Browser'
-ctrl-alt-shift-c = 'workspace Cursor'
+ctrl-alt-shift-c = 'workspace Code'
 # ctrl-alt-shift-d = 'workspace D'
 ctrl-alt-shift-e = 'workspace Ebooks'
 # ctrl-alt-shift-f = 'workspace Firefox'
@@ -293,9 +293,14 @@ run = "move-node-to-workspace 4"
 [[on-window-detected]]
 if.app-name-regex-substring = '^Docker'
 run = "move-node-to-workspace 4"
+
 [[on-window-detected]]
 if.app-name-regex-substring = '^Cursor'
-run = "move-node-to-workspace Cursor"
+run = "move-node-to-workspace Code"
+
+[[on-window-detected]]
+if.app-id = 'com.exafunction.windsurf'
+run = "move-node-to-workspace Code"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'

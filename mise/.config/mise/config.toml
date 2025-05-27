@@ -8,3 +8,4 @@ python = "3.11.11"
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = ["python"]

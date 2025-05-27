@@ -1,4 +1,29 @@
+# behavior
 quit-after-last-window-closed=true
 clipboard-read=allow
 clipboard-write=allow
-macos-titlebar-style = transparent
+working-directory = home
+
+# Window appearance
+background-opacity = 0.95
+background-blur-radius = 30
+
+# padding
+window-padding-x = 8
+window-padding-y = 2
+
+# font 
+font-family = "Jetbrains Mono Nerd Font"
+font-size = 14
+font-thicken = false
+
+adjust-cell-width = "-5%"
+adjust-cell-height = "5%"
+
+theme = tokyonight
+
+# macOS-specific options
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
+
