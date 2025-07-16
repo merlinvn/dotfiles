@@ -67,7 +67,7 @@ outer.right = 10
 
 # [key-mapping.key-notation-to-key-code]
 # ctrl-alt-shift = 'ctrl-alt-shift'
-# hyper = 'ctrl-alt-shift-cmd'
+# hyper = 'ctrl-alt-cmd-shift'
 
 
 # 'main' binding mode declaration
@@ -214,6 +214,12 @@ ctrl-alt-shift-q = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 ctrl-alt-shift-cmd-tab = 'move-workspace-to-monitor --wrap-around next'
 
+ctrl-alt-shift-leftSquareBracket = 'focus-monitor --wrap-around prev'
+ctrl-alt-shift-rightSquareBracket = 'focus-monitor --wrap-around next'
+ctrl-alt-shift-cmd-leftSquareBracket = 'move-workspace-to-monitor --wrap-around prev'
+ctrl-alt-shift-cmd-rightSquareBracket = 'move-workspace-to-monitor --wrap-around next'
+ctrl-alt-shift-backtick = 'focus-monitor --wrap-around next'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 ctrl-alt-shift-semicolon = 'mode service'
 
@@ -295,16 +301,21 @@ if.app-name-regex-substring = '^Docker'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^Cursor'
-run = "move-node-to-workspace Code"
-
-[[on-window-detected]]
-if.app-id = 'com.exafunction.windsurf'
-run = "move-node-to-workspace Code"
-
-[[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = 'org.katrain.KaTrain'
+run = "move-node-to-workspace 6"
+
+
+[[on-window-detected]]
+if.app-id = 'com.kbksoftware.Native-SQLite-Manager'
+run = "move-node-to-workspace 6"
+
+[[on-window-detected]]
+if.app-id = 'com.adobe.Acrobat.Pro'
+run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
 if.app-id = 'ai.perplexity.mac'
@@ -317,9 +328,7 @@ run = "move-node-to-workspace Mail"
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace Note"
-[[on-window-detected]]
-if.app-id = 'com.adobe.Acrobat.Pro'
-run = "move-node-to-workspace 7"
+
 [[on-window-detected]]
 if.app-id = 'com.calibre'
 run = "move-node-to-workspace Ebooks"
@@ -330,6 +339,14 @@ run = "move-node-to-workspace Ebooks"
 if.app-id = 'net.kovidgoyal.calibre'
 run = "move-node-to-workspace Ebooks"
 
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Cursor'
+run = "move-node-to-workspace Code"
+
+[[on-window-detected]]
+if.app-id = 'com.exafunction.windsurf'
+run = "move-node-to-workspace Code"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
@@ -363,9 +380,9 @@ run = ["layout floating", "move-node-to-workspace 10"]
 if.app-id = 'com.apple.ActivityMonitor'
 run = ["layout floating", "move-node-to-workspace 10"]
 
-[[on-window-detected]]
-if.app-id = 'com.objective-see.lulu.app'
-run = ["layout floating"]
+# [[on-window-detected]]
+# if.app-id = 'com.objective-see.lulu.app'
+# run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'org.videolan.vlc'
@@ -386,3 +403,7 @@ run = "layout floating"
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
 run = "layout floating"
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+10 = ['secondary', 'main']
