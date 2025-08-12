@@ -1,20 +1,22 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
+    opts = function(_, opts)
+      -- Merge servers
+      opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
         ocamllsp = {
           mason = false,
         },
         gleam = {
           mason = false,
         },
-      },
-      setup = {
-        clangd = function(_, opts)
-          -- opts.capabilities.offsetEncoding = { "utf-16" }
-          opts.mason = false
-          opts.cmd = {
+      })
+
+      -- Merge setup
+      opts.setup = vim.tbl_deep_extend("force", opts.setup or {}, {
+        clangd = function(_, clangd_opts)
+          clangd_opts.mason = false
+          clangd_opts.cmd = {
             "/opt/homebrew/opt/llvm/bin/clangd",
             "--background-index",
             "--clang-tidy",
@@ -23,31 +25,16 @@ return {
             "--function-arg-placeholders",
             "--fallback-style=llvm",
           }
-          -- Specify additional command arguments for clangd
-          -- opts.cmd = {
-          --   "clangd",
-          -- }
         end,
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- disable the 'K' keymap
-      keys[#keys + 1] = { "<M-n>", false }
-      keys[#keys + 1] = { "<M-p>", false }
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      setup = {
         rust_analyzer = function()
           return true
         end,
-      },
-    },
+      })
+
+      -- Merge keymap modifications
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<M-n>", false }
+      keys[#keys + 1] = { "<M-p>", false }
+    end,
   },
 }

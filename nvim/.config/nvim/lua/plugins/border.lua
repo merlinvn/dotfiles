@@ -1,17 +1,17 @@
 return {
   -- lazyvim.plugins.coding
-  {
-    "nvim-cmp",
-    opts = function(_, opts)
-      local bordered = require("cmp.config.window").bordered
-      return vim.tbl_deep_extend("force", opts, {
-        window = {
-          completion = bordered("rounded"),
-          documentation = bordered("double"),
-        },
-      })
-    end,
-  },
+  -- {
+  --   "nvim-cmp",
+  --   opts = function(_, opts)
+  --     local bordered = require("cmp.config.window").bordered
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       window = {
+  --         completion = bordered("rounded"),
+  --         documentation = bordered("double"),
+  --       },
+  --     })
+  --   end,
+  -- },
   -- lazyvim.plugins.editor
   {
     "which-key.nvim",
