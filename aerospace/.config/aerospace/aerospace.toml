@@ -380,6 +380,10 @@ run = ["layout floating", "move-node-to-workspace 10"]
 if.app-id = 'com.apple.ActivityMonitor'
 run = ["layout floating", "move-node-to-workspace 10"]
 
+[[on-window-detected]]
+if.app-id = 'com.electron.huddly'
+run = ["layout floating", "move-node-to-workspace 10"]
+
 # [[on-window-detected]]
 # if.app-id = 'com.objective-see.lulu.app'
 # run = ["layout floating"]

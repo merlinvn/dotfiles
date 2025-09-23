@@ -1,9 +1,10 @@
 set -gx PATH /opt/homebrew/bin $PATH
+set -x OpenMP_ROOT (brew --prefix)/opt/libomp
+set -x VCPKG_ROOT ~/vcpkg
 
 # setup autojump
 set -l file (brew --prefix)/opt/autojump/share/autojump/autojump.fish
 test -s "$file"; and source $file
-
 
 # alias j="cd (cat ~/Library/autojump/autojump.txt | sort -nr | awk -F '\t' '{print \$NF}' | fzf +s)"
 # Define the 'j' function with fallback to autojump when arguments are provided
@@ -27,3 +28,5 @@ set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :50
 set -g FZF_LEGACY_KEYBINDINGS 0
 
 /opt/homebrew/bin/mise activate fish | source
+
+set -gx PATH (brew --prefix llvm)/bin $PATH
