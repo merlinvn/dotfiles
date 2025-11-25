@@ -244,9 +244,12 @@ ctrl-alt-shift-cmd-v = ['move-node-to-workspace Video', 'workspace Video']
 # cmd-tab is controlled by better touch tools
 
 # alt-tab = 'focus-back-and-forth'
-alt-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
-ctrl-alt-shift-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
-ctrl-alt-shift-w = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
+# alt-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
+# ctrl-alt-shift-tab = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
+# ctrl-alt-shift-w = 'exec-and-forget ~/.dotfiles/scripts/aerospace_focus_float.sh'
+alt-tab = 'focus dfs-next --boundaries workspace --boundaries-action wrap-around-the-workspace'
+ctrl-alt-shift-tab = 'focus dfs-next --boundaries workspace --boundaries-action wrap-around-the-workspace'
+ctrl-alt-shift-w = 'focus dfs-next --boundaries workspace --boundaries-action wrap-around-the-workspace'
 
 # cmd-tab = 'workspace-back-and-forth'          # not working yet
 ctrl-alt-shift-q = 'workspace-back-and-forth'
