@@ -2,6 +2,8 @@ set -gx PATH /opt/homebrew/bin $PATH
 set -x OpenMP_ROOT (brew --prefix)/opt/libomp
 set -x VCPKG_ROOT ~/vcpkg
 
+set -x MallocNanoZone 0
+
 # setup autojump
 set -l file (brew --prefix)/opt/autojump/share/autojump/autojump.fish
 test -s "$file"; and source $file
@@ -29,4 +31,4 @@ set -g FZF_LEGACY_KEYBINDINGS 0
 
 /opt/homebrew/bin/mise activate fish | source
 
-set -gx PATH (brew --prefix llvm)/bin $PATH
+# set -gx PATH (brew --prefix llvm)/bin $PATH

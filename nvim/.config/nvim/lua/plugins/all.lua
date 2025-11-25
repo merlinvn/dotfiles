@@ -1,35 +1,9 @@
 return {
-  {
-    "which-key.nvim",
-    opts = { win = { border = "rounded" } },
-  },
-  -- lazyvim.plugins.lsp
-  {
-    "nvim-lspconfig",
-    opts = function(_, opts)
-      -- Set LspInfo border
-      require("lspconfig.ui.windows").default_options.border = "double"
-      return opts
-    end,
-  },
-  {
-    "mason.nvim",
-    opts = {
-      ui = { border = "double" },
-    },
-  },
-  -- lazyvim.plugins.ui
-  {
-    "noice.nvim",
-    opts = {
-      presets = { lsp_doc_border = true },
-    },
-  },
   -- Theme
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      -- colorscheme = "tokyonight",
       -- colorscheme = "catppuccin",
       -- colorscheme = "gruvbox",
     },
@@ -46,6 +20,18 @@ return {
       on_colors = function(c)
         c.border = c.blue5
       end,
+    },
+  },
+  {
+    "mason.nvim",
+    opts = {
+      ui = { border = "double" },
+    },
+  },
+  {
+    "noice.nvim",
+    opts = {
+      presets = { lsp_doc_border = true },
     },
   },
   {
@@ -93,6 +79,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
+      require("lspconfig.ui.windows").default_options.border = "double"
       -- Merge servers
       opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
         ocamllsp = {
@@ -120,11 +107,6 @@ return {
           return true
         end,
       })
-
-      -- Merge keymap modifications
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<M-n>", false }
-      keys[#keys + 1] = { "<M-p>", false }
     end,
   },
   {
@@ -154,6 +136,7 @@ return {
         ["<leader>d"] = { group = "delete/debug" },
         -- ["<leader>h"] = { name = "+harpoon" },
       },
+      win = { border = "rounded" },
     },
   },
   -- {
@@ -177,4 +160,10 @@ return {
   --     },
   --   },
   -- },
+  {
+    "MagicDuck/grug-far.nvim",
+    keys = {
+      { "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>', ft = "grug-far" },
+    },
+  },
 }

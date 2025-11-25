@@ -1,7 +1,8 @@
 [tools]
-node = "22"
+
+node = "25"
 bun = "latest"
-python = "3.11.11"
+# python = "3.11.11"
 elixir = "latest"
 
 [plugins]
@@ -9,4 +10,4 @@ elixir = "latest"
 
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["python"]
+#idiomatic_version_file_enable_tools = ["python"]

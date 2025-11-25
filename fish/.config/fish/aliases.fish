@@ -23,3 +23,5 @@ alias gco "git checkout"
 alias lg lazygit
 
 alias n nvim
+
+alias python python3

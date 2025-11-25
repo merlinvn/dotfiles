@@ -83,7 +83,7 @@ cask "numi", args: { no_quarantine: true }
 cask "balenaetcher", args: { no_quarantine: true }
 cask "audacity", args: { no_quarantine: true }
 cask "zerotier-one", args: { no_quarantine: true }
-cask "syncthing", args: { no_quarantine: true }
+cask "syncthing-app", args: { no_quarantine: true }
 cask "calibre", args: { no_quarantine: true }
 cask "dropbox", args: { no_quarantine: true }
 cask "keycastr", args: { no_quarantine: true } # keypress visualizer
@@ -92,8 +92,9 @@ cask "nikitabobko/tap/aerospace", args: { no_quarantine: true }
 cask "keka", args: { no_quarantine: true } # archive manager
 cask "dbeaver-community", arg: { no_quarantine: true } # database management
 cask "kap", args: { no_quarantine: true } # screen recording
-cask "itsycal", args: { no_quarantine: true } # screen recording
-# cask "itsycal", args: { no_quarantine: true } # screen recording
+cask "itsycal", args: { no_quarantine: true }
+cask "meld", args: { no_quarantine: true }
+cask "jordanbaird-ice@beta", args: { no_quarantine: true }
 
 # Productivity
 cask "notion", args: { no_quarantine: true }
