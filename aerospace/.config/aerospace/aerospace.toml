@@ -320,7 +320,9 @@ run = "move-node-to-workspace 2"
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace 2"
-
+[[on-window-detected]]
+if.app-id = 'org.freedownloadmanager.fdm6'
+run = ["layout v_accordion", "move-node-to-workspace 2"]
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Word'
@@ -345,6 +347,10 @@ run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = 'com.asiafu.Bloom'
 run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
@@ -418,6 +424,14 @@ run = ["move-node-to-workspace 10"]
 [[on-window-detected]]
 if.app-id = 'imagetasks.Pixea'
 run = ["layout floating", "move-node-to-workspace 10"]
+
+[[on-window-detected]]
+if.app-id = 'netdcy.FlowVision'
+run = ["move-node-to-workspace 10"]
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ["move-node-to-workspace 10"]
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'

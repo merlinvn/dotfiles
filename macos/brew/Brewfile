@@ -95,6 +95,7 @@ cask "kap", args: { no_quarantine: true } # screen recording
 cask "itsycal", args: { no_quarantine: true }
 cask "meld", args: { no_quarantine: true }
 cask "jordanbaird-ice@beta", args: { no_quarantine: true }
+cask "bloom", args: { no_quarantine: true }
 
 # Productivity
 cask "notion", args: { no_quarantine: true }
