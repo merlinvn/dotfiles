@@ -25,11 +25,11 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Load Oh-My-Zsh plugins
-plugins=(git autojump zsh-autosuggestions docker docker-compose kubectl zsh-syntax-highlighting npm zsh-completions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete autojump docker docker-compose kubectl npm)
 source $ZSH/oh-my-zsh.sh
 
 # Add custom function paths
-fpath+=~/.zfunc 
+fpath+=~/.zfunc
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # load compinit once
