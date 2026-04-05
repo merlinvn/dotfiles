@@ -118,10 +118,10 @@
 (deflayer navigation
   _      _       _       _       _      _    _       _       _       _        _    _    _
   _      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      _    _    _    _
-  _      C-A-S-q   C-A-S-w   C-S-tab C-tab     _         caps    home    up      end      _    _    _    _
-  esc    lmet    lalt    lctl    lsft      _         bspc    left    down    right    _    _    M-ret
-  -      M-space A-space C-space S-space  C-A-Space  del     pgdn    pgup    _    _    _
-  _   _      _       _                       _                     _    _    _    _   _   _
+  _      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-X         caps    home    up      end      _    _    _    _
+  esc    lmet    lalt    lctl    lsft      M-space         bspc    left    down    right    _    _    M-ret
+  -      M-z M-x M-c M-v C-A-S-X    del     pgdn    pgup    _    _    _
+  _   _      _       C-A-S-space                       _                     C-A-S-space    _    _    _   _   _
 )
 
 (deflayer numbers

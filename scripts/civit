@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ -z "$CIVITAI_TOKEN" ]; then
+  echo "❌ CIVITAI_TOKEN is not set"
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  echo "Usage: civit <base_civitai_url>"
+  exit 1
+fi
+
+sep="&"
+[[ "$1" != *"?"* ]] && sep="?"
+
+wget "$1${sep}token=$CIVITAI_TOKEN" --content-disposition

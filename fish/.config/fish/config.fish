@@ -16,7 +16,15 @@ set -gx PATH ~/.local/bin $PATH
 
 fish_add_path $HOME/.fzf/bin
 
-# Rust 
+# local APIKEY
+if test -f ~/.APIKEY
+    for line in (grep -vE '^\s*#|^\s*$' ~/.APIKEY)
+        set -gx (string split -m1 '=' $line)
+    end
+end
+
+
+# Rust
 fish_add_path $HOME/.cargo/bin
 
 # NodeJS
@@ -85,6 +93,9 @@ end
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 # source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
+# Added by Antigravity
+fish_add_path /Users/neo/.antigravity/antigravity/bin
 
 # Added by Antigravity
 fish_add_path /Users/neo/.antigravity/antigravity/bin

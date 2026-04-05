@@ -144,9 +144,12 @@ cmd-alt-h = [] # Disable "hide others"
 # cmd-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 # ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 
-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+# alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 # cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
-ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+# ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+ctrl-alt-shift-enter = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
+alt-enter = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
@@ -181,17 +184,17 @@ ctrl-alt-shift-8 = 'workspace 8'
 ctrl-alt-shift-9 = 'workspace 9'
 ctrl-alt-shift-0 = 'workspace 10'
 # ctrl-alt-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-# ctrl-alt-shift-b = 'workspace Browser'
+ctrl-alt-shift-b = 'mode brave'
 ctrl-alt-shift-c = 'workspace Code'
 # ctrl-alt-shift-d = 'workspace D'
 ctrl-alt-shift-e = 'workspace Ebooks'
 # ctrl-alt-shift-f = 'workspace Firefox'
-# ctrl-alt-shift-g = 'workspace G'
+ctrl-alt-shift-g = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log'
 # ctrl-alt-shift-i = 'workspace I'
 ctrl-alt-shift-m = 'workspace Mail'
 ctrl-alt-shift-n = 'workspace Note'
 ctrl-alt-shift-o = 'workspace Orbstack'
-ctrl-alt-shift-p = 'workspace Perplexity'
+ctrl-alt-shift-p = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_getlink_tab.applescript 2> /tmp/brave-getlink-$(date +%H%M%S).log'
 # ctrl-alt-shift-q = 'workspace Q'
 # ctrl-alt-shift-r = 'workspace R'
 ctrl-alt-shift-s = 'workspace Slack'
@@ -286,6 +289,18 @@ shift-j = ['join-with down', 'mode main']
 shift-k = ['join-with up', 'mode main']
 shift-l = ['join-with right', 'mode main']
 
+[mode.brave.binding]
+esc = ['mode main']
+enter = ['mode main']
+space = ['mode main']
+m = [
+  'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log',
+  'mode main',
+]
+l = [
+  'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_getlink_tab.applescript 2> /tmp/brave-getlink-$(date +%H%M%S).log',
+  'mode main',
+]
 
 [[on-window-detected]]
 if.app-id = 'com.macpaw.CleanMyMac4'
@@ -464,6 +479,10 @@ run = "layout floating"
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
 run = "layout floating"
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'testing'
+run = ["layout floating", "move-node-to-workspace 10"]
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'

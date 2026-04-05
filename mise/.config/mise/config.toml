@@ -1,9 +1,10 @@
 [tools]
 
-node = "25"
+node = "24"
 bun = "latest"
-# python = "3.11.11"
+python = "3.11"
 elixir = "latest"
+uv = "latest"
 
 [plugins]
 # python = 'https://github.com/jdxcode/rtx-python'

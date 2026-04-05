@@ -13,6 +13,14 @@ export ZSH="$HOME/.oh-my-zsh"
 # Load general profile exports
 [ -s "$HOME/.profile" ] && source "$HOME/.profile"
 
+# Load local API keys if present (not committed)
+if [[ -f "$HOME/.APIKEY" ]]; then
+  set -a
+  source "$HOME/.APIKEY"
+  set +a
+fi
+
+
 # Disable bell
 unsetopt BEEP
 

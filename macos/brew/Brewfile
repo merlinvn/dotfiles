@@ -37,6 +37,7 @@ brew "ffmpeg"
 brew "imagemagick"
 brew "wget"
 brew "telnet"
+brew "chezmoi"
 #brew "wallpaper"
 brew "mas"
 brew "bitwarden-cli"
@@ -69,6 +70,10 @@ brew "ffmpeg"
 brew "zellij"
 brew "mise"
 brew "bob"
+brew "gemini-cli"
+cask "codex"
+cask "copilot-cli"
+brew "gh"
 # Appearance
 # brew "spacebar"
 # brew "yabai"
@@ -96,6 +101,7 @@ cask "itsycal", args: { no_quarantine: true }
 cask "meld", args: { no_quarantine: true }
 cask "jordanbaird-ice@beta", args: { no_quarantine: true }
 cask "bloom", args: { no_quarantine: true }
+cask "iordv/tap/droppy", args: { no_quarantine: true }
 
 # Productivity
 cask "notion", args: { no_quarantine: true }

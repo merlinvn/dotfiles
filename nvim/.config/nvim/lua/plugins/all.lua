@@ -139,27 +139,6 @@ return {
       win = { border = "rounded" },
     },
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       -- disable mason automatically installing clangd
-  --       clangd = {
-  --         mason = false,
-  --         cmd = {
-  --           -- "/opt/homebrew/opt/llvm/bin/clangd",
-  --           "clangd",
-  --           "--background-index",
-  --           "--clang-tidy",
-  --           "--header-insertion=iwyu",
-  --           "--completion-style=detailed",
-  --           "--function-arg-placeholders",
-  --           "--fallback-style=llvm",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "MagicDuck/grug-far.nvim",
     keys = {
