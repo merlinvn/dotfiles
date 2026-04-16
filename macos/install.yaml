@@ -1,4 +1,4 @@
-- clean: ['~']
+- clean: ["~"]
 
 - defaults:
     link:
@@ -16,7 +16,7 @@
     ~/.config/skhd: ../mac/.config/skhd
     ~/.zshrc: ../shell/.zshrc
     ~/.profile: ../shell/.profile
-    ~/.bash_aliases: ../shell/.bash_aliases
+    ~/.aliases: ../shell/.aliases
     ~/.config/starship.toml: ../starship/.config/starship.toml
     ~/.config/kitty: ../kitty/.config/kitty
     ~/Brewfile: brew/Brewfile

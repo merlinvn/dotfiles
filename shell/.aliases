@@ -1,0 +1,73 @@
+# ~/.aliases - Shell aliases shared between bash and zsh
+
+# Helper: check if command exists
+has() { command -v "$1" &>/dev/null; }
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# ls aliases
+if has eza; then
+    alias ls='eza --color=auto --icons --group-directories-first'
+    alias ll='eza -alhF --icons --group-directories-first'
+    alias la='eza -a'
+    alias l='eza -F --icons --group-directories-first'
+elif has ls; then
+    alias ll='ls -al'
+    alias la='ls -a'
+    alias l='ls -F'
+fi
+
+# Tools
+has grep && alias grep='grep -i --color=auto'
+has tree && alias tree='tree -C'
+has less && alias less='less -R'
+has bat && alias cat=bat
+
+# Git aliases
+has git && {
+    alias gd='git diff'
+    alias ga='git add'
+    alias gaa='git add .'
+    alias gc='git commit'
+    alias gcm='git commit -m'
+    alias gcam='git commit -am'
+    alias gp='git pull --rebase'
+    alias gpsh='git push'
+    alias gs='git status'
+    alias gss='git status -s'
+    alias gl='git log --oneline --graph --decorate'
+    has kubectl && alias k=kubectl
+    has lazygit && alias lg=lazygit
+    has gitui && alias gg=gitui
+    has npm && alias ni='npm install' nr='npm run' ns='npm start'
+}
+
+# Editors
+has vim && alias v=vim
+has nvim && alias n=nvim
+
+# Docker cleanup
+has docker && dipa() {
+    docker rm -v $(docker ps -a -q -f status=exited) 2>/dev/null
+    docker volume rm $(docker volume ls -qf dangling=true) 2>/dev/null
+    docker rmi $(docker images -qf dangling=true) 2>/dev/null
+}
+
+# Task Runner
+has task && alias t=task
+
+# mise
+has mise && alias x='mise exec --' r='mise run --'
+
+# Neovim launcher
+nvims() {
+    items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+    config=$(printf "%s\n" "${items[@]}" | fzf --prompt="Neovim Config " --height=~50% --layout=reverse --border --exit-0)
+    [ -z "$config" ] && return
+    [ "$config" = "default" ] && config=""
+    NVIM_APPNAME=$config nvim "$@"
+}
