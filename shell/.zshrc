@@ -158,3 +158,4 @@ if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then
 fi
 
 export PATH=$PATH:$HOME/.maestro/bin
+superclaude() { claude --dangerously-skip-permissions "$@" ; }

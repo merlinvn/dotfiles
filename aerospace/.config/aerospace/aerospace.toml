@@ -184,7 +184,7 @@ ctrl-alt-shift-8 = 'workspace 8'
 ctrl-alt-shift-9 = 'workspace 9'
 ctrl-alt-shift-0 = 'workspace 10'
 # ctrl-alt-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-ctrl-alt-shift-b = 'mode brave'
+# ctrl-alt-shift-b = 'mode brave'
 ctrl-alt-shift-c = 'workspace Code'
 # ctrl-alt-shift-d = 'workspace D'
 ctrl-alt-shift-e = 'workspace Ebooks'
@@ -289,18 +289,18 @@ shift-j = ['join-with down', 'mode main']
 shift-k = ['join-with up', 'mode main']
 shift-l = ['join-with right', 'mode main']
 
-[mode.brave.binding]
-esc = ['mode main']
-enter = ['mode main']
-space = ['mode main']
-m = [
-  'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log',
-  'mode main',
-]
-l = [
-  'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_getlink_tab.applescript 2> /tmp/brave-getlink-$(date +%H%M%S).log',
-  'mode main',
-]
+# [mode.brave.binding]
+# esc = ['mode main']
+# enter = ['mode main']
+# space = ['mode main']
+# m = [
+#   'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log',
+#   'mode main',
+# ]
+# l = [
+#   'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_getlink_tab.applescript 2> /tmp/brave-getlink-$(date +%H%M%S).log',
+#   'mode main',
+# ]
 
 [[on-window-detected]]
 if.app-id = 'com.macpaw.CleanMyMac4'
