@@ -13,8 +13,14 @@ source $ZSH/oh-my-zsh.sh
 # Source aliases
 [ -f ~/.aliases ] && source ~/.aliases
 
+source <(fzf --zsh)
+
 # Starship prompt
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
 # Load mise
 [ -x "$(command -v mise)" ] && eval "$(mise activate zsh)"
+
+
+# OpenClaw Completion
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"

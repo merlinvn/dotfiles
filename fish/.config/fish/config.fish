@@ -23,12 +23,11 @@ if test -f ~/.APIKEY
     end
 end
 
-
 # Rust
 fish_add_path $HOME/.cargo/bin
 
 # NodeJS
-set -gx PATH node_modules/.bin $PATH
+# set -gx PATH node_modules/.bin $PATH
 
 # Go
 set -x GOBIN $HOME/.local/bin

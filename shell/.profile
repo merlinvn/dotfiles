@@ -6,13 +6,10 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# Path
-[ -d /usr/local/bin ] && PATH="/usr/local/bin:$PATH"
-[ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
+# Shared PATH (keep bash and zsh aligned)
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
+[ -d "$HOME/.local/share/mise/shims" ] && PATH="$HOME/.local/share/mise/shims:$PATH"
 
-# Load .bashrc if running bash
-if [ -n "$BASH_VERSION" ]; then
-  [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
-fi
+# Shell-specific rc files should not re-source shared PATH logic here.

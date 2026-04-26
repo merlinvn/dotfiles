@@ -31,8 +31,8 @@ set -g FZF_LEGACY_KEYBINDINGS 0
 
 if status is-interactive
     /opt/homebrew/bin/mise activate fish | source
-else
-    /opt/homebrew/bin/mise activate fish --shims | source
 end
+# prepend mise shims
+# fish_add_path -g ~/.local/share/mise/shims
 
 # set -gx PATH (brew --prefix llvm)/bin $PATH
