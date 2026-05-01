@@ -16,11 +16,9 @@ source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
 # Starship prompt
-[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+#[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+# for low ram sbc
+# PROMPT='%F{green}%n@%m%f:%F{blue}%~%f%# '
 
 # Load mise
 [ -x "$(command -v mise)" ] && eval "$(mise activate zsh)"
-
-
-# OpenClaw Completion
-[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"

@@ -115,7 +115,7 @@
   _      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-x         caps      home   up   end      _    _    _    _
   esc    lmet    lalt    lctl    lsft      C-A-S-x            bspc    left    down   right    _    _    M-ret
   -      M-z M-x M-c M-v  C-A-S-spc  del     pgdn    pgup    _    _    _
-  _   _      _       M-spc                       _                     _    _    _    _   _   _
+  _   _      C-A-S-spc       M-spc                       _                     _    _    _    _   _   _
 )
 
 (deflayer numbers
