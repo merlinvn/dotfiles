@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
 # Starship prompt
-#[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 # for low ram sbc
 # PROMPT='%F{green}%n@%m%f:%F{blue}%~%f%# '
 
