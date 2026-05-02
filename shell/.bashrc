@@ -12,6 +12,12 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
 # Load mise
 command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
 
+# Machine-specific settings
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+
+# API keys (gitignored)
+[ -f ~/.apikey ] && source ~/.apikey
+
 # fzf
 command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
 

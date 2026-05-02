@@ -12,3 +12,8 @@ Thumbs.db
 go*.tar.gz
 **/Session.vim
 fish/.config/fish/fish_variables
+
+# Machine-specific settings
+.zshrc.local
+.bashrc.local
+.apikey

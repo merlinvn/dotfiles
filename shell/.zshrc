@@ -22,3 +22,9 @@ source <(fzf --zsh)
 
 # Load mise
 [ -x "$(command -v mise)" ] && eval "$(mise activate zsh)"
+
+# Machine-specific settings
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# API keys (gitignored)
+[ -f ~/.apikey ] && source ~/.apikey

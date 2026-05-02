@@ -17,7 +17,7 @@ set -gx PATH ~/.local/bin $PATH
 fish_add_path $HOME/.fzf/bin
 
 # local APIKEY
-if test -f ~/.APIKEY
+if test -f ~/.apikey
     for line in (grep -vE '^\s*#|^\s*$' ~/.APIKEY)
         set -gx (string split -m1 '=' $line)
     end
