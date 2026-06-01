@@ -98,6 +98,3 @@ fish_add_path /Users/neo/.antigravity/antigravity/bin
 
 # Added by Antigravity
 fish_add_path /Users/neo/.antigravity/antigravity/bin
-
-# OpenClaw Completion
-source "/Users/neo/.openclaw/completions/openclaw.fish"
