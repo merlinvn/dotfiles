@@ -31,6 +31,8 @@ brew "ripgrep"
 brew "tree"
 brew "wget"
 brew "jq"
+brew "vim"
+
 # Tools/Utilities
 brew "defaultbrowser"
 brew "ffmpeg"

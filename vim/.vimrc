@@ -53,9 +53,12 @@ filetype plugin on
 set nospell
 set spelllang=en_us
 
+" Clipboards
+set clipboard=unnamedplus
+
 " Terminal
 set ttimeout
-set ttimeoutlen=10
+set ttimeoutlen=100
 
 let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[2 q"
@@ -137,18 +140,20 @@ nnoremap <leader><Tab>d :tabclose<CR>
 nnoremap <leader><Tab>f :tabfirst<CR>
 nnoremap <leader><Tab>l :tablast<CR>
 
-" Clipboard
-vnoremap <C-p> "+gP
-nnoremap <C-p> "+p
-nnoremap <C-y> "+y
-vnoremap <leader>dx "+x
-vnoremap <leader>dd "_d
+" Preserve yank register when pasting over selection
 xmap p "_dP
 
 " Quit
 nnoremap <leader>qq :qa<CR>
 " Toggle spell
 nnoremap <leader>us :setlocal spell!<CR>
+
+" Save
+nnoremap <C-s> <Cmd>w<CR><Esc>
+inoremap <C-s> <Cmd>w<CR><Esc>
+xnoremap <C-s> <Cmd>w<CR><Esc>
+snoremap <C-s> <Cmd>w<CR><Esc>
+
 
 " Abbreviations
 cnoreabbrev Q q
