@@ -1,130 +1,154 @@
-" Set Leader Key
+" Compatibility
+set nocompatible
+
+" Leader
 let mapleader = " "
-" Options
-set nospell
-set spelllang=en_us
-set title
-set keywordprg=:help
+
+" Encoding
+set encoding=utf-8
+
+" UI
 syntax on
-set nobackup
-set cursorline
+set title
 set number
 set relativenumber
+set cursorline
+set nowrap
+set scrolloff=8
+set sidescrolloff=8
+set termguicolors
+set background=dark
+set laststatus=2
+set showtabline=1
+set statusline=%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l:%04v]
+
+" Search
 set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-set nowrap
-set fileencoding=utf-8
-set showtabline=1
-set laststatus=2
-set statusline=%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l:%04v]
+
+" Indentation
 set expandtab
-set smarttab
-set tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set smartindent
-set scrolloff=8
-set sidescrolloff=8
-set guifont=monospace:h17
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set splitbelow
-set splitright
-set termguicolors
-set background=dark
 
-set nocompatible
+" Files
+set nobackup
 set path+=**
 set wildmenu
+set wildmode=longest:full,full
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
+" Splits
+set splitbelow
+set splitright
+
+" Filetypes
 filetype plugin on
+
+" Spell
+set nospell
+set spelllang=en_us
+
+" Terminal
+set ttimeout
+set ttimeoutlen=10
+
+let &t_SI = "\<Esc>[6 q"
+let &t_EI = "\<Esc>[2 q"
+
+" Completion
+set completeopt=menu,menuone,noinsert
+
+inoremap <silent> ,f <C-x><C-f>
+inoremap <silent> ,i <C-x><C-i>
+inoremap <silent> ,l <C-x><C-l>
+inoremap <silent> ,n <C-x><C-n>
+inoremap <silent> ,o <C-x><C-o>
+
+" Colors
 if !empty(globpath(&runtimepath, "colors/habamax.vim"))
-    colorscheme habamax
-else
-    echom "Colorscheme 'habamax' not found. Using default."
+  colorscheme habamax
 endif
 
+" Undo
+if !isdirectory(expand('~/.vim/undo'))
+  call mkdir(expand('~/.vim/undo'), 'p')
+endif
 
-" Undo Settings
 set undodir=~/.vim/undo
 set undofile
 
-" Key Mappings
+" Better vertical movement
 nnoremap j gj
 nnoremap k gk
-
-" better Ctrl-C
-nnoremap <C-C> <esc>
-
-" better join
+xnoremap j gj
+xnoremap k gk
+"
+" Better join
 nnoremap J mzJ`z
 
-" Tabs
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>tx :tabclose<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>0 :tablast<CR>
-
-" Splits & Windows
-nnoremap <leader>w <C-w>
-nnoremap <C-q> :close<CR>
-
-" Split Navigation
+" Windows
 nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" Split Resize
-nnoremap <C-Left> <C-w><
-nnoremap <C-Right> <C-w>>
-nnoremap <C-Up> <C-w>+
-nnoremap <C-Down> <C-w>-
+" Resize windows
+nnoremap <C-Up>    :resize +2<CR>
+nnoremap <C-Down>  :resize -2<CR>
+nnoremap <C-Left>  :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
 
-" Buffer Navigation
-"nnoremap <leader>bb :ls<CR>:b<Space>
-nnoremap <leader>bb :b<Space><C-d>
-nnoremap <leader><leader> :b<Space><C-d>
-nnoremap <leader>a  :b#<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bd :bd!<CR>
+" Splits
+nnoremap <leader>- <C-w>s
+nnoremap <leader>\| <C-w>v
+nnoremap <leader>wd <C-w>c
+
+" Move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Buffers
+nnoremap <S-h> :bprevious<CR>
+nnoremap <S-l> :bnext<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+
+" Alternate buffer
+nnoremap <leader>bb :b#<CR>
+" Buffers
+nnoremap <leader>, :b<Space><C-d>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bD :bd!<CR>
+
+" Tabs
+nnoremap <leader><Tab><Tab> :tabnew<CR>
+nnoremap <leader><Tab>] :tabnext<CR>
+nnoremap ]<Tab> :tabnext<CR>
+nnoremap <leader><Tab>[ :tabprevious<CR>
+nnoremap [<Tab> :tabprevious<CR>
+nnoremap <leader><Tab>d :tabclose<CR>
+nnoremap <leader><Tab>f :tabfirst<CR>
+nnoremap <leader><Tab>l :tablast<CR>
 
 " Clipboard
 vnoremap <C-p> "+gP
 nnoremap <C-p> "+p
 nnoremap <C-y> "+y
 vnoremap <leader>dx "+x
-xmap p "_dP
 vnoremap <leader>dd "_d
-
-" Align
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+xmap p "_dP
 
 " Quit
-nnoremap <leader>qw :wq<CR>
-nnoremap <leader>wq :wq<CR>
-nnoremap <leader>q! :q!<CR>
-nnoremap <leader>q1 :q!<CR>
 nnoremap <leader>qq :qa<CR>
-nnoremap <M-q> :q<CR>
-
-" Save File
-inoremap <C-s> <cmd>w<CR><Esc>
-xnoremap <C-s> <cmd>w<CR><Esc>
-nnoremap <C-s> <cmd>w<CR><Esc>
-snoremap <C-s> <cmd>w<CR><Esc>
+" Toggle spell
+nnoremap <leader>us :setlocal spell!<CR>
 
 " Abbreviations
 cnoreabbrev Q q
@@ -135,71 +159,33 @@ cnoreabbrev Qa qa
 cnoreabbrev W w
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
-cnoreabbrev Set set
-cnoreabbrev SEt set
-cnoreabbrev SET set
 
 " Misc
 vnoremap <leader>sr "hy:%s/<C-r>h//g<left><left>
-nnoremap <leader>os :setlocal spell! spelllang=en_us<CR>
-
 nnoremap <leader>ve :e $MYVIMRC<CR>
 nnoremap <leader>vr :w<CR>:source %<CR>
 
-" AutoCOMMANDS
-" augroup highlight_yank
-"   autocmd!
-"   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='ErrorMsg', timeout=300 }
-" augroup END
+" File browser
+nnoremap <leader><Space> :find<Space>
 
-" Mode based Cursorline
-autocmd InsertEnter * set nocursorline
-autocmd InsertLeave * set cursorline
-
-" change cursor for different mod
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-" Format Trailing on save
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\n\+\%$//e
-
-" FileBrowser
-nnoremap <leader>p :find<space>
+" Explorer
 nnoremap <leader>e :Lex<CR>
 nnoremap <leader>o :Explore<CR>
+
 let g:netrw_browse_split=4
 let g:netrw_keepdir=0
 let g:netrw_altv=1
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_winsize=15
-" let g:netrw_list_hide=netrw_gitignore#Hide()
 
-" Completion
-set omnifunc=syntaxcomplete#Complete
-set complete+=k
-set completeopt=menu,menuone,noinsert
+" Autocommands
+augroup vimrc
+  autocmd!
 
-" file names
-inoremap <silent> ,f <C-x><C-f>
-" tags
-inoremap <silent> ,i <C-x><C-i>
-" whole line
-inoremap <silent> ,l <C-x><C-l>
-" keywords in current file
-inoremap <silent> ,n <C-x><C-n>
-" omni completion
-inoremap <silent> ,o <C-x><C-o>
-" keyword in thesaurus
-"inoremap <silent> ,t <C-x><C-]>
-"inoremap <silent> ,u <C-x><C-u>
+  autocmd InsertEnter * setlocal nocursorline
+  autocmd InsertLeave * setlocal cursorline
 
-" Automatically Pair brackets, parentheses, and quotes
-" "inoremap ' ''<left>
-" "inoremap " ""<left>
-" "inoremap ( ()<left>
-" "inoremap [ []<left>
-" "inoremap { {}<left>
-" "inoremap {; {};<left><left>
-" "inoremap /* /**/<left><left>
+  autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.rs,*.py,*.js,*.ts,*.sh,*.vim,.vimrc %s/\s\+$//e
+  autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.rs,*.py,*.js,*.ts,*.sh,*.vim,.vimrc %s/\n\+\%$//e
+augroup END

@@ -12,6 +12,10 @@ after-startup-command = []
 # Start AeroSpace at login
 start-at-login = true
 
+# Automatically reload the config when the config file is saved
+# After setting this to true, reload once manually to start the auto-reloading
+auto-reload-config = true
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -55,32 +59,33 @@ persistent-workspaces = [
   "7",
   "8",
   "9",
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
+  "10",
+  # "A",
+  # "B",
+  # "C",
+  # "D",
+  # "E",
+  # "F",
+  # "G",
+  # "H",
+  # "I",
+  # "J",
+  # "K",
+  # "L",
+  # "M",
+  # "N",
+  # "O",
+  # "P",
+  # "Q",
+  # "R",
+  # "S",
+  # "T",
+  # "U",
+  # "V",
+  # "W",
+  # "X",
+  # "Y",
+  # "Z",
 ]
 
 # A callback that runs every time binding mode changes
@@ -188,7 +193,7 @@ ctrl-alt-shift-0 = 'workspace 10'
 ctrl-alt-shift-c = 'workspace Code'
 # ctrl-alt-shift-d = 'workspace D'
 ctrl-alt-shift-e = 'workspace Ebooks'
-# ctrl-alt-shift-f = 'workspace Firefox'
+ctrl-alt-shift-f = 'workspace Firefox'
 ctrl-alt-shift-g = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log'
 # ctrl-alt-shift-i = 'workspace I'
 ctrl-alt-shift-m = 'workspace Mail'
@@ -222,7 +227,7 @@ ctrl-alt-shift-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
 ctrl-alt-shift-cmd-c = ['move-node-to-workspace Cursor', 'workspace Cursor']
 # ctrl-alt-shift-shift-d = ['move-node-to-workspace D']
 ctrl-alt-shift-cmd-e = ['move-node-to-workspace Ebooks', 'workspace Ebooks']
-# ctrl-alt-shift-shift-f = ['move-node-to-workspace Firefox', 'workspace Firefox']
+ctrl-alt-shift-cmd-f = ['move-node-to-workspace Firefox', 'workspace Firefox']
 # ctrl-alt-shift-shift-g = ['move-node-to-workspace G']
 # ctrl-alt-shift-shift-i = ['move-node-to-workspace I']
 ctrl-alt-shift-cmd-m = ['move-node-to-workspace Mail', 'workspace Mail']
@@ -328,7 +333,7 @@ if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace 2"
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace Firefox"
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace 2"

@@ -8,9 +8,9 @@ tap "homebrew/autoupdate"
 # tap "homebrew/core"
 #tap "homebrew/cask-drivers"
 # Third-party
-tap "cmacrae/formulae" # spacebar
-tap "koekeishiya/formulae" # yabai
-tap "jesseduffield/lazygit" #lazygit
+#tap "cmacrae/formulae" # spacebar
+#tap "koekeishiya/formulae" # yabai
+#tap "jesseduffield/lazygit" #lazygit
 #tap "spicetify/homebrew-tap" # Spicetify
 
 ###############################################################
@@ -74,6 +74,7 @@ brew "gemini-cli"
 cask "codex"
 cask "copilot-cli"
 brew "gh"
+brew "ccache"
 # Appearance
 # brew "spacebar"
 # brew "yabai"
@@ -101,14 +102,14 @@ cask "itsycal", args: { no_quarantine: true }
 cask "meld", args: { no_quarantine: true }
 cask "jordanbaird-ice@beta", args: { no_quarantine: true }
 cask "bloom", args: { no_quarantine: true }
-cask "iordv/tap/droppy", args: { no_quarantine: true }
 
 # Productivity
-cask "notion", args: { no_quarantine: true }
 cask "obsidian", args: { no_quarantine: true }
+cask "remanager"
+
 # cask "karabiner-elements", args: { no_quarantine: true }
 # Development
-cask "kitty", args: { no_quarantine: true }
+# cask "kitty", args: { no_quarantine: true }
 cask "visual-studio-code", args: { no_quarantine: true }
 cask "orbstack", args: { no_quarantine: true }
 cask "stats", args: { no_quarantine: true }
@@ -125,7 +126,7 @@ cask "google-chrome", args: { no_quarantine: true }
 # Gaming
 # Work/School
 # cask "microsoft-teams", args: { no_quarantine: true }
-cask "discord", args: { no_quarantine: true }
+# cask "discord", args: { no_quarantine: true }
 cask "zoom", args: { no_quarantine: true }
 cask "slack", args: { no_quarantine: true }
 cask "telegram", args: { no_quarantine: true }

@@ -98,3 +98,6 @@ fish_add_path /Users/neo/.antigravity/antigravity/bin
 
 # Added by Antigravity
 fish_add_path /Users/neo/.antigravity/antigravity/bin
+
+# Added by Antigravity IDE
+fish_add_path /Users/neo/.antigravity-ide/antigravity-ide/bin

@@ -17,3 +17,12 @@ fish/.config/fish/fish_variables
 .zshrc.local
 .bashrc.local
 .apikey
+
+/vim/.vim/.netrwhist
+/vim/.vim/.netrwhist
+/vim/.vim/undo/
+/vim/.vim/swap/
+/vim/.vim/backup/
+/vim/.vim/view/
+/vim/.vim/undo
+/vim/.vim/undo/%Users%neo%.dotfiles%vim%.vimrc

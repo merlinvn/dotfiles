@@ -5,8 +5,11 @@ alias la "ls -A"
 alias ll "ls -l -A"
 # alias lla "ll -A"
 
+alias cat "bat --paging=never -p"
+alias bat "bat --paging=never"
+
 if type -q eza
-    alias ll "eza -l -g -a --icons"
+    alias ll "eza -l -g -a --icons always"
     # alias lla "ll -a"
 end
 
@@ -25,3 +28,5 @@ alias lg lazygit
 alias n nvim
 
 alias python python3
+
+alias open "open -a Bloom"
