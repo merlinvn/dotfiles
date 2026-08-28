@@ -1,13 +1,25 @@
-# Place a copy of this config to ~/.aerospace.toml
-# After that, you can edit ~/.aerospace.toml to your liking
-
 # Config version for compatibility and deprecations
 # Fallback value (if you omit the key): config-version = 1
 config-version = 2
 
+
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget sketchybar',
+  # 'layout --workspace 2 --root v_tiles',
+  'layout --workspace 2 --root h_accordion',
+  'layout --workspace 1 --root h_accordion',
+  'layout --workspace 5 --root h_accordion',
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$AEROSPACE_FOCUSED_WORKSPACE" >/dev/null 2>&1 &',
+  # 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -93,6 +105,7 @@ persistent-workspaces = [
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 on-mode-changed = []
 
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -107,12 +120,13 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 10
-outer.right = 10
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 5
+outer.right = 5
+outer.bottom = 5
+# outer.top = 10
+outer.top = [{ monitor."built-in" = 42 }, { monitor."main" = 42 }, 42]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -191,7 +205,7 @@ ctrl-alt-shift-0 = 'workspace 10'
 # ctrl-alt-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 # ctrl-alt-shift-b = 'mode brave'
 ctrl-alt-shift-c = 'workspace Code'
-# ctrl-alt-shift-d = 'workspace D'
+ctrl-alt-shift-d = 'workspace Discord'
 ctrl-alt-shift-e = 'workspace Ebooks'
 ctrl-alt-shift-f = 'workspace Firefox'
 ctrl-alt-shift-g = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/brave_to_gmail_tab.applescript 2> /tmp/brave-gmail-$(date +%H%M%S).log'
@@ -307,187 +321,224 @@ shift-l = ['join-with right', 'mode main']
 #   'mode main',
 # ]
 
-[[on-window-detected]]
-if.app-id = 'com.macpaw.CleanMyMac4'
-run = ["layout floating", "move-node-to-workspace 1"]
+# Window title rules should come first because AeroSpace stops
+# after the first matching callback.
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'kitty'
-run = "move-node-to-workspace 1"
+if = 'test %{window-title} ~= testing'                 # case intensitive regex match
+run = ['layout floating', 'move-node-to-workspace 10']
+
+# Utilities
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.macpaw.CleanMyMac4'
+run = ['layout floating', 'move-node-to-workspace 1']
+
+# Terminals → workspace 1
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^kitty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Alacritty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.github.wez.wezterm'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
+run = 'move-node-to-workspace 1'
+
+
+# Browsers → workspace 2
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.brave.Browser'
+run = 'move-node-to-workspace 2'
+
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.Safari'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.google.Chrome'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.freedownloadmanager.fdm6'
+run = ['layout v_accordion', 'move-node-to-workspace 2']
+
+# Documents and CAD → workspace 3
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.microsoft.Word'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.freecad.FreeCAD'
+run = 'move-node-to-workspace 3'
+
+# Development → workspace 4
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.microsoft.VSCode'
+run = 'move-node-to-workspace 4'
+
+
+# Files → workspace 5
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.finder'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.asiafu.Bloom'
+run = 'move-node-to-workspace 5'
+
+# Games and databases → workspace 6
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Navicat'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.katrain.KaTrain'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.kbksoftware.Native-SQLite-Manager'
+run = 'move-node-to-workspace 6'
+
+# Codex-GPT workspace 7 
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.openai.codex'
+run = 'move-node-to-workspace 7'
+
+# PDF reader → workspace 8
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.adobe.Acrobat.Pro'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.brother.pdfreaderprofree.mac'
+run = 'move-node-to-workspace 8'
+
+# zoom - workspace 9
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = us.zoom.xos'
+run = 'move-node-to-workspace 9'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.microsoft.teams2'
+run = 'move-node-to-workspace 9'
+
+# workspace 10 is for images, media, and virtualization
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.interversehq.qView'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = imagetasks.Pixea'
+run = ['layout floating', 'move-node-to-workspace 10']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = netdcy.FlowVision'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.Preview'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.ActivityMonitor'
+run = ['layout floating', 'move-node-to-workspace 10']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.electron.huddly'
+run = ['layout floating', 'move-node-to-workspace 10']
+
+# Named workspaces
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Spyder'
+run = 'move-node-to-workspace Code'
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Cursor'
+run = 'move-node-to-workspace Code'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.exafunction.windsurf'
+run = 'move-node-to-workspace Code'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.hnc.Discord'
+run = 'move-node-to-workspace Discord'
+
+[[on-window-detected]]
+if = ' test %{app-bundle-id} = com.calibre || test %{app-bundle-id} = net.kovidgoyal.calibre || test %{app-name} ~= ^Calibre '
+run = 'move-node-to-workspace Ebooks'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.mozilla.firefox'
+run = 'move-node-to-workspace Firefox'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.apple.mail'
+run = 'move-node-to-workspace Mail'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = md.obsidian'
+run = 'move-node-to-workspace Note'
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Docker'
+run = 'move-node-to-workspace Obstack'
+
+[[on-window-detected]]
+if = 'test %{app-name} ~= ^Docker'
+run = 'move-node-to-workspace Obstack'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = dev.kdrag0n.MacVirt'
+run = 'move-node-to-workspace Orbstack'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = ai.perplexity.mac'
+run = 'move-node-to-workspace Perplexity'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace Slack'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
+run = 'move-node-to-workspace Telegram'
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.videolan.vlc'
+run = 'move-node-to-workspace Video'
+
+# Floating applications
+
 # [[on-window-detected]]
-# if.app-id = 'org.alacritty'
-# run = "move-node-to-workspace 2"
-[[on-window-detected]]
-if.app-name-regex-substring = '^Alacritty'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 1"
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.brave.Browser'
-run = "move-node-to-workspace 2"
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-run = "move-node-to-workspace Firefox"
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari'
-run = "move-node-to-workspace 2"
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 2"
-[[on-window-detected]]
-if.app-id = 'org.freedownloadmanager.fdm6'
-run = ["layout v_accordion", "move-node-to-workspace 2"]
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.Word'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'org.freecad.FreeCAD'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = "move-node-to-workspace 4"
-[[on-window-detected]]
-if.app-name-regex-substring = '^Navicat'
-run = "move-node-to-workspace 4"
-[[on-window-detected]]
-if.app-name-regex-substring = '^Spyder'
-run = "move-node-to-workspace 4"
-[[on-window-detected]]
-if.app-name-regex-substring = '^Docker'
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = 'com.asiafu.Bloom'
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = 'org.katrain.KaTrain'
-run = "move-node-to-workspace 6"
-
-
-[[on-window-detected]]
-if.app-id = 'com.kbksoftware.Native-SQLite-Manager'
-run = "move-node-to-workspace 6"
-
-[[on-window-detected]]
-if.app-id = 'com.adobe.Acrobat.Pro'
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = 'ai.perplexity.mac'
-run = "move-node-to-workspace Perplexity"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace Mail"
-
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = "move-node-to-workspace Note"
-
-[[on-window-detected]]
-if.app-id = 'com.calibre'
-run = "move-node-to-workspace Ebooks"
-[[on-window-detected]]
-if.app-name-regex-substring = '^Calibre'
-run = "move-node-to-workspace Ebooks"
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.calibre'
-run = "move-node-to-workspace Ebooks"
-
-
-[[on-window-detected]]
-if.app-name-regex-substring = '^Cursor'
-run = "move-node-to-workspace Code"
-
-[[on-window-detected]]
-if.app-id = 'com.exafunction.windsurf'
-run = "move-node-to-workspace Code"
-
-[[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace 8"
-[[on-window-detected]]
-if.app-id = 'ru.keepcoder.Telegram'
-run = "move-node-to-workspace Telegram"
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace Slack"
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace 9"
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos'
-run = "move-node-to-workspace 9"
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 9"
-
-[[on-window-detected]]
-if.app-id = 'com.interversehq.qView'
-run = ["move-node-to-workspace 10"]
-
-[[on-window-detected]]
-if.app-id = 'imagetasks.Pixea'
-run = ["layout floating", "move-node-to-workspace 10"]
-
-[[on-window-detected]]
-if.app-id = 'netdcy.FlowVision'
-run = ["move-node-to-workspace 10"]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Preview'
-run = ["move-node-to-workspace 10"]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.ActivityMonitor'
-run = ["layout floating", "move-node-to-workspace 10"]
-
-[[on-window-detected]]
-if.app-id = 'com.electron.huddly'
-run = ["layout floating", "move-node-to-workspace 10"]
-
+# if = 'test %{app-bundle-id} = com.apple.iphonesimulator'
+# run = 'layout floating'
+#
 # [[on-window-detected]]
-# if.app-id = 'com.objective-see.lulu.app'
-# run = ["layout floating"]
+# if = 'test %{app-bundle-id} = com.thenounproject.Noun-Project'
+# run = 'layout floating'
+#
+# [[on-window-detected]]
+# if = 'test %{app-bundle-id} = com.openai.chat'
+# run = 'layout floating'
 
-[[on-window-detected]]
-if.app-id = 'org.videolan.vlc'
-run = ["move-node-to-workspace Video"]
-
-[[on-window-detected]]
-if.app-id = 'dev.kdrag0n.MacVirt'
-run = ["move-node-to-workspace Orbstack"]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iphonesimulator'
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = 'com.thenounproject.Noun-Project'
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = 'com.openai.chat'
-run = "layout floating"
-
-[[on-window-detected]]
-if.window-title-regex-substring = 'testing'
-run = ["layout floating", "move-node-to-workspace 10"]
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'

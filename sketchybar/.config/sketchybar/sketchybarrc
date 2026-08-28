@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# Compact dark palette with a single blue accent for focus.
+BAR_BG=0xE6141824
+SURFACE=0xCC232A3A
+SURFACE_MUTED=0x99202735
+TEXT=0xFFE6EAF2
+MUTED=0xFF9AA5B8
+ACCENT=0xFF8AADF4
+
+sketchybar --bar \
+  height=34 \
+  y_offset=0 \
+  margin=0 \
+  corner_radius=0 \
+  color=$BAR_BG \
+  shadow=on \
+  position=top
+
+default=(
+  padding_left=6
+  padding_right=6
+  icon.font="Hack Nerd Font:Bold:15.0"
+  label.font="Hack Nerd Font:Medium:12.0"
+  icon.color=$TEXT
+  label.color=$TEXT
+  icon.padding_left=5
+  icon.padding_right=4
+  label.padding_left=3
+  label.padding_right=5
+  background.height=24
+  background.corner_radius=7
+  background.color=$SURFACE_MUTED
+)
+sketchybar --default "${default[@]}"
+
+sketchybar --add event aerospace_workspace_change
+
+# Aerospace workspaces: compact numbered pills with a stronger selected state.
+# Include named workspaces even while they are empty; AeroSpace only reports
+# non-persistent empty workspaces after they have been visited.
+workspaces=(1 2 3 4 5 6 7 8 9 10 Code Cursor Discord Ebooks Firefox Mail Note Orbstack Perplexity Slack Telegram Video)
+for sid in $(aerospace list-workspaces --all 2>/dev/null); do
+  case " ${workspaces[*]} " in
+    *" $sid "*) ;;
+    *) workspaces+=("$sid") ;;
+  esac
+done
+
+for sid in "${workspaces[@]}"; do
+  workspace_drawing=off
+  case "$sid" in
+    1|2|3|4|5|6|7|8|9|10) workspace_drawing=on ;;
+  esac
+
+  sketchybar --add item "space.$sid" left \
+    --set "space.$sid" \
+      label="$sid" \
+      label.color=0xFF6B7280 \
+      icon.drawing=off \
+      background.color=0xFF161A24 \
+      background.drawing=$workspace_drawing \
+      click_script="aerospace workspace $sid"
+done
+
+# One controller refreshes all workspace pills with a single AeroSpace query.
+sketchybar --add item workspace_controller left \
+  --set workspace_controller drawing=off script="$PLUGIN_DIR/aerospace.sh" \
+  --subscribe workspace_controller aerospace_workspace_change front_app_switched
+
+sketchybar --add item chevron left \
+  --set chevron icon=󰜴 icon.color=$MUTED label.drawing=off background.drawing=off
+
+sketchybar --add item front_app left \
+  --set front_app drawing=off script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched aerospace_workspace_change
+
+# Reusable app slots. The controller fills these with every window in the
+# focused workspace and hides whichever slots are not needed.
+for slot in {1..12}; do
+  sketchybar --add item "app.$slot" left \
+    --set "app.$slot" drawing=off icon=󰣆 label="" \
+      background.color=$SURFACE_MUTED
+done
+
+# At-a-glance health: CPU, memory, Wi-Fi, audio, power, and time.
+sketchybar --add item clock right \
+  --set clock icon=󰥔 label="--" update_freq=10 script="$PLUGIN_DIR/clock.sh" \
+  --add item volume right \
+  --set volume icon=󰕾 label="--" script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change \
+  --add item battery right \
+  --set battery icon=󰁹 label="--" update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --add item wifi right \
+  --set wifi icon=󰖩 label="--" update_freq=15 script="$PLUGIN_DIR/wifi.sh" \
+  --add item memory right \
+  --set memory icon=󰘚 label="--" updates=on update_freq=5 script="$PLUGIN_DIR/memory.sh" \
+  --add item cpu right \
+  --set cpu icon=󰍛 label="--" updates=on update_freq=2 script="$PLUGIN_DIR/cpu.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --update
