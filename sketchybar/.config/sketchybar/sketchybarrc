@@ -49,10 +49,18 @@ for sid in $(aerospace list-workspaces --all 2>/dev/null); do
   esac
 done
 
+focused_monitor="$(aerospace list-monitors --focused --format '%{monitor-name}' 2>/dev/null)"
+compact_mode=0
+case "$focused_monitor" in
+  *[Bb]uilt-in*|*[Cc]olor\ LCD*|*[Ll]iquid\ Retina*|*[Ii]nternal*|*[Rr]etina\ [Dd]isplay*) compact_mode=1 ;;
+esac
+
 for sid in "${workspaces[@]}"; do
   workspace_drawing=off
   case "$sid" in
-    1|2|3|4|5|6|7|8|9|10) workspace_drawing=on ;;
+    1|2|3|4|5|6|7|8|9|10)
+      [ "$compact_mode" -eq 0 ] && workspace_drawing=on
+      ;;
   esac
 
   sketchybar --add item "space.$sid" left \

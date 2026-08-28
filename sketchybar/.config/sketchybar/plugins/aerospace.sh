@@ -14,6 +14,11 @@ workspace_state="$(aerospace list-workspaces --all \
   --format '%{workspace}|%{workspace-is-focused}' 2>/dev/null)"
 current_space="$(awk -F'|' '$2 == "true" {print $1; exit}' <<< "$workspace_state")"
 all_windows="$(aerospace list-windows --all --format '%{workspace}|%{app-name}' 2>/dev/null)"
+focused_monitor="$(aerospace list-monitors --focused --format '%{monitor-name}' 2>/dev/null)"
+compact_mode=0
+case "$focused_monitor" in
+  *[Bb]uilt-in*|*[Cc]olor\ LCD*|*[Ll]iquid\ Retina*|*[Ii]nternal*|*[Rr]etina\ [Dd]isplay*) compact_mode=1 ;;
+esac
 
 for sid in "${workspaces[@]}"; do
   apps="$(awk -F'|' -v workspace="$sid" '$1 == workspace {print $2}' <<< "$all_windows")"
@@ -34,7 +39,7 @@ for sid in "${workspaces[@]}"; do
       drawing=on \
       background.color=0xFF2B3447 \
       label.color=0xFFD1D5DB
-  elif [ "$always_visible" -eq 1 ]; then
+  elif [ "$compact_mode" -eq 0 ] && [ "$always_visible" -eq 1 ]; then
     # Empty numbered workspace: heavily dim but always visible.
     sketchybar --set "space.$sid" \
       drawing=on \
