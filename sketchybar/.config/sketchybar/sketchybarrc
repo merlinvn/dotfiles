@@ -102,7 +102,7 @@ sketchybar --add item clock right \
   --add item battery right \
   --set battery icon=󰁹 label="--" update_freq=120 script="$PLUGIN_DIR/battery.sh" \
   --add item wifi right \
-  --set wifi icon=󰖩 label="--" update_freq=15 script="$PLUGIN_DIR/wifi.sh" \
+  --set wifi icon="" label="--" update_freq=15 script="$PLUGIN_DIR/wifi.sh" \
   --add item memory right \
   --set memory icon=󰘚 label="--" updates=on update_freq=5 script="$PLUGIN_DIR/memory.sh" \
   --add item cpu right \
