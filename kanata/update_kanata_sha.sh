@@ -15,6 +15,8 @@ if [[ ! -f "$SUDOERS_FILE" ]]; then
   exit 1
 fi
 
+xattr -rd com.apple.quarantine "$KANATA_BIN"
+
 # Calculate new SHA256
 NEW_SHA=$(shasum -a 256 "$KANATA_BIN" | awk '{print $1}')
 

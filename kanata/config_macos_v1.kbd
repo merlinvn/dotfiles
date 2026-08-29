@@ -3,9 +3,6 @@
   macos-dev-names-include (
     "Apple Internal Keyboard / Trackpad"
   )
-  ;; If any key was pressed within 150ms, resolve tap-hold as tap immediately.
-  ;; Prevents accidental modifier activation during fast typing.
-  tap-hold-require-prior-idle 150
 )
 
 (defsrc
@@ -17,125 +14,60 @@
   fn  lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
 )
 
-;; Physical-hand assignments for tap-hold-opposite-hand.
-;; Same-hand rolls resolve as taps; opposite-hand keys activate the hold.
-(defhands
-  (left
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+(defvar
+  ;; Note: consider using different time values for your different fingers.
+  ;; For example, your pinkies might be slower to release keys and index
+  ;; fingers faster.
+  tap-time 200
+  hold-time 150
+
+  left-hand-keys (
     q w e r t
     a s d f g
     z x c v b
   )
-  (right
+  right-hand-keys (
     y u i o p
     h j k l ;
     n m , . /
   )
 )
 
-(defvar
-  ;; Keep the existing timings for layer-tap aliases.
-  tap-time 200
-  layer-hold-time 180
-  hrm-hold-time 180
-  hrm-prior-idle 220
-  hrm-repress 200
-)
-
 (defalias
 
-  ;; Home-row mods: same-hand rolls tap; opposite-hand chords hold.
-  a (tap-hold-opposite-hand $hrm-hold-time a lmet
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 20)
+  )
 
-  s (tap-hold-opposite-hand $hrm-hold-time s lalt
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
+  a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
+  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
+  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
+  l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
+  ; (tap-hold-release-keys $tap-time $hold-time (multi ; @tap) rmet $right-hand-keys)
 
-  d (tap-hold-opposite-hand $hrm-hold-time d lctl
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
 
-  f (tap-hold-opposite-hand $hrm-hold-time f lsft
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
+  snav  (tap-hold 200 200  spc (layer-while-held navigation))
 
-  j (tap-hold-opposite-hand $hrm-hold-time j rsft
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
+  c_syms (tap-hold-release-keys $tap-time $hold-time (multi c @tap) (layer-toggle symbols) $left-hand-keys)
+  m_syms (tap-hold-release-keys $tap-time $hold-time (multi m @tap) (layer-toggle symbols) $right-hand-keys)
+  v_num (tap-hold-release-keys $tap-time $hold-time (multi v @tap) (layer-toggle numbers) $left-hand-keys)
+  n_fn (tap-hold-release-keys $tap-time $hold-time (multi n @tap) (layer-toggle fn) $right-hand-keys)
 
-  k (tap-hold-opposite-hand $hrm-hold-time k rctl
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
+  ;; c_syms (tap-hold 200 200 c (layer-while-held symbols))
+  ;; m_syms (tap-hold 200 200 m (layer-while-held symbols))
+  ;; v_num  (tap-hold 200 200 v (layer-while-held numbers))
+  ;; n_fn   (tap-hold 200 200 n (layer-while-held fn))
 
-  l (tap-hold-opposite-hand $hrm-hold-time l ralt
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
-
-  ; (tap-hold-opposite-hand $hrm-hold-time ; rmet
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle $hrm-prior-idle)
-    (tap-repress-timeout $hrm-repress))
-
-  snav  (tap-hold 200 200 spc (layer-while-held navigation))
-
-  ;; Preserve the existing advanced behaviour for layer-tap keys.
-  c_syms (tap-hold-opposite-hand-release
-    $layer-hold-time c (layer-while-held symbols)
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle 180)
-    (tap-repress-timeout $tap-time))
-
-   m_syms (tap-hold-opposite-hand-release
-    $layer-hold-time m (layer-while-held symbols)
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle 180)
-    (tap-repress-timeout $tap-time))
-
-  v_num (tap-hold-opposite-hand-release
-    $layer-hold-time v (layer-while-held numbers)
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle 180)
-    (tap-repress-timeout $tap-time))
-
-  n_fn (tap-hold-opposite-hand-release
-    $layer-hold-time n (layer-while-held fn)
-    (same-hand tap)
-    (unknown-hand hold)
-    (timeout hold)
-    (require-prior-idle 220)
-    (tap-repress-timeout $tap-time))
-
-  vspc (tap-hold 200 200 v spc)
+  ;; fns  (tap-hold 200 200 (layer-next fn) (layer-toggle fn))
+  vspc (tap-hold 200 200 v           spc)
 
   c_esc (tap-hold 200 200 esc lctl)
 
@@ -143,11 +75,16 @@
 
   hyper (multi lctl lsft lalt lmet)
   meh   (multi lctl lsft lalt)
+  
+  grl (tap-hold 200 200 grv (layer-toggle layers))
+  ;; layer-switch changes the base layer.
+  normal (layer-switch nomods)
+  kanata (layer-switch base)
 )
 
 (deflayer base
   _      f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
-  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  @grl      _         _         _          _         _    _        _          _         _         _         _    _    _
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @a    @s    @d     @f    _    _        @j     @k    @l    @;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
@@ -156,7 +93,7 @@
 
 (deflayer nomods
   esc     f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
-  grv     1       2       3      4       5       6       7       8     9     0      -      =    bspc
+  @grl     1       2       3      4       5       6       7       8     9     0      -      =    bspc
   tab     q       w       e      r       t       y       u       i     o     p      [      ]    \
   caps    a       s       d      f       g       h       j       k     l     ;      '      ret
   lsft    z       x       c      v       b       n       m       ,     .     /      rsft
@@ -169,12 +106,12 @@
   _    _       _       _       _       _    _    _    _    _    _    _    _    _
   _    _       _       _       _       _    _    _    _    _    _    _    _
   _    _       _       _       _       _    _    _    _    _    _    _
-  _   _      _       _                _                     _    _    _    _  _   _
+  _    _       _       _                _                     _    _    _    _  _   _
 )
 
 (deflayer navigation
   _      _       _       _       _      _    _       _       _       _        _    _    _
-  lrld      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      C-A-S-0    _    _    _
+  _      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      C-A-S-0    _    _    _
   _      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-x         caps      home   up   end      _    _    _    _
   esc    lmet    lalt    lctl    lsft      C-A-S-x            bspc    left    down   right    _    _    M-ret
   -      M-z M-x M-c M-v  C-A-S-spc  del     pgdn    pgup    _    _    _
@@ -208,3 +145,12 @@
   _   _      _      _                  _                _     _    _    _       _       _
 )
 
+
+(deflayer layers
+  _      _       _       _       _      _    _       _       _       _        _    _    _
+  _    @normal   @kanata       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _
+  _    _       _       _                _                     _    _    _    _  _   _
+)
