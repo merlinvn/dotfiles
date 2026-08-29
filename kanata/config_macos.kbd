@@ -17,6 +17,17 @@
   fn  lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
 )
 
+(platform (macos)
+  ;; Only on macos, use command arrows to jump/delete words
+  ;; because command is used for so many other things
+  ;; and it's weird that these cases use alt.
+  (defoverrides
+    (lmet bspc) (lalt bspc)
+    (lmet left) (lalt left)
+    (lmet right) (lalt right)
+  )
+)
+
 ;; Physical-hand assignments for tap-hold-opposite-hand.
 ;; Same-hand rolls resolve as taps; opposite-hand keys activate the hold.
 (defhands
@@ -139,16 +150,55 @@
 
   c_esc (tap-hold 200 200 esc lctl)
 
+  t_m (tap-hold 200 200 tab (layer-while-held mouse))
+
   fn (tap-hold 200 200 fn (layer-while-held function))
 
   hyper (multi lctl lsft lalt lmet)
   meh   (multi lctl lsft lalt)
+
+  cw (caps-word 2000)
+)
+
+(defvirtualkeys
+  mouse-h (layer-while-held mouse)
+)
+
+(defalias
+  mwu (mwheel-up 50 120)
+  mwd (mwheel-down 50 120)
+  mwl (mwheel-left 50 120)
+  mwr (mwheel-right 50 120)
+
+  ms↑ (movemouse-up 1 1)
+  ms← (movemouse-left 1 1)
+  ms↓ (movemouse-down 1 1)
+  ms→ (movemouse-right 1 1)
+
+  ma↑ (movemouse-accel-up 1 1000 1 6)
+  ma← (movemouse-accel-left 1 1000 1 6)
+  ma↓ (movemouse-accel-down 1 1000 1 6)
+  ma→ (movemouse-accel-right 1 1000 1 6)
+  ;; mouse click extended time out for double tap
+  mdbt (hold-for-duration 500 mouse-h)
+  mbl (multi
+       mlft
+       @mdbt
+  )
+  mbm (multi
+       mmid
+       @mdbt
+  )
+  mbr (multi
+       mrgt
+       @mdbt
+  )
 )
 
 (deflayer base
   _      f1      f2      f3      f4      f5    f6    f7    f8    f9    f10    f11    f12
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
-  _      _         _         _          _         _    _        _          _         _         _         _    _    _
+  @t_m      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @a    @s    @d     @f    _    _        @j     @k    @l    @;    _    _
   _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
   @fn   _    @meh       _             @snav                         @meh    _   _      _        _       _
@@ -161,6 +211,15 @@
   caps    a       s       d      f       g       h       j       k     l     ;      '      ret
   lsft    z       x       c      v       b       n       m       ,     .     /      rsft
   @fn lctl    lalt    lmet                  spc                      rmet  ralt  left   down   up   rght
+)
+
+(deflayer empty
+  _    _      _      _      _    _     _   _     _    _    _   _  _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    _    _    _    _    _
+  _   _      _       _                _                     _    _    _    _  _   _
 )
 
 (deflayer function
@@ -176,7 +235,7 @@
   _      _       _       _       _      _    _       _       _       _        _    _    _
   lrld      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      C-A-S-0    _    _    _
   _      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-x         caps      home   up   end      _    _    _    _
-  esc    lmet    lalt    lctl    lsft      C-A-S-x            bspc    left    down   right    _    _    M-ret
+  esc    lmet    lalt    lctl    lsft      C-A-S-x            bspc    left    down   right    @cw    _    M-ret
   -      M-z M-x M-c M-v  C-A-S-spc  del     pgdn    pgup    _    _    _
   _   _      C-A-S-spc       M-spc                       _                     _    _    _    _   _   _
 )
@@ -208,3 +267,11 @@
   _   _      _      _                  _                _     _    _    _       _       _
 )
 
+(deflayer mouse
+  _    _      _      _      _    _     _   _     _    _    _   _  _
+  _    _       _       _       _       _    _    _    _    _    _    _    _    _
+  _    _       _       _       _       _    _    @mbm    @ma↑   @mbr    _    _    _    _
+  _    _       _       _       _       _    @mwl    @ma← @ma↓  @ma→    @mwr    _    _
+  _    _       _       _       _       _    @mwl    @mwu    @mwd    @mwr    _    _
+  _   _      _       _                @mbl                     _    _    _    _  _   _
+)
