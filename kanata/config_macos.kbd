@@ -55,56 +55,56 @@
 (defalias
 
   ;; Home-row mods: same-hand rolls tap; opposite-hand chords hold.
-  a (tap-hold-opposite-hand $hrm-hold-time a lmet
+  a (tap-hold-opposite-hand-release $hrm-hold-time a lmet
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  s (tap-hold-opposite-hand $hrm-hold-time s lalt
+  s (tap-hold-opposite-hand-release $hrm-hold-time s lalt
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  d (tap-hold-opposite-hand $hrm-hold-time d lctl
+  d (tap-hold-opposite-hand-release $hrm-hold-time d lctl
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  f (tap-hold-opposite-hand $hrm-hold-time f lsft
+  f (tap-hold-opposite-hand-release $hrm-hold-time f lsft
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  j (tap-hold-opposite-hand $hrm-hold-time j rsft
+  j (tap-hold-opposite-hand-release $hrm-hold-time j rsft
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  k (tap-hold-opposite-hand $hrm-hold-time k rctl
+  k (tap-hold-opposite-hand-release $hrm-hold-time k rctl
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  l (tap-hold-opposite-hand $hrm-hold-time l ralt
+  l (tap-hold-opposite-hand-release $hrm-hold-time l ralt
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle $hrm-prior-idle)
     (tap-repress-timeout $hrm-repress))
 
-  ; (tap-hold-opposite-hand $hrm-hold-time ; rmet
+  ; (tap-hold-opposite-hand-release $hrm-hold-time ; rmet
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
@@ -114,32 +114,32 @@
   snav  (tap-hold 200 200 spc (layer-while-held navigation))
 
   ;; Preserve the existing advanced behaviour for layer-tap keys.
-  c_syms (tap-hold-opposite-hand-release
-    $layer-hold-time c (layer-while-held symbols)
+  v_syms (tap-hold-opposite-hand-release
+    $layer-hold-time v (layer-while-held symbols)
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle 180)
     (tap-repress-timeout $tap-time))
 
-   m_syms (tap-hold-opposite-hand-release
-    $layer-hold-time m (layer-while-held symbols)
+   n_syms (tap-hold-opposite-hand-release
+    $layer-hold-time n (layer-while-held symbols)
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle 180)
     (tap-repress-timeout $tap-time))
 
-  v_num (tap-hold-opposite-hand-release
-    $layer-hold-time v (layer-while-held numbers)
+  c_num (tap-hold-opposite-hand-release
+    $layer-hold-time c (layer-while-held numbers)
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
     (require-prior-idle 180)
     (tap-repress-timeout $tap-time))
 
-  n_fn (tap-hold-opposite-hand-release
-    $layer-hold-time n (layer-while-held fn)
+  m_fn (tap-hold-opposite-hand-release
+    $layer-hold-time m (layer-while-held fn)
     (same-hand tap)
     (unknown-hand hold)
     (timeout hold)
@@ -148,7 +148,7 @@
 
   vspc (tap-hold 200 200 v spc)
 
-  c_esc (tap-hold 200 200 esc lctl)
+  c_esc (tap-hold 200 200 esc (multi lctl lsft lalt))
 
   t_m (tap-hold 200 200 tab (layer-while-held mouse))
 
@@ -158,6 +158,8 @@
   meh   (multi lctl lsft lalt)
 
   cw (caps-word 2000)
+  spc_sft (tap-hold 200 200 spc lsft)
+  sft_num (multi lsft (layer-while-held numbers))
 )
 
 (defvirtualkeys
@@ -200,7 +202,7 @@
   _      _         _         _          _         _    _        _          _         _         _         _    _    _
   @t_m      _         _         _          _         _    _        _          _         _         _         _    _    _
   @c_esc @a    @s    @d     @f    _    _        @j     @k    @l    @;    _    _
-  _      _         _         @c_syms    @v_num    _    @n_fn    @m_syms    _         _         _        _
+  _      _         _    @c_num    @v_syms    _     @n_syms  @m_fn  _         _         _        _
   @fn   _    @meh       _             @snav                         @meh    _   _      _        _       _
 )
 
@@ -234,9 +236,9 @@
 (deflayer navigation
   _      _       _       _       _      _    _       _       _       _        _    _    _
   lrld      C-A-S-1     C-A-S-2     C-A-S-3     C-A-S-4    C-A-S-5   C-A-S-6     C-A-S-7     C-A-S-8     C-A-S-9      C-A-S-0    _    _    _
-  _      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-x         caps      home   up   end      _    _    _    _
+  C-A-S-x      C-A-S-q   C-A-S-w   C-S-tab C-tab     C-A-S-p         caps      home   up   end      _    _    _    _
   esc    lmet    lalt    lctl    lsft      C-A-S-x            bspc    left    down   right    @cw    _    M-ret
-  -      M-z M-x M-c M-v  C-A-S-spc  del     pgdn    pgup    _    _    _
+  M-spc  A-spc  C-spc @sft_num  C-A-S-spc  -  del     pgdn    pgup    _    _    _
   _   _      C-A-S-spc       M-spc                       _                     _    _    _    _   _   _
 )
 
@@ -245,8 +247,8 @@
   _    _       _       _       _       _    _    _    _    _    _    _    _    _
   _    _       _       _       _       _    S-8    7    8    9    =    _    _    _
   _    lmet    lalt    lctl    lsft    _    +    4    5    6    -    _    _
-  _    _       _       _       _       _    /    1    2    3    .    ,
-  _  _    _       _                0                     _    _    _    _  _   _
+  _    _       _       _       _       _    0    1    2    3    .    ,
+  _  _    _       _                @spc_sft                    _    _    _    _  _   _
 )
 
 (deflayer symbols

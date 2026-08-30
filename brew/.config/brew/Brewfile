@@ -4,6 +4,7 @@
 # Homebrew
 tap "homebrew/bundle"
 tap "homebrew/autoupdate"
+tap "y3owk1n/tap"
 # tap "homebrew/cask"
 # tap "homebrew/core"
 #tap "homebrew/cask-drivers"
@@ -104,6 +105,7 @@ cask "itsycal", args: { no_quarantine: true }
 cask "meld", args: { no_quarantine: true }
 cask "jordanbaird-ice@beta", args: { no_quarantine: true }
 cask "bloom", args: { no_quarantine: true }
+cask "y3owk1n/tap/neru", asgs: { no_quarantine: true }
 
 # Productivity
 cask "obsidian", args: { no_quarantine: true }
