@@ -166,8 +166,8 @@ cmd-alt-h = [] # Disable "hide others"
 # alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 # cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 # ctrl-alt-shift-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
-ctrl-alt-shift-enter = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
-alt-enter = 'exec-and-forget osascript -ss ~/.dotfiles/macos/oascripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
+ctrl-alt-shift-enter = 'exec-and-forget osascript -ss ~/.dotfiles/scripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
+alt-enter = 'exec-and-forget osascript -ss ~/.dotfiles/scripts/new_ghostty_tab.applescript 2> /tmp/ghostty-$(date +%H%M%S).log'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -462,6 +462,10 @@ run = ['layout floating', 'move-node-to-workspace 10']
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.electron.huddly'
+run = ['layout floating', 'move-node-to-workspace 10']
+
+[[on-window-detected]]
+if = 'test %{app-bundle-id} = org.luanti.luanti'
 run = ['layout floating', 'move-node-to-workspace 10']
 
 # Named workspaces

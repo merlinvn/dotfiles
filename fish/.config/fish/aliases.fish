@@ -30,3 +30,5 @@ alias n nvim
 alias python python3
 
 alias open "open -a Bloom"
+
+alias mini 'NVIM_APPNAME=nvim-mini nvim'

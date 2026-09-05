@@ -1,196 +1,452 @@
-" Compatibility
-set nocompatible
+" =============================================================================
+" Minimal modern Vim config — zero external plugins
+" =============================================================================
+"
+" Philosophy:
+"   - Prefer native Vim features.
+"   - Keep mappings predictable and easy to remember.
+"   - Use external CLI tools only where they materially improve Vim.
+"   - No plugin manager and no external Vim plugins.
+"
+" Recommended external tools:
+"   git
+"   rg
+"   fd
+"
+" =============================================================================
 
-" Leader
+
+" =============================================================================
+" 1. Leaders
+" =============================================================================
+
 let mapleader = " "
+let maplocalleader = "\\"
 
-" Encoding
+
+" =============================================================================
+" 2. General
+" =============================================================================
+
 set encoding=utf-8
 
-" UI
-syntax on
+" Allow switching away from modified buffers without forcing an immediate write.
+set hidden
+
+" Ask before discarding unsaved changes where possible.
+set confirm
+
+" Reload externally modified files when safe.
+set autoread
+
+" Faster CursorHold and general responsiveness.
+set updatetime=300
+
+" Faster terminal key-code recognition without making mappings too eager.
+set ttimeout
+set ttimeoutlen=50
+set timeout
+set timeoutlen=500
+
+
+" =============================================================================
+" 3. Filetypes, syntax, built-in packages
+" =============================================================================
+
+filetype plugin indent on
+syntax enable
+
+" Built-in extended % matching.
+packadd! matchit
+
+
+" =============================================================================
+" 4. UI
+" =============================================================================
+
 set title
+
 set number
 set relativenumber
+
 set cursorline
+
 set nowrap
 set scrolloff=8
 set sidescrolloff=8
-set termguicolors
-set background=dark
+
 set laststatus=2
 set showtabline=1
-set statusline=%F%m%r%h%w%=[%{&ff}]%y[%p%%/%L][%04l:%04v]
 
-" Search
+set showcmd
+set wildmenu
+
+if exists("+termguicolors")
+  set termguicolors
+endif
+
+set background=dark
+
+" Built into modern Vim.
+silent! colorscheme habamax
+
+" Compact but useful native statusline.
+set statusline=
+set statusline+=%F
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%w
+set statusline+=%=
+set statusline+=[%{&ff}]
+set statusline+=%y
+set statusline+=[%p%%/%L]
+set statusline+=[%04l:%04v]
+
+
+" =============================================================================
+" 5. Search
+" =============================================================================
+
 set ignorecase
 set smartcase
+
 set hlsearch
 set incsearch
 
-" Indentation
+" Clear search highlighting without changing the search register.
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+
+" =============================================================================
+" 6. Indentation
+" =============================================================================
+
 set expandtab
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+
 set smartindent
+set shiftround
 
-" Files
+" Backspace behaves naturally in insert mode.
+set backspace=indent,eol,start
+
+
+" =============================================================================
+" 7. Files and command-line completion
+" =============================================================================
+
 set nobackup
-set path+=**
-set wildmenu
-set wildmode=longest:full,full
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set nowritebackup
 
-" Splits
+" Recursive :find support.
+set path+=**
+
+set wildmode=longest:full,full
+
+set wildignore=
+set wildignore+=*.docx
+set wildignore+=*.jpg
+set wildignore+=*.jpeg
+set wildignore+=*.png
+set wildignore+=*.gif
+set wildignore+=*.pdf
+set wildignore+=*.pyc
+set wildignore+=*.exe
+set wildignore+=*.flv
+set wildignore+=*.img
+set wildignore+=*.xlsx
+set wildignore+=*.o
+set wildignore+=*.obj
+set wildignore+=*.class
+set wildignore+=*.DS_Store
+set wildignore+=*/.git/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/__pycache__/*
+
+
+" =============================================================================
+" 8. Persistent undo
+" =============================================================================
+
+let s:undo_dir = expand("~/.vim/undo")
+
+if !isdirectory(s:undo_dir)
+  call mkdir(s:undo_dir, "p", 0700)
+endif
+
+let &undodir = s:undo_dir
+set undofile
+
+
+" =============================================================================
+" 9. Splits and windows
+" =============================================================================
+
 set splitbelow
 set splitright
 
-" Filetypes
-filetype plugin on
+" Window navigation.
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
 
-" Spell
+" Resize windows.
+nnoremap <silent> <C-Up>    :resize +2<CR>
+nnoremap <silent> <C-Down>  :resize -2<CR>
+nnoremap <silent> <C-Left>  :vertical resize -2<CR>
+nnoremap <silent> <C-Right> :vertical resize +2<CR>
+
+" Split management.
+nnoremap <silent> <leader>-  <C-w>s
+nnoremap <silent> <leader>\| <C-w>v
+nnoremap <silent> <leader>wd <C-w>c
+
+
+" =============================================================================
+" 10. Movement and editing
+" =============================================================================
+
+" Move by visual lines when text is wrapped.
+"
+" With nowrap this mostly behaves like normal j/k, but remains sensible if
+" wrapping is temporarily enabled.
+nnoremap <expr> j v:count == 0 ? "gj" : "j"
+nnoremap <expr> k v:count == 0 ? "gk" : "k"
+
+xnoremap <expr> j v:count == 0 ? "gj" : "j"
+xnoremap <expr> k v:count == 0 ? "gk" : "k"
+
+" Join lines while keeping the cursor close to its previous position.
+nnoremap J mzJ`z
+
+" Move lines / selections.
+nnoremap <silent> <A-j> :move .+1<CR>==
+nnoremap <silent> <A-k> :move .-2<CR>==
+
+xnoremap <silent> <A-j> :move '>+1<CR>gv=gv
+xnoremap <silent> <A-k> :move '<-2<CR>gv=gv
+
+" Replacing a visual selection should not overwrite the last yank.
+xnoremap p "_dP
+
+
+" =============================================================================
+" 11. Buffers
+" =============================================================================
+
+nnoremap <silent> <S-h> :bprevious<CR>
+nnoremap <silent> <S-l> :bnext<CR>
+
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+
+" Alternate buffer.
+nnoremap <silent> <leader>bb <C-^>
+
+" Native buffer command with completion.
+nnoremap <leader>, :buffer<Space>
+
+" Delete buffers.
+nnoremap <silent> <leader>bd :bdelete<CR>
+nnoremap <silent> <leader>bD :bdelete!<CR>
+
+
+" =============================================================================
+" 12. Tabs
+" =============================================================================
+
+nnoremap <silent> <leader><Tab><Tab> :tabnew<CR>
+
+nnoremap <silent> <leader><Tab>] :tabnext<CR>
+nnoremap <silent> ]<Tab> :tabnext<CR>
+
+nnoremap <silent> <leader><Tab>[ :tabprevious<CR>
+nnoremap <silent> [<Tab> :tabprevious<CR>
+
+nnoremap <silent> <leader><Tab>d :tabclose<CR>
+nnoremap <silent> <leader><Tab>f :tabfirst<CR>
+nnoremap <silent> <leader><Tab>l :tablast<CR>
+
+
+" =============================================================================
+" 13. Save / quit
+" =============================================================================
+
+nnoremap <silent> <leader>qq :qa<CR>
+
+nnoremap <silent> <C-s> <Cmd>write<CR>
+inoremap <silent> <C-s> <Cmd>write<CR>
+xnoremap <silent> <C-s> <Cmd>write<CR>
+snoremap <silent> <C-s> <Cmd>write<CR>
+
+
+" =============================================================================
+" 14. Spell / UI toggles
+" =============================================================================
+
+nnoremap <silent> <leader>us :setlocal spell!<CR>
+nnoremap <silent> <leader>uw :setlocal wrap!<CR>
+nnoremap <silent> <leader>un :setlocal number!<CR>
+
 set nospell
 set spelllang=en_us
 
-" Clipboards
-set clipboard=unnamedplus
 
-" Terminal
-set ttimeout
-set ttimeoutlen=100
+" =============================================================================
+" 15. Native completion
+" =============================================================================
 
-let &t_SI = "\<Esc>[6 q"
-let &t_EI = "\<Esc>[2 q"
-
-" Completion
 set completeopt=menu,menuone,noinsert
 
-inoremap <silent> ,f <C-x><C-f>
-inoremap <silent> ,i <C-x><C-i>
-inoremap <silent> ,l <C-x><C-l>
-inoremap <silent> ,n <C-x><C-n>
-inoremap <silent> ,o <C-x><C-o>
-
-" Colors
-if !empty(globpath(&runtimepath, "colors/habamax.vim"))
-  colorscheme habamax
-endif
-
-" Undo
-if !isdirectory(expand('~/.vim/undo'))
-  call mkdir(expand('~/.vim/undo'), 'p')
-endif
-
-set undodir=~/.vim/undo
-set undofile
-
-" Better vertical movement
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
+" Vim already provides:
 "
-" Better join
-nnoremap J mzJ`z
-
-" Windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Resize windows
-nnoremap <C-Up>    :resize +2<CR>
-nnoremap <C-Down>  :resize -2<CR>
-nnoremap <C-Left>  :vertical resize -2<CR>
-nnoremap <C-Right> :vertical resize +2<CR>
-
-" Splits
-nnoremap <leader>- <C-w>s
-nnoremap <leader>\| <C-w>v
-nnoremap <leader>wd <C-w>c
-
-" Move lines
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
-" Buffers
-nnoremap <S-h> :bprevious<CR>
-nnoremap <S-l> :bnext<CR>
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
-
-" Alternate buffer
-nnoremap <leader>bb :b#<CR>
-" Buffers
-nnoremap <leader>, :b<Space><C-d>
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>bD :bd!<CR>
-
-" Tabs
-nnoremap <leader><Tab><Tab> :tabnew<CR>
-nnoremap <leader><Tab>] :tabnext<CR>
-nnoremap ]<Tab> :tabnext<CR>
-nnoremap <leader><Tab>[ :tabprevious<CR>
-nnoremap [<Tab> :tabprevious<CR>
-nnoremap <leader><Tab>d :tabclose<CR>
-nnoremap <leader><Tab>f :tabfirst<CR>
-nnoremap <leader><Tab>l :tablast<CR>
-
-" Preserve yank register when pasting over selection
-xmap p "_dP
-
-" Quit
-nnoremap <leader>qq :qa<CR>
-" Toggle spell
-nnoremap <leader>us :setlocal spell!<CR>
-
-" Save
-nnoremap <C-s> <Cmd>w<CR><Esc>
-inoremap <C-s> <Cmd>w<CR><Esc>
-xnoremap <C-s> <Cmd>w<CR><Esc>
-snoremap <C-s> <Cmd>w<CR><Esc>
+"   <C-x><C-f>   file names
+"   <C-x><C-i>   included files
+"   <C-x><C-l>   whole lines
+"   <C-x><C-n>   current buffer keywords
+"   <C-x><C-o>   omnifunc
+"
+" Keep the native keys instead of mapping comma-prefixed insert mappings.
+" Mapping ',' in insert mode can introduce an unwanted timeout when typing ','.
 
 
-" Abbreviations
-cnoreabbrev Q q
-cnoreabbrev q1 q!
-cnoreabbrev Q1 q!
-cnoreabbrev Qa1 qa!
-cnoreabbrev Qa qa
-cnoreabbrev W w
-cnoreabbrev Wq wq
-cnoreabbrev WQ wq
+" =============================================================================
+" 16. Native project search with ripgrep
+" =============================================================================
 
-" Misc
-vnoremap <leader>sr "hy:%s/<C-r>h//g<left><left>
-nnoremap <leader>ve :e $MYVIMRC<CR>
-nnoremap <leader>vr :w<CR>:source %<CR>
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
 
-" File browser
+  " Start project grep.
+  nnoremap <leader>sg :silent\ grep!<Space>
+
+  " Quickfix navigation.
+  nnoremap <silent> [q :cprevious<CR>
+  nnoremap <silent> ]q :cnext<CR>
+
+  nnoremap <silent> <leader>xo :copen<CR>
+  nnoremap <silent> <leader>xc :cclose<CR>
+endif
+
+
+" =============================================================================
+" 17. Native file finding
+" =============================================================================
+
+" :find uses 'path', which includes ** above.
 nnoremap <leader><Space> :find<Space>
 
-" Explorer
-nnoremap <leader>e :Lex<CR>
-nnoremap <leader>o :Explore<CR>
 
-let g:netrw_browse_split=4
-let g:netrw_keepdir=0
-let g:netrw_altv=1
-let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_winsize=15
+" =============================================================================
+" 18. Netrw explorer
+" =============================================================================
 
-" Autocommands
+" Open directory browser.
+nnoremap <silent> <leader>e :Lexplore<CR>
+nnoremap <silent> <leader>o :Explore<CR>
+
+" Open selected files in the previous window.
+let g:netrw_browse_split = 4
+
+" Do not silently change Vim's cwd while browsing.
+let g:netrw_keepdir = 1
+
+" Prefer vertical splitting.
+let g:netrw_altv = 1
+
+" Cleaner UI.
+let g:netrw_banner = 0
+
+" Tree-like listing.
+let g:netrw_liststyle = 3
+
+" Explorer width as percentage.
+let g:netrw_winsize = 20
+
+
+" =============================================================================
+" 19. Config editing / reload
+" =============================================================================
+
+nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
+
+nnoremap <silent> <leader>vr :write<CR>:source $MYVIMRC<CR>:echo "vimrc reloaded"<CR>
+
+
+" =============================================================================
+" 20. Substitute selected text
+" =============================================================================
+
+" Visually select text, then <leader>sr to prepare a global substitution.
+xnoremap <leader>sr "hy:%s/<C-r>h//g<Left><Left>
+
+
+" =============================================================================
+" 21. Safe command-line abbreviations
+" =============================================================================
+"
+" Only expand when the whole Ex command matches, rather than replacing these
+" words inside larger commands.
+
+cnoreabbrev <expr> Q
+      \ getcmdtype() ==# ":" && getcmdline() ==# "Q" ? "q" : "Q"
+
+cnoreabbrev <expr> Q1
+      \ getcmdtype() ==# ":" && getcmdline() ==# "Q1" ? "q!" : "Q1"
+
+cnoreabbrev <expr> q1
+      \ getcmdtype() ==# ":" && getcmdline() ==# "q1" ? "q!" : "q1"
+
+cnoreabbrev <expr> Qa
+      \ getcmdtype() ==# ":" && getcmdline() ==# "Qa" ? "qa" : "Qa"
+
+cnoreabbrev <expr> Qa1
+      \ getcmdtype() ==# ":" && getcmdline() ==# "Qa1" ? "qa!" : "Qa1"
+
+cnoreabbrev <expr> W
+      \ getcmdtype() ==# ":" && getcmdline() ==# "W" ? "w" : "W"
+
+cnoreabbrev <expr> Wq
+      \ getcmdtype() ==# ":" && getcmdline() ==# "Wq" ? "wq" : "Wq"
+
+cnoreabbrev <expr> WQ
+      \ getcmdtype() ==# ":" && getcmdline() ==# "WQ" ? "wq" : "WQ"
+
+
+" =============================================================================
+" 22. Autocommands
+" =============================================================================
+
 augroup vimrc
   autocmd!
 
+  " Hide cursorline while typing.
   autocmd InsertEnter * setlocal nocursorline
   autocmd InsertLeave * setlocal cursorline
 
-  autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.rs,*.py,*.js,*.ts,*.sh,*.vim,.vimrc %s/\s\+$//e
-  autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.rs,*.py,*.js,*.ts,*.sh,*.vim,.vimrc %s/\n\+\%$//e
+  " Return to the previous cursor position when reopening a file.
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   execute "normal! g`\"" |
+        \ endif
+
+  " Close common utility windows with q.
+  autocmd FileType help,qf,man
+        \ nnoremap <silent><buffer> q :close<CR>
+
+  " Trim trailing whitespace and trailing empty lines before saving source files.
+  "
+  " winsaveview()/winrestview() prevents the cleanup from moving the cursor.
+  autocmd BufWritePre *.c,*.cpp,*.h,*.hpp,*.rs,*.py,*.js,*.ts,*.sh,*.vim,.vimrc
+        \ let s:view = winsaveview() |
+        \ keeppatterns %s/\s\+$//e |
+        \ keeppatterns %s/\n\+\%$//e |
+        \ call winrestview(s:view)
+
 augroup END

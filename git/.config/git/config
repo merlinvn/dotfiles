@@ -1,0 +1,79 @@
+[user]
+  name = Nguyen Tran
+  email = merlinvn@gmail.com
+
+[core]
+  editor = nvim
+  autocrlf = input
+  excludesfile = ~/.config/git/ignore
+
+[color]
+  ui = auto
+
+[init]
+  defaultBranch = main
+
+[push]
+  default = simple
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[pull]
+  rebase = false
+
+[rebase]
+  autoStash = true
+
+[merge]
+  conflictStyle = zdiff3
+
+[difftool]
+  prompt = false
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[column]
+  ui = auto
+
+[status]
+  branch = true
+  short = true
+
+[alias]
+  c = commit
+  ca = commit -a
+  cm = commit -m
+  cam = commit -am
+
+  d = diff
+  dc = diff --cached
+
+  s = status -sb
+
+  l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+  ll = log --graph --decorate --oneline --all
+
+  last = log -1 HEAD
+  unstage = restore --staged
+  amend = commit --amend --no-edit
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

@@ -1,16 +1,25 @@
 [tools]
-
-node = "24"
+# Runtimes
+node = "latest"
 bun = "latest"
-python = "3.11"
+python = "3.13"
 elixir = "latest"
+
+# Python tooling
 uv = "latest"
 
-[plugins]
-# python = 'https://github.com/jdxcode/rtx-python'
+# JS/TS tooling
+"npm:typescript" = "latest"
+"npm:prettier" = "latest"
+"npm:eslint" = "latest"
+
+# CLI tools
+"npm:@zvec/zvec-grep" = "latest"
+"npm:@tobilu/qmd" = "latest"
+
+# Editor / language tooling
+lua-language-server = "latest"
+tree-sitter = "latest"
 
 [settings]
-python.uv_venv_auto = true
-experimental = true
-#idiomatic_version_file_enable_tools = ["python"]
-#
+python.uv_venv_auto = "create|source"

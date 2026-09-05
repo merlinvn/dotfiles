@@ -99,14 +99,14 @@ sketchybar --add item clock right \
   --add item volume right \
   --set volume icon=󰕾 label="--" script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change \
-  --add item battery right \
-  --set battery icon=󰁹 label="--" update_freq=120 script="$PLUGIN_DIR/battery.sh" \
   --add item wifi right \
   --set wifi icon="" label="--" update_freq=15 script="$PLUGIN_DIR/wifi.sh" \
   --add item memory right \
   --set memory icon=󰘚 label="--" updates=on update_freq=5 script="$PLUGIN_DIR/memory.sh" \
   --add item cpu right \
   --set cpu icon=󰍛 label="--" updates=on update_freq=2 script="$PLUGIN_DIR/cpu.sh" \
-  --subscribe battery system_woke power_source_change
+  --subscribe battery system_woke power_source_change \
+  --add item battery right \
+  --set battery icon=󰁹 label="--" update_freq=120 script="$PLUGIN_DIR/battery.sh"
 
 sketchybar --update

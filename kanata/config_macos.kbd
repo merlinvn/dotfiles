@@ -167,10 +167,10 @@
 )
 
 (defalias
-  mwu (mwheel-up 50 120)
-  mwd (mwheel-down 50 120)
-  mwl (mwheel-left 50 120)
-  mwr (mwheel-right 50 120)
+  mwu (mwheel-up 50 3)
+  mwd (mwheel-down 50 3)
+  mwl (mwheel-left 50 3)
+  mwr (mwheel-right 50 3)
 
   ms↑ (movemouse-up 1 1)
   ms← (movemouse-left 1 1)

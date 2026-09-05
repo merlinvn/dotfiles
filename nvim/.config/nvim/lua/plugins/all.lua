@@ -145,4 +145,14 @@ return {
       { "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>', ft = "grug-far" },
     },
   },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        ["markdownlint-cli2"] = {
+          args = { "--disable", "MD013" },
+        },
+      },
+    },
+  },
 }
