@@ -1,37 +1,15 @@
-# Path to oh-my-zsh
-export ZSH="$HOME/.oh-my-zsh"
+# ~/.zshrc
 
-# Load profile
-[ -s "$HOME/.profile" ] && source "$HOME/.profile"
+SHELL_CONFIG="${SHELL_CONFIG:-$HOME/.config/shell}"
 
-# Plugins
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting docker docker-compose kubectl)
+# Zsh-specific init first (OMZ, completion, tools...)
+[[ -r "$SHELL_CONFIG/zsh/init.sh" ]] && source "$SHELL_CONFIG/zsh/init.sh"
 
-# Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Shared interactive config last so your aliases win
+[[ -r "$SHELL_CONFIG/interactive.sh" ]] && source "$SHELL_CONFIG/interactive.sh"
 
-# Source aliases
-[ -f ~/.aliases ] && source ~/.aliases
+# Machine-local config
+[ -r "$SHELL_CONFIG/local.sh" ] && source "$SHELL_CONFIG/local.sh"
 
-source <(fzf --zsh)
-
-# Starship prompt
-[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
-# for low ram sbc
-# PROMPT='%F{green}%n@%m%f:%F{blue}%~%f%# '
-
-# Load mise
-[ -x "$(command -v mise)" ] && eval "$(mise activate zsh)"
-
-# Machine-specific settings
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# API keys (gitignored)
-[ -f ~/.apikey ] && source ~/.apikey
-
-# >>> open-knowledge cli >>>
-# ! Contents within this block are managed by OpenKnowledge. Do not edit.
-# ! Delete this whole block to opt out — OpenKnowledge will not re-add it.
-[ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
-# <<< open-knowledge cli <<<
-
+# Secrets
+[ -r "$HOME/.apikey" ] && source "$HOME/.apikey"

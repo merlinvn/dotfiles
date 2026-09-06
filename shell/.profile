@@ -1,15 +1,7 @@
-# ~/.profile: Login shell configuration
-# -------------------------------------
-# Sourced for login shells
+# ~/.profile
 
-# Locale
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+SHELL_CONFIG="$HOME/.config/shell"
 
-# Shared PATH (keep bash and zsh aligned)
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
-[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
-[ -d "$HOME/.local/share/mise/shims" ] && PATH="$HOME/.local/share/mise/shims:$PATH"
+[ -r "$SHELL_CONFIG/env.sh" ] && . "$SHELL_CONFIG/env.sh"
 
-# Shell-specific rc files should not re-source shared PATH logic here.
+[ -r "$SHELL_CONFIG/path.sh" ] && . "$SHELL_CONFIG/path.sh"

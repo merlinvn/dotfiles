@@ -1,29 +1,12 @@
-# If not running interactively, don't do anything
+# ~/.bashrc
+
+# Ignore non-interactive shells
 [[ $- != *i* ]] && return
 
-# Source aliases
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+SHELL_CONFIG="${SHELL_CONFIG:-$HOME/.config/shell}"
 
-# Starship prompt
-command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
-# for low ram
-# PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ '
+[[ -r "$SHELL_CONFIG/bash/init.sh" ]] && source "$SHELL_CONFIG/bash/init.sh"
 
-# Load mise
-command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
+[[ -r "$SHELL_CONFIG/interactive.sh" ]] && source "$SHELL_CONFIG/interactive.sh"
 
-# Machine-specific settings
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
-
-# API keys (gitignored)
-[ -f ~/.apikey ] && source ~/.apikey
-
-# fzf
-command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-echo "loaded bashrc"
+[[ -r "$SHELL_CONFIG/local.sh" ]] && source "$SHELL_CONFIG/local.sh"

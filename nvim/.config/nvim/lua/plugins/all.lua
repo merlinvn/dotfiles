@@ -73,6 +73,17 @@ return {
         end,
         desc = "Find Dotfiles",
       },
+      {
+        "<leader>vs",
+        function()
+          -- check if the folder exists, it could be .dotfiles or dotfiles
+          local shellfiles = vim.fn.isdirectory(vim.fn.expand("$HOME/.dotfiles/shell/.config/shell")) == 1
+              and "$HOME/.dotfiles/shell/.config/shell"
+            or "$HOME/.dotfiles/shell/.config/shell"
+          require("fzf-lua").git_files({ cwd = shellfiles })
+        end,
+        desc = "Find Shellfiles",
+      },
     },
   },
 
