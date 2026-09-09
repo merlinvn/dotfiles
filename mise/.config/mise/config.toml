@@ -16,6 +16,7 @@ uv = "latest"
 # CLI tools
 "npm:@zvec/zvec-grep" = "latest"
 "npm:@tobilu/qmd" = "latest"
+"herdr" = "latest"
 
 # Editor / language tooling
 lua-language-server = "latest"

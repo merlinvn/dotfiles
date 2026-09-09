@@ -27,3 +27,4 @@ fish/.config/fish/fish_variables
 /vim/.vim/undo
 /vim/.vim/undo/%Users%neo%.dotfiles%vim%.vimrc
 /shell/.config/shell/local.sh
+/neru/.config/neru/config.override.toml

@@ -72,8 +72,8 @@ text = "#EBDBB2"          # Warm foreground
 [hints]
 enabled = true
 strategy = "axtree"            # Element detection: "axtree" (AX API) or "vision" (Vision Framework)
-hint_characters = "arstgmnhio" # Characters used for hint labels for my external keyboard layout
-# hint_characters = "asdfghjkl;" # Characters used for hint labels for internal keyboard layout
+hint_characters = "asdfghjkl;" # Characters used for hint labels for internal keyboard layout
+# hint_characters = "arstgmnhio" # Characters used for hint labels for my external keyboard layout
 label_direction = "normal" # Hint label algorithm: "normal" (default) or "reverse"
 max_depth = 50 # Max accessibility tree depth (0 = unlimited)
 include_menubar_hints = false
