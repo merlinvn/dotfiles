@@ -22,9 +22,9 @@
   ;; because command is used for so many other things
   ;; and it's weird that these cases use alt.
   (defoverrides
-    (lmet bspc) (lalt bspc)
-    (lmet left) (lalt left)
-    (lmet right) (lalt right)
+  ;;  (lmet bspc) (lalt bspc)
+  ;;  (lmet left) (lalt left)
+  ;;  (lmet right) (lalt right)
   )
 )
 

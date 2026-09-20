@@ -25,6 +25,7 @@ has bat && alias b='bat'
 # Editors
 has vim && alias v='vim'
 has nvim && alias n='nvim'
+has nvim && alias mini='NVIM_APPNAME=nvim-mini nvim'
 
 # Git
 if has git; then

@@ -12,6 +12,13 @@ if ! command -v eza >/dev/null 2>&1; then
   alias ls='ls -G'
 fi
 
+# macOS default soft limit can be only 256
+if [ "$(ulimit -n)" -lt 4096 ]; then
+  ulimit -n 4096 2>/dev/null || true
+fi
+
+[ -f "$(brew --prefix)/etc/profile.d/autojump.sh" ] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
+
 # JetBrains Toolbox
 TOOLBOX_BIN="$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 

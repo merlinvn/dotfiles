@@ -45,12 +45,11 @@ text = "#EBDBB2"          # Warm foreground
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#hotkeys
 # See https://github.com/y3owk1n/neru/blob/main/docs/CLI.md
 [hotkeys]
-"Primary+Shift+Space" = "__disabled__"
-"Primary+Shift+G" = "__disabled__"
-"Primary+Shift+C" = "__disabled__"
-"Primary+Shift+S" = "__disabled__"
 
 "Ctrl+Alt+Shift+X" = "hints --action left_click"
+"Ctrl+Alt+Shift+G" = "grid"
+"Ctrl+Alt+Shift+R" = "recursive_grid"
+
 #
 # "Ctrl+Alt+Shift+G" = "grid"
 # "Primary+Shift+C" = "recursive_grid"
@@ -193,20 +192,22 @@ generic_clickable_min_confidence = 0.5 # Minimum confidence for generic clickabl
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#grid
 [grid]
 enabled = true
-characters = "abcdefghijklmnpqrstuvwxyz"    # Primary grid labels
-sublayer_keys = "abcdefghijklmnpqrstuvwxyz" # Subgrid labels, first 9 used (empty = infer from characters)
-row_labels = ""                             # Custom row labels (empty = infer from characters)
-col_labels = ""                             # Custom column labels (empty = infer from characters)
-live_match_update = true                    # Highlight cells as you type
-hide_unmatched = true                       # Hide non-matching cells
-prewarm_enabled = true                      # Pre-compute grid on startup (~1.5MB RAM)
-enable_gc = false                           # Periodic memory cleanup (adds CPU overhead)
+characters = "arstnhio"     # Primary grid labels
+sublayer_keys = "luynhijk," # Subgrid labels, first 9 used (empty = infer from characters)
+row_labels = "arst"         # Custom row labels (empty = infer from characters)
+col_labels = "nhio"         # Custom column labels (empty = infer from characters)
+live_match_update = true    # Highlight cells as you type
+hide_unmatched = true       # Hide non-matching cells
+prewarm_enabled = true      # Pre-compute grid on startup (~1.5MB RAM)
+enable_gc = false           # Periodic memory cleanup (adds CPU overhead)
+max_label_length = 2
 
 [grid.hotkeys]
 "Escape" = "idle"
 "`" = "toggle-cursor-follow-selection"
-"Space" = "action reset"
-"Backspace" = "action backspace"
+"Tab" = "action reset"
+"Space" = ["action left_click", "idle"]
+"Enter" = ["action left_click", "action reset"]
 "Shift+L" = "action left_click"
 "Shift+R" = "action right_click"
 "Shift+M" = "action middle_click"
@@ -226,12 +227,17 @@ border_width = 1
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#recursive_grid
 [recursive_grid]
 enabled = true
-grid_cols = 3       # Number of columns (>= 1)
-grid_rows = 3       # Number of rows (>= 1)
-keys = "rtyfghvbn"  # Cell selection keys (must be grid_cols * grid_rows chars)
-min_size_width = 1  # Stop subdividing below this width (px)
+grid_cols = 3      # Number of columns (>= 1)
+grid_rows = 3      # Number of rows (>= 1)
+keys = "luynhijk," # Cell selection keys (must be grid_cols * grid_rows chars)
+# keys = "rtyfghvbn"  # Cell  keys (must be grid_cols * grid_rows chars)
+min_size_width = 1 # Stop subdividing below this width (px)
 min_size_height = 1 # Stop subdividing below this height (px)
-max_depth = 10      # Maximum recursion levels (1–20)
+max_depth = 10 # Maximum recursion levels (1–20)
+layers = [
+  { depth = 0, grid_cols = 5, grid_rows = 3, keys = "qwfpbarstg'xcdv" },
+  { depth = 1, grid_cols = 3, grid_rows = 3, keys = "luynhijk," },
+]
 
 [recursive_grid.animation]
 enabled = true   # Opt out from native depth transition animation on supported platforms
@@ -240,7 +246,9 @@ duration_ms = 50 # Recursive-grid animation duration in milliseconds
 [recursive_grid.hotkeys]
 "Escape" = "idle"
 "`" = "toggle-cursor-follow-selection"
-"Space" = "action reset"
+"Tab" = "action reset"
+"Space" = ["action left_click", "idle"]
+"Enter" = ["action left_click", "action reset"]
 "Backspace" = "action backspace"
 "Shift+L" = "action left_click"
 "Shift+R" = "action right_click"
@@ -256,15 +264,15 @@ duration_ms = 50 # Recursive-grid animation duration in milliseconds
 line_width = 1
 font_size = 12
 font_family = ""
-label_background = false                  # Add rounded backgrounds behind cell labels
+label_background = true                   # Add rounded backgrounds behind cell labels
 label_background_padding_x = -1
 label_background_padding_y = -1
 label_background_border_radius = -1
 label_background_border_width = 1
 label_char = ""                           # Override cell labels with a single character (e.g. "·"); empty = use key
 label_autohide_multiplier = 1.5           # Hide labels when cell < fontSize × multiplier (0 = disable)
-sub_key_preview = false                   # Draw miniature key grid inside each cell
-sub_key_preview_font_size = 10
+sub_key_preview = true                    # Draw miniature key grid inside each cell
+sub_key_preview_font_size = 12
 sub_key_preview_autohide_multiplier = 1.5 # Hide the preview when a sub-cell < fontSize × multiplier (0 = disable)
 sub_key_preview_label_char = ""           # Override sub-key preview labels with a single character (e.g. "·"); empty = use key
 
