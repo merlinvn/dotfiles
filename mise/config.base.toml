@@ -18,9 +18,11 @@ uv = "latest"
 "npm:eslint" = "latest"
 
 # CLI tools
-"npm:@zvec/zvec-grep" = "latest"
-"npm:@tobilu/qmd" = "latest"
-"herdr" = "latest"
+# "npm:@zvec/zvec-grep" = "latest"
+# "npm:@tobilu/qmd" = "latest"
+# "herdr" = "latest"
+# ripgrep = "latest"
+# fd = "latest"
 
 # Editor / language tooling
 lua-language-server = "latest"
