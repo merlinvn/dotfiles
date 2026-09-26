@@ -3,7 +3,11 @@
 node = "latest"
 bun = "latest"
 python = "3.13"
-elixir = "latest"
+# rust = "latest"
+# go = "latest"
+# zig = "latest"
+# erlang = "latest"
+# elixir = "latest"
 
 # Python tooling
 uv = "latest"
