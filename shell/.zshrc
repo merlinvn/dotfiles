@@ -9,7 +9,7 @@ SAVEHIST=10000
 # Oh My Zsh plugins and completion
 export ZSH="$HOME/.oh-my-zsh"
 if [ -d "$ZSH" ]; then
-  plugins=(git zsh-autosuggestions zsh-syntax-highlighting docker docker-compose kubectl)
+  plugins=(git deja zsh-syntax-highlighting docker docker-compose kubectl)
   source "$ZSH/oh-my-zsh.sh"
 else
   autoload -Uz compinit
