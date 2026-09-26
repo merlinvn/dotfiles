@@ -10,6 +10,7 @@ has nvim && alias n='nvim' mini='NVIM_APPNAME=nvim-mini nvim'
 has kubectl && alias k='kubectl'
 has lazygit && alias lg='lazygit'
 has gitui && alias gg='gitui'
+[[ -x "$HOME/.dotfiles/scripts/tmux-sessionizer" ]] && alias p='"$HOME/.dotfiles/scripts/tmux-sessionizer"'
 has task && alias t='task'
 has mise && alias x='mise exec --' r='mise run'
 
