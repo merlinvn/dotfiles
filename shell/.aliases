@@ -1,0 +1,36 @@
+# Shared aliases for Bash and Zsh.
+
+# Navigation and common commands
+alias ..='cd ..' ...='cd ../..' ....='cd ../../..'
+alias less='less -R'
+has tree && alias tree='tree -C'
+has bat && alias b='bat'
+has vim && alias v='vim'
+has nvim && alias n='nvim' mini='NVIM_APPNAME=nvim-mini nvim'
+has kubectl && alias k='kubectl'
+has lazygit && alias lg='lazygit'
+has gitui && alias gg='gitui'
+has task && alias t='task'
+has mise && alias x='mise exec --' r='mise run'
+
+if has eza; then
+  alias ls='eza --color=auto --icons --group-directories-first'
+  alias ll='eza -alhF --icons --group-directories-first'
+  alias la='eza -a --icons --group-directories-first'
+  alias l='eza -F --icons --group-directories-first'
+else
+  alias ll='ls -al' la='ls -a' l='ls -F'
+  case "$(uname -s)" in
+    Darwin) alias ls='ls -G' ;;
+    Linux) alias ls='ls --color=auto' ;;
+  esac
+fi
+
+if has git; then
+  alias gd='git diff' ga='git add' gaa='git add .'
+  alias gc='git commit' gcm='git commit -m' gcam='git commit -am'
+  alias gp='git pull --rebase' gpsh='git push'
+  alias gs='git status' gss='git status -s'
+  alias gl='git log --oneline --graph --decorate'
+fi
+if has npm; then alias ni='npm install' nr='npm run' ns='npm start'; fi

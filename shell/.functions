@@ -1,0 +1,53 @@
+# Shared functions for Bash and Zsh.
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+mkcd() { mkdir -p "$1" && cd "$1"; }
+take() { mkcd "$1"; }
+
+croot() {
+  local root
+  root="$(git rev-parse --show-toplevel 2>/dev/null)" || return
+  cd "$root"
+}
+
+dipa() {
+  has docker || return 1
+  docker ps -a -q -f status=exited | while IFS= read -r id; do [ -n "$id" ] && docker rm -v "$id"; done
+  docker volume ls -qf dangling=true | while IFS= read -r id; do [ -n "$id" ] && docker volume rm "$id"; done
+  docker images -qf dangling=true | while IFS= read -r id; do [ -n "$id" ] && docker rmi "$id"; done
+}
+
+load_autojump() {
+  local file prefix
+  prefix="${HOMEBREW_PREFIX:-}"
+
+  if [ -n "${ZSH_VERSION:-}" ]; then
+    for file in \
+      "$prefix/etc/autojump.zsh" \
+      "$prefix/share/autojump/autojump.zsh" \
+      /usr/share/autojump/autojump.zsh \
+      /etc/profile.d/autojump.zsh \
+      /etc/profile.d/autojump.sh \
+      /usr/local/share/autojump/autojump.zsh \
+      /opt/local/etc/profile.d/autojump.sh; do
+      if [ -r "$file" ]; then . "$file"; return; fi
+    done
+  else
+    for file in \
+      "$prefix/etc/profile.d/autojump.sh" \
+      "$prefix/share/autojump/autojump.bash" \
+      /usr/share/autojump/autojump.bash \
+      /usr/share/autojump/autojump.sh \
+      /etc/profile.d/autojump.sh \
+      /opt/local/etc/profile.d/autojump.sh; do
+      if [ -r "$file" ]; then . "$file"; return; fi
+    done
+  fi
+}
+
+load_dircolors() {
+  if [ "$(uname -s)" = Linux ] && has dircolors; then
+    eval "$(dircolors -b 2>/dev/null)"
+  fi
+}

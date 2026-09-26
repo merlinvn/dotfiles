@@ -326,47 +326,47 @@ shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if = 'test %{window-title} ~= testing'                 # case intensitive regex match
-run = ['layout floating', 'move-node-to-workspace 10']
+run = ['layout floating', 'move-node-to-workspace 10 --focus-follows-window']
 
 # Utilities
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.macpaw.CleanMyMac4'
-run = ['layout floating', 'move-node-to-workspace 1']
+run = ['layout floating', 'move-node-to-workspace 1 --focus-follows-window']
 
 # Terminals → workspace 1
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^kitty'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace --focus-follows-window 1'
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Alacritty'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace --focus-follows-window 1'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.github.wez.wezterm'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace --focus-follows-window 1'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.mitchellh.ghostty'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace --focus-follows-window 1'
 
 
 # Browsers → workspace 2
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.brave.Browser'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace --focus-follows-window 2'
 
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.apple.Safari'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace --focus-follows-window 2'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.google.Chrome'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace --focus-follows-window 2'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = org.freedownloadmanager.fdm6'
@@ -376,73 +376,78 @@ run = ['layout v_accordion', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.microsoft.Word'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace --focus-follows-window 3'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = org.freecad.FreeCAD'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace --focus-follows-window 3'
 
 # Development → workspace 4
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.microsoft.VSCode'
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace --focus-follows-window 4'
 
 
 # Files → workspace 5
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.apple.finder'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace --focus-follows-window 5'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.asiafu.Bloom'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace --focus-follows-window 5'
 
 # Games and databases → workspace 6
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Navicat'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace --focus-follows-window 6'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = org.katrain.KaTrain'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace --focus-follows-window 6'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.kbksoftware.Native-SQLite-Manager'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace --focus-follows-window 6'
 
-# Codex-GPT workspace 7 
+# Codex-GPT workspace 7
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.openai.codex'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace --focus-follows-window 7'
 
 # PDF reader → workspace 8
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.adobe.Acrobat.Pro'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace --focus-follows-window 7'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.brother.pdfreaderprofree.mac'
-run = 'move-node-to-workspace 8'
+run = 'move-node-to-workspace --focus-follows-window 8'
+
+[[on-window-detected]]
+if.app-id = 'com.brother.pdfreaderprofree.mac'
+if.window-title-regex-substring = 'Window'
+run = 'layout floating'
 
 # zoom - workspace 9
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = us.zoom.xos'
-run = 'move-node-to-workspace 9'
+run = 'move-node-to-workspace --focus-follows-window 9'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.microsoft.teams2'
-run = 'move-node-to-workspace 9'
+run = 'move-node-to-workspace --focus-follows-window 9'
 
 # workspace 10 is for images, media, and virtualization
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.interversehq.qView'
-run = 'move-node-to-workspace 10'
+run = 'move-node-to-workspace --focus-follows-window 10'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = imagetasks.Pixea'
@@ -450,11 +455,11 @@ run = ['layout floating', 'move-node-to-workspace 10']
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = netdcy.FlowVision'
-run = 'move-node-to-workspace 10'
+run = 'move-node-to-workspace --focus-follows-window 10'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.apple.Preview'
-run = 'move-node-to-workspace 10'
+run = 'move-node-to-workspace --focus-follows-window 10'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.apple.ActivityMonitor'
@@ -471,69 +476,70 @@ run = ['layout floating', 'move-node-to-workspace 10']
 # Named workspaces
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Spyder'
-run = 'move-node-to-workspace Code'
+run = 'move-node-to-workspace --focus-follows-window Code'
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Cursor'
-run = 'move-node-to-workspace Code'
+run = 'move-node-to-workspace --focus-follows-window Code'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.exafunction.windsurf'
-run = 'move-node-to-workspace Code'
+run = 'move-node-to-workspace --focus-follows-window Code'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.hnc.Discord'
-run = 'move-node-to-workspace Discord'
+run = 'move-node-to-workspace --focus-follows-window Discord'
 
 [[on-window-detected]]
 if = ' test %{app-bundle-id} = com.calibre || test %{app-bundle-id} = net.kovidgoyal.calibre || test %{app-name} ~= ^Calibre '
-run = 'move-node-to-workspace Ebooks'
+run = 'move-node-to-workspace --focus-follows-window Ebooks'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = org.mozilla.firefox'
-run = 'move-node-to-workspace Firefox'
+run = 'move-node-to-workspace --focus-follows-window Firefox'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.apple.mail'
-run = 'move-node-to-workspace Mail'
+run = 'move-node-to-workspace --focus-follows-window Mail'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = md.obsidian'
-run = 'move-node-to-workspace Note'
+run = 'move-node-to-workspace --focus-follows-window Note'
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Docker'
-run = 'move-node-to-workspace Obstack'
+run = 'move-node-to-workspace --focus-follows-window Obstack'
 
 [[on-window-detected]]
 if = 'test %{app-name} ~= ^Docker'
-run = 'move-node-to-workspace Obstack'
+run = 'move-node-to-workspace --focus-follows-window Obstack'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = dev.kdrag0n.MacVirt'
-run = 'move-node-to-workspace Orbstack'
+run = 'move-node-to-workspace --focus-follows-window Orbstack'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = ai.perplexity.mac'
-run = 'move-node-to-workspace Perplexity'
+run = 'move-node-to-workspace --focus-follows-window Perplexity'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace Slack'
+run = 'move-node-to-workspace --focus-follows-window Slack'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = ru.keepcoder.Telegram'
-run = 'move-node-to-workspace Telegram'
+run = 'move-node-to-workspace --focus-follows-window Telegram'
 
 [[on-window-detected]]
 if = 'test %{app-bundle-id} = org.videolan.vlc'
-run = 'move-node-to-workspace Video'
+run = 'move-node-to-workspace --focus-follows-window Video'
 
 # Floating applications
 [[on-window-detected]]
 if.app-id = 'org.zotero.zotero'
 if.window-title-regex-substring = 'Citation'
 run = 'layout floating'
+
 
 # [[on-window-detected]]
 # if = 'test %{app-bundle-id} = com.apple.iphonesimulator'
