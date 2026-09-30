@@ -28,18 +28,18 @@ hide_overlay_in_screen_share = false # Hide overlay from screen sharing apps
 # Theme palette
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#theme
 [theme.light]
-surface = "#FBF1C7"       # Gruvbox light background
-accent = "#B57614"        # Dark golden yellow
-accent_alt = "#AF3A03"    # Burnt orange
-on_accent_alt = "#FFF4D2" # Text on orange
-text = "#3C3836"          # Dark foreground
+surface = "#F4F4F5"
+accent = "#527A9B"
+accent_alt = "#3F6685"
+on_accent_alt = "#F8FAFC"
+text = "#27272A"
 
 [theme.dark]
-surface = "#282828"       # Gruvbox dark background
-accent = "#FABD2F"        # Bright yellow
-accent_alt = "#FE8019"    # Bright orange
-on_accent_alt = "#282828" # Dark text on orange
-text = "#EBDBB2"          # Warm foreground
+surface = "#17191C"
+accent = "#7AA2C8"        # Nổi vừa đủ trên nền tối
+accent_alt = "#527FA3"    # Đậm hơn cho active/secondary
+on_accent_alt = "#F1F5F9"
+text = "#D1D5DB"
 
 # Hotkeys
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#hotkeys
@@ -192,15 +192,15 @@ generic_clickable_min_confidence = 0.5 # Minimum confidence for generic clickabl
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#grid
 [grid]
 enabled = true
-characters = "arstnhio"     # Primary grid labels
+characters = "nhijk,"     # Primary grid labels
 sublayer_keys = "luynhijk," # Subgrid labels, first 9 used (empty = infer from characters)
-row_labels = "arst"         # Custom row labels (empty = infer from characters)
-col_labels = "nhio"         # Custom column labels (empty = infer from characters)
+row_labels = "arstnhio"         # Custom row labels (empty = infer from characters)
+col_labels = "arstnhio"         # Custom column labels (empty = infer from characters)
 live_match_update = true    # Highlight cells as you type
 hide_unmatched = true       # Hide non-matching cells
 prewarm_enabled = true      # Pre-compute grid on startup (~1.5MB RAM)
 enable_gc = false           # Periodic memory cleanup (adds CPU overhead)
-max_label_length = 2
+max_label_length = 3
 
 [grid.hotkeys]
 "Escape" = "idle"
@@ -219,9 +219,18 @@ max_label_length = 2
 "Right" = "action move_mouse_relative --dx=10 --dy=0"
 
 [grid.ui]
-font_size = 12
-font_family = ""
+font_size = 13
+font_family = "monospace"
 border_width = 1
+
+background_color = "#661B1B1B"
+text_color = "#E5E7EB"
+
+matched_background_color = "#66121418"
+matched_text_color = "#6B7280"
+
+border_color = "#3A3A3A"
+matched_border_color = "#25282D"
 
 # Recursive grid mode (recommended)
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#recursive_grid
@@ -275,6 +284,13 @@ sub_key_preview = true                    # Draw miniature key grid inside each 
 sub_key_preview_font_size = 12
 sub_key_preview_autohide_multiplier = 1.5 # Hide the preview when a sub-cell < fontSize × multiplier (0 = disable)
 sub_key_preview_label_char = ""           # Override sub-key preview labels with a single character (e.g. "·"); empty = use key
+
+highlight_color = "#261E2228"
+label_background_color = "#17191C"
+
+line_color = "#7AA2C8"
+text_color = "#7AA2C8"
+sub_key_preview_text_color = "#7AA2C8"
 
 # Virtual pointer
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#virtual_pointer
