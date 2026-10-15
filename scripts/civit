@@ -1,16 +1,46 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-if [ -z "$CIVITAI_TOKEN" ]; then
+if [[ -z "${CIVITAI_TOKEN:-}" ]]; then
   echo "❌ CIVITAI_TOKEN is not set"
   exit 1
 fi
 
-if [ -z "$1" ]; then
-  echo "Usage: civit <base_civitai_url>"
+if [[ -z "${1:-}" ]]; then
+  echo "Usage: civit <civitai_url> [output_dir]"
   exit 1
 fi
 
-sep="&"
-[[ "$1" != *"?"* ]] && sep="?"
+if ! command -v aria2c >/dev/null 2>&1; then
+  echo "❌ aria2c is not installed"
+  echo "Install: sudo apt install aria2"
+  exit 1
+fi
 
-wget "$1${sep}token=$CIVITAI_TOKEN" --content-disposition
+URL="$1"
+OUTPUT_DIR="${2:-.}"
+
+mkdir -p "$OUTPUT_DIR"
+
+# Append token while preserving existing query parameters
+if [[ "$URL" == *"?"* ]]; then
+  URL="${URL}&token=${CIVITAI_TOKEN}"
+else
+  URL="${URL}?token=${CIVITAI_TOKEN}"
+fi
+
+aria2c \
+  --dir="$OUTPUT_DIR" \
+  --split=16 \
+  --max-connection-per-server=16 \
+  --min-split-size=1M \
+  --continue=true \
+  --max-tries=10 \
+  --retry-wait=5 \
+  --timeout=60 \
+  --connect-timeout=30 \
+  --auto-file-renaming=false \
+  --allow-overwrite=false \
+  --content-disposition=true \
+  --summary-interval=1 \
+  "$URL"
