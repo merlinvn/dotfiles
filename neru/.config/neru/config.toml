@@ -49,6 +49,7 @@ text = "#D1D5DB"
 "Ctrl+Alt+Shift+X" = "hints --action left_click"
 "Ctrl+Alt+Shift+G" = "grid"
 "Ctrl+Alt+Shift+R" = "recursive_grid"
+"Ctrl+Alt+Shift+'" = "scroll"
 
 #
 # "Ctrl+Alt+Shift+G" = "grid"
@@ -71,7 +72,7 @@ text = "#D1D5DB"
 [hints]
 enabled = true
 strategy = "axtree"            # Element detection: "axtree" (AX API) or "vision" (Vision Framework)
-hint_characters = "asdfghjkl;" # Characters used for hint labels for internal keyboard layout
+hint_characters = "arstgmnhio" # Characters used for hint labels for internal keyboard layout
 # hint_characters = "arstgmnhio" # Characters used for hint labels for my external keyboard layout
 label_direction = "normal" # Hint label algorithm: "normal" (default) or "reverse"
 max_depth = 50 # Max accessibility tree depth (0 = unlimited)
@@ -140,6 +141,12 @@ visible_check_enabled = false
 "Down" = "action move_mouse_relative --dx=0 --dy=10"
 "Left" = "action move_mouse_relative --dx=-10 --dy=0"
 "Right" = "action move_mouse_relative --dx=10 --dy=0"
+
+"PageUp" = "action page_up"
+"PageDown" = "action page_down"
+
+"Home" = "action go_top"
+"End" = "action go_bottom"
 
 [hints.ui]
 font_size = 12
@@ -217,6 +224,12 @@ max_label_length = 3
 "Down" = "action move_mouse_relative --dx=0 --dy=10"
 "Left" = "action move_mouse_relative --dx=-10 --dy=0"
 "Right" = "action move_mouse_relative --dx=10 --dy=0"
+
+"PageUp" = "action page_up"
+"PageDown" = "action page_down"
+
+"Home" = "action go_top"
+"End" = "action go_bottom"
 
 [grid.ui]
 font_size = 13
