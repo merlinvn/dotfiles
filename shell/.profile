@@ -50,5 +50,12 @@ path_prepend "$HOME/.cargo/bin"
 path_prepend "$HOME/.fzf/bin"
 path_prepend "$HOME/bin"
 path_prepend "$HOME/.local/bin"
+
+# NVIDIA CUDA (Jetson)
+if [ -d /usr/local/cuda ]; then
+  export CUDA_HOME=/usr/local/cuda
+  path_prepend "$CUDA_HOME/bin"
+fi
+
 export PATH
 unset -f path_prepend 2>/dev/null || true
